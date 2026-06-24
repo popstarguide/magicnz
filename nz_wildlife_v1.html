@@ -6,7 +6,7 @@
 <style>
   .icon-row {
     display:flex;
-    justify-content:space-around;
+    justify-content:center;
     align-items:center;
     margin:20px 0;
     padding:16px 8px;
@@ -18,7 +18,6 @@
     flex-direction:column;
     align-items:center;
     gap:6px;
-    flex:1;
   }
   .icon-item img {
     width:56px;
@@ -34,29 +33,42 @@
     color:#F2784B;
     text-align:center;
   }
+  .inline-icon {
+    display:block;
+    margin:16px auto;
+    width:72px;
+    height:72px;
+    object-fit:contain;
+    filter: invert(40%) sepia(80%) saturate(600%) hue-rotate(350deg) brightness(90%);
+  }
+  .inline-icon-wide {
+    display:block;
+    margin:16px auto;
+    width:110px;
+    height:60px;
+    object-fit:contain;
+    filter: invert(40%) sepia(80%) saturate(600%) hue-rotate(350deg) brightness(90%);
+  }
+  .icon-label {
+    font-size:9px;
+    font-weight:600;
+    letter-spacing:0.1em;
+    text-transform:uppercase;
+    color:#F2784B;
+    text-align:center;
+    margin:-10px 0 16px;
+  }
 </style>
 </head>
 <body style="background:#ffffff;color:#1A1410;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;font-weight:300;line-height:1.75;padding:16px 18px 60px;margin:0;">
 
 <p style="font-size:15px;font-weight:400;color:#5C4A3A;line-height:1.8;border-left:3px solid #F25E0D;padding-left:14px;margin:0 0 24px;font-style:italic;">New Zealand has been compared to an ark adrift on the Pacific Ocean — unaffected by the outside world until about 1000 AD and the arrival of the first humans. The result is a wildlife story found nowhere else on earth.</p>
 
-<!-- Icon row -->
+<!-- Pīwakawaka solo icon -->
 <div class="icon-row">
   <div class="icon-item">
     <img src="fantail.png" alt="Pīwakawaka / Fantail">
     <span>Pīwakawaka</span>
-  </div>
-  <div class="icon-item">
-    <img src="kiwi.png" alt="Kiwi">
-    <span>Kiwi</span>
-  </div>
-  <div class="icon-item">
-    <img src="tuatara.png" alt="Tuatara">
-    <span>Tuatara</span>
-  </div>
-  <div class="icon-item">
-    <img src="tui.png" alt="Tūī">
-    <span>Tūī</span>
   </div>
 </div>
 
@@ -68,13 +80,19 @@
 <p style="background:#1A1410;border-radius:10px;padding:16px 18px 4px;margin:0 0 0;font-size:10px;font-weight:600;letter-spacing:0.16em;text-transform:uppercase;color:#F2784B;">Where to See a Kiwi</p>
 <p style="background:#1A1410;padding:0 18px 8px;margin:0;font-size:13px;color:#F7F3EF;line-height:1.7;">Kiwi houses — purpose-built nocturnal viewing buildings — can be found at:</p>
 <p style="background:#1A1410;padding:0 18px 8px;margin:0;font-size:13px;color:#F7F3EF;line-height:1.7;"><span style="color:#F2784B;font-weight:600;">Otorohanga · Mt Bruce · Wellington · Queenstown</span></p>
-<p style="background:#1A1410;border-radius:0 0 10px 10px;padding:0 18px 16px;margin:0 0 16px;font-size:13px;color:#F7F3EF;line-height:1.7;">Stewart Island remains the best place to encounter a kiwi in the wild.</p>
+<p style="background:#1A1410;border-radius:0 0 10px 10px;padding:0 18px 16px;margin:0 0 12px;font-size:13px;color:#F7F3EF;line-height:1.7;">Stewart Island remains the best place to encounter a kiwi in the wild.</p>
+
+<img src="kiwi.png" alt="Kiwi" class="inline-icon">
+<p class="icon-label">Kiwi</p>
 
 <p style="text-align:center;color:#F25E0D;font-size:16px;letter-spacing:8px;margin:20px 0;">· · ·</p>
 
 <p style="font-size:10px;font-weight:600;letter-spacing:0.16em;text-transform:uppercase;color:#F2784B;margin:0 0 2px;">The mammals</p>
 <h2 style="font-size:22px;font-weight:700;color:#F25E0D;line-height:1.2;margin:0 0 12px;padding-bottom:10px;border-bottom:1px solid #e8e8e8;">Just Two — Both Bats</h2>
 <p style="font-size:14px;color:#1A1410;margin:0 0 12px;line-height:1.8;">Prior to the arrival of humans there were only 2 mammals in New Zealand — two species of fruit bat. Like many of our native animals, they are now endangered. The only real wild population of fruit bats remains in the Fiordland National Park.</p>
+
+<img src="pekapeka.png" alt="Pekapeka / Long-tailed bat" class="inline-icon-wide">
+<p class="icon-label">Pekapeka</p>
 
 <p style="text-align:center;color:#F25E0D;font-size:16px;letter-spacing:8px;margin:20px 0;">· · ·</p>
 
@@ -86,7 +104,10 @@
 
 <p style="background:#1A1410;border-radius:10px;padding:16px 18px 4px;margin:0 0 0;font-size:10px;font-weight:600;letter-spacing:0.16em;text-transform:uppercase;color:#F2784B;">Where to See a Tuatara</p>
 <p style="background:#1A1410;padding:0 18px 8px;margin:0;font-size:13px;color:#F7F3EF;line-height:1.7;"><span style="color:#F2784B;font-weight:600;">Mt Bruce Wildlife Centre</span> — north of Masterton in the Wairarapa</p>
-<p style="background:#1A1410;border-radius:0 0 10px 10px;padding:0 18px 16px;margin:0 0 16px;font-size:13px;color:#F7F3EF;line-height:1.7;"><span style="color:#F2784B;font-weight:600;">Zealandia</span> — Wellington. You might be lucky and spot one basking in the sun.</p>
+<p style="background:#1A1410;border-radius:0 0 10px 10px;padding:0 18px 16px;margin:0 0 12px;font-size:13px;color:#F7F3EF;line-height:1.7;"><span style="color:#F2784B;font-weight:600;">Zealandia</span> — Wellington. You might be lucky and spot one basking in the sun.</p>
+
+<img src="tuatara.png" alt="Tuatara" class="inline-icon-wide">
+<p class="icon-label">Tuatara</p>
 
 <p style="text-align:center;color:#F25E0D;font-size:16px;letter-spacing:8px;margin:20px 0;">· · ·</p>
 
@@ -94,6 +115,9 @@
 <h2 style="font-size:22px;font-weight:700;color:#F25E0D;line-height:1.2;margin:0 0 12px;padding-bottom:10px;border-bottom:1px solid #e8e8e8;">An Evergreen Rainforest</h2>
 <p style="font-size:14px;color:#1A1410;margin:0 0 12px;line-height:1.8;">New Zealand benefited from ash-laden fertile soil, no shortage of water, and ideal growing temperatures — around 18–22°C average for most of the country. About 80% of the country was covered in bush at the time of the first humans' arrival. Today around 38% remains forested, with about 79% of that under government protection in National Parks.</p>
 <p style="font-size:14px;color:#1A1410;margin:0 0 12px;line-height:1.8;">The New Zealand bush is an evergreen rainforest — a mixture of flaxes and ferns through to majestic kauri trees and southern beech.</p>
+
+<img src="tui.png" alt="Tūī" class="inline-icon">
+<p class="icon-label">Tūī</p>
 
 <p style="background:#F25E0D;border-radius:10px 10px 0 0;padding:16px 18px 4px;margin:0;font-size:17px;font-weight:700;color:#fff;line-height:1.3;">Tane Mahuta — Lord of the Forest</p>
 <p style="background:#F25E0D;padding:0 18px 8px;margin:0;font-size:13px;color:rgba(255,255,255,0.92);line-height:1.7;">The kauri is a massive tree — especially per volume. One tree in particular has been named <strong>Tane Mahuta</strong>, meaning Lord of the Forest.</p>
