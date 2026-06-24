@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<style>
+  #map-lightbox {
+    display:none;
+    position:fixed;
+    top:0;left:0;right:0;bottom:0;
+    background:rgba(0,0,0,0.88);
+    z-index:999;
+    align-items:center;
+    justify-content:center;
+  }
+  #map-lightbox.open { display:flex; }
+  #map-lightbox img {
+    max-width:95vw;
+    max-height:90vh;
+    border-radius:6px;
+    box-shadow:0 8px 40px rgba(0,0,0,0.6);
+  }
+  #map-lightbox .close-btn {
+    position:absolute;
+    top:16px;right:20px;
+    color:#fff;
+    font-size:32px;
+    cursor:pointer;
+    line-height:1;
+  }
+  .map-thumb {
+    width:100%;
+    border-radius:8px;
+    cursor:pointer;
+    display:block;
+    border:2px solid #e8e8e8;
+  }
+  .map-caption {
+    font-size:11px;
+    color:#888;
+    text-align:center;
+    margin:6px 0 0;
+    font-style:italic;
+  }
+</style>
+</head>
+<body style="background:#ffffff;color:#1A1410;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;font-weight:300;line-height:1.75;padding:16px 18px 60px;margin:0;">
+
+<p style="font-size:15px;font-weight:400;color:#5C4A3A;line-height:1.8;border-left:3px solid #F25E0D;padding-left:14px;margin:0 0 24px;font-style:italic;">The first known European to discover Aotearoa / New Zealand was a Dutchman named Abel Tasman — and the story of how it went is one of the most wonderfully chaotic accidents in the history of exploration.</p>
+
+<p style="font-size:10px;font-weight:600;letter-spacing:0.16em;text-transform:uppercase;color:#F2784B;margin:0 0 2px;">The mission</p>
+<h2 style="font-size:22px;font-weight:700;color:#F25E0D;line-height:1.2;margin:0 0 12px;padding-bottom:10px;border-bottom:1px solid #e8e8e8;">Sailing to the Other Side of the World</h2>
+<p style="font-size:14px;color:#1A1410;margin:0 0 12px;line-height:1.8;">Abel Tasman set sail from Zeeland, a Dutch province. His mission was to seek out the land that must exist on the other side of the world. It has been established that the world is round and that everything on it worked in balance — so for Europe to exist, there had to be land mass on the other side to stop it tipping over. Australia was what he was looking for.</p>
+<p style="font-size:14px;color:#1A1410;margin:0 0 12px;line-height:1.8;">He sailed round the Cape of Good Hope and across the bottom of the Indian Ocean, finding an island that would later be named after him — Tasmania. He continued east until, on <strong>13 December 1642</strong>, he sighted land just south of Cape Foulwind, near Westport.</p>
+
+<p style="text-align:center;color:#F25E0D;font-size:16px;letter-spacing:8px;margin:20px 0;">· · ·</p>
+
+<p style="font-size:10px;font-weight:600;letter-spacing:0.16em;text-transform:uppercase;color:#F2784B;margin:0 0 2px;">Golden Bay, 1642</p>
+<h2 style="font-size:22px;font-weight:700;color:#F25E0D;line-height:1.2;margin:0 0 12px;padding-bottom:10px;border-bottom:1px solid #e8e8e8;">Murderers Bay</h2>
+<p style="font-size:14px;color:#1A1410;margin:0 0 12px;line-height:1.8;">Sailing north along the coast, Tasman rounded Farewell Spit and into a beautiful bay. He saw some locals and — being Dutch and therefore friendly — decided to be social. He organised seven volunteers to go and find out what the locals were like.</p>
+<p style="font-size:14px;color:#1A1410;margin:0 0 12px;line-height:1.8;">As the sailors made their way to shore, they heard the <strong>conch shell being blown</strong>. In Māori tradition, this is the first stage of determining a visitor's intentions — and if replied to, it signals that a fight will follow. The Dutch, hearing what sounded like a fanfare, did exactly what Europeans do with fanfares: they picked up their trumpets and responded in kind.</p>
+
+<p style="background:#fff5f0;border-left:4px solid #F25E0D;border-radius:0 8px 8px 0;padding:14px 16px;margin:0 0 12px;font-size:15px;font-style:italic;color:#F25E0D;line-height:1.6;">The Māori thought the fight was on — so they jumped into their wakanui and paddled out to the landing boat.</p>
+
+<p style="font-size:14px;color:#1A1410;margin:0 0 12px;line-height:1.8;">The Dutch, watching the approaching canoes, thought things didn't look good. A sailor picked up his musket, aimed, steadied, fired — and missed. That convinced the Māori it was absolutely on. They charged the landing boat and killed four of the sailors. The landing party made a rapid retreat.</p>
+<p style="font-size:14px;color:#1A1410;margin:0 0 12px;line-height:1.8;">Hence the bay was named <strong>Murderers Bay</strong>. Fortunately it got a much nicer name — <strong>Golden Bay</strong> — many years later, which is far more fitting of the location.</p>
+
+<p style="text-align:center;color:#F25E0D;font-size:16px;letter-spacing:8px;margin:20px 0;">· · ·</p>
+
+<p style="font-size:10px;font-weight:600;letter-spacing:0.16em;text-transform:uppercase;color:#F2784B;margin:0 0 2px;">The mapping</p>
+<h2 style="font-size:22px;font-weight:700;color:#F25E0D;line-height:1.2;margin:0 0 12px;padding-bottom:10px;border-bottom:1px solid #e8e8e8;">Staete Landt — One Island?</h2>
+<p style="font-size:14px;color:#1A1410;margin:0 0 12px;line-height:1.8;">Tasman set sail northward as fast as he could, mapping the west coast of both islands as he went — accidentally making them look like one. He thought New Zealand was a single island. He also managed to map Taranaki completely out of existence (have a look at a map of the North Island — it's a fairly major part of the west coast!). And because he thought we were attached to South America, he named us <strong>Staten Landt</strong> — an older name for South America.</p>
+
+<p style="background:#1A1410;border-radius:10px;padding:16px 18px 4px;margin:0 0 0;font-size:10px;font-weight:600;letter-spacing:0.16em;text-transform:uppercase;color:#F2784B;">In Tasman's Defence</p>
+<p style="background:#1A1410;padding:0 18px 8px;margin:0;font-size:13px;color:#F7F3EF;line-height:1.7;">At this time, <span style="color:#F2784B;font-weight:600;">longitude had not been discovered yet</span> — only latitude. He was only accurately measuring north and south. East and west at sea took considerably longer to work out.</p>
+<p style="background:#1A1410;padding:0 18px 8px;margin:0;font-size:13px;color:#F7F3EF;line-height:1.7;">The one-island mistake is also forgivable — he was probably in quite a hurry leaving Nelson.</p>
+<p style="background:#1A1410;border-radius:0 0 10px 10px;padding:0 18px 16px;margin:0 0 16px;font-size:13px;color:#F7F3EF;line-height:1.7;">He also missed Australia in <span style="color:#F2784B;font-weight:600;">both directions</span> — and Australia is only the biggest island in the world, nearly the size of Western Europe. To be fair, the Dutch had already found it in 1606 but thought it was just a series of small islands.</p>
+
+<p style="font-size:14px;color:#1A1410;margin:0 0 12px;line-height:1.8;">Before reaching the Three Kings Islands, north west off Cape Reinga, he spotted a few Māori and — having learned his lesson — decided not to visit. He continued on to discover Tonga and Fiji, then sailed between New Guinea and Australia to the Spice Islands (Indonesia).</p>
+
+<p style="background:#fff5f0;border-left:4px solid #F25E0D;border-radius:0 8px 8px 0;padding:14px 16px;margin:0 0 16px;font-size:15px;font-style:italic;color:#F25E0D;line-height:1.6;">I love this story, because of all the mistakes he made, it makes the art of exploring the world look like an act of pure chance.</p>
+
+<!-- Map thumbnail with lightbox -->
+<p style="font-size:10px;font-weight:600;letter-spacing:0.16em;text-transform:uppercase;color:#F2784B;margin:0 0 8px;">Tasman's original map, 1642</p>
+<img src="Staete_Landt.jpg" alt="Staete Landt — Tasman's 1642 map of New Zealand" class="map-thumb" onclick="document.getElementById('map-lightbox').classList.add('open')">
+<p class="map-caption">Tap to enlarge — Staete Landt, as mapped by Abel Tasman, 13 December 1642</p>
+
+<p style="text-align:center;color:#F25E0D;font-size:16px;letter-spacing:8px;margin:20px 0;">· · ·</p>
+
+<p style="font-size:10px;font-weight:600;letter-spacing:0.16em;text-transform:uppercase;color:#F2784B;margin:0 0 2px;">6 October 1769</p>
+<h2 style="font-size:22px;font-weight:700;color:#F25E0D;line-height:1.2;margin:0 0 12px;padding-bottom:10px;border-bottom:1px solid #e8e8e8;">Captain Cook Arrives</h2>
+<p style="font-size:14px;color:#1A1410;margin:0 0 12px;line-height:1.8;">It took another 100 years for Europeans to be sighted in these waters. Nicholas Young, on board the <em>Endeavour</em>, yelled <strong>"Land ahoy!"</strong> — and Captain James Cook named that headland <strong>Young Nick's Head</strong>, a name it still bears today.</p>
+<p style="font-size:14px;color:#1A1410;margin:0 0 12px;line-height:1.8;">Cook's original mission was to track the path of Venus across the South Pacific. Once complete, he went exploring — and discovered New Zealand from the east coast, not the west, proving beyond doubt that we were not attached to South America.</p>
+
+<p style="font-size:14px;padding:8px 0;border-bottom:1px solid #e8e8e8;color:#1A1410;margin:0;"><span style="color:#F25E0D;">▸ </span>Cook spent <span style="font-weight:600;">6 months</span> mapping the New Zealand coastline</p>
+<p style="font-size:14px;padding:8px 0;border-bottom:1px solid #e8e8e8;color:#1A1410;margin:0;"><span style="color:#F25E0D;">▸ </span>He was aided by <span style="font-weight:600;">two Tahitian interpreters</span>, which helped encounters with Māori go considerably better than Tasman's</p>
+<p style="font-size:14px;padding:8px 0;border-bottom:1px solid #e8e8e8;color:#1A1410;margin:0 0 16px;"><span style="color:#F25E0D;">▸ </span>He returned to England reporting a land of <span style="font-weight:600;">great resources</span> and a people that could be traded with</p>
+
+<p style="text-align:center;color:#F25E0D;font-size:16px;letter-spacing:8px;margin:20px 0;">· · ·</p>
+
+<p style="font-size:10px;font-weight:600;letter-spacing:0.16em;text-transform:uppercase;color:#F2784B;margin:0 0 2px;">1790s onwards</p>
+<h2 style="font-size:22px;font-weight:700;color:#F25E0D;line-height:1.2;margin:0 0 12px;padding-bottom:10px;border-bottom:1px solid #e8e8e8;">The Settlers Arrive</h2>
+<p style="font-size:14px;color:#1A1410;margin:0 0 12px;line-height:1.8;">Europeans started arriving around the 1790s. The first settlers were seal hunters who had little impact on everyday Māori life — except for their massacre of the kekeno (New Zealand fur seal). The 1800s brought the whale hunters and the beginnings of true European settlement.</p>
+
+<p style="background:#F25E0D;border-radius:10px 10px 0 0;padding:16px 18px 4px;margin:0;font-size:17px;font-weight:700;color:#fff;line-height:1.3;">The Second Sons</p>
+<p style="background:#F25E0D;padding:0 18px 8px;margin:0;font-size:13px;color:rgba(255,255,255,0.92);line-height:1.7;">New Zealand was never colonised by convicts (we made sure they all went to Australia). New Zealand was settled by the 'second sons'.</p>
+<p style="background:#F25E0D;padding:0 18px 8px;margin:0;font-size:13px;color:rgba(255,255,255,0.92);line-height:1.7;">While the influencing group to arrive were those traditionally second in line to family fortunes, many also arrived looking for a fresh start free of class structure and to make their own fortunes. They sailed here — a three-month journey — arrived, saw nothing but bush and hills, and got on with it.</p>
+<p style="background:#F25E0D;border-radius:0 0 10px 10px;padding:0 18px 16px;margin:0 0 16px;font-size:13px;color:rgba(255,255,255,0.92);line-height:1.7;">With no way back, the only option was to make a living — and they did. That's where the Kiwi 'get in and get the job done' attitude comes from. And those first settlers needed the Māori to help them get established — that's where the multicultural attitude really started. Although when you talk to a few locals they might tell you otherwise.</p>
+
+<p style="font-size:14px;color:#1A1410;margin:0 0 12px;line-height:1.8;">Key moments in our history are outlined in the <strong>Journey Through Time</strong> section.</p>
+
+<!-- Lightbox overlay -->
+<div id="map-lightbox">
+  <span class="close-btn" onclick="document.getElementById('map-lightbox').classList.remove('open')">&times;</span>
+  <img src="Staete_Landt.jpg" alt="Staete Landt — Tasman's 1642 map of New Zealand">
+</div>
+
+</body>
+</html>
