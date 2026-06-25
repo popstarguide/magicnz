@@ -190,7 +190,8 @@
 </head>
 <body style="background:#ffffff;color:#1A1410;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;font-weight:300;line-height:1.75;padding:16px 18px 60px;margin:0;">
 
-<p class="intro-quote">Early in New Zealand's settlement by the Europeans the country was divided into regions. Initially the idea was for provincial self-government with an overarching nationally based government — like the states of America or the Australian states. The experiment was short-lived; within 30 years the provinces were abolished in favour of full central government. The provincial identity however did not disappear and remains strong to this day.</p>
+<p class="intro-quote">Early in New Zealand's settlement by the Europeans the country was divided into regions. Initially the idea was for provincial self-government with an overarching nationally based government — like the states of America or the Australian states. <span id="intro-more" class="expand-content">The experiment was short-lived; within 30 years the provinces were abolished in favour of full central government. The provincial identity however did not disappear and remains strong to this day.</span></p>
+<button class="expand-btn" id="intro-btn" onclick="toggleIntro()">Read more</button>
 
 <!-- Province selector -->
 <select class="region-select" onchange="showRegion(this.value)">
@@ -650,6 +651,18 @@
 </div>
 
 <script>
+function toggleIntro() {
+  var more = document.getElementById('intro-more');
+  var btn = document.getElementById('intro-btn');
+  if (more.classList.contains('open')) {
+    more.classList.remove('open');
+    btn.textContent = 'Read more';
+  } else {
+    more.classList.add('open');
+    btn.textContent = 'Read less';
+  }
+}
+
 function showRegion(val) {
   // Hide default state
   document.getElementById('default-state').style.display = val ? 'none' : 'block';
