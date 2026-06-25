@@ -670,4 +670,601 @@ function showRegion(val) {
 </script>
 
 </body>
+</html>    border-bottom: 1px solid #e8e8e8;
+  }
+
+  .body-text {
+    font-size: 14px;
+    color: #1A1410;
+    margin: 0 0 12px;
+    line-height: 1.8;
+  }
+
+  .fact-row {
+    font-size: 14px;
+    padding: 8px 0;
+    border-bottom: 1px solid #e8e8e8;
+    color: #1A1410;
+    margin: 0;
+  }
+
+  .dark-card {
+    background: #1A1410;
+    border-radius: 10px;
+    padding: 16px 18px;
+    margin: 0 0 16px;
+  }
+  .dark-card-label {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: #F2784B;
+    margin: 0 0 4px;
+  }
+  .dark-card-text {
+    font-size: 13px;
+    color: #F7F3EF;
+    line-height: 1.7;
+    margin: 0;
+  }
+  .dark-card-text span {
+    color: #F2784B;
+    font-weight: 600;
+  }
+
+  .orange-card {
+    background: #F25E0D;
+    border-radius: 10px;
+    padding: 16px 18px;
+    margin: 0 0 16px;
+  }
+  .orange-card-title {
+    font-size: 17px;
+    font-weight: 700;
+    color: #fff;
+    line-height: 1.3;
+    margin: 0 0 6px;
+  }
+  .orange-card-text {
+    font-size: 13px;
+    color: rgba(255,255,255,0.92);
+    line-height: 1.7;
+    margin: 0;
+  }
+
+  .pull-quote {
+    background: #fff5f0;
+    border-left: 4px solid #F25E0D;
+    border-radius: 0 8px 8px 0;
+    padding: 14px 16px;
+    margin: 0 0 16px;
+    font-size: 15px;
+    font-style: italic;
+    color: #F25E0D;
+    line-height: 1.6;
+  }
+
+  .intro-quote {
+    font-size: 15px;
+    font-weight: 400;
+    color: #5C4A3A;
+    line-height: 1.8;
+    border-left: 3px solid #F25E0D;
+    padding-left: 14px;
+    margin: 0 0 24px;
+    font-style: italic;
+  }
+
+  .expand-btn {
+    background: none;
+    border: none;
+    color: #F25E0D;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    padding: 0;
+    font-family: inherit;
+    display: block;
+    margin: -4px 0 16px auto;
+  }
+
+  .expand-content { display: none; }
+  .expand-content.open { display: block; }
+
+  .placeholder-state {
+    text-align: center;
+    padding: 40px 20px;
+    color: #aaa;
+    font-size: 14px;
+  }
+  .placeholder-state .nz-icon {
+    font-size: 48px;
+    margin-bottom: 12px;
+    display: block;
+  }
+</style>
+</head>
+<body style="background:#ffffff;color:#1A1410;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;font-weight:300;line-height:1.75;padding:16px 18px 60px;margin:0;">
+
+<p class="intro-quote">Early in New Zealand's settlement by the Europeans the country was divided into regions. Initially the idea was for provincial self-government with an overarching nationally based government — like the states of America or the Australian states. The experiment was short-lived; within 30 years the provinces were abolished in favour of full central government. The provincial identity however did not disappear and remains strong to this day.</p>
+
+<!-- Province selector -->
+<select class="region-select" onchange="showRegion(this.value)">
+  <option value="">Select a region…</option>
+  <option value="northland">Northland</option>
+  <option value="auckland">Auckland</option>
+  <option value="waikato">Waikato</option>
+  <option value="kingcountry">King Country</option>
+  <option value="thamesvalley">Thames Valley (Coromandel)</option>
+  <option value="bayofplenty">Bay of Plenty</option>
+  <option value="taupo">Taupo &amp; National Park</option>
+  <option value="eastcoast">East Coast / Poverty Bay</option>
+  <option value="hawkesbay">Hawkes Bay</option>
+  <option value="taranaki">Taranaki</option>
+  <option value="whanganui">Whanganui / Manawatu</option>
+  <option value="wairarapa">Wairarapa</option>
+  <option value="wellington">Wellington Region</option>
+  <option value="tasman">Tasman &amp; Nelson</option>
+  <option value="marlborough">Marlborough</option>
+  <option value="westcoast">West Coast</option>
+  <option value="canterbury">Canterbury</option>
+  <option value="lakesdistrict">Lakes District (Otago)</option>
+  <option value="otago">Otago</option>
+  <option value="southland">Southland</option>
+</select>
+
+<!-- Default state -->
+<div id="default-state">
+  <img src="NZ_Provincial_map.jpg" alt="New Zealand Provincial Map" style="width:70%;display:block;margin:0 auto 12px;border-radius:8px;">
+  <p style="text-align:center;font-size:13px;color:#aaa;font-style:italic;">Select a region above to explore</p>
+</div>
+
+<!-- ===================== NORTHLAND ===================== -->
+<div class="region-panel" id="panel-northland">
+  <p class="eyebrow">North Island — Far North</p>
+  <h2 class="section-heading">Northland</h2>
+  <img src="russel.jpg" alt="Russell, Northland" class="pretty-pic">
+  <img src="Northland_colours.jpg" alt="Northland region map" class="colours-map">
+
+  <p class="body-text">The province extending from Auckland to the northern tip of the country. Often referred to as the winterless north due to its consistently warm climate. The pre-European Māori settlement of the country was driven by available resources and climate — even today Māori settlement is more dense in Northland, graduating to the sparseness of Southland.</p>
+
+  <p class="body-text">Some of New Zealand's most defining race-relation moments in history happened here:</p>
+
+  <p class="fact-row"><span style="color:#F25E0D;">▸ </span>The <strong>Treaty of Waitangi</strong> was signed</p>
+  <p class="fact-row"><span style="color:#F25E0D;">▸ </span>Māori chief <strong>Hone Heke</strong> protested by cutting down the flagpole</p>
+  <p class="fact-row"><span style="color:#F25E0D;">▸ </span>New Zealand's <strong>first capital</strong> was established</p>
+  <p class="fact-row"><span style="color:#F25E0D;">▸ </span>The <strong>first major trading town</strong> was founded</p>
+  <p class="fact-row"><span style="color:#F25E0D;">▸ </span>Early <strong>New Zealand Wars</strong> battles took place</p>
+  <p class="fact-row"><span style="color:#F25E0D;">▸ </span>The <strong>Rainbow Warrior</strong> was scuttled</p>
+  <p class="fact-row" style="margin-bottom:16px;"><span style="color:#F25E0D;">▸ </span>The <strong>Māori land rights march</strong> to Parliament began here</p>
+
+  <div class="dark-card">
+    <p class="dark-card-label">Natural Treasures</p>
+    <p class="dark-card-text">Waipoua Forest on the West Coast is home to <span>Tāne Mahuta</span> — the largest tree by volume in the Southern Hemisphere. Cape Reinga is the last place a Māori spirit sees of Aotearoa on its journey home.</p>
+  </div>
+
+  <p class="body-text">New Zealand has three major tourist destinations: Rotorua, Queenstown, and Paihia (Bay of Islands) in the mid-eastern Northland — home to stunning golden beaches and deep cultural history.</p>
+
+  <div class="pull-quote">Cape Reinga is the northernmost tip of the country and to Māori a very spiritual place. Take one of the tours — the beach with its desert appearance and massive sand dunes is a surprising sight after the green farmland you've been travelling through.</div>
+</div>
+
+<!-- ===================== AUCKLAND ===================== -->
+<div class="region-panel" id="panel-auckland">
+  <p class="eyebrow">North Island — Upper North</p>
+  <h2 class="section-heading">Auckland</h2>
+  <img src="mt_eden.jpg" alt="Mt Eden, Auckland" class="pretty-pic">
+  <img src="Auckland_colours.jpg" alt="Auckland region map" class="colours-map">
+
+  <p class="body-text">Auckland region is predominantly a city built on 53 volcanic sites, many of which are easily visible as you drive around. Not all are elevated — some have formed the harbours the city uses for recreation.</p>
+
+  <p class="body-text">Auckland is the economic capital of New Zealand and one of the largest cities geographically per capita. It is home to a large Polynesian population and is considered the largest Polynesian city in the world.</p>
+
+  <div class="dark-card">
+    <p class="dark-card-label">Urban & Wild</p>
+    <p class="dark-card-text">To the west, the <span>Waitakere Range</span> is covered in lush native bush and home to strong west coast surf. The eastern meandering coast is sheltered with white sands and gentle seas.</p>
+  </div>
+
+  <p class="body-text">Auckland has many attractions and has played a pivotal part in the making of the countries culture, you will find hints of this if you start exploring places like the Dominion museum or Museum of Transport (MOTAT).</p>
+
+  <div class="orange-card">
+    <p class="orange-card-title">Best Activity in Auckland</p>
+    <p class="orange-card-text">Walk or take a bus and climb one of the volcanos. Mt Eden is the closest to the city — One Tree Hill a little further out — both accessible and offering great views over the city and harbours.</p>
+  </div>
+</div>
+
+<!-- ===================== WAIKATO ===================== -->
+<div class="region-panel" id="panel-waikato">
+  <p class="eyebrow">North Island — Central West</p>
+  <h2 class="section-heading">Waikato</h2>
+  <img src="fitzgerald_glade.jpg" alt="Fitzgerald Glade, Waikato" class="pretty-pic">
+  <img src="Waikato_colours.jpg" alt="Waikato region map" class="colours-map">
+
+  <p class="body-text">Heading south, Waikato is where the real New Zealand starts. The Bombay Hills mark the northern boundary, the Mokau River the south, and the Kaimai Range to the east. The essence of the region is in its name — <em>wai</em> meaning water, <em>kato</em> meaning the pull of water to the sea.</p>
+
+  <div class="dark-card">
+    <p class="dark-card-label">The Waikato River</p>
+    <p class="dark-card-text">New Zealand's longest river, running from Lake Taupō to Port Waikato. Just north of Taupō it's forced through a rocky canyon over the <span>Huka Falls</span> — 220 cubic metres per second make it an unmissable spectacle.</p>
+  </div>
+
+  <p class="body-text">The Aratiatia Dam — the first of eight hydro-electric dams on the river — offers one of the most spectacular sights in the country when the floodgates open. You'll see the canyon transform from a gentle stream to a thundering flood in minutes.</p>
+
+  <div class="orange-card">
+    <p class="orange-card-title">Hobbiton</p>
+    <p class="orange-card-text">Matamata has reinvented itself as Hobbiton. A short drive from town is where Peter Jackson filmed the Hobbit village scenes for Lord of the Rings and The Hobbit. Tours run daily.</p>
+  </div>
+
+  <p class="body-text">The southern landscape is either native bush or commercial forestry; to the north, mainly dairy farms. The Waikato includes the Central Plateau and the mountains Tongariro, Ngāruahoe and Ruapehu — the North Island's highest volcano.</p>
+</div>
+
+<!-- ===================== KING COUNTRY ===================== -->
+<div class="region-panel" id="panel-kingcountry">
+  <p class="eyebrow">North Island — Central West</p>
+  <h2 class="section-heading">King Country</h2>
+  <img src="awakino.jpg" alt="Awakino Gorge, King Country" class="pretty-pic">
+  <img src="king_country_colours.jpg" alt="King Country region map" class="colours-map">
+
+  <p class="body-text">The King Country is the area largely unwanted by early Europeans due to its steep, bush-clad hills. When King Tāwhiao retreated into friendly territory owned by the Ngāti Maniapoto, part of the peace agreement was that European settlers wouldn't enter — which is how the region got its name.</p>
+
+  <div class="pull-quote">A stunning combination of roads and dramatic landscapes, including one of the most stunning coastal roads in the country — the King Country is a rich visual feast.</div>
+
+  <div class="dark-card">
+    <p class="dark-card-label">Must See</p>
+    <p class="dark-card-text">The region is home to one of New Zealand's most famous attractions — the <span>Waitomo Caves</span>. Glowworms illuminate the underground cave systems in a sight unlike anywhere else on earth.</p>
+  </div>
+
+  <p class="body-text">The region's economy is largely farming-based — dairy to the north, sheep and beef more to the south and central. Tourism around Waitomo adds a strong second pillar.</p>
+</div>
+
+<!-- ===================== THAMES VALLEY ===================== -->
+<div class="region-panel" id="panel-thamesvalley">
+  <p class="eyebrow">North Island — East Coast</p>
+  <h2 class="section-heading">Thames Valley (Coromandel)</h2>
+  <img src="coromandel.jpg" alt="Coromandel Peninsula" class="pretty-pic">
+  <img src="Thames_Valley_colours.jpg" alt="Thames Valley region map" class="colours-map">
+
+  <p class="body-text">The peninsula acquired its name from HMS Coromandel, a sailing ship that came to the area in search of kauri timber for the Royal Navy. The Coromandel Peninsula extends north from Thames and Waihi, its central mountain spine acting like a giant breakwater creating the tranquil Hauraki Gulf to its west.</p>
+
+  <p class="body-text">Often just called "the Coromandel," this is the Kiwi's summer beach holiday playground — golden beaches, surf beaches, protected calm bays, hot pools, walking tracks, lush bush, and small quiet towns.</p>
+
+  <div class="dark-card">
+    <p class="dark-card-label">Coromandel Gold</p>
+    <p class="dark-card-text">The local saying "there's still a lot of gold in them there hills" has a few meanings depending on your definition. <span>Coromandel Gold</span> could mean: locally grown marijuana (a commune hangover from the 1970s), an annual music festival, or of course — actual gold.</p>
+  </div>
+
+  <p class="body-text" style="color:#cc3300;font-weight:500;">⚠ Do not leave walking tracks or walk across paddocks in this region. The landscape is like Swiss cheese with old mines — many covered by thin layers of grass or dirt. Falling through does happen.</p>
+</div>
+
+<!-- ===================== BAY OF PLENTY ===================== -->
+<div class="region-panel" id="panel-bayofplenty">
+  <p class="eyebrow">North Island — East Coast</p>
+  <h2 class="section-heading">Bay of Plenty</h2>
+  <img src="marae.jpg" alt="Marae, Bay of Plenty" class="pretty-pic">
+  <img src="BOP_colours.jpg" alt="Bay of Plenty region map" class="colours-map">
+
+  <p class="body-text">The Bay of Plenty stretches from Tauranga in the west to Cape Runaway in the east. It includes most of New Zealand's geothermal attractions and is home to some of the most famous Māori cultural shows in the country.</p>
+
+  <p class="body-text">The region is triangular — nestled between its bordering ranges. Rotorua sits in a large caldera, and the region is very slowly getting wider as the tectonic plates move apart. Tauranga and Cape Runaway are literally moving further from each other!</p>
+
+  <div class="dark-card">
+    <p class="dark-card-label">How It Got Its Name</p>
+    <p class="dark-card-text">Captain Cook named the bay after leaving Gisborne (where he'd had a difficult time getting supplies). The Māori of this bay were far more welcoming and his ship was <span>easily restocked</span> — hence the name.</p>
+  </div>
+</div>
+
+<!-- ===================== TAUPO ===================== -->
+<div class="region-panel" id="panel-taupo">
+  <p class="eyebrow">North Island — Central</p>
+  <h2 class="section-heading">Taupo &amp; National Park</h2>
+  <img src="central_plateau.jpg" alt="Central Plateau" class="pretty-pic">
+  <img src="Waikato_colours.jpg" alt="Taupo region map" class="colours-map">
+
+  <p class="body-text">Although Taupō and National Park districts are technically part of the Waikato province, they deserve their own recognition. Combined, they make up roughly half of the adventure playgrounds of the North Island.</p>
+
+  <div class="orange-card">
+    <p class="orange-card-title">The Tongariro Crossing</p>
+    <p class="orange-card-text">A one-day, one-way walk that crosses from one side of Tongariro to the other. It holds claim to being the most accessible alpine crossing in the world — a moderate walk through volcanic landscapes that is utterly unforgettable.</p>
+  </div>
+
+  <div class="dark-card">
+    <p class="dark-card-label">Māori Royalty</p>
+    <p class="dark-card-text">Ngāruawāhia is home to Māori royalty. Access to the royal marae is restricted, but the Waikato has a very strong Māori culture evident throughout — in carvings and <span>pā</span> sites as you travel.</p>
+  </div>
+</div>
+
+<!-- ===================== EAST COAST ===================== -->
+<div class="region-panel" id="panel-eastcoast">
+  <p class="eyebrow">North Island — East Cape</p>
+  <h2 class="section-heading">East Coast / Poverty Bay</h2>
+  <img src="hicks_bay.jpg" alt="Hicks Bay, East Coast" class="pretty-pic">
+  <img src="East_Coast_colours.jpg" alt="East Coast region map" class="colours-map">
+
+  <p class="body-text">The prominent easternmost peninsula in New Zealand sits east of Whakatāne and north of Hawke's Bay. For travellers with time, the East Cape is richly rewarding — beautiful vistas, a strong living Māori culture, and a pace of life that feels different from the rest of the country.</p>
+
+  <p class="body-text">There is a good chance you will find locals travelling by horse. Don't worry — all the mod cons are there.</p>
+
+  <div class="dark-card">
+    <p class="dark-card-label">First Light</p>
+    <p class="dark-card-text">The East Cape is the <span>first place in the world</span> to see the sun each day — and the first to usher in each new millennium. The combination of Te Urewera's rugged hills and its largely untouched beaches make it genuinely special.</p>
+  </div>
+
+  <div class="pull-quote">What is now the Port of Gisborne is where Captain James Cook first landed on New Zealand soil in 1769. With the benefit of hindsight and Māori history now given its rightful place — this is the beginning of a conversation, not a celebration.</div>
+
+  <p class="body-text">Be conscious on State Highway 35 — behind every corner could be a stock truck or a log truck. And be aware that roads in this region may still be rebuilding after the devastating Cyclone Gabrielle in February 2023.</p>
+</div>
+
+<!-- ===================== HAWKES BAY ===================== -->
+<div class="region-panel" id="panel-hawkesbay">
+  <p class="eyebrow">North Island — East Coast</p>
+  <h2 class="section-heading">Hawkes Bay</h2>
+  <img src="napier_soundscape.jpg" alt="Napier Soundscape, Hawkes Bay" class="pretty-pic">
+  <img src="hawkes_bay_colours.jpg" alt="Hawkes Bay region map" class="colours-map">
+
+  <p class="body-text">The province stretching from just south of Woodville and the Kaweka Ranges to just north of the Māhia Peninsula. Named by Captain Cook in 1779 in honour of Sir Edward Hawke, First Lord of the Admiralty.</p>
+
+  <p class="fact-row"><span style="color:#F25E0D;">▸ </span>Notorious for sunshine — one of the warmest, sunniest regions in the North Island</p>
+  <p class="fact-row"><span style="color:#F25E0D;">▸ </span>The <strong>second largest wine region</strong> in New Zealand</p>
+  <p class="fact-row"><span style="color:#F25E0D;">▸ </span>Home to <strong>Napier</strong> — Art Deco Capital of the World</p>
+  <p class="fact-row" style="margin-bottom:16px;"><span style="color:#F25E0D;">▸ </span>Home to the <strong>longest place name</strong> in any English-speaking country (Taumata…)</p>
+
+  <div class="dark-card">
+    <p class="dark-card-label">Cyclone Gabrielle — February 2023</p>
+    <p class="dark-card-text">The most financially damaging natural disaster in New Zealand's history — costing <span>NZ$13.5 billion</span>. Wineries and vineyards are rebuilding, orchards replanting, and roads reconnected — but the scars remain visible across the landscape.</p>
+  </div>
+
+  <p class="body-text" style="color:#cc3300;font-weight:500;">⚠ The ocean here is not safe for swimming. Always swim between the flags — no flags means don't swim.</p>
+</div>
+
+<!-- ===================== TARANAKI ===================== -->
+<div class="region-panel" id="panel-taranaki">
+  <p class="eyebrow">North Island — West Coast</p>
+  <h2 class="section-heading">Taranaki</h2>
+  <img src="taranaki.jpg" alt="Mt Taranaki" class="pretty-pic">
+  <img src="taranaki_colours.jpg" alt="Taranaki region map" class="colours-map">
+
+  <p class="body-text">When looking at a map of the North Island, Taranaki is the thumb poking out the left-hand side. Extending from the Mokau River to Nukumaru, it is a province often overlooked by tourists. There are only three roads in or out — two of which traverse difficult terrain.</p>
+
+  <div class="dark-card">
+    <p class="dark-card-label">The Energy Province</p>
+    <p class="dark-card-text">The province nicknamed itself in the 1980s as 'The Energy Province' because of its oil and gas reserves. The <span>Maui oil/gas field</span> offshore of Ōpunake was the largest find of its type in the world at the time. The first oil found in New Zealand was at Ngāmotu Beach in New Plymouth in 1865.</p>
+  </div>
+
+  <p class="body-text">Taranaki is the second largest dairy province in the country. It has a long history of surf tourism and mountaineering, and is rich in contemporary Māori culture — with earthworks showing traditional pā layouts and wharetupuna dotting the countryside.</p>
+
+  <div class="orange-card">
+    <p class="orange-card-title">Mt Taranaki</p>
+    <p class="orange-card-text">The most accessible mountain in the country — and the most dangerous. An isolated conical peak susceptible to sudden, dramatic weather changes. In good conditions it can be summited as a day hike. If there is any snow or ice and you don't have mountain experience: go with a guide. This mountain regularly kills people.</p>
+  </div>
+
+  <p class="body-text">The mountain has two official names — Mt Taranaki and Mt Egmont. The name Taranaki was returned to the mountain in a gesture of goodwill by the Government when the land was officially returned to local Māori. <em>Tara</em> means peak; <em>naki</em> is believed to be a misspelling of <em>ngaki</em>, meaning clear of vegetation.</p>
+</div>
+
+<!-- ===================== WHANGANUI / MANAWATU ===================== -->
+<div class="region-panel" id="panel-whanganui">
+  <p class="eyebrow">North Island — Central West</p>
+  <h2 class="section-heading">Whanganui / Manawatu</h2>
+  <img src="huntaway_dog_landscape.jpg" alt="Huntaway dog, Manawatu" class="pretty-pic">
+  <img src="manawatu_colours.jpg" alt="Manawatu region map" class="colours-map">
+
+  <p class="body-text">One of the North Island's largest provincial regions — from Ruapehu in the north to Levin in the south, the Tasman Sea to the west and ranges to the east. The region contains several mountain ranges as well as the large coastal Manawatu plain.</p>
+
+  <div class="dark-card">
+    <p class="dark-card-label">Massey University</p>
+    <p class="dark-card-text">Palmerston North's main industry is <span>Massey University</span> — the largest university in the country. Its agricultural research has been incredibly valuable locally and worldwide. New Zealand's unique practice of keeping all livestock outdoors year-round has driven a world-class research industry.</p>
+  </div>
+
+  <p class="body-text">In the middle of the Rangitīkei Valley is the famous town of Taihape — made famous by comedian John Clarke's character Fred Dagg, who had a farm "somewhere near Taihape." Now home to the annual Gumboot Throwing Championships.</p>
+
+  <div class="orange-card">
+    <p class="orange-card-title">New Zealand Farm Dogs</p>
+    <p class="orange-card-text">As you travel this region keep a keen eye out — you may see working farm dogs in action. Huntaways drive stock away from you with bark. Eye dogs move sheep silently with presence. Backing dogs run across the backs of sheep in pens to get them moving. Each has a specific, essential job.</p>
+  </div>
+</div>
+
+<!-- ===================== WAIRARAPA ===================== -->
+<div class="region-panel" id="panel-wairarapa">
+  <p class="eyebrow">North Island — South East</p>
+  <h2 class="section-heading">Wairarapa</h2>
+  <img src="martinborough_grapes.jpg" alt="Martinborough Grapes, Wairarapa" class="pretty-pic">
+  <img src="wairapara_colours.jpg" alt="Wairarapa region map" class="colours-map">
+
+  <p class="pull-quote"><em>Wai</em> — water. <em>Rarapa</em> — glistening waters. In reference to the waters of Lake Wairarapa near Masterton.</p>
+
+  <p class="body-text">Surrounded on all sides by ranges, the large plains provided early European settlers access to easy farming land — making it New Zealand's oldest European-settled region. Towns like Masterton quickly grew and the region has a very strong farming identity.</p>
+
+  <p class="fact-row"><span style="color:#F25E0D;">▸ </span>One of New Zealand's <strong>prime wine regions</strong> — dry summers and moderate climate</p>
+  <p class="fact-row"><span style="color:#F25E0D;">▸ </span><strong>Mount Bruce Wildlife Centre</strong> — kiwi and tuatara enclosures north of Masterton</p>
+  <p class="fact-row" style="margin-bottom:16px;"><span style="color:#F25E0D;">▸ </span>The <strong>Tui Brewery</strong> at Mangatainoka — a famous New Zealand landmark</p>
+</div>
+
+<!-- ===================== WELLINGTON ===================== -->
+<div class="region-panel" id="panel-wellington">
+  <p class="eyebrow">North Island — Southern Tip</p>
+  <h2 class="section-heading">Wellington Region</h2>
+  <img src="wellington_scape.jpg" alt="Wellington Cityscape" class="pretty-pic">
+  <img src="wellington_colours.jpg" alt="Wellington region map" class="colours-map">
+
+  <p class="body-text">Geographically Wellington Region sits at the bottom of the North Island, next to some dominating geological structures. The Tararua, Akatarawa and Rimutaka ranges break the region into thirds like a narrow Mercedes logo — Kāpiti Coast to the west, Wellington and Hutt Cities wedged in the bottom, the lower Wairarapa to the east.</p>
+
+  <div class="dark-card">
+    <p class="dark-card-label">Built on Fault Lines</p>
+    <p class="dark-card-text">The three ranges are the by-product of twisting tectonic plates — where the Indo-Australian plate sliding under the Pacific plate transitions to the reverse. Multiple fault lines run through the region and their movement <span>dominates the landscape</span>.</p>
+  </div>
+
+  <p class="body-text">The region has a richness in culture — both Māori and Pākehā. Wellington is New Zealand's capital city and the cultural heart of the country, home to Te Papa national museum, the national theatre, and a thriving café and arts scene.</p>
+</div>
+
+<!-- ===================== TASMAN & NELSON ===================== -->
+<div class="region-panel" id="panel-tasman">
+  <p class="eyebrow">South Island — Top of the South</p>
+  <h2 class="section-heading">Tasman &amp; Nelson</h2>
+  <img src="abel_tasman.jpg" alt="Abel Tasman National Park" class="pretty-pic">
+  <img src="tasman_colours.jpg" alt="Tasman region map" class="colours-map">
+
+  <p class="body-text">These two regions are home to Nelson City, Abel Tasman National Park, and the Kahurangi National Park. The regions enjoy a warm, sunny climate that makes it easy to relax and enjoy the surrounding opportunities.</p>
+
+  <div class="dark-card">
+    <p class="dark-card-label">Walking Tracks</p>
+    <p class="dark-card-text">From the maze of walks in the <span>Abel Tasman National Park</span> to the Heaphy Track in Kahurangi — the longest of all DOC walks. Starting on the West Coast north of Karamea and finishing near Collingwood, the Heaphy is described as a 6-day walk suitable for fit and well-equipped people.</p>
+  </div>
+
+  <p class="fact-row"><span style="color:#F25E0D;">▸ </span>Kahurangi National Park — New Zealand's <strong>2nd largest</strong>, created in 1996</p>
+  <p class="fact-row"><span style="color:#F25E0D;">▸ </span>Sea kayaking, skydiving, cycling, wineries and a brewery</p>
+  <p class="fact-row" style="margin-bottom:16px;"><span style="color:#F25E0D;">▸ </span>The area was once home to New Zealand's <strong>tobacco industry</strong> — barn remnants dot the landscape</p>
+</div>
+
+<!-- ===================== MARLBOROUGH ===================== -->
+<div class="region-panel" id="panel-marlborough">
+  <p class="eyebrow">South Island — Top of the South</p>
+  <h2 class="section-heading">Marlborough</h2>
+  <img src="blenheim_church.jpg" alt="Blenheim, Marlborough" class="pretty-pic">
+  <img src="marlborough_colours.jpg" alt="Marlborough region map" class="colours-map">
+
+  <p class="body-text">The north-eastern province of the South Island, boxed in between hills to the south and west and the Cook Strait to the north. The hills soak up the prevailing westerly rain and channel the runoff into the streams and shallow water table that flow through the Blenheim valley — creating ideal wine-growing conditions.</p>
+
+  <div class="orange-card">
+    <p class="orange-card-title">New Zealand's Largest Wine Region</p>
+    <p class="orange-card-text">The long sunny days and warm climate make Marlborough the country's largest wine-producing region. Wine tours are available from both Picton and Blenheim — bus, self-drive and cycle tours all available.</p>
+  </div>
+
+  <div class="dark-card">
+    <p class="dark-card-label">Green-Lipped Mussels</p>
+    <p class="dark-card-text">Wine is not actually the region's highest-grossing income — <span>green-lipped mussels</span> are. The mussel industry based out of Havelock in the Marlborough Sounds is one of the largest mussel-producing operations in the country.</p>
+  </div>
+
+  <p class="body-text">The region is also famed for the Queen Charlotte Walkway — following the ridgeline west of Queen Charlotte Sound, the same route the Picton ferry takes.</p>
+</div>
+
+<!-- ===================== WEST COAST ===================== -->
+<div class="region-panel" id="panel-westcoast">
+  <p class="eyebrow">South Island — West</p>
+  <h2 class="section-heading">West Coast</h2>
+  <img src="irimahewhero.jpg" alt="Irimahewhero, West Coast" class="pretty-pic">
+  <img src="west_coast_colours.jpg" alt="West Coast region map" class="colours-map">
+
+  <p class="body-text">The West Coast — often just called "the Coast" — is a long, narrow region following the west coast from Karamea to Big Bay south of Haast, its eastern border the Southern Alps. Due to silting harbours, rugged seas and harsh mountains, the coast became one of the mythical areas of the country.</p>
+
+  <div class="pull-quote">It doesn't take much imagination to work out why the West Coast earned its nickname of "the Wet Coast." The highest annual rainfall recorded was at Cropp Creek — 16 metres in a single calendar year.</div>
+
+  <div class="dark-card">
+    <p class="dark-card-label">Labour Roots</p>
+    <p class="dark-card-text">In 1908 in the town of Blackball, seven coal miners went on strike to extend their lunch break from 15 minutes to 30. The subsequent show of unity created the 'Red Feds' and eventually the <span>New Zealand Labour Party</span> — born in the mines of the West Coast.</p>
+  </div>
+
+  <p class="body-text">The geography here is the result of two massive tectonic plates pushing past each other — the rock squeezed and crushed, creating ideal conditions for coal and pounamu (jade), both plentiful in the region.</p>
+
+  <p class="fact-row"><span style="color:#F25E0D;">▸ </span>The <strong>Buller River</strong> — 169km, the largest river in the South Island</p>
+  <p class="fact-row" style="margin-bottom:16px;"><span style="color:#F25E0D;">▸ </span>White water rafting, mountain climbing, <strong>glacier hiking</strong> and shopping</p>
+</div>
+
+<!-- ===================== CANTERBURY ===================== -->
+<div class="region-panel" id="panel-canterbury">
+  <p class="eyebrow">South Island — East Central</p>
+  <h2 class="section-heading">Canterbury</h2>
+  <img src="kaikoura.jpg" alt="Kaikoura, Canterbury" class="pretty-pic">
+  <img src="canturbury_colours.jpg" alt="Canterbury region map" class="colours-map">
+
+  <p class="body-text">Canterbury makes up the central east coast of the South Island — bordered by mountains on three sides and the Pacific Ocean to the east. Though the region includes some of the country's most famous ski fields, the province is largely flat.</p>
+
+  <div class="dark-card">
+    <p class="dark-card-label">Iconic Landscapes</p>
+    <p class="dark-card-text">The <span>Tekapō Basin</span> in the Mackenzie Country, the Canterbury Plains, and the flat grid-like city of Christchurch are some of New Zealand's most recognisable landscapes. In the north-west, Hanmer Springs is a small resort town built around hot mineral springs.</p>
+  </div>
+
+  <div class="orange-card">
+    <p class="orange-card-title">Kaikoura — The True Gem</p>
+    <p class="orange-card-text">The little seaside town of Kaikoura is the true gem of the province. Its economy is completely based on eco-tourism — whale watching and dolphin experience tours make it one of the most unique destinations in the country.</p>
+  </div>
+
+  <p class="fact-row"><span style="color:#F25E0D;">▸ </span><strong>Phar Lap</strong> — the much-loved racehorse, a Canterbury connection</p>
+  <p class="fact-row"><span style="color:#F25E0D;">▸ </span><strong>Richard Pearse</strong> — the pioneer aviator</p>
+  <p class="fact-row"><span style="color:#F25E0D;">▸ </span><strong>Kate Sheppard</strong> — the women's suffragette</p>
+  <p class="fact-row" style="margin-bottom:16px;"><span style="color:#F25E0D;">▸ </span>The very French town of <strong>Akaroa</strong> — a reminder of how close France came to claiming New Zealand</p>
+</div>
+
+<!-- ===================== LAKES DISTRICT ===================== -->
+<div class="region-panel" id="panel-lakesdistrict">
+  <p class="eyebrow">South Island — Central Otago</p>
+  <h2 class="section-heading">Lakes District (Otago)</h2>
+  <img src="bennets_bluff.jpg" alt="Bennetts Bluff, Lakes District" class="pretty-pic">
+  <img src="otago_colours.jpg" alt="Lakes District region map" class="colours-map">
+
+  <p class="body-text">Lakes District is part of the larger Otago province — usually referred to as Central Otago or just 'Central.' This region is the envy of most other tourism regions in New Zealand, with more activities on offer than just about anywhere else in the country.</p>
+
+  <div class="orange-card">
+    <p class="orange-card-title">Queenstown &amp; Wanaka</p>
+    <p class="orange-card-text">The two largest towns in the area house some of the most well-known adventure operators and landmarks in the country. Bungy jumping, skydiving, jetboating, skiing, wine tasting — the list is extraordinary.</p>
+  </div>
+
+  <p class="body-text">The region has a fascinating history — from gold rush to tourist rush. High country stations, fruit growing evolving into winemaking, and the stunning seasonal displays of imported poplars lining the roads near Cromwell.</p>
+
+  <div class="dark-card">
+    <p class="dark-card-label">The Horizon</p>
+    <p class="dark-card-text">Massive mountains to the north and west, equally massive hills to the east and south — equates to <span>high dramatic horizons</span> wherever you look. The landscape here is genuinely like nowhere else.</p>
+  </div>
+</div>
+
+<!-- ===================== OTAGO ===================== -->
+<div class="region-panel" id="panel-otago">
+  <p class="eyebrow">South Island — South East</p>
+  <h2 class="section-heading">Otago</h2>
+  <img src="moreraki.jpg" alt="Moeraki Boulders, Otago" class="pretty-pic">
+  <img src="otago_colours.jpg" alt="Otago region map" class="colours-map">
+
+  <p class="pull-quote"><em>O</em> — place of. <em>Takau</em> — Māori god, son of Ranginui and Papatūānuku. A mispronunciation of Otakau.</p>
+
+  <p class="body-text">With Dunedin as its capital and coastal centre, the province extends wedge-like westward to the West Coast boundary. Historically famous for its gold rushes that followed the natural valleys westward, the province is now largely known for sheep — particularly Merino, a tough breed producing wool that doesn't itch.</p>
+
+  <div class="dark-card">
+    <p class="dark-card-label">The Southern Man</p>
+    <p class="dark-card-text">The big hills produce big stories — and from those stories the 'Southern Man' was born. A man who rides horses, musters from the high country, says little, works hard and is tough. A locally produced beer has famously used this icon in its advertising, cementing the Southern Man as a cultural symbol.</p>
+  </div>
+
+  <p class="fact-row"><span style="color:#F25E0D;">▸ </span>New Zealand's <strong>coldest recorded temperature</strong> — −25.6°C at Ranfurly</p>
+  <p class="fact-row" style="margin-bottom:16px;"><span style="color:#F25E0D;">▸ </span><strong>Hoar frosts</strong> are a stunning and common sight during winter</p>
+</div>
+
+<!-- ===================== SOUTHLAND ===================== -->
+<div class="region-panel" id="panel-southland">
+  <p class="eyebrow">South Island — Far South</p>
+  <h2 class="section-heading">Southland</h2>
+  <img src="invercargill_chain.jpg" alt="Invercargill, Southland" class="pretty-pic">
+  <img src="southand_colours.jpg" alt="Southland region map" class="colours-map">
+
+  <p class="body-text">The southernmost province is home to New Zealand's southernmost city and largest electricity generation project. Geographically walled to the west with massive mountains and large hills to the north and east, leaving the centre relatively flat. Inside Fiordland National Park some of New Zealand's most precious flora and fauna live.</p>
+
+  <p class="body-text">On the flat lands, huge dairy herds graze — pushing sheep further up into the high country too steep for cows.</p>
+
+  <div class="orange-card">
+    <p class="orange-card-title">The Original Kiwi Accent</p>
+    <p class="orange-card-text">The most interesting thing about Southland is the unique rolling 'r' accent of true Southlanders. It only comes out in certain words — purple, girl — and though Southlanders are both proud and a little embarrassed by it, it is the true original New Zealand accent, softened everywhere else by waves of immigration.</p>
+  </div>
+
+  <div class="dark-card">
+    <p class="dark-card-label">Where It Came From</p>
+    <p class="dark-card-text">Wealthier English descendants lived among Scottish, Welsh and working-class English who schooled and nannied their children. The accents rubbed off on those children — gifting the first generation of New Zealanders with the rolling 'r'. The rest of the country lost it. <span>Southland kept it.</span></p>
+  </div>
+</div>
+
+<script>
+function showRegion(val) {
+  // Hide default state
+  document.getElementById('default-state').style.display = val ? 'none' : 'block';
+
+  // Hide all panels
+  var panels = document.querySelectorAll('.region-panel');
+  panels.forEach(function(p) { p.classList.remove('active'); });
+
+  // Show selected
+  if (val) {
+    var panel = document.getElementById('panel-' + val);
+    if (panel) {
+      panel.classList.add('active');
+      window.scrollTo(0, 0);
+    }
+  }
+}
+</script>
+
+</body>
 </html>
