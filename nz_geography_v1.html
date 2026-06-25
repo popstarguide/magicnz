@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<style>
+  #globe-lightbox {
+    display:none;
+    position:fixed;
+    top:0;left:0;right:0;bottom:0;
+    background:rgba(0,0,0,0.88);
+    z-index:999;
+    align-items:center;
+    justify-content:center;
+  }
+  #globe-lightbox.open { display:flex; }
+  #plates-lightbox {
+    display:none;
+    position:fixed;
+    top:0;left:0;right:0;bottom:0;
+    background:rgba(0,0,0,0.88);
+    z-index:999;
+    align-items:center;
+    justify-content:center;
+  }
+  #plates-lightbox.open { display:flex; }
+  #plates-lightbox img {
+    max-width:95vw;
+    max-height:90vh;
+    border-radius:6px;
+    box-shadow:0 8px 40px rgba(0,0,0,0.6);
+  }
+  #plates-lightbox .close-btn {
+    position:absolute;
+    top:16px;right:20px;
+    color:#fff;
+    font-size:32px;
+    cursor:pointer;
+    line-height:1;
+  }
+  #globe-lightbox img {
+    max-width:95vw;
+    max-height:90vh;
+    border-radius:6px;
+    box-shadow:0 8px 40px rgba(0,0,0,0.6);
+  }
+  #globe-lightbox .close-btn {
+    position:absolute;
+    top:16px;right:20px;
+    color:#fff;
+    font-size:32px;
+    cursor:pointer;
+    line-height:1;
+  }
+  .map-thumb {
+    width:100%;
+    border-radius:8px;
+    cursor:pointer;
+    display:block;
+    border:2px solid #e8e8e8;
+  }
+  .map-caption {
+    font-size:11px;
+    color:#888;
+    text-align:center;
+    margin:6px 0 16px;
+    font-style:italic;
+  }
+</style>
+</head>
+<body style="background:#ffffff;color:#1A1410;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;font-weight:300;line-height:1.75;padding:16px 18px 60px;margin:0;">
+
+<p style="font-size:15px;font-weight:400;color:#5C4A3A;line-height:1.8;border-left:3px solid #F25E0D;padding-left:14px;margin:0 0 24px;font-style:italic;">New Zealand is made up of 3 main islands and many smaller islands, situated in the south-western Pacific Ocean — one of the most remote inhabited places on earth.</p>
+
+<!-- Map thumbnail -->
+<img src="NZ_thumb.png" alt="Map of New Zealand" class="map-thumb" onclick="document.getElementById('globe-lightbox').classList.add('open')">
+<p class="map-caption">Tap to see New Zealand's position on the globe</p>
+
+<p style="font-size:10px;font-weight:600;letter-spacing:0.16em;text-transform:uppercase;color:#F2784B;margin:0 0 2px;">Where in the world</p>
+<h2 style="font-size:22px;font-weight:700;color:#F25E0D;line-height:1.2;margin:0 0 12px;padding-bottom:10px;border-bottom:1px solid #e8e8e8;">Position &amp; Size</h2>
+
+<p style="font-size:14px;padding:8px 0;border-bottom:1px solid #e8e8e8;color:#1A1410;margin:0;"><span style="color:#F25E0D;">▸ </span><span style="font-weight:600;">Latitude</span> — 29° to 47°15' South</p>
+<p style="font-size:14px;padding:8px 0;border-bottom:1px solid #e8e8e8;color:#1A1410;margin:0;"><span style="color:#F25E0D;">▸ </span><span style="font-weight:600;">Longitude</span> — 166°30' to 178°30' East</p>
+<p style="font-size:14px;padding:8px 0;border-bottom:1px solid #e8e8e8;color:#1A1410;margin:0;"><span style="color:#F25E0D;">▸ </span>Same latitude &amp; longitude in the Southern Hemisphere as <span style="font-weight:600;">Spain and Portugal</span> are in the Northern Hemisphere</p>
+<p style="font-size:14px;padding:8px 0;border-bottom:1px solid #e8e8e8;color:#1A1410;margin:0 0 16px;"><span style="color:#F25E0D;">▸ </span>Total land area <span style="font-weight:600;">268,680 sq km</span> — population <span style="font-weight:600;">5,400,000</span></p>
+
+<p style="background:#1A1410;border-radius:10px;padding:16px 18px 4px;margin:0 0 0;font-size:10px;font-weight:600;letter-spacing:0.16em;text-transform:uppercase;color:#F2784B;">By Comparison — the UK</p>
+<p style="background:#1A1410;padding:0 18px 8px;margin:0;font-size:13px;color:#F7F3EF;line-height:1.7;">Land area: <span style="color:#F2784B;font-weight:600;">244,820 sq km</span> — almost identical to New Zealand</p>
+<p style="background:#1A1410;border-radius:0 0 10px 10px;padding:0 18px 16px;margin:0 0 16px;font-size:13px;color:#F7F3EF;line-height:1.7;">Population: <span style="color:#F2784B;font-weight:600;">70,000,000</span> — nearly 13 times more people in the same space</p>
+
+<p style="text-align:center;color:#F25E0D;font-size:16px;letter-spacing:8px;margin:20px 0;">· · ·</p>
+
+<p style="font-size:10px;font-weight:600;letter-spacing:0.16em;text-transform:uppercase;color:#F2784B;margin:0 0 2px;">200 million years ago</p>
+<h2 style="font-size:22px;font-weight:700;color:#F25E0D;line-height:1.2;margin:0 0 12px;padding-bottom:10px;border-bottom:1px solid #e8e8e8;">Born from Gondwana</h2>
+<p style="font-size:14px;color:#1A1410;margin:0 0 12px;line-height:1.8;">New Zealand started life about 200 million years ago as part of Gondwana — a super-continent made up of what became India, Africa, South America, Australia and Antarctica. As the continents broke up and rotated, New Zealand became a land of its own about 70 million years ago, slowly twisting, shaking and erupting its way to what we have today.</p>
+
+<p style="background:#fff5f0;border-left:4px solid #F25E0D;border-radius:0 8px 8px 0;padding:14px 16px;margin:0 0 16px;font-size:15px;font-style:italic;color:#F25E0D;line-height:1.6;">New Zealand sits on two continental plates — the Pacific and the Indo-Australian — and the results of that are impossible to ignore.</p>
+
+<p style="text-align:center;color:#F25E0D;font-size:16px;letter-spacing:8px;margin:20px 0;">· · ·</p>
+
+<p style="font-size:10px;font-weight:600;letter-spacing:0.16em;text-transform:uppercase;color:#F2784B;margin:0 0 2px;">The North Island</p>
+<h2 style="font-size:22px;font-weight:700;color:#F25E0D;line-height:1.2;margin:0 0 12px;padding-bottom:10px;border-bottom:1px solid #e8e8e8;">Fire &amp; Geothermal Energy</h2>
+<p style="font-size:14px;color:#1A1410;margin:0 0 12px;line-height:1.8;">In the North Island the two plates are moving apart — creating a subduction zone where volcanic and geothermal activity dominates. The volcanic cones dotted across the island are the result, as is the famous geothermal activity that Rotorua and Taupo are known for.</p>
+<p style="font-size:14px;color:#1A1410;margin:0 0 12px;line-height:1.8;">Volcanic activity also brings ash — not a bonus at the time of an eruption (just ask the pilots navigating around Ruapehu's eruption in 1994!), but over time the ash becomes part of the soil and creates a very rich and fertile land. That is why New Zealand still has such lush vegetation and forests today.</p>
+
+<img src="geo_plates.png" alt="NZ tectonic plates diagram" class="map-thumb" style="margin-top:16px;" onclick="document.getElementById('plates-lightbox').classList.add('open')">
+<p class="map-caption">Tap to enlarge — the Pacific and Indo-Australian plates</p>
+
+<p style="text-align:center;color:#F25E0D;font-size:16px;letter-spacing:8px;margin:20px 0;">· · ·</p>
+
+<p style="font-size:10px;font-weight:600;letter-spacing:0.16em;text-transform:uppercase;color:#F2784B;margin:0 0 2px;">The South Island</p>
+<h2 style="font-size:22px;font-weight:700;color:#F25E0D;line-height:1.2;margin:0 0 12px;padding-bottom:10px;border-bottom:1px solid #e8e8e8;">The Edge of a Plate</h2>
+<p style="font-size:14px;color:#1A1410;margin:0 0 12px;line-height:1.8;">The South Island is not volcanic. Here the Pacific plate is moving up and over the Indo-Australian plate — and instead of lava, it is the earth's crust itself being pushed upward. The result is the Southern Alps.</p>
+
+<p style="background:#F25E0D;border-radius:10px 10px 0 0;padding:16px 18px 4px;margin:0;font-size:17px;font-weight:700;color:#fff;line-height:1.3;">The Southern Alps</p>
+<p style="background:#F25E0D;padding:0 18px 8px;margin:0;font-size:13px;color:rgba(255,255,255,0.92);line-height:1.7;">Not formed by volcanic activity — but by the raw force of two continental plates colliding.</p>
+<p style="background:#F25E0D;border-radius:0 0 10px 10px;padding:0 18px 16px;margin:0 0 16px;font-size:13px;color:rgba(255,255,255,0.92);line-height:1.7;">The Southern Alps are literally the edge of the Pacific Plate — pushed skyward over millions of years.</p>
+
+<!-- Lightbox overlay -->
+<div id="globe-lightbox">
+  <span class="close-btn" onclick="document.getElementById('globe-lightbox').classList.remove('open')">&times;</span>
+  <img src="Globe_NZ.png" alt="New Zealand's position on the globe">
+</div>
+
+<!-- Plates lightbox overlay -->
+<div id="plates-lightbox">
+  <span class="close-btn" onclick="document.getElementById('plates-lightbox').classList.remove('open')">&times;</span>
+  <img src="geo_plates.png" alt="NZ tectonic plates diagram">
+</div>
+
+</body>
+</html>
