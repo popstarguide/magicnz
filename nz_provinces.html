@@ -6,9 +6,22 @@
 <style>
   * { box-sizing: border-box; }
 
+  /* Sticky top bar */
+  .sticky-nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    background: #fff;
+    padding: 10px 18px;
+    border-bottom: 2px solid #e8e8e8;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  }
+
   .region-select {
     width: 100%;
-    padding: 12px 16px;
+    padding: 10px 16px;
     font-size: 15px;
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
     color: #1A1410;
@@ -21,12 +34,38 @@
     background-repeat: no-repeat;
     background-position: right 16px center;
     cursor: pointer;
-    margin: 0 0 20px;
     display: block;
+    margin: 0;
   }
   .region-select:focus {
     outline: none;
     border-color: #F25E0D;
+  }
+
+  /* Scroll-to-top button */
+  #scroll-top-btn {
+    position: fixed;
+    bottom: 24px;
+    right: 18px;
+    z-index: 200;
+    background: #F25E0D;
+    color: #fff;
+    border: none;
+    border-radius: 50%;
+    width: 44px;
+    height: 44px;
+    font-size: 20px;
+    line-height: 44px;
+    text-align: center;
+    cursor: pointer;
+    display: none;
+    box-shadow: 0 3px 10px rgba(242,94,13,0.4);
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  }
+
+  /* Page content pushed below sticky nav */
+  .page-content {
+    padding-top: 72px;
   }
 
   .region-panel { display: none; }
@@ -186,9 +225,62 @@
     margin-bottom: 12px;
     display: block;
   }
+
+  .attractions-list {
+    margin: 0 0 16px;
+    padding: 0;
+    list-style: none;
+  }
+  .attractions-list li {
+    font-size: 14px;
+    color: #1A1410;
+    padding: 9px 0 9px 22px;
+    border-bottom: 1px solid #e8e8e8;
+    line-height: 1.6;
+    position: relative;
+  }
+  .attractions-list li::before {
+    content: '▸';
+    color: #F25E0D;
+    position: absolute;
+    left: 0;
+  }
 </style>
 </head>
-<body style="background:#ffffff;color:#1A1410;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;font-weight:300;line-height:1.75;padding:16px 18px 60px;margin:0;">
+<body style="background:#ffffff;color:#1A1410;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;font-weight:300;line-height:1.75;margin:0;">
+
+<!-- Sticky nav bar -->
+<div class="sticky-nav">
+  <select class="region-select" onchange="showRegion(this.value)">
+    <option value="">Select a region…</option>
+    <option value="northland">Northland</option>
+    <option value="auckland">Auckland</option>
+    <option value="waikato">Waikato</option>
+    <option value="kingcountry">King Country</option>
+    <option value="thamesvalley">Thames Valley (Coromandel)</option>
+    <option value="bayofplenty">Bay of Plenty</option>
+    <option value="taupo">Taupo &amp; National Park</option>
+    <option value="eastcoast">East Coast / Poverty Bay</option>
+    <option value="hawkesbay">Hawkes Bay</option>
+    <option value="taranaki">Taranaki</option>
+    <option value="whanganui">Whanganui / Manawatu</option>
+    <option value="wairarapa">Wairarapa</option>
+    <option value="wellington">Wellington Region</option>
+    <option value="tasman">Tasman &amp; Nelson</option>
+    <option value="marlborough">Marlborough</option>
+    <option value="westcoast">West Coast</option>
+    <option value="canterbury">Canterbury</option>
+    <option value="lakesdistrict">Lakes District (Otago)</option>
+    <option value="otago">Otago</option>
+    <option value="southland">Southland</option>
+  </select>
+</div>
+
+<!-- Scroll to top button -->
+<button id="scroll-top-btn" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+
+<!-- Page content -->
+<div class="page-content" style="padding-left:18px;padding-right:18px;padding-bottom:60px;">
 
 <!-- Intro full (shown before region selected) -->
 <div id="intro-full">
@@ -202,31 +294,6 @@
     <p class="intro-quote" style="margin:0;">Early in New Zealand's settlement by the Europeans the country was divided into regions. Initially the idea was for provincial self-government with an overarching nationally based government — like the states of America or the Australian states. The experiment was short-lived; within 30 years the provinces were abolished in favour of full central government. The provincial identity however did not disappear and remains strong to this day.</p>
   </div>
 </div>
-
-<!-- Province selector -->
-<select class="region-select" onchange="showRegion(this.value)">
-  <option value="">Select a region…</option>
-  <option value="northland">Northland</option>
-  <option value="auckland">Auckland</option>
-  <option value="waikato">Waikato</option>
-  <option value="kingcountry">King Country</option>
-  <option value="thamesvalley">Thames Valley (Coromandel)</option>
-  <option value="bayofplenty">Bay of Plenty</option>
-  <option value="taupo">Taupo &amp; National Park</option>
-  <option value="eastcoast">East Coast / Poverty Bay</option>
-  <option value="hawkesbay">Hawkes Bay</option>
-  <option value="taranaki">Taranaki</option>
-  <option value="whanganui">Whanganui / Manawatu</option>
-  <option value="wairarapa">Wairarapa</option>
-  <option value="wellington">Wellington Region</option>
-  <option value="tasman">Tasman &amp; Nelson</option>
-  <option value="marlborough">Marlborough</option>
-  <option value="westcoast">West Coast</option>
-  <option value="canterbury">Canterbury</option>
-  <option value="lakesdistrict">Lakes District (Otago)</option>
-  <option value="otago">Otago</option>
-  <option value="southland">Southland</option>
-</select>
 
 <!-- Default state -->
 <div id="default-state">
@@ -309,6 +376,13 @@
   </div>
 
   <p class="body-text">The southern landscape is either native bush or commercial forestry; to the north, mainly dairy farms. The Waikato includes the Central Plateau and the mountains Tongariro, Ngāruahoe and Ruapehu — the North Island's highest volcano.</p>
+
+  <div class="dark-card">
+    <p class="dark-card-label">Māori Royalty</p>
+    <p class="dark-card-text">Ngāruawāhia is home to Māori royalty. Access to the royal marae is restricted, but the Waikato has a very strong Māori culture evident throughout — in carvings and <span>pā</span> sites as you travel.</p>
+  </div>
+
+  <p class="body-text">Passing through Te Kuiti on State Highway 3, look out for the main street's lovely and respectful display of recognition for famous people from the town. The corten steel pillars recognise and tell the stories of Dame Rangimarie Hetet, Les Munro, Rt Hon Jim Bolger, Dr Koro Wetere, Sir Colin Meads and Sir David Fagan.</p>
 </div>
 
 <!-- ===================== KING COUNTRY ===================== -->
@@ -381,9 +455,17 @@
   </div>
 
   <div class="dark-card">
-    <p class="dark-card-label">Māori Royalty</p>
-    <p class="dark-card-text">Ngāruawāhia is home to Māori royalty. Access to the royal marae is restricted, but the Waikato has a very strong Māori culture evident throughout — in carvings and <span>pā</span> sites as you travel.</p>
+    <p class="dark-card-label">World-Class Fly Fishing</p>
+    <p class="dark-card-text">Taupo and Turangi are internationally renowned and revered by fly fishermen. In some of the tributaries feeding into Lake Taupō are trout breeding centres. Trout were introduced in 1887 and has been the region's big draw card ever since.</p>
   </div>
+
+  <p class="body-text">Attractions in the region:</p>
+  <ul class="attractions-list">
+    <li>De Bretts geothermal hot pools</li>
+    <li>Flyfishing in the lake and tributary rivers</li>
+    <li>Huka Falls viewing area and walk</li>
+    <li>Taupo Motorsport Park</li>
+  </ul>
 </div>
 
 <!-- ===================== EAST COAST ===================== -->
@@ -436,7 +518,9 @@
   <img src="taranaki.jpg" alt="Mt Taranaki" class="pretty-pic">
   <img src="taranaki_colours.jpg" alt="Taranaki region map" class="colours-map">
 
-  <p class="body-text">When looking at a map of the North Island, Taranaki is the thumb poking out the left-hand side. Extending from the Mokau River to Nukumaru, it is a province often overlooked by tourists. There are only three roads in or out — two of which traverse difficult terrain.</p>
+  <p class="body-text">When looking at a map of the North Island, Taranaki is the thumb poking out the left-hand side. Extending from the Mokau River to Nukumaru, it is a province often overlooked by tourists — though more and more international visitors are starting to discover the beauty of this region as other tourism centres become more crowded.</p>
+
+  <p class="body-text">There are only three roads in or out — two of which traverse difficult terrain.</p>
 
   <div class="dark-card">
     <p class="dark-card-label">The Energy Province</p>
@@ -451,6 +535,14 @@
   </div>
 
   <p class="body-text">The mountain has two official names — Mt Taranaki and Mt Egmont. The name Taranaki was returned to the mountain in a gesture of goodwill by the Government when the land was officially returned to local Māori. <em>Tara</em> means peak; <em>naki</em> is believed to be a misspelling of <em>ngaki</em>, meaning clear of vegetation.</p>
+
+  <p class="body-text">Attractions in the region:</p>
+  <ul class="attractions-list">
+    <li><strong>Govett-Brewster &amp; Len Lye Art Gallery</strong> — Len Lye was an internationally renowned kinetic artist and experimenter in early film cinema effects. Works not sold in his lifetime are housed in this gallery.</li>
+    <li><strong>Len Lye Gallery building</strong> — the stainless steel clad building is an amazing building to see in its own right.</li>
+    <li><strong>Coastal Walkway</strong> — runs from the port to the eastern suburbs of the city. Regardless of weather it is a stunning easy walk.</li>
+    <li><strong>Pukekura Park</strong> — the largest metropolitan park in New Zealand. On a nice day it offers great photo opportunities from the cafe of the lake and mountain.</li>
+  </ul>
 </div>
 
 <!-- ===================== WHANGANUI / MANAWATU ===================== -->
@@ -660,6 +752,8 @@
   </div>
 </div>
 
+</div><!-- end page-content -->
+
 <script>
 function toggleIntroTab() {
   var content = document.getElementById('intro-tab-content');
@@ -697,6 +791,12 @@ function showRegion(val) {
     }
   }
 }
+
+// Scroll-to-top button visibility
+window.addEventListener('scroll', function() {
+  var btn = document.getElementById('scroll-top-btn');
+  btn.style.display = window.scrollY > 200 ? 'block' : 'none';
+});
 </script>
 
 </body>
