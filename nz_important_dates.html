@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<style>
+  * { box-sizing: border-box; }
+
+  html { background: #ffffff; height: 100%; }
+
+  body {
+    margin: 0;
+    min-height: 100%;
+    background: #ffffff;
+    color: #1A1410;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    font-weight: 300;
+    line-height: 1.75;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .page-content {
+    padding: 20px 18px 60px;
+  }
+
+  .eyebrow {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: #F2784B;
+    margin: 0 0 2px;
+  }
+
+  .section-heading {
+    font-size: 22px;
+    font-weight: 700;
+    color: #F25E0D;
+    line-height: 1.2;
+    margin: 28px 0 12px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #e8e8e8;
+  }
+
+  .section-heading:first-of-type {
+    margin-top: 0;
+  }
+
+  .body-text {
+    font-size: 14px;
+    color: #1A1410;
+    margin: 0 0 12px;
+    line-height: 1.8;
+  }
+
+  .intro-quote {
+    font-size: 15px;
+    font-weight: 400;
+    color: #5C4A3A;
+    line-height: 1.8;
+    border-left: 3px solid #F25E0D;
+    padding-left: 14px;
+    margin: 0 0 20px;
+    font-style: italic;
+  }
+
+  .pull-quote {
+    background: #fff5f0;
+    border-left: 4px solid #F25E0D;
+    border-radius: 0 8px 8px 0;
+    padding: 14px 16px;
+    margin: 0 0 16px;
+    font-size: 14px;
+    font-style: italic;
+    color: #F25E0D;
+    line-height: 1.6;
+  }
+
+  .dark-card {
+    background: #1A1410;
+    border-radius: 10px;
+    padding: 16px 18px;
+    margin: 0 0 16px;
+  }
+  .dark-card-label {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: #F2784B;
+    margin: 0 0 4px;
+  }
+  .dark-card-text {
+    font-size: 13px;
+    color: #F7F3EF;
+    line-height: 1.7;
+    margin: 0;
+  }
+  .dark-card-text span { color: #F2784B; font-weight: 600; }
+
+  /* Accordion / dropdown */
+  .accordion {
+    border: 1px solid #e8e8e8;
+    border-radius: 10px;
+    margin: 0 0 16px;
+    overflow: hidden;
+  }
+
+  .accordion-header {
+    background: #fff;
+    padding: 14px 16px;
+    font-size: 15px;
+    font-weight: 700;
+    color: #1A1410;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    user-select: none;
+  }
+
+  .accordion-header .chevron {
+    color: #F25E0D;
+    font-size: 13px;
+    transition: transform 0.2s ease;
+  }
+
+  .accordion.open .accordion-header .chevron {
+    transform: rotate(180deg);
+  }
+
+  .accordion-body {
+    display: none;
+    padding: 0 16px 14px;
+    border-top: 1px solid #f1f1f1;
+  }
+
+  .accordion.open .accordion-body { display: block; }
+
+  .date-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    font-size: 13.5px;
+    padding: 9px 0;
+    border-bottom: 1px solid #f1f1f1;
+    gap: 12px;
+  }
+  .date-row:last-child { border-bottom: none; }
+
+  .date-row .name { color: #1A1410; font-weight: 500; }
+  .date-row .when { color: #F25E0D; font-weight: 600; text-align: right; white-space: nowrap; }
+
+  .date-subnote {
+    font-size: 12px;
+    color: #999;
+    margin: 10px 0 0;
+    line-height: 1.6;
+  }
+
+  .region-table {
+    margin: 4px 0 0;
+  }
+
+  .region-row {
+    display: flex;
+    justify-content: space-between;
+    font-size: 13px;
+    padding: 7px 0;
+    border-bottom: 1px solid #f6f6f6;
+  }
+  .region-row:last-child { border-bottom: none; }
+  .region-row .region-name { color: #1A1410; }
+  .region-row .region-when { color: #5C4A3A; font-style: italic; text-align: right; }
+
+  /* CTA button */
+  .cta-button {
+    display: block;
+    width: 100%;
+    text-align: center;
+    background: #F25E0D;
+    color: #fff;
+    font-size: 15px;
+    font-weight: 700;
+    text-decoration: none;
+    padding: 14px 18px;
+    border-radius: 10px;
+    margin: 22px 0 8px;
+    box-shadow: 0 3px 10px rgba(242,94,13,0.3);
+  }
+
+  .cta-note {
+    text-align: center;
+    font-size: 12px;
+    color: #aaa;
+    margin: 0 0 20px;
+  }
+
+  /* Sport links */
+  .sport-card {
+    border: 1px solid #e8e8e8;
+    border-radius: 10px;
+    padding: 14px 16px;
+    margin: 0 0 12px;
+    display: block;
+    text-decoration: none;
+  }
+
+  .sport-card .sport-name {
+    font-size: 15px;
+    font-weight: 700;
+    color: #1A1410;
+    margin: 0 0 3px;
+  }
+
+  .sport-card .sport-name .icon {
+    color: #F25E0D;
+    margin-right: 6px;
+  }
+
+  .sport-card .sport-desc {
+    font-size: 13px;
+    color: #5C4A3A;
+    margin: 0 0 6px;
+    line-height: 1.6;
+  }
+
+  .sport-card .sport-link {
+    font-size: 12.5px;
+    color: #F25E0D;
+    font-weight: 600;
+  }
+
+  .divider {
+    text-align: center;
+    color: #F25E0D;
+    font-size: 16px;
+    letter-spacing: 8px;
+    margin: 24px 0;
+  }
+</style>
+</head>
+<body>
+
+<div class="page-content">
+
+  <p class="body-text">The following is a list of key dates to consider when booking accommodation or travel.</p>
+
+  <p class="body-text">The anniversary days may not impact too much on accommodation, you may however find that shops are closed or have a tariff fee on top of their prices on these days.</p>
+
+  <p class="pull-quote">Please use the button further down the page for up to date dates for public holidays. With the exception of Christmas, New Year and ANZAC Day, the dates change each year.</p>
+
+  <p class="body-text">For a general overview of which public holidays and events could affect your trip, this drop down should help your initial planning.</p>
+
+  <!-- ===================== NATIONAL PUBLIC HOLIDAYS ===================== -->
+  <div class="accordion" id="acc-national">
+    <div class="accordion-header" onclick="toggleAccordion('acc-national')">
+      <span>National Public Holidays — 2026</span>
+      <span class="chevron">▾</span>
+    </div>
+    <div class="accordion-body">
+      <div class="date-row"><span class="name">New Year's Day</span><span class="when">Thu 1 Jan</span></div>
+      <div class="date-row"><span class="name">Day after New Year's Day</span><span class="when">Fri 2 Jan</span></div>
+      <div class="date-row"><span class="name">Waitangi Day</span><span class="when">Fri 6 Feb</span></div>
+      <div class="date-row"><span class="name">Good Friday</span><span class="when">Fri 3 Apr</span></div>
+      <div class="date-row"><span class="name">Easter Monday</span><span class="when">Mon 6 Apr</span></div>
+      <div class="date-row"><span class="name">ANZAC Day</span><span class="when">Sat 25 Apr</span></div>
+      <div class="date-row"><span class="name">ANZAC Day (observed)</span><span class="when">Mon 27 Apr</span></div>
+      <div class="date-row"><span class="name">King's Birthday</span><span class="when">Mon 1 Jun</span></div>
+      <div class="date-row"><span class="name">Matariki</span><span class="when">Fri 10 Jul</span></div>
+      <div class="date-row"><span class="name">Labour Day</span><span class="when">Mon 26 Oct</span></div>
+      <div class="date-row"><span class="name">Christmas Day</span><span class="when">Fri 25 Dec</span></div>
+      <div class="date-row"><span class="name">Boxing Day</span><span class="when">Sat 26 Dec</span></div>
+      <p class="date-subnote">Christmas Day, New Year's Day and ANZAC Day always fall on the same calendar date. Most other holidays move slightly each year, and some "Mondayise" — shifting to the following Monday if they land on a weekend. Use the button below to confirm current-year exact dates.</p>
+    </div>
+  </div>
+
+  <!-- ===================== REGIONAL ANNIVERSARY DAYS ===================== -->
+  <div class="accordion" id="acc-anniversary">
+    <div class="accordion-header" onclick="toggleAccordion('acc-anniversary')">
+      <span>Regional Anniversary Days</span>
+      <span class="chevron">▾</span>
+    </div>
+    <div class="accordion-body">
+      <p class="body-text" style="margin:10px 0 6px;">Each region celebrates its own founding date, usually with a long weekend for locals — but not a day off for visitors' shops, banks or businesses everywhere.</p>
+      <div class="region-table">
+        <div class="region-row"><span class="region-name">Auckland, Northland &amp; Waikato</span><span class="region-when">Last weekend of Jan / first weekend of Feb</span></div>
+        <div class="region-row"><span class="region-name">Nelson</span><span class="region-when">First weekend in February</span></div>
+        <div class="region-row"><span class="region-name">Otago &amp; Taranaki</span><span class="region-when">Mid March</span></div>
+        <div class="region-row"><span class="region-name">Southland</span><span class="region-when">Mid April</span></div>
+        <div class="region-row"><span class="region-name">South Canterbury</span><span class="region-when">September</span></div>
+        <div class="region-row"><span class="region-name">Hawkes Bay</span><span class="region-when">Mid October</span></div>
+        <div class="region-row"><span class="region-name">Marlborough</span><span class="region-when">End of October</span></div>
+        <div class="region-row"><span class="region-name">Canterbury</span><span class="region-when">Mid November</span></div>
+        <div class="region-row"><span class="region-name">Westland</span><span class="region-when">Early December</span></div>
+      </div>
+      <p class="date-subnote">There's no official live data source for these regional dates, so this list is kept up to date manually rather than fetched — check the button below if a specific date matters for your trip.</p>
+    </div>
+  </div>
+
+  <!-- ===================== EVENTS & FESTIVALS ===================== -->
+  <div class="accordion" id="acc-events">
+    <div class="accordion-header" onclick="toggleAccordion('acc-events')">
+      <span>Events &amp; Festivals to Know About</span>
+      <span class="chevron">▾</span>
+    </div>
+    <div class="accordion-body">
+      <div class="region-table">
+        <div class="region-row"><span class="region-name">Coromandel — Keltic Fair</span><span class="region-when">January</span></div>
+        <div class="region-row"><span class="region-name">Hamilton, Taupo, Queenstown — summer concerts</span><span class="region-when">February</span></div>
+        <div class="region-row"><span class="region-name">Blenheim — Marlborough Wine &amp; Food Festival</span><span class="region-when">February</span></div>
+        <div class="region-row"><span class="region-name">University year starts (Auckland, Christchurch, Dunedin, Hamilton, Palmerston North, Wellington)</span><span class="region-when">First week of March</span></div>
+        <div class="region-row"><span class="region-name">New Plymouth — WOMAD</span><span class="region-when">March</span></div>
+        <div class="region-row"><span class="region-name">Greymouth / Hokitika — Wild Foods Festival</span><span class="region-when">March</span></div>
+        <div class="region-row"><span class="region-name">Wanaka — Warbirds over Wanaka</span><span class="region-when">Easter weekend</span></div>
+        <div class="region-row"><span class="region-name">Christmas Break</span><span class="region-when">Christmas Eve to 2 Jan</span></div>
+      </div>
+      <p class="date-subnote">University start dates and festival dates can shift by a week or two each year — worth a quick check of each event's own website before locking in travel.</p>
+    </div>
+  </div>
+
+  <div class="dark-card">
+    <p class="dark-card-label">Worth Knowing</p>
+    <p class="dark-card-text">On <span>Good Friday, Easter Sunday and Christmas Day</span>, most shops are required by law to stay closed. Anzac Day morning (until 1pm) has the same restriction. Plan your supermarket run a day ahead if you're travelling over these dates.</p>
+  </div>
+
+  <a class="cta-button" href="https://www.govt.nz/browse/work/public-holidays-and-work/public-holidays-and-anniversary-dates/" target="_blank" rel="noopener">Check Current Public Holiday Dates</a>
+  <p class="cta-note">Opens the official NZ Government public holidays page</p>
+
+  <div class="divider">• • •</div>
+
+  <!-- ===================== SPORTING FIXTURES ===================== -->
+  <h2 class="section-heading">Sporting Fixtures</h2>
+
+  <p class="body-text">In most of New Zealand's towns and cities (smaller than Auckland), if there is a major sporting event on, accommodation can get tricky to find. Kiwis are passionate sporting supporters, especially if the opposition is Australia, England or South Africa.</p>
+
+  <p class="body-text">Due to the nature of the sporting calendars, if you are keen to see a game — or avoid any people congestion — I suggest you have a look at the following official websites before you book:</p>
+
+  <a class="sport-card" href="https://www.superrugby.co.nz/pacific/fixtures" target="_blank" rel="noopener">
+    <p class="sport-name"><span class="icon">●</span>Rugby — Super Rugby Pacific</p>
+    <p class="sport-desc">Fixtures and results for the Blues, Chiefs, Hurricanes, Crusaders, Highlanders and Moana Pasifika.</p>
+    <span class="sport-link">superrugby.co.nz →</span>
+  </a>
+
+  <a class="sport-card" href="https://anzpremiership.co.nz/" target="_blank" rel="noopener">
+    <p class="sport-name"><span class="icon">●</span>Netball — ANZ Premiership</p>
+    <p class="sport-desc">New Zealand's top domestic netball competition, featuring the Mystics, Stars, Magic, Pulse, Tactix and Steel.</p>
+    <span class="sport-link">anzpremiership.co.nz →</span>
+  </a>
+
+  <a class="sport-card" href="https://www.nzc.nz/matches/" target="_blank" rel="noopener">
+    <p class="sport-name"><span class="icon">●</span>Cricket — BLACKCAPS &amp; Domestic</p>
+    <p class="sport-desc">International BLACKCAPS and WHITE FERNS fixtures, plus domestic Plunket Shield and Super Smash matches.</p>
+    <span class="sport-link">nzc.nz/matches →</span>
+  </a>
+
+  <a class="sport-card" href="https://www.supercars.com/2026/supercars-calendar-tickets" target="_blank" rel="noopener">
+    <p class="sport-name"><span class="icon">●</span>Motorsport — Supercars Championship</p>
+    <p class="sport-desc">The Repco Supercars Championship now runs a New Zealand double-header each April — Taupō, and Christchurch's Ruapuna Raceway.</p>
+    <span class="sport-link">supercars.com →</span>
+  </a>
+
+  <p class="date-subnote">Fixture dates shift every season, so these links go straight to each sport's official live schedule rather than a date we'd have to keep updating by hand.</p>
+
+</div>
+
+<script>
+function toggleAccordion(id) {
+  document.getElementById(id).classList.toggle('open');
+}
+</script>
+
+</body>
+</html>
