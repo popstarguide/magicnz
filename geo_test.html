@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    padding: 24px 18px;
+    background: #fff;
+    color: #1A1410;
+  }
+  h1 { font-size: 18px; margin: 0 0 16px; }
+  button {
+    background: #F25E0D;
+    color: #fff;
+    border: none;
+    padding: 14px 22px;
+    font-size: 16px;
+    font-weight: 700;
+    border-radius: 10px;
+    width: 100%;
+  }
+  #result {
+    margin-top: 20px;
+    padding: 14px;
+    border-radius: 10px;
+    background: #f5f5f5;
+    font-size: 14px;
+    line-height: 1.6;
+    white-space: pre-wrap;
+    word-break: break-word;
+  }
+  .ok { color: #2a7a2a; font-weight: 700; }
+  .fail { color: #cc3300; font-weight: 700; }
+</style>
+</head>
+<body>
+
+<h1>Geolocation Test</h1>
+<p style="font-size:13px;color:#888;">Tap the button and see what comes back. That's the whole test.</p>
+
+<button onclick="testLocation()">Get My Location</button>
+
+<div id="result">Waiting for tap…</div>
+
+<script>
+function testLocation() {
+  var resultEl = document.getElementById('result');
+
+  if (!('geolocation' in navigator)) {
+    resultEl.innerHTML = '<span class="fail">FAIL</span>\n\nnavigator.geolocation is not available at all in this WebView.';
+    return;
+  }
+
+  resultEl.innerHTML = 'Requesting permission / location…';
+
+  navigator.geolocation.getCurrentPosition(
+    function(pos) {
+      var out = '<span class="ok">SUCCESS</span>\n\n';
+      out += 'Latitude: ' + pos.coords.latitude + '\n';
+      out += 'Longitude: ' + pos.coords.longitude + '\n';
+      out += 'Accuracy: ' + pos.coords.accuracy + ' metres\n';
+      out += 'Timestamp: ' + new Date(pos.timestamp).toString();
+      resultEl.innerHTML = out;
+    },
+    function(err) {
+      var out = '<span class="fail">FAIL</span>\n\n';
+      out += 'Error code: ' + err.code + '\n';
+      out += 'Message: ' + err.message + '\n\n';
+      out += 'Code reference: 1 = permission denied, 2 = position unavailable, 3 = timeout';
+      resultEl.innerHTML = out;
+    },
+    { enableHighAccuracy: true, timeout: 10000 }
+  );
+}
+</script>
+
+</body>
+</html>
