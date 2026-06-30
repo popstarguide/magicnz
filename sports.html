@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<style>
+  * { box-sizing: border-box; }
+
+  html { background: #ffffff; height: 100%; }
+
+  body {
+    margin: 0;
+    min-height: 100%;
+    background: #ffffff;
+    color: #1A1410;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    font-weight: 300;
+    line-height: 1.75;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .page-content { padding: 20px 18px 60px; }
+
+  /* Sticky sport select nav */
+  .sticky-nav {
+    position: sticky;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    background: #fff;
+    padding: 10px 18px;
+    border-bottom: 2px solid #e8e8e8;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  }
+
+  .sport-select {
+    width: 100%;
+    padding: 10px 16px;
+    font-size: 15px;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    color: #1A1410;
+    background: #fff;
+    border: 2px solid #e8e8e8;
+    border-radius: 10px;
+    appearance: none;
+    -webkit-appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23F25E0D' stroke-width='2' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 16px center;
+    cursor: pointer;
+    display: block;
+    margin: 0;
+  }
+  .sport-select:focus { outline: none; border-color: #F25E0D; }
+
+  .sport-panel { display: none; }
+  .sport-panel.active { display: block; }
+
+  .eyebrow {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: #F2784B;
+    margin: 0 0 2px;
+  }
+
+  .section-heading {
+    font-size: 22px;
+    font-weight: 700;
+    color: #F25E0D;
+    line-height: 1.2;
+    margin: 32px 0 12px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #e8e8e8;
+  }
+  .section-heading:first-of-type { margin-top: 0; }
+
+  .body-text {
+    font-size: 14px;
+    color: #1A1410;
+    margin: 0 0 12px;
+    line-height: 1.8;
+  }
+
+  .pull-quote {
+    background: #fff5f0;
+    border-left: 4px solid #F25E0D;
+    border-radius: 0 8px 8px 0;
+    padding: 14px 16px;
+    margin: 0 0 16px;
+    font-size: 14px;
+    font-style: italic;
+    color: #F25E0D;
+    line-height: 1.6;
+  }
+
+  .dark-card {
+    background: #1A1410;
+    border-radius: 10px;
+    padding: 16px 18px;
+    margin: 0 0 16px;
+  }
+  .dark-card-label {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: #F2784B;
+    margin: 0 0 4px;
+  }
+  .dark-card-text {
+    font-size: 13px;
+    color: #F7F3EF;
+    line-height: 1.7;
+    margin: 0;
+  }
+  .dark-card-text span { color: #F2784B; font-weight: 600; }
+
+  .divider {
+    text-align: center;
+    color: #F25E0D;
+    font-size: 16px;
+    letter-spacing: 8px;
+    margin: 28px 0;
+  }
+
+  /* Photo gallery */
+  .gallery {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+    margin: 0 0 16px;
+  }
+  .gallery img {
+    width: 100%;
+    height: 110px;
+    object-fit: cover;
+    border-radius: 8px;
+    display: block;
+    cursor: zoom-in;
+  }
+  .gallery .wide {
+    grid-column: span 2;
+    height: 160px;
+  }
+
+  /* Broken image placeholder */
+  .img-placeholder {
+    width: 100%;
+    height: 150px;
+    border: 2px dashed #ddd;
+    border-radius: 10px;
+    margin: 0 0 16px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: #bbb;
+    background: #fafafa;
+  }
+  .img-placeholder .broken-icon {
+    font-size: 30px;
+    margin-bottom: 6px;
+    color: #ccc;
+  }
+  .img-placeholder .placeholder-label {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: #ccc;
+  }
+
+  /* Lightbox */
+  .lightbox-overlay {
+    display: none;
+    position: absolute;
+    left: 0;
+    right: 0;
+    background: rgba(0,0,0,0.92);
+    z-index: 999;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    text-align: center;
+    padding: 50px 16px;
+  }
+  .lightbox-overlay.active { display: block; }
+  .lightbox-overlay img {
+    max-width: 100%;
+    width: 100%;
+    height: auto;
+    border-radius: 6px;
+    margin: 0 auto;
+    display: block;
+  }
+  .lightbox-close {
+    position: fixed;
+    top: 16px;
+    right: 20px;
+    color: #fff;
+    font-size: 32px;
+    font-weight: 300;
+    cursor: pointer;
+    line-height: 1;
+    z-index: 1000;
+    background: rgba(0,0,0,0.5);
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    text-align: center;
+  }
+</style>
+</head>
+<body>
+
+<div class="sticky-nav">
+  <select class="sport-select" onchange="showSport(this.value)">
+    <option value="intro">About Kiwi Sport</option>
+    <option value="rugby">Rugby Union &amp; League</option>
+    <option value="netball">Netball</option>
+    <option value="cricket">Cricket</option>
+    <option value="supercars">Motor Racing — Supercars</option>
+  </select>
+</div>
+
+<div class="page-content">
+
+  <div class="sport-panel active" id="panel-intro">
+
+  <p class="body-text">New Zealanders love our sport, with lots of amateur sport being played most evenings and weekends, country wide. In the last 30 years many sports have gained in popularity, with Soccer (Football), Field Hockey, Speedway, Squash, Running and Basketball all rising in participation numbers. We also manage to field competitive teams at the Olympics, both Summer and Winter.</p>
+
+  <p class="body-text">But four are either embedded in our cultural psyche, or when they roll into town will gather a crowd that can make towns come to a stop: Rugby Union, Netball, Cricket and motor racing (Supercars).</p>
+
+  <p class="body-text">Being a former colony of England and the British Isles, three of New Zealand's top four sports can trace their origins back to the UK.</p>
+
+  <p class="pull-quote">If you are unfamiliar with these sports, here is a brief summary of each. Please note all of these sports have their own words and terms — almost their own language — and quirks. With most of them, just by watching you will get the general idea of the game. Cricket, however, can be a little more challenging if you have never seen it before.</p>
+
+  </div>
+
+
+  <!-- ===================== RUGBY ===================== -->
+  <div class="sport-panel" id="panel-rugby">
+  <p class="eyebrow">Sport One</p>
+  <h2 class="section-heading">Rugby Union &amp; Rugby League</h2>
+
+  <div class="gallery">
+    <img src="IMGP1735.jpg" alt="Hurricanes lineout" onclick="openLightbox('IMGP1735.jpg')">
+    <img src="IMGP1727.jpg" alt="Hurricanes player breaking a tackle" onclick="openLightbox('IMGP1727.jpg')">
+    <img src="IMGP1753.jpg" alt="Hurricanes player diving for a try" onclick="openLightbox('IMGP1753.jpg')">
+    <img src="IMGP1755.jpg" alt="Hurricanes player kicking a conversion" onclick="openLightbox('IMGP1755.jpg')">
+    <img class="wide" src="IMGP1747.jpg" alt="Scoreboard reading Hurricanes 10, Cheetahs 5, at Yarrow Stadium" onclick="openLightbox('IMGP1747.jpg')">
+  </div>
+
+  <p class="body-text">Rugby Union is the development of the game that originates from Rugby in England. The original version of the game is closer to Rugby League. American Football (Gridiron) also has its origins in the original Rugby.</p>
+
+  <p class="body-text">New Zealand has prided itself on being a world player in both codes of Rugby.</p>
+
+  <p class="body-text">Rugby Union is played between two teams of 15 players each. The ball can be kicked forward but only passed back — it can't leave the hands forward of the passing player.</p>
+
+  <p class="body-text">Rugby Union runs in a continuous play fashion, where play is only stopped for injury or penalties.</p>
+
+  <p class="body-text">Rugby League is similar but is played with teams of 13 on the field. Play pauses when a ball carrier is tackled and resets at the tackle. Each team can only be tackled six times or they must score or hand the ball to the opposition. Play restarts with the ball being passed back by the foot to a team mate, similar to gridiron.</p>
+
+  <p class="body-text">The objective of both codes is to score 'tries'. A try is achieved when the ball is carried over and then placed on the ground behind the opposition's try (goal) line.</p>
+
+  <p class="body-text">After scoring a try, more points can be gained by a conversion — a conversion is when the ball is kicked through the goal uprights and over the goal's horizontal bar.</p>
+
+  <p class="body-text">Penalties or infringements happen in all sports. Depending on how easy it is for the team awarded the infringement, they may choose to attempt to kick the ball just like a conversion over the goal, earning points if successful.</p>
+
+  <div class="dark-card">
+    <p class="dark-card-label">Where To Watch</p>
+    <p class="dark-card-text">During the winter months there will be many local Rugby Union fixtures throughout the country — most will be small club games that could be fun to watch. The big spectacle events are <span>Super Rugby</span> and international fixtures. Super Rugby is a competition between professional teams based in major cities across NZ, Australia, South Africa, Argentina and the Pacific Islands. The five NZ Super Rugby teams are the Auckland Blues, Waikato Chiefs, Wellington Hurricanes, Canterbury Crusaders and the Otago Highlanders.</p>
+  </div>
+
+  <p class="body-text">Outside the Rugby World Cup, the big international games are the first two games played annually between the New Zealand All Blacks and Australia's Wallabies. These two games are played for the Bledisloe Cup. The cup has been played for since 1931 — the holder has to lose both games to lose the cup, otherwise a draw or two wins means they retain it.</p>
+
+  <p class="body-text">Just like its cousin, you will find many local games of Rugby League on most winter weekends. The split between the two codes happened back in the early days of the game in England, when the more affluent players wanted to move the games to a Saturday. The working class regions of the English midlands and northern England only had Sunday off work, so they played their league on the Sunday. Over time the two codes formed different rules and styles of play.</p>
+
+  <p class="body-text">Rugby League, understanding the need to pay players if they wanted them to have training time, allowed professionalism early in the sport's history. As such, Australia has had a professional tournament in operation since 1908. Rugby Union went professional in 1995.</p>
+
+  <p class="body-text">The current format of Australia's professional Rugby League tournament (NRL) has a New Zealand team, the New Zealand Warriors. While their home fixtures do move around New Zealand, most of their games are held at Mt Smart Stadium in Auckland.</p>
+
+  </div>
+
+
+  <!-- ===================== NETBALL ===================== -->
+  <div class="sport-panel" id="panel-netball">
+  <p class="eyebrow">Sport Two</p>
+  <h2 class="section-heading">Netball</h2>
+
+  <div class="img-placeholder">
+    <span class="broken-icon">⚠</span>
+    <span class="placeholder-label">Image coming soon</span>
+  </div>
+
+  <p class="body-text">Once boasting the highest participation of any sport in Australasia, for many years growing up in New Zealand it was expected boys play rugby and girls play netball.</p>
+
+  <p class="body-text">Since the mid/late 1990s all of the major codes have suffered a decline in participation, in part due to other codes gaining in popularity, or children becoming more interested in technology.</p>
+
+  <p class="body-text">Netball at local level, and traditionally, was played outside on a concrete or asphalt court between two teams of seven players each. The objective is to score points by throwing (shooting) the ball through the opposition's hoop and net, like basketball — but unlike basketball, there is no backboard. Goals can only be scored inside the semicircle that surrounds the goal.</p>
+
+  <p class="body-text">Each player has strict zones they can play in, related to their position. The ball holder cannot step with the ball, so can only pass it once they have caught it.</p>
+
+  <p class="body-text">Due to the nature of the player and ball contact, Netball makes for a great game of positional play. The fast moving game is played over four quarters.</p>
+
+  <div class="dark-card">
+    <p class="dark-card-label">The League</p>
+    <p class="dark-card-text">New Zealand has its own professional league, the <span>ANZ Premiership</span>. Competing teams include the Northern Mystics, Northern Stars, Waikato Bay of Plenty Magic, Central Pulse, Mainland Tactix and the Southern Steel.</p>
+  </div>
+
+  <p class="body-text">International games are always a spectacle. The NZ Silver Ferns are often among the top three ranked teams in the world.</p>
+
+  </div>
+
+
+  <!-- ===================== CRICKET ===================== -->
+  <div class="sport-panel" id="panel-cricket">
+  <p class="eyebrow">Sport Three</p>
+  <h2 class="section-heading">Cricket</h2>
+
+  <div class="img-placeholder">
+    <span class="broken-icon">⚠</span>
+    <span class="placeholder-label">Image coming soon</span>
+  </div>
+
+  <p class="body-text">Cricket now has multiple variants of the core game. Unlike Rugby Union and Rugby League, the difference in the games hasn't led to a break in the sport's governing body locally.</p>
+
+  <p class="body-text">The game was traditionally played in what is now called "Test" format. These tests run over multiple days — the longest known is 12 days — though now Tests are capped at five days. Yes, after five days it is still possible to have a drawn result!</p>
+
+  <p class="body-text">The game is played on a large oval field between two teams of 11 players. One team will bat (hit the ball), the other will bowl (throw) the ball to the batter. The batting team will have two players on the field, while the fielding team will have all 11 on the field. The fielding team is trying to get 10 of the 11 batters 'out' — either by catching the ball off the bat, or by the ball striking the stumps and dislodging the bails (three vertical sticks with two small sticks on top) when the batter is not 'safe'. Each team moves from fielding to batting and vice versa once the batting team can no longer field a pair of batsmen, meaning 10 have got out.</p>
+
+  <p class="body-text">The batting team is trying to score runs (points) either by running between the two sets of stumps — each crossover of the batting players the full length between the stumps equals one run — or by hitting the ball to the field boundary. If the ball bounces before reaching the boundary, the team is awarded four runs, simply known as "a four". If the ball doesn't bounce before crossing the boundary, the team is awarded six runs, known as "a six".</p>
+
+  <p class="body-text">Each fielding team will have one player at a time deliver the ball to the batsman — each delivery is known as 'bowling' the ball. The ball is bowled by each bowler six times; this group of deliveries is known as an over. On completion of each over, the next bowler will deliver the ball six times from the opposite end of the wicket. The wicket is the strip of grass that has a set of stumps at each end, which the batsmen run along to score runs.</p>
+
+  <p class="body-text">To add to the confusion for someone who has never seen the game — in test format, both teams wear white uniforms.</p>
+
+  <p class="pull-quote">The sport of Cricket can become so slow that once, at an English test match, the TV commentator started talking about the public bus driving past the ground, as he had very little else to talk about.</p>
+
+  <p class="body-text">Due to the length and slow speed of the game, in the 1980s the sport looked to increase its popularity, so a shorter version of the game was brought in.</p>
+
+  <p class="body-text">The One Day games ("One Dayer") are limited by how many times the fielding team can deliver the ball to the batter. The One Dayer is limited to 40 overs per team, with one turn each at fielding and batting. Each team can only bat once, and the players wear coloured uniforms.</p>
+
+  <div class="dark-card">
+    <p class="dark-card-label">The Beige Brigade</p>
+    <p class="dark-card-text">New Zealand's international team is the <span>Black Caps</span>, and their uniforms are black. When the One Dayers started, the team wore a brown and beige uniform — you will still see reference to this era, with some fans wearing the uniform, usually referenced as the Beige Brigade.</p>
+  </div>
+
+  <p class="body-text">In the 1990s, in an attempt to regain fans, an even shorter and faster version of the game was created. 20/20 is exactly what its name suggests — it's half of a One Dayer. It delivered what its creators hoped: big hits and a fast paced game, as teams try to score big, fast.</p>
+
+  <p class="body-text">International One Dayers and 20/20 matches can draw big crowds and can be a real spectacle.</p>
+
+  </div>
+
+
+  <!-- ===================== SUPERCARS ===================== -->
+  <div class="sport-panel" id="panel-supercars">
+  <p class="eyebrow">Sport Four</p>
+  <h2 class="section-heading">Motor Racing — Supercars</h2>
+
+  <div class="img-placeholder">
+    <span class="broken-icon">⚠</span>
+    <span class="placeholder-label">Image coming soon</span>
+  </div>
+
+  <p class="body-text">Supercars is a Trans-Tasman touring car racing championship that, until 2017, was a battle of locally manufactured cars.</p>
+
+  <p class="body-text">For many European motorsport fans, touring cars is a conventional form of motorsport where purpose-built versions of road-going cars are raced on a motorsport circuit. New Zealand has had its own local version of touring car championships for as long as people have raced cars in NZ — a long time — but the pinnacle of the sport for Kiwis is the Australian competition.</p>
+
+  <div class="dark-card">
+    <p class="dark-card-label">Bathurst 1000</p>
+    <p class="dark-card-text">The highlight for most touring car fans is the Australian <span>Bathurst 1000</span> — raced until the winner has travelled 1000km on the Mount Panorama circuit, lapping 161 times and taking roughly seven hours to complete.</p>
+  </div>
+
+  <p class="body-text">While the Australian Touring Car championship is the pride of Australian motorsport, many Kiwis have stood on the top podium more than once. Denny Hulme, Chris Amon, Paul Radisich, Greg Murphy, Shane van Gisbergen and Scott McLaughlin are just some of the names that loudly stamp our flag on their cars in the championship.</p>
+
+  <p class="body-text">For many years, Holden Commodores, Holden Toranas, Ford Falcons and Ford Sierras built the foundations of a strong local fan base. In 2017, Ford and GM Holden closed their Australian manufacturing plants in favour of importing assembled right-hand-drive (mainly American) international options.</p>
+
+  <p class="body-text">Historically, New Zealand has had an on-again/off-again relationship hosting the touring cars — Wellington City, Hamilton City and Auckland's Pukekohe Circuit have all hosted the event.</p>
+
+  <p class="body-text">The current brand of the touring car championship is the Supercars Championship. Taupō Motorsport Park and Christchurch's Ruapuna Speedway currently host the NZ legs of the championship. Legions of motorsport fans descend on these towns and help make the event the highlight of the local motorsport calendar.</p>
+
+  </div>
+
+</div>
+
+<div class="lightbox-overlay" id="lightbox" onclick="closeLightbox()">
+  <span class="lightbox-close">&times;</span>
+  <img id="lightbox-img" src="" alt="">
+</div>
+
+<script>
+function showSport(val) {
+  var panels = document.querySelectorAll('.sport-panel');
+  panels.forEach(function(p) { p.classList.remove('active'); });
+  var panel = document.getElementById('panel-' + val);
+  if (panel) {
+    panel.classList.add('active');
+    window.scrollTo(0, 0);
+    document.documentElement.scrollTop = 0;
+    document.body.scrollTop = 0;
+  }
+}
+
+function openLightbox(src) {
+  var overlay = document.getElementById('lightbox');
+  var scrollY = window.pageYOffset || document.documentElement.scrollTop;
+  document.getElementById('lightbox-img').src = src;
+  overlay.style.top = scrollY + 'px';
+  overlay.style.height = window.innerHeight + 'px';
+  overlay.classList.add('active');
+  document.body.style.overflow = 'hidden';
+  document.documentElement.style.overflow = 'hidden';
+}
+function closeLightbox() {
+  var overlay = document.getElementById('lightbox');
+  overlay.classList.remove('active');
+  document.body.style.overflow = '';
+  document.documentElement.style.overflow = '';
+}
+</script>
+
+</body>
+</html>
