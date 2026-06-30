@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Driving in New Zealand</title>
+<style>
+  :root {
+    --orange: #F25E0D;
+    --orange-light: #F2784B;
+    --dark: #1A1410;
+    --bg: #ffffff;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    background: var(--bg);
+    color: var(--dark);
+    line-height: 1.6;
+  }
+
+  .hero {
+    background: var(--dark);
+    color: #fff;
+    padding: 48px 24px 40px;
+    text-align: center;
+  }
+
+  .eyebrow {
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--orange-light);
+    margin-bottom: 10px;
+  }
+
+  .hero h1 {
+    margin: 0;
+    font-size: 32px;
+    font-weight: 800;
+    line-height: 1.2;
+  }
+
+  .hero p.lede {
+    max-width: 560px;
+    margin: 16px auto 0;
+    color: #e8e0da;
+    font-size: 16px;
+  }
+
+  .content {
+    max-width: 680px;
+    margin: 0 auto;
+    padding: 32px 20px 60px;
+  }
+
+  .section {
+    margin-bottom: 36px;
+  }
+
+  .section h2 {
+    font-size: 21px;
+    font-weight: 800;
+    color: var(--dark);
+    border-left: 4px solid var(--orange);
+    padding-left: 12px;
+    margin: 0 0 14px;
+  }
+
+  .section p {
+    font-size: 16px;
+    margin: 0 0 14px;
+  }
+
+  .pull-quote {
+    background: var(--dark);
+    color: #fff;
+    border-radius: 10px;
+    padding: 22px 24px;
+    margin: 22px 0;
+    font-size: 17px;
+    font-weight: 600;
+    position: relative;
+  }
+
+  .pull-quote::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 5px;
+    height: 100%;
+    background: var(--orange);
+    border-radius: 10px 0 0 10px;
+  }
+
+  .pull-quote span.label {
+    display: block;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--orange-light);
+    margin-bottom: 6px;
+  }
+
+  .img-card {
+    margin: 18px 0;
+    border-radius: 10px;
+    overflow: hidden;
+    border: 1px solid #eee;
+    background: #fafafa;
+    text-align: center;
+    cursor: zoom-in;
+  }
+
+  .img-card img {
+    max-width: 100%;
+    max-height: 280px;
+    display: block;
+    margin: 0 auto;
+    padding: 14px;
+  }
+
+  .img-card .caption {
+    background: var(--dark);
+    color: #fff;
+    font-size: 13px;
+    font-weight: 600;
+    padding: 8px 14px;
+  }
+
+  .img-row {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: 18px 0;
+  }
+
+  .img-row .img-card {
+    flex: 1 1 140px;
+    max-width: 200px;
+    margin: 0;
+  }
+
+  ul.tip-list {
+    margin: 0 0 14px;
+    padding-left: 20px;
+  }
+
+  ul.tip-list li {
+    margin-bottom: 8px;
+    font-size: 16px;
+  }
+
+  a.link {
+    color: var(--orange);
+    font-weight: 600;
+    text-decoration: none;
+    word-break: break-all;
+  }
+
+  .divider {
+    border: none;
+    border-top: 1px solid #eee;
+    margin: 32px 0;
+  }
+
+  /* Lightbox */
+  .lightbox-overlay {
+    display: none;
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(0,0,0,0.85);
+    z-index: 999;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+  }
+
+  .lightbox-overlay.active {
+    display: flex;
+  }
+
+  .lightbox-overlay img {
+    max-width: 100%;
+    max-height: 90vh;
+    border-radius: 6px;
+  }
+
+  .lightbox-close {
+    position: absolute;
+    top: 18px;
+    right: 22px;
+    color: #fff;
+    font-size: 32px;
+    font-weight: 300;
+    cursor: pointer;
+    line-height: 1;
+  }
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="eyebrow">Practical Advice</div>
+  <h1>Driving in New Zealand</h1>
+  <p class="lede">A few home truths from a former bus driver — the rules and habits that catch visitors out most often.</p>
+</div>
+
+<div class="content">
+
+  <div class="section">
+    <p>Driving in New Zealand does have a few of its own challenges, some unique to New Zealand.</p>
+    <p>Most New Zealand roads are two lane roads, one in either direction, so a lot of our road rules are based around keeping safe on these types of roads.</p>
+    <p>The following are by no means a comprehensive list of our road rules. It's just a short list of rules I have noticed have caught a few people out. To get a full list of our road rules I recommend purchasing a "Road Code" prior to travelling or when you arrive.</p>
+  </div>
+
+  <div class="section">
+    <h2>Keep Left</h2>
+    <p>Keep left! We drive on the left hand side of the road here, so please always keep to the left, unless overtaking.</p>
+    <div class="img-card" onclick="openLightbox('keep_left.png')">
+      <img src="keep_left.png" alt="Keep left sign">
+      <div class="caption">Keep Left sign</div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>Slow Down on the Distances</h2>
+    <p>A lot of our roads don't allow for fast driving, so for instance you may look at the distance you want to travel and see that it's 100km, and conclude that at 100km/hr (our speed limit) it should take you an hour to drive it. Not always — there are large distances that can only be travelled safely at about 50 to 60 km/hr, so it should take you 2 or so hours to drive that distance. Because of this is why I have suggested overnight stops. The distances I recommend should be right to comfortably and safely travel and still see the sights along the way.</p>
+    <div class="img-card" onclick="openLightbox('twisty_roads.png')">
+      <img src="twisty_roads.png" alt="Winding road ahead sign, next 18km">
+      <div class="caption">Winding road sign — a common sight</div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>Red Means Stop, No Exceptions</h2>
+    <p>In New Zealand a red light means stop! No debate, no exceptions, just stop and wait for green. If there is a green arrow you may turn as long as the green is lit. There is no "free turn left under red rule" in New Zealand. I know there is some countries where there is a "free turn under red light rule" but not here.</p>
+    <div class="img-row">
+      <div class="img-card" onclick="openLightbox('free_turn_left.png')">
+        <img src="free_turn_left.png" alt="Traffic light showing red and a green left arrow">
+        <div class="caption">Green arrow lit — turn allowed</div>
+      </div>
+      <div class="img-card" onclick="openLightbox('stop_light.png')">
+        <img src="stop_light.png" alt="Traffic light showing red">
+        <div class="caption">Red alone — full stop</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>Mind What's Behind You</h2>
+    <p>A safe driving practice is to be aware of what's behind you on the road, and it's recommended by most driving schools to look in your mirror every 5–10 seconds. This may seem excessive, but in places like the West Coast of the South Island, vehicles can appear from nowhere behind you. Especially some of the locals!</p>
+    <p>If you see a vehicle (even a truck or bus) behind you, and they have been there for some time, please do the polite thing and find somewhere to pull over and let them through. You will find it easier to drive without them following you, and chances are they know the road so will be travelling a bit quicker — especially buses, which run to a tight schedule. You don't, you're on holiday!</p>
+  </div>
+
+  <div class="pull-quote">
+    <span class="label">Worth remembering</span>
+    It is illegal to park on the right hand side of the road. If caught, you will be fined — unless you are parking on a one way road or street.
+  </div>
+
+  <div class="section">
+    <h2>Reading the Road Markings</h2>
+    <ul class="tip-list">
+      <li>Solid yellow lines in the middle of the road indicate no overtaking.</li>
+      <li>Dotted yellow lines on the side of the road indicate no parking.</li>
+    </ul>
+    <div class="img-card" onclick="openLightbox('road_markings.png')">
+      <img src="road_markings.png" alt="Diagram of intersection showing stop, give way and no parking road markings">
+      <div class="caption">Common road markings and signage</div>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <div class="section">
+    <h2>Driving in Snow</h2>
+    <p>In New Zealand we don't run winter or summer tyres, it's the same tyres all year round for us. When we need to drive in snow conditions, we fit snow chains to the tyres. Here's a few little tips for people who have never driven with them.</p>
+    <ul class="tip-list">
+      <li>They are fitted to the drive wheels, the wheels that spin if you accelerate hard. Most new cars that's the front, most vans that's the back. If unsure, ask when you pick up your vehicle.</li>
+      <li>Fit them as tight as you can. Once they are fitted, move forward about 10m and retighten and check them.</li>
+      <li>Drive at a slow steady pace, about 20–30km/hr — not so slow that you feel every chain go under the wheels, and not too fast because eventually the chains will break. Smooth and steady is the key.</li>
+      <li>Don't drive on roads with no snow, this will cause the snow chains to eventually break.</li>
+    </ul>
+  </div>
+
+  <div class="section">
+    <h2>Keeping an Eye on the Forecast</h2>
+    <p>If you are driving around New Zealand during winter, especially through the Desert Road (State Highway 1, North Island) or anywhere in the South Island, it's a good idea to keep an eye on the weather forecasts:</p>
+    <ul class="tip-list">
+      <li><a class="link" href="https://www.journeys.nzta.govt.nz/journey-planner">journeys.nzta.govt.nz/journey-planner</a></li>
+      <li>TVNZ Channel 1 News and TV3 News and weather bulletins at 6pm.</li>
+      <li>Radio news and weather bulletins are hourly on most stations. Radio NZ National is 101 FM, or close variants around that frequency depending on where you are in the country.</li>
+      <li><a class="link" href="https://www.metservice.co.nz">metservice.co.nz</a> for weather warnings.</li>
+    </ul>
+  </div>
+
+</div>
+
+<div class="lightbox-overlay" id="lightbox" onclick="closeLightbox()">
+  <span class="lightbox-close">&times;</span>
+  <img id="lightbox-img" src="" alt="">
+</div>
+
+<script>
+  function openLightbox(src) {
+    document.getElementById('lightbox-img').src = src;
+    document.getElementById('lightbox').classList.add('active');
+  }
+  function closeLightbox() {
+    document.getElementById('lightbox').classList.remove('active');
+  }
+</script>
+
+</body>
+</html>
