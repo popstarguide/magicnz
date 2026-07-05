@@ -1,0 +1,1932 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<style>
+  * { box-sizing: border-box; }
+
+  .region-select {
+    width: 100%;
+    padding: 12px 16px;
+    font-size: 15px;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    color: #1A1410;
+    background: #fff;
+    border: 2px solid #e8e8e8;
+    border-radius: 10px;
+    appearance: none;
+    -webkit-appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23F25E0D' stroke-width='2' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 16px center;
+    cursor: pointer;
+    margin: 0 0 20px;
+    display: block;
+  }
+  .region-select:focus {
+    outline: none;
+    border-color: #F25E0D;
+  }
+
+  .region-panel { display: none; }
+  .region-panel.active { display: block; }
+
+  .pretty-pic {
+    width: 100%;
+    border-radius: 10px;
+    display: block;
+    margin: 0 0 16px;
+    object-fit: cover;
+    max-height: 220px;
+  }
+
+  .eyebrow {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: #F2784B;
+    margin: 0 0 2px;
+  }
+
+  .section-heading {
+    font-size: 22px;
+    font-weight: 700;
+    color: #F25E0D;
+    line-height: 1.2;
+    margin: 0 0 12px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #e8e8e8;
+  }
+
+  .body-text {
+    font-size: 14px;
+    color: #1A1410;
+    margin: 0 0 12px;
+    line-height: 1.8;
+  }
+
+  .dark-card {
+    background: #1A1410;
+    border-radius: 10px;
+    padding: 16px 18px;
+    margin: 0 0 16px;
+  }
+  .dark-card-label {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: #F2784B;
+    margin: 0 0 4px;
+  }
+  .dark-card-text {
+    font-size: 13px;
+    color: #F7F3EF;
+    line-height: 1.7;
+    margin: 0;
+  }
+
+  .placeholder-state {
+    text-align: center;
+    padding: 40px 20px;
+    color: #aaa;
+    font-size: 14px;
+  }
+</style>
+</head>
+<body style="background:#ffffff;color:#1A1410;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;font-weight:300;line-height:1.75;padding:16px 18px 60px;margin:0;">
+
+<!-- Location selector -->
+<select class="region-select" onchange="showRegion(this.value)">
+  <option value="">Select a location…</option>
+  <optgroup label="Auckland">
+    <option value="auckland">Auckland</option>
+  </optgroup>
+  <optgroup label="Northland">
+    <option value="warkworth">Warkworth</option>
+    <option value="matakohe">Matakohe</option>
+    <option value="dargaville">Dargaville</option>
+    <option value="waipoua_forest">Waipoua Forest</option>
+    <option value="hokianga_harbour">Hokianga Harbour</option>
+    <option value="opononi">Opononi</option>
+    <option value="kaikohe">Kaikohe</option>
+    <option value="kaitaia">Kaitaia</option>
+    <option value="cape_reinga">Cape Reinga</option>
+    <option value="paihia_bay_of_islands">Paihia (Bay of Islands)</option>
+    <option value="waitangi">Waitangi</option>
+    <option value="whangarei">Whangarei</option>
+  </optgroup>
+  <optgroup label="Northalnd">
+    <option value="wellsford">Wellsford</option>
+  </optgroup>
+  <optgroup label="Waikato">
+    <option value="rangariri">Rangariri</option>
+    <option value="huntly_taupiri">Huntly/Taupiri</option>
+    <option value="taupiri">Taupiri.</option>
+    <option value="ngaruawhaia">Ngaruawhaia</option>
+    <option value="te_kowhai_whatawhata">Te Kowhai/Whatawhata</option>
+    <option value="pirongia">Pirongia</option>
+    <option value="taup">Taupó</option>
+    <option value="wairakei">Wairakei</option>
+    <option value="turangi">Turangi</option>
+    <option value="waiouru">Waiouru</option>
+    <option value="ohakune">Ohakune</option>
+    <option value="tongariro_national_park">Tongariro National Park</option>
+    <option value="paeroa">Paeroa</option>
+    <option value="matamata">Matamata</option>
+  </optgroup>
+  <optgroup label="King Country">
+    <option value="otorohanga">Otorohanga</option>
+    <option value="waitomo">Waitomo</option>
+    <option value="te_kuiti">Te Kuiti</option>
+    <option value="piopio">Piopio</option>
+    <option value="awakino">Awakino</option>
+    <option value="mokau">Mokau</option>
+  </optgroup>
+  <optgroup label="Taranaki">
+    <option value="uruti">Uruti</option>
+    <option value="motunui">Motunui</option>
+    <option value="waitara">Waitara</option>
+    <option value="new_plymouth">New Plymouth</option>
+    <option value="surf_highway_45">Surf Highway 45</option>
+    <option value="puniho">Puniho</option>
+    <option value="parihaka">Parihaka</option>
+    <option value="stent_road">Stent Road</option>
+    <option value="opunake">Opunake</option>
+    <option value="manaia">Manaia</option>
+    <option value="hawera">Hawera</option>
+    <option value="stratford">Stratford</option>
+    <option value="patea">Patea</option>
+  </optgroup>
+  <optgroup label="Whanganui/Manwatu">
+    <option value="waverley">Waverley</option>
+    <option value="whanganui">Whanganui</option>
+    <option value="bulls">Bulls</option>
+    <option value="sanson">Sanson</option>
+    <option value="foxton">Foxton</option>
+    <option value="otaki">Otaki</option>
+  </optgroup>
+  <optgroup label="Wellington">
+    <option value="paraparaumu">Paraparaumu</option>
+    <option value="paekakariki">Paekakariki</option>
+    <option value="porirua">Porirua</option>
+    <option value="wellington">Wellington</option>
+    <option value="hutt_cities">Hutt Cities</option>
+  </optgroup>
+  <optgroup label="Wairapara">
+    <option value="featherston">Featherston</option>
+    <option value="carterton">Carterton</option>
+    <option value="greytown">Greytown</option>
+    <option value="masterton">Masterton</option>
+    <option value="mt_bruce_wildlife_centre">Mt Bruce Wildlife Centre.</option>
+    <option value="ekatahuna">Ekatahuna</option>
+    <option value="pahiatua_manganatokia">Pahiatua/Manganatokia</option>
+    <option value="woodville">Woodville</option>
+    <option value="dannevirke_norsewood">Dannevirke/Norsewood</option>
+  </optgroup>
+  <optgroup label="Hawkes Bay">
+    <option value="waipukurau">Waipukurau</option>
+    <option value="hastings">Hastings</option>
+    <option value="napier">Napier</option>
+  </optgroup>
+  <optgroup label="Bay of Plenty">
+    <option value="rotorua">Rotorua</option>
+    <option value="wai_o_tapu">Wai-o-tapu</option>
+    <option value="te_puke">Te Puke</option>
+    <option value="tauranga_mt_maunganui">Tauranga/Mt Maunganui</option>
+    <option value="katikati">Katikati</option>
+    <option value="te_kaha">Te Kaha</option>
+    <option value="opotiki">Opotiki</option>
+    <option value="whakatane">Whakatane</option>
+    <option value="waihi">Waihi</option>
+    <option value="karangahake_gorge">Karangahake Gorge</option>
+  </optgroup>
+  <optgroup label="East Coast/Poverty Bay">
+    <option value="gisborne">Gisborne</option>
+    <option value="tolaga_bay">Tolaga Bay</option>
+    <option value="tokomaru_bay">Tokomaru Bay</option>
+    <option value="ruatoria">Ruatoria</option>
+    <option value="east_cape">East Cape</option>
+    <option value="hicks_bay">Hicks Bay</option>
+  </optgroup>
+  <optgroup label="Thames Valley (Coromandel)">
+    <option value="thames">Thames</option>
+    <option value="coromandel_town">Coromandel Town</option>
+    <option value="whitianga">Whitianga</option>
+  </optgroup>
+  <optgroup label="Marlborough">
+    <option value="picton">Picton</option>
+    <option value="havelock">Havelock</option>
+    <option value="ward">Ward</option>
+    <option value="seddon">Seddon</option>
+    <option value="blenheim">Blenheim</option>
+  </optgroup>
+  <optgroup label="Tasman">
+    <option value="nelson">Nelson.</option>
+    <option value="motueka">Motueka.</option>
+    <option value="abel_tasman_national_park">Abel Tasman National Park</option>
+    <option value="t_kaka">Tákaka</option>
+    <option value="murchison">Murchison.</option>
+  </optgroup>
+  <optgroup label="West Coast">
+    <option value="inangahua_junction">Inangahua Junction</option>
+    <option value="westport">Westport.</option>
+    <option value="cape_foulwind">Cape Foulwind</option>
+    <option value="charleston">Charleston</option>
+    <option value="paparoa_national_park">Paparoa National Park</option>
+    <option value="punakaiki">Punakaiki</option>
+    <option value="greymouth">Greymouth</option>
+    <option value="hokitika">Hokitika</option>
+    <option value="ross">Ross</option>
+    <option value="harihari">Harihari</option>
+    <option value="whataroa">Whataroa</option>
+    <option value="franz_josef_glacier">Franz Josef Glacier</option>
+    <option value="fox_glacier">Fox Glacier</option>
+    <option value="haast">Haast</option>
+  </optgroup>
+  <optgroup label="Lakes District (Otago)">
+    <option value="makarora">Makarora</option>
+    <option value="hawea">Hawea</option>
+    <option value="wanaka">Wanaka</option>
+    <option value="crown_range">Crown Range</option>
+    <option value="cromwell">Cromwell</option>
+    <option value="queenstown">Queenstown</option>
+    <option value="bennets_bluff">Bennets Bluff</option>
+    <option value="glenorchy">Glenorchy</option>
+    <option value="kingston">Kingston</option>
+  </optgroup>
+  <optgroup label="Southland">
+    <option value="mossburn">Mossburn.</option>
+    <option value="fiordland_national_park">Fiordland National Park</option>
+    <option value="te_anau">Te Anau</option>
+    <option value="manapouri">Manapouri</option>
+    <option value="doubtful_sound">Doubtful Sound</option>
+    <option value="lumsden">Lumsden</option>
+    <option value="winton">Winton</option>
+    <option value="invercargill">Invercargill</option>
+    <option value="stewart_island_rakiura">Stewart Island/Rakiura</option>
+    <option value="catlins_forest_coast">Catlins Forest Coast</option>
+    <option value="milford_sound_self_drive_day_trip">Milford Sound (self drive day trip)</option>
+  </optgroup>
+  <optgroup label="Otago">
+    <option value="balclutha">Balclutha</option>
+    <option value="dunedin">Dunedin</option>
+    <option value="moeraki">Moeraki</option>
+    <option value="oamaru">Oamaru</option>
+    <option value="waitaki_valley">Waitaki Valley</option>
+    <option value="omaramara">Omaramara</option>
+  </optgroup>
+  <optgroup label="Canterbury">
+    <option value="mackenzie_country">Mackenzie Country</option>
+    <option value="twizel">Twizel</option>
+    <option value="lake_pukaki">Lake Pukaki</option>
+    <option value="mt_cook_national_park">Mt Cook National Park</option>
+    <option value="lake_tekapo">Lake Tekapo</option>
+    <option value="fairlie">Fairlie</option>
+    <option value="waitohi">Waitohi</option>
+    <option value="temuka">Temuka</option>
+    <option value="geraldine">Geraldine</option>
+    <option value="rakaia">Rakaia</option>
+    <option value="christchurch">Christchurch</option>
+    <option value="amberley">Amberley</option>
+    <option value="cheviot">Cheviot</option>
+    <option value="kaikoura">Kaikoura</option>
+  </optgroup>
+</select>
+
+<!-- Default state -->
+<div id="default-state">
+  <div class="placeholder-state">
+    <p>Select a location above to explore</p>
+  </div>
+</div>
+
+<div class="region-panel" id="panel-auckland">
+  <p class="eyebrow">Auckland</p>
+  <h2 class="section-heading">Auckland</h2>
+  <img src="locations_images/AKL_building.jpg: auckland.jpg; Mt_Eden.JPG; MOTAT_OK.jpg; orewa.JPG" alt="Auckland" class="pretty-pic">
+  <p class="body-text">New Zealand's largest city and the world's largest Polynesian city, built across 63 volcanic cones and two harbours. Capital until 1865, when Wellington took over. Home to Team New Zealand's America's Cup years (1995-2000) and the birthplace of Pacifica Hip-Hop in South Auckland. Worth knowing: this is New Zealand's business centre, not really 'New Zealand' itself — spend long enough to get yourself sorted then the rest of the country. Traffic peaks 6:30-9:30am and 3:30-6pm on weekdays.</p>
+  <div class="dark-card">
+    <p class="dark-card-label">Good to Know</p>
+    <p class="dark-card-text">Auckland: named by Governor William Hobson in 1840 after George Eden, Earl of Auckland. New Zealand's largest city, with around 1.4 million people spread across two harbours and 63 volcanic cones (dormant, not extinct). Capital of New Zealand from 1840 to 1865. World's largest Polynesian city, with strong Pacific and Māori cultural influence, including the genre of Pacifica Hip-Hop (OMC, Che Fu, King Kapisi) that emerged from South Auckland in the late 1990s. Held the America's Cup from 1995 until losing it to Switzerland's Alinghi in 2007.</p>
+  </div>
+</div>
+
+<div class="region-panel" id="panel-warkworth">
+  <p class="eyebrow">Northland</p>
+  <h2 class="section-heading">Warkworth</h2>
+  <p class="body-text">Named after a Northumberland town by founder John Anderson Brown, who arrived as a saw miller in 1843 and founded the settlement in 1853. Began as a timber town, briefly hosted New Zealand's first Portland Cement Company from 1865, and is now a well-serviced rural service town for local farms. The satellite station on the hill above town, built in 1971, was once a critical link relaying phone calls and TV data to and from the world.</p>
+  <div class="dark-card">
+    <p class="dark-card-label">Good to Know</p>
+    <p class="dark-card-text">Warkworth: named after the English town in Northumberland, hometown of founder and saw miller John Anderson Brown, who established the settlement in 1853. Originally a timber town; shifted to cement production after high-grade limestone was discovered in 1865, home to New Zealand's first Portland Cement Company until it relocated to Whangārei in 1918. Site of the Warkworth Satellite Station (1971), a key early link in New Zealand's telecommunications with the world.</p>
+  </div>
+</div>
+
+<div class="region-panel" id="panel-matakohe">
+  <p class="eyebrow">Northland</p>
+  <h2 class="section-heading">Matakohe</h2>
+  <p class="body-text">Home to one of the region's Kauri Museums — a worthwhile stop for its displays and its handy distance from Auckland, a couple of hours north. A good place to stretch your legs and learn about the kauri timber and gum industries that once defined Northland.</p>
+  <div class="dark-card">
+    <p class="dark-card-label">Good to Know</p>
+    <p class="dark-card-text">Matakohe: te reo Māori for the area where kohekohe trees grow (mata, headland; kohe, kohekohe). Home to the Kauri Museum, showcasing the region's kauri timber and gum industries. Kauri is New Zealand's largest native tree, growing up to 30m tall with girths to 23m; some specimens are estimated at 2,000 years old. Harvesting native kauri timber is now illegal.</p>
+  </div>
+</div>
+
+<div class="region-panel" id="panel-dargaville">
+  <p class="eyebrow">Northland</p>
+  <h2 class="section-heading">Dargaville</h2>
+  <p class="body-text">A rural service town on the Kaipara Harbour, known as New Zealand's Kūmara Capital — producing around two-thirds of the country's sweet potato crop, after kauri-poisoned soil pushed farmers away from other options. Also strong dairy country, and the gateway to the ancient kauri of Waipoua Forest further north.</p>
+  <div class="dark-card">
+    <p class="dark-card-label">Good to Know</p>
+    <p class="dark-card-text">Dargaville: named after timber merchant Joseph McMullen Dargaville. A rural service town on the Kaipara Harbour. Kauri felling left soil too poisoned for easy farming, leading locals to kūmara (sweet potato) instead — Dargaville now produces around two-thirds of New Zealand's kūmara crop. Also a strong dairy region and gateway to the Waipoua Forest kauri stands.</p>
+  </div>
+</div>
+
+<div class="region-panel" id="panel-waipoua_forest">
+  <p class="eyebrow">Northland</p>
+  <h2 class="section-heading">Waipoua Forest</h2>
+  <img src="locations_images/tane_mahuta.jpg" alt="Waipoua Forest" class="pretty-pic">
+  <p class="body-text">Home to New Zealand's largest kauri trees — Tāne Mahuta, the biggest living kauri by volume, and Te Matua Ngahere, the oldest at an estimated 2,000 years. The forest itself was saved from logging in 1952 by a 70,000-signature petition. Stick to the wooden walkway when visiting Tāne Mahuta — kauri roots are shallow and easily damaged by foot traffic.</p>
+  <div class="dark-card">
+    <p class="dark-card-label">Good to Know</p>
+    <p class="dark-card-text">Waipoua Forest: te reo Māori, likely wai (water) and poua (shellfish), referencing shellfish once gathered at nearby river mouths. The largest remaining stand of native forest in Northland, saved from logging in 1952 after a 70,000-signature petition; 15,000 hectares are now a protected reserve. Home to Tāne Mahuta (Lord of the Forest), New Zealand's largest living kauri at 51.2m tall and 13.7m girth, and Te Matua Ngahere (Father of the Forest), the oldest known kauri at an estimated 2,000 years.</p>
+  </div>
+</div>
+
+<div class="region-panel" id="panel-hokianga_harbour">
+  <p class="eyebrow">Northland</p>
+  <h2 class="section-heading">Hokianga Harbour</h2>
+  <p class="body-text">Regarded by Ngāpuhi, New Zealand's largest iwi, as their ancestral point of origin — the explorer Kupe is said to have departed from here on his return voyage to Hawaiki. A West Coast Northland region built on forestry and dairy, and gateway to the kauri giants of Waipoua Forest further south.</p>
+  <div class="dark-card">
+    <p class="dark-card-label">Good to Know</p>
+    <p class="dark-card-text">Hokianga Harbour: te reo Māori for 'to return' — the place from which the explorer Kupe is said to have departed on his return voyage to Hawaiki. Considered the ancestral origin point of Ngāpuhi, New Zealand's largest iwi, after the Mataatua waka's Puhi sailed north from a dispute in Whakatāne. A West Coast Northland region built on forestry and dairy, and the southern gateway to the Waipoua kauri forest.</p>
+  </div>
+</div>
+
+<div class="region-panel" id="panel-opononi">
+  <p class="eyebrow">Northland</p>
+  <h2 class="section-heading">Opononi</h2>
+  <p class="body-text">A relaxed harbourside settlement, known for Opo — a wild dolphin who charmed visitors through the summer of 1955-56 before dying just days after being granted legal protection. Worth stopping at the information centre, which tells her story in a short film, and the foreshore monument in her memory.</p>
+  <div class="dark-card">
+    <p class="dark-card-label">Good to Know</p>
+    <p class="dark-card-text">Opononi: name possibly a misspelling of Opounoni, referencing a fishing pot used at a nearby stream mouth. A small settlement on the Hokianga Harbour, famous for Opo — a wild bottlenose dolphin who befriended locals and visitors over the 1955-56 summer before dying suddenly, days after being granted legal protection. A monument on the foreshore and a short film at the information centre tell her story.</p>
+  </div>
+</div>
+
+<div class="region-panel" id="panel-kaikohe">
+  <p class="eyebrow">Northland</p>
+  <h2 class="section-heading">Kaikohe</h2>
+  <p class="body-text">A quiet farming town whose unassuming main street hides deep Ngāpuhi history. Home ground of war chief Hongi Hika, who used early trading advantages with Europeans and two overseas trips to acquire muskets, then led a fierce campaign of utu across the North Island in the 1820s. None of that history is visible driving through — it lives in the stories rather than the streets.</p>
+  <div class="dark-card">
+    <p class="dark-card-label">Good to Know</p>
+    <p class="dark-card-text">Kaikohe: te reo Māori, kai (food) and kohe (tree/climbing plant); originally Kaikohekohe, after survivors of a raid sheltered among kohekohe trees. Heartland of Ngāpuhi and home to war chief Hongi Hika (1772-1828), who used trade connections and two trips abroad (Sydney and London) to acquire muskets, then led a devastating musket-armed campaign across the North Island in the 1820s driven by utu.</p>
+  </div>
+</div>
+
+<div class="region-panel" id="panel-kaitaia">
+  <p class="eyebrow">Northland</p>
+  <h2 class="section-heading">Kaitaia</h2>
+  <img src="locations_images/Kaitaia.jpg; ahipara.jpg" alt="Kaitaia" class="pretty-pic">
+  <p class="body-text">Last stop for proper supplies before heading north to Cape Rēinga — stock up here if you're camping further on. New Zealand's northernmost and consistently warmest town, with a strong Dalmatian heritage dating from the 1880s kauri gum rush. Nearby Ahipara marks the southern end of Ninety Mile Beach, and Gum Diggers Park north of town turns recovered ancient kauri logs into furniture and art.</p>
+  <div class="dark-card">
+    <p class="dark-card-label">Good to Know</p>
+    <p class="dark-card-text">Kaitaia: te reo Māori, kai (food) and taia (thrown about) — from a legend of two women competing to store the most food. New Zealand's northernmost town and consistently its warmest, supporting avocado and grape growing. Home to a strong Dalmatian immigrant community dating from the 1880s kauri gum rush, with many local Māori able to trace Dalmatian ancestry. Last major shopping stop before Cape Rēinga — no fuel or supplies further north beyond a lone service station just south of town.</p>
+  </div>
+</div>
+
+<div class="region-panel" id="panel-cape_reinga">
+  <p class="eyebrow">Northland</p>
+  <h2 class="section-heading">Cape Reinga</h2>
+  <img src="locations_images/cape_reinga.jpg; tapotoutou_bay.JPG" alt="Cape Reinga" class="pretty-pic">
+  <p class="body-text">The northernmost point of State Highway 1 and one of the most spiritually significant sites in Māori culture — spirits are believed to leave from here via an 800-year-old pōhutukawa on the cliff face, on their journey back to Hawaiki. Stunning, stark scenery where the Tasman Sea meets the Pacific. Tapotupotu Bay just south has one of the most idyllic beachside campsites around, though currents are strong and the mosquitoes take no prisoners.</p>
+  <div class="dark-card">
+    <p class="dark-card-label">Good to Know</p>
+    <p class="dark-card-text">Cape Rēinga: te reo Māori for 'the underworld'. The spiritual departure point for Māori spirits after death, said to descend an 800-year-old pōhutukawa clinging to the cliff before leaping to Hawaiki. The northernmost point of State Highway 1, marked by an iconic lighthouse where the Tasman Sea meets the Pacific Ocean. Tapotupotu Bay, just south, offers a DOC-managed beachside campsite (basic facilities, small fee, strong currents).</p>
+  </div>
+</div>
+
+<div class="region-panel" id="panel-paihia_bay_of_islands">
+  <p class="eyebrow">Northland</p>
+  <h2 class="section-heading">Paihia (Bay of Islands)</h2>
+  <img src="locations_images/kawakawa_loos.JPG" alt="Paihia (Bay of Islands)" class="pretty-pic">
+  <p class="body-text">Main hub for exploring the Bay of Islands, with most tour operators based in or booking through town — sea kayaking, sailing, jet boating, the works. No surf and no real currents here, so it's essentially a big calm swimming pool. Book well ahead for summer and Christmas, when accommodation fills up months in advance. A ferry across to Russell is easier than the long drive around.</p>
+  <div class="dark-card">
+    <p class="dark-card-label">Good to Know</p>
+    <p class="dark-card-text">Paihia: believed to come from pai (good, te reo Māori) plus 'here' (English) — it's good here. Main tourist hub of the Bay of Islands, with most regional tour operators based in or booking through town. Accommodation books out months ahead over summer and Christmas. A ferry connects to Russell (formerly Kororāreka) across the water.</p>
+  </div>
+</div>
+
+<div class="region-panel" id="panel-waitangi">
+  <p class="eyebrow">Northland</p>
+  <h2 class="section-heading">Waitangi</h2>
+  <img src="locations_images/waitangi_flag_pole.JPG; maori_show_waitangi_2.JPG" alt="Waitangi" class="pretty-pic">
+  <p class="body-text">Site of the Treaty of Waitangi, signed 6 February 1840 — New Zealand's founding document, marked each year on Waitangi Day. The Māori and English versions of the treaty differ on a critical point: sovereignty. That gap has shaped nearly two centuries of history since, and is still actively debated today. The grounds include the Treaty House and a working marae — a genuinely significant stop for understanding the country's history.</p>
+  <div class="dark-card">
+    <p class="dark-card-label">Good to Know</p>
+    <p class="dark-card-text">Waitangi: te reo Māori, wai (water) and tangi (to weep) — the weeping waters, from a nearby waterfall. Site of the Treaty of Waitangi, signed 6 February 1840 between the British Crown and Māori chiefs — New Zealand's founding document and the basis of Waitangi Day. The Māori and English versions of the Treaty differ significantly on the question of sovereignty, a discrepancy still debated and litigated today.</p>
+  </div>
+</div>
+
+<div class="region-panel" id="panel-whangarei">
+  <p class="eyebrow">Northland</p>
+  <h2 class="section-heading">Whangarei</h2>
+  <p class="body-text">Northland's largest city and a good place to restock before heading further north. Nearly emptied out during Hōne Heke's 1840s campaign, but recovered to reach city status by the mid-1960s, helped along by New Zealand's only oil refinery at nearby Marsden Point. Whangārei Falls, a 24m drop a few minutes off the main road, is a peaceful stop — and in summer, a popular (if slightly alarming) local cliff-jumping spot.</p>
+  <div class="dark-card">
+    <p class="dark-card-label">Good to Know</p>
+    <p class="dark-card-text">Whangārei: te reo Māori, whanga (harbour) and rei (cherished possession), from a legend of a woman who waited too long for her lover's return. Largest city in Northland, on the Whangārei Harbour. Nearly emptied during Hōne Heke's campaign in the 1840s but recovered, reaching city status by the mid-1960s alongside the opening of New Zealand's only oil refinery at Marsden Point (1964). Whangārei Falls, a 24m waterfall a few minutes from the city centre, is a popular local swimming and cliff-jumping spot.</p>
+  </div>
+</div>
+
+<div class="region-panel" id="panel-wellsford">
+  <p class="eyebrow">Northalnd</p>
+  <h2 class="section-heading">Wellsford</h2>
+  <p class="body-text">A tidy rural service town for local dairy farms, close enough to Auckland to support good cafés on the main road — worth a coffee stop if you left the city later in the morning. The name is entirely made up: an acronym of the surnames of its nine founding families.</p>
+  <div class="dark-card">
+    <p class="dark-card-label">Good to Know</p>
+    <p class="dark-card-text">Wellsford: an acronym of the surnames of its nine founding families — Watson, Edger, Lester, Levet, Simpson, Foster, Oldfield, Ramsbottom and Dibble. A rural service town for the local dairy farming community, close enough to Auckland to support a well-presented main street.</p>
+  </div>
+</div>
+
+<div class="region-panel" id="panel-rangariri">
+  <p class="eyebrow">Waikato</p>
+  <h2 class="section-heading">Rangariri</h2>
+  <p class="body-text">Site of one of the most significant battles of the New Zealand Wars. In 1863 around 500 Māori defenders built a kilometre of hand-dug earthworks between the Waikato River and Lake Waikare to hold the line against Cameron's advancing colonial forces. After a day of fighting from three directions the defenders were surrounded and surrendered. The earthworks and a battle monument are visible on the western side of the road.</p>
+  <div class="dark-card">
+    <p class="dark-card-label">Good to Know</p>
+    <p class="dark-card-text">The Rangiriri area is significant in the New Zealand Wars. The Kingitanga movement (1850s) was a political response to European land acquisition, uniting iwi under a Māori King. Pōtatau Te Wherowhero became first Māori King in 1858, succeeded by Tāwhiao in 1860. Tāwhiao declared Waikato lands under his protection, leading to the Waikato War (1863–64). Rangiriri was the site of a major battle in that conflict.</p>
+  </div>
+</div>
+
+<div class="region-panel" id="panel-huntly_taupiri">
+  <p class="eyebrow">Waikato</p>
+  <h2 class="section-heading">Huntly/Taupiri</h2>
+  <p class="body-text">Dominated by the twin cooling stacks of Huntly Power Station, New Zealand's largest thermal station, capable of supplying up to 20 percent of the country's electricity. Coal has been mined here since 1842, and the Waikato River running alongside is itself a major hydro producer, with 32 stations along its length.</p>
+  <div class="dark-card">
+    <p class="dark-card-label">Good to Know</p>
+    <p class="dark-card-text">Huntly is dominated by the Huntly Power Station, New Zealand's largest thermal power station (up to 1,448MW from coal and natural gas). It can supply up to 20 percent of New Zealand's electricity. The Waikato River supports 32 hydroelectric stations. Coal has been mined in the area since its discovery in 1842.</p>
+  </div>
+</div>
+
+<div class="region-panel" id="panel-taupiri">
+  <p class="eyebrow">Waikato</p>
+  <h2 class="section-heading">Taupiri.</h2>
+  <p class="body-text">Look for the Taupiri urupā on the hillside to the right as you enter town — the principal Tainui burial ground, where position on the slope reflects rank. Dame Te Atairangikaahu, the Māori Queen who reigned 40 years, and comedian Billy T James are both buried here. Worth a quiet moment as you pass.</p>
+  <div class="dark-card">
+    <p class="dark-card-label">Good to Know</p>
+    <p class="dark-card-text">Taupiri: Te reo Māori — tau (ridge of a hill), piri (to keep close to). Home to the principal Tainui urupā (burial ground) on the adjacent hill. Rank is reflected in burial height on the hill. Notable burials include Dame Te Atairangikaahu (Māori Queen, 40-year reign) and comedian Billy T James.</p>
+  </div>
+</div>
+
+<div class="region-panel" id="panel-ngaruawhaia">
+  <p class="eyebrow">Waikato</p>
+  <h2 class="section-heading">Ngaruawhaia</h2>
+  <p class="body-text">Seat of the Māori King and home of the Kingitanga movement. Tūrangawaewae Marae, easily seen from River Road, was built in 1920 under Te Puea Herangi and remains New Zealand's most significant marae. Parts of the town centre are laid out in the shape of the Union Flag — an irony not lost on locals.</p>
+  <div class="dark-card">
+    <p class="dark-card-label">Good to Know</p>
+    <p class="dark-card-text">Ngāruawāhia: Te reo Māori — ngā (the), rua (pit), whāhia (broken into) — food storage pits opened for guests. Seat of the Māori King and home of the Kingitanga movement. Tūrangawaewae Marae, built 1920 under Māori princess Te Puea Herangi during a Kingitanga resurgence, is New Zealand's most significant marae.</p>
+  </div>
+</div>
+
+<div class="region-panel" id="panel-te_kowhai_whatawhata">
+  <p class="eyebrow">Waikato</p>
+  <h2 class="section-heading">Te Kowhai/Whatawhata</h2>
+  <p class="body-text">Two small towns on State Highway 39. Watch for a tight 35km/h corner just inside the Te Kowhai speed zone, followed by a school zone — it catches drivers out regularly. Whatawhata sits at the SH23/SH39 intersection and is usually pronounced locally as 'wot-a-wot-a'.</p>
+  <div class="dark-card">
+    <p class="dark-card-label">Good to Know</p>
+    <p class="dark-card-text">Te Kowhai: Te reo Māori — te (the), kowhai (native flowering tree). Drivers note: 35km/h corner immediately inside the 50km/h zone, followed by a school speed zone. Whatawhata: Te reo Māori — elevated food store. Commonly pronounced locally as 'wot-a-wot-a'. Sits at the SH 23 and SH 39 intersection.</p>
+  </div>
+</div>
+
+<div class="region-panel" id="panel-pirongia">
+  <p class="eyebrow">Waikato</p>
+  <h2 class="section-heading">Pirongia</h2>
+  <p class="body-text">Sits below Mount Pirongia, a volcanic remnant at the heart of Pirongia National Park and home to the largest block of native bush left in the Waikato — walks for most fitness levels. The town was called Alexandra until 1964. In 1881, Māori King Tāwhiao laid down arms here on the corner of Crozier and Franklin Streets, ending armed conflict in the region and withdrawing into what became the King Country.</p>
+  <div class="dark-card">
+    <p class="dark-card-label">Good to Know</p>
+    <p class="dark-card-text">Pirongia: shortened from Pirongia-te-aroaro-o-Kahu (the health restoring purification of Kahuere). Mt Pirongia, a volcanic cone visible from SH 39, lies within Pirongia National Park — home to the largest remaining native bush block in the Waikato. The area was historically abandoned by Māori due to intense inter-tribal conflict; Europeans later built a redoubt. Walking tracks of varying difficulty available.</p>
+  </div>
+</div>
+
+<div class="region-panel" id="panel-taup">
+  <p class="eyebrow">Waikato</p>
+  <h2 class="section-heading">Taupó</h2>
+  <img src="locations_images/Central_plateu.jpg; skydiving_02.jpg" alt="Taupó" class="pretty-pic">
+  <p class="body-text">Sits on Lake Taupō, a caldera formed by the largest volcanic eruption in recorded human history (181 AD) — still the most active rhyolite volcano on Earth. Trout fishing built the town's original reputation; skydiving, high ropes, and geothermal pools without Rotorua's sulphur smell built its modern one. Three competing drop zones keep skydive prices among the lowest in the country.</p>
+  <div class="dark-card">
+    <p class="dark-card-label">Good to Know</p>
+    <p class="dark-card-text">Taupō: abbreviated from Taupō nui a Tia — the great shoulder cloak of Tia (the lake's discoverer). Lake Taupō is New Zealand's largest lake, in a supervolcanic caldera. The Taupō eruption approximately 1,800 years ago was one of the most violent in recorded human history. The Waikato River (New Zealand's longest) begins here. Major tourism centre for fishing, adventure activities, and volcanic plateau access.</p>
+  </div>
+</div>
+
+<div class="region-panel" id="panel-wairakei">
+  <p class="eyebrow">Waikato</p>
+  <h2 class="section-heading">Wairakei</h2>
+  <p class="body-text">Home to Huka Falls — only 11 metres high but shifting up to 270 cubic metres of water a second through a narrow gorge, reachable by an easy 45-minute riverside walk from Taupō. Also holds Craters of the Moon (a steaming geothermal field created as a side effect of NZ's first geothermal power station) and the Aratiatia control gates, which release the Waikato River into dramatic rapids daily at 10am and 2pm (plus 4pm in summer).</p>
+  <div class="dark-card">
+    <p class="dark-card-label">Good to Know</p>
+    <p class="dark-card-text">Wairakei Geothermal Park, just north of Taupō, contains New Zealand's first geothermal power station. Huka Falls (huka — foaming) is 11 metres high but carries 32–270 cubic metres of water per second through a narrow channel. Free access via a 45-minute riverside walk from Taupō or by road to the carpark.</p>
+  </div>
+</div>
+
+<div class="region-panel" id="panel-turangi">
+  <p class="eyebrow">Waikato</p>
+  <h2 class="section-heading">Turangi</h2>
+  <p class="body-text">Small fishing and forestry town — worth a stop for trout fishing or as a cheaper base for the Tongariro Crossing, but Taupō is generally the better overnight option otherwise. SH1 continues south through the Desert Road, a stark, wind-scoured volcanic plateau that gets plenty of rain despite its name — passes an Army training area (heed the signs) and the Rangipo Prison Farm.</p>
+  <div class="dark-card">
+    <p class="dark-card-label">Good to Know</p>
+    <p class="dark-card-text">Tūrangi: named after a Māori chief — tu (to stand), rangi (sky). Small fishing, tourism, and forestry town. SH 1 continues south through the Three Sisters and Desert Road, a high-altitude volcanic plateau route. Rangipo Prison Farm is passed along this route. Taupō is generally a better base unless you are a serious trout angler.</p>
+  </div>
+</div>
+
+<div class="region-panel" id="panel-waiouru">
+  <p class="eyebrow">Waikato</p>
+  <h2 class="section-heading">Waiouru</h2>
+  <p class="body-text">Home to New Zealand's main Army base and the National Army Museum — a genuinely moving stop even for the non-military-minded, marking the country's heaviest-ever casualty rate (one in eight) during WWII. West toward Ohakune, the road crosses the Whangaehu River at Tangiwai, site of New Zealand's worst rail disaster — 151 died on Christmas Eve 1953 when a lahar from Ruapehu destroyed the bridge moments before an express train arrived.</p>
+  <div class="dark-card">
+    <p class="dark-card-label">Good to Know</p>
+    <p class="dark-card-text">Waiouru: Te reo Māori — wai (water), o (of), uru (west) — the western arm of the Hautupu River. Originally a sheep farming settlement, slow development from 1904 (post office, accommodation) then rail in 1907. Army established 1936; now New Zealand's primary Army base. The New Zealand Army Museum is a recommended visit.</p>
+  </div>
+</div>
+
+<div class="region-panel" id="panel-ohakune">
+  <p class="eyebrow">Waikato</p>
+  <h2 class="section-heading">Ohakune</h2>
+  <p class="body-text">New Zealand's main carrot-growing area — hard to miss the giant carrot marking the town — and the closest base to Tūroa ski field on Ruapehu's southern slopes. Tūroa and Whakapapa together form the country's largest ski area, with good accommodation and gear hire available in town.</p>
+  <div class="dark-card">
+    <p class="dark-card-label">Good to Know</p>
+    <p class="dark-card-text">Ohakune: Te reo Māori — O (place of), hakune (to be careful). New Zealand's primary carrot-growing area and closest base to Tūroa ski field (southern Ruapehu slopes). Tūroa and Whakapapa together form New Zealand's largest ski area. A giant carrot sculpture marks the town. Good accommodation and ski hire available.</p>
+  </div>
+</div>
+
+<div class="region-panel" id="panel-tongariro_national_park">
+  <p class="eyebrow">Waikato</p>
+  <h2 class="section-heading">Tongariro National Park</h2>
+  <img src="locations_images/central_plateu_sunset.jpg" alt="Tongariro National Park" class="pretty-pic">
+  <p class="body-text">New Zealand's first national park, gifted to the nation in 1887 by Ngāti Tūwharetoa chief Horonuku Te Heuheu. Home to Ruapehu and Ngāuruhoe, and to the Tongariro Alpine Crossing — one of the world's best-known one-day hikes through volcanic terrain so otherworldly it helped double as Middle Earth in Lord of the Rings. Use a local shuttle operator rather than your own vehicle; mountain weather turns fast and the crossing closes for long stretches in winter.</p>
+  <div class="dark-card">
+    <p class="dark-card-label">Good to Know</p>
+    <p class="dark-card-text">Tongariro National Park was established in 1887 when Ngāti Tūwharetoa chief Horonuku Te Heuheu gifted the land to the nation — New Zealand's first national park and fourth in the world. Contains Ruapehu (2,940m) and Ngāuruhoe (2,410m). The Tongariro Alpine Crossing is one of the world's most recognised one-day walks. Dual UNESCO World Heritage status for natural and cultural values.</p>
+  </div>
+</div>
+
+<div class="region-panel" id="panel-paeroa">
+  <p class="eyebrow">Waikato</p>
+  <h2 class="section-heading">Paeroa</h2>
+  <p class="body-text">Birthplace of L&amp;P (Lemon &amp; Paeroa), New Zealand's own soft drink, first bottled from a local mineral spring in 1908. Production moved to Auckland decades ago and it's now Coca-Cola-owned, but the giant L&amp;P bottle on the main street remains a mandatory photo stop.</p>
+  <div class="dark-card">
+    <p class="dark-card-label">Good to Know</p>
+    <p class="dark-card-text">Paeroa: Te reo Māori — pae (mountain range), roa (long) — referring to the range behind town. Birthplace of Lemon &amp; Paeroa (L&amp;P), one of New Zealand's most iconic soft drinks. In 1908 the natural mineral spring water was first commercially bottled with lemon. The giant L&amp;P bottle on the main street is a popular landmark.</p>
+  </div>
+</div>
+
+<div class="region-panel" id="panel-matamata">
+  <p class="eyebrow">Waikato</p>
+  <h2 class="section-heading">Matamata</h2>
+  <p class="body-text">Farming town on the flat, fertile Hauraki Plains — but best known as the real-world Hobbiton, filmed on a local farm for the Lord of the Rings and Hobbit trilogies. Tours take in the earthworks and hobbit-hole doors; most of the polish was added digitally, so it's more modest in person than on screen, but the rolling green countryside is unmistakable. Also strong horse-racing and stud country.</p>
+  <div class="dark-card">
+    <p class="dark-card-label">Good to Know</p>
+    <p class="dark-card-text">Matamata: Te reo Māori — matamata (headland), originally referring to a pā above a swamp. Internationally known as the filming location for Hobbiton from Peter Jackson's Lord of the Rings and Hobbit trilogies. Guided tours of the farm set's earthworks and hobbit hole doors are available.</p>
+  </div>
+</div>
+
+<div class="region-panel" id="panel-otorohanga">
+  <p class="eyebrow">King Country</p>
+  <h2 class="section-heading">Otorohanga</h2>
+  <p class="body-text">Grew from an 1886 railway construction camp — the line had stalled here for years while Māori chiefs refused it further access through the King Country. Makes a good, well-serviced alternative base if accommodation near the Waitomo Caves is booked out.</p>
+  <div class="dark-card">
+    <p class="dark-card-label">Good to Know</p>
+    <p class="dark-card-text">Otorohanga: Te reo Māori — O (place of), torohanga (food for a journey). A chief stretched meagre supplies the full distance to Taupo using karikea (resourcefulness). Founded 1886 as a railway construction camp; progress south was delayed when Māori chiefs including Rewi Maniapoto refused rail access. Known for the Kiwiana Walk and proximity to the Waitomo Caves.</p>
+  </div>
+</div>
+
+<div class="region-panel" id="panel-waitomo">
+  <p class="eyebrow">King Country</p>
+  <h2 class="section-heading">Waitomo</h2>
+  <p class="body-text">One of New Zealand's premier tourist draws, with tourism dating back to 1900. Options range from the classic glowworm cave boat trip — a couple of hours, real highlight territory — through to Black Water Rafting (inner-tubing an underground river) and the seven-hour Lost World abseil-and-cave adventure. Caves were returned to local Māori management in 1989 after a period of Government administration.</p>
+  <div class="dark-card">
+    <p class="dark-card-label">Good to Know</p>
+    <p class="dark-card-text">Waitomo: Te reo Māori — wai (water), tomo (hole in the ground), reflecting the water-filled limestone caves. Tourism since early 1900s, originally led by Māori guides. Government took over administration due to vandalism; management returned to Tainui people in 1989. Famous for the endemic New Zealand glowworm (Arachnocampa luminosa). Activities include glowworm cave tours, blackwater rafting, and abseiling.</p>
+  </div>
+</div>
+
+<div class="region-panel" id="panel-te_kuiti">
+  <p class="eyebrow">King Country</p>
+  <h2 class="section-heading">Te Kuiti</h2>
+  <img src="locations_images/shearer_statute_TK.jpg; legends_monuments_TK1.jpg" alt="Te Kuiti" class="pretty-pic">
+  <p class="body-text">Take the main street rather than staying on the highway — a sheep shearer statue, a Colin Meads statue, and a wharetupuna worth the short walk are all along it. Known as the shearing capital of the world; local legend David Fagan won the Golden Shears fifteen times. Around Easter the town hosts the NZ Shearing Championships, opening with several hundred to a couple of thousand sheep driven down the main street.</p>
+  <div class="dark-card">
+    <p class="dark-card-label">Good to Know</p>
+    <p class="dark-card-text">Te Kuiti: Te reo Māori — te (the), Kuiti (from Kuitianga, to compact) — reflecting compression of Māori into the King Country through land confiscation. Grew from a railway construction camp. Now promotes itself as the shearing capital of the world with annual shearing competitions.</p>
+  </div>
+</div>
+
+<div class="region-panel" id="panel-piopio">
+  <p class="eyebrow">King Country</p>
+  <h2 class="section-heading">Piopio</h2>
+  <p class="body-text">A traditional stop-off point for travellers between the King Country and Taranaki. The café and public toilets here are popular enough to get busy at peak times — worth timing your break around that if you can.</p>
+  <div class="dark-card">
+    <p class="dark-card-label">Good to Know</p>
+    <p class="dark-card-text">Piopio: te reo Māori for a native thrush (now extinct). A small King Country town that has long served as a rest stop for travellers heading to and from Taranaki — the café and public toilets can get busy at peak times.</p>
+  </div>
+</div>
+
+<div class="region-panel" id="panel-awakino">
+  <p class="eyebrow">King Country</p>
+  <h2 class="section-heading">Awakino</h2>
+  <img src="locations_images/awakino.jpg" alt="Awakino" class="pretty-pic">
+  <p class="body-text">A blink-and-you'll-miss-it settlement — pub, a few houses, a service station where the gorge road meets the coast. The road south to Mokau is spectacular, with Taranaki visible on a clear day, but pull well off the highway for photos or wait for the proper rest area ten kilometres on.</p>
+  <div class="dark-card">
+    <p class="dark-card-label">Good to Know</p>
+    <p class="dark-card-text">Awakino: Te reo Māori — awa (river), kino (bad), referring to the muddy silted river. A tiny settlement at the junction of the Awakino Gorge road and the Tasman Sea. The gorge itself is a 15–20 minute scenic drive through limestone terrain on a narrow road with limited passing opportunities.</p>
+  </div>
+</div>
+
+<div class="region-panel" id="panel-mokau">
+  <p class="eyebrow">King Country</p>
+  <h2 class="section-heading">Mokau</h2>
+  <img src="locations_images/mokou_molly.jpg" alt="Mokau" class="pretty-pic">
+  <p class="body-text">A Taranaki town in all but province, with the local rugby club playing across the border and New Plymouth an hour away against Hamilton's three. Popular whitebait fishing base. A rest area on the hill south of town gives clear coastal views and a first proper look at the White Cliffs.</p>
+  <div class="dark-card">
+    <p class="dark-card-label">Good to Know</p>
+    <p class="dark-card-text">Mokau: named after a chief who slept here. Though technically in Waikato province, the community identifies with Taranaki — New Plymouth is an hour away, Hamilton three. The Mokau River marks the traditional provincial boundary. The town is a popular whitebait fishing base.</p>
+  </div>
+</div>
+
+<div class="region-panel" id="panel-uruti">
+  <p class="eyebrow">Taranaki</p>
+  <h2 class="section-heading">Uruti</h2>
+  <p class="body-text">A small farming valley twice used by the film industry — Vincent Ward's Vigil, and later The Last Samurai, with the production farm still offering bookable tours of the remaining village set.</p>
+  <div class="dark-card">
+    <p class="dark-card-label">Good to Know</p>
+    <p class="dark-card-text">Uruti: Te reo Māori — uru (grove), ti (cabbage tree). A small rural community and setting for two notable films: Vigil (directed by Vincent Ward) and The Last Samurai (starring Tom Cruise). The farm used for The Last Samurai retains remnants of the village set and offers tours.</p>
+  </div>
+</div>
+
+<div class="region-panel" id="panel-motunui">
+  <p class="eyebrow">Taranaki</p>
+  <h2 class="section-heading">Motunui</h2>
+  <img src="locations_images/Wai_iti.JPG" alt="Motunui" class="pretty-pic">
+  <p class="body-text">Home to the Methanex methanol plant, born out of Muldoon's Think Big programme and the world's first natural gas to synthetic gasoline plant when it opened in 1986. Now runs flexibly with global methanol demand, exporting most of its output to Japan, China and Korea.</p>
+  <div class="dark-card">
+    <p class="dark-card-label">Good to Know</p>
+    <p class="dark-card-text">Motunui: Te reo Māori — motu (island), nui (big). The Methanex Methanol Plant, built as part of PM Robert Muldoon's Think Big energy programme, opened 1986 as the world's first natural gas to synthetic gasoline plant. Since 2004 the Motunui and Waitara Valley sites operate flexibly in response to global methanol demand.</p>
+  </div>
+</div>
+
+<div class="region-panel" id="panel-waitara">
+  <p class="eyebrow">Taranaki</p>
+  <h2 class="section-heading">Waitara</h2>
+  <p class="body-text">Long overshadowed by New Plymouth next door. The town's freezing works, Swanndri factory and Subaru plant all closed through the 1980s-90s downturn, and most residents now commute to New Plymouth for work. Swanndri itself has deep local roots — bought by Waitara businessman John McKendrick in 1952 and grown from there, though it's now made in Timaru.</p>
+  <div class="dark-card">
+    <p class="dark-card-label">Good to Know</p>
+    <p class="dark-card-text">Waitara: Te reo Māori — wai (water), tara (from taranga, wide steps) — referring to chief Turi crossing the river in large strides. Māori displaced from New Plymouth during the Taranaki land wars settled the Waitara valley. Economy long centred on freezing works (meat processing), many of which closed during the farming industry crisis of the mid-1980s.</p>
+  </div>
+</div>
+
+<div class="region-panel" id="panel-new_plymouth">
+  <p class="eyebrow">Taranaki</p>
+  <h2 class="section-heading">New Plymouth</h2>
+  <img src="locations_images/NP_walk_way.jpg; Len_lye.JPG" alt="New Plymouth" class="pretty-pic">
+  <p class="body-text">A city that punches above its weight for festivals and art. The Rhododendron and Fringe Garden Festivals hit in late October, Pukekura Park's Festival of Lights runs December to January, and WOMAD brings world music to the Bowl of Brooklands. The Govett-Brewster Gallery holds a dedicated wing for kinetic artist Len Lye, whose Wind Wand sculpture moves on the coastal walkway. That walkway runs seven kilometres along a coast with genuinely world-class surf breaks — Taranaki's surf culture is real, not marketing.</p>
+  <div class="dark-card">
+    <p class="dark-card-label">Good to Know</p>
+    <p class="dark-card-text">New Plymouth was named after the Plymouth Company, a subsidiary of the NZ Company established by brothers Colonel William Wakefield and Captain Arthur Wakefield to colonise New Zealand. Wellington, Nelson, and New Plymouth all have Wakefield origins. Today known for the backdrop of Mt Taranaki and the Govett-Brewster Art Gallery.</p>
+  </div>
+</div>
+
+<div class="region-panel" id="panel-surf_highway_45">
+  <p class="eyebrow">Taranaki</p>
+  <h2 class="section-heading">Surf Highway 45</h2>
+  <p class="body-text">A scenic loop route around the western and southern flanks of Mount Taranaki, built to draw visitors off SH3 and past the surf beaches. Watch for the distinctive rounded hills south of Pihama — old lava flows from Taranaki's last eruption. Turn off at Bailey Road for a short stretch that actually hugs the coast.</p>
+  <div class="dark-card">
+    <p class="dark-card-label">Good to Know</p>
+    <p class="dark-card-text">Surf Highway 45 is a regional marketing route around the western and southern flanks of Mt Taranaki, connecting surf beaches and directing visitors around the mountain rather than via SH 3. The distinctive round hills south of Pihama are the result of lava cooling from Taranaki's last eruption on the western side of the mountain. To follow the actual coastline, turn seaward at Bailey Road — Coast Road runs a few kilometres along the rocky shore before rejoining the highway via Pungarehu Road.</p>
+  </div>
+</div>
+
+<div class="region-panel" id="panel-puniho">
+  <p class="eyebrow">Taranaki</p>
+  <h2 class="section-heading">Puniho</h2>
+  <p class="body-text">A lone marae beside the highway holds Rahoutu, the rock said in Māori legend to have guided Mount Taranaki west after his exile. Once stolen by a rival tribe and recovered, she's now kept close and watched over here.</p>
+  <div class="dark-card">
+    <p class="dark-card-label">Good to Know</p>
+    <p class="dark-card-text">Pihama is home to Rahoutu, a rock that in Māori legend guided Mt Taranaki westward after his expulsion from the central plateau following a dispute over Pihanga. A Waikato tribe attempted to steal Rahoutu; local Māori intervened. Rahoutu remains protected at the Pihama marae.</p>
+  </div>
+</div>
+
+<div class="region-panel" id="panel-parihaka">
+  <p class="eyebrow">Taranaki</p>
+  <h2 class="section-heading">Parihaka</h2>
+  <img src="locations_images/Te_whiti_monument.jpg" alt="Parihaka" class="pretty-pic">
+  <p class="body-text">A living Māori village and one of New Zealand's most significant historical sites. Under chiefs Te Whiti and Tohu the community responded to land confiscation with organised nonviolent resistance — pulling survey pegs, removing fences — until over 1,500 armed constabulary marched on the village in 1881, arresting the leaders and looting the settlement. Visitors can pay respects at the monuments, but it remains a real community — move quietly.</p>
+  <div class="dark-card">
+    <p class="dark-card-label">Good to Know</p>
+    <p class="dark-card-text">Parihaka: historic Māori settlement led by chiefs Te Whiti-o-Rongomai and Tōhū Kākahi. Initially welcoming to settlers, the leaders shifted to nonviolent resistance as Crown land confiscation became clear — sending ploughmen and weavers to obstruct. On 1 November 1881 over 1,500 armed personnel marched on the village. Te Whiti and Tōhū were arrested and the village looted. A defining symbol of nonviolent resistance in New Zealand history.</p>
+  </div>
+</div>
+
+<div class="region-panel" id="panel-stent_road">
+  <p class="eyebrow">Taranaki</p>
+  <h2 class="section-heading">Stent Road</h2>
+  <p class="body-text">Leads to one of New Zealand's heaviest right-hand reef breaks — experienced surfers only. The road sign gets stolen so often locals have taken to painting the name on a boulder instead.</p>
+  <div class="dark-card">
+    <p class="dark-card-label">Good to Know</p>
+    <p class="dark-card-text">Stent Road leads to one of New Zealand's premier surf breaks, considered the heaviest right-hand reef break in the country. The road sign is frequently stolen by surfers protecting the local break. Experienced surfers only due to the rocky reef and powerful waves.</p>
+  </div>
+</div>
+
+<div class="region-panel" id="panel-opunake">
+  <p class="eyebrow">Taranaki</p>
+  <h2 class="section-heading">Opunake</h2>
+  <img src="locations_images/Snell.jpg" alt="Opunake" class="pretty-pic">
+  <p class="body-text">Main town on Surf Highway 45, sustained by farming, oil and surf, with breaks bracketing the town at Kina Road and Green Meadows. Birthplace of Peter Snell, whose Opunake-to-Olympics story (double gold in Rome and Tokyo) is marked with a statue on the main street.</p>
+  <div class="dark-card">
+    <p class="dark-card-label">Good to Know</p>
+    <p class="dark-card-text">Opunake: Te reo Māori — O (place of), punake (bow of a canoe). Main town on Surf Highway 45, sustained by farming, oil, and surf. The Oanui onshore processing site for the Maui oil and gas field is nearby, with a free information centre including scale models of the Maui A rig. Surf beach via Kina Road.</p>
+  </div>
+</div>
+
+<div class="region-panel" id="panel-manaia">
+  <p class="eyebrow">Taranaki</p>
+  <h2 class="section-heading">Manaia</h2>
+  <img src="locations_images/Manaia_bread.jpg" alt="Manaia" class="pretty-pic">
+  <p class="body-text">Home to Yarrows, once New Zealand's largest commercial bakery, still supplying bread as far as Japan and the US — giant fibreglass loaves mark the town boundary. Production has scaled back since Yarrows opened a Sydney bakery, but the heart of the operation is still here.</p>
+  <div class="dark-card">
+    <p class="dark-card-label">Good to Know</p>
+    <p class="dark-card-text">Manaia: the name references a local chief, though manaia also means guardian angel in te reo Māori. Home to Yarrows, New Zealand's largest commercial bakery, supplying bread to Japan, USA, Australia, France, and NZ. A major Subway supplier across Asia-Pacific. Giant fibreglass bread loaves mark the town entrance.</p>
+  </div>
+</div>
+
+<div class="region-panel" id="panel-hawera">
+  <p class="eyebrow">Taranaki</p>
+  <h2 class="section-heading">Hawera</h2>
+  <img src="locations_images/Hawera.jpg" alt="Hawera" class="pretty-pic">
+  <p class="body-text">The largest South Taranaki town, anchored by Fonterra's Whareroa site — the largest dairy ingredients plant in the world, drawing milk from Levin to Waiouru. Look for Daisy, the fibreglass cow at the Whareroa Road corner. Also home to the Tawhiti Museum, widely considered the country's finest privately-run museum, and the birthplace-in-fiction of novelist Ronald Hugh Morrieson, whose dark small-town novels drew from — and alienated — the town he lived in.</p>
+  <div class="dark-card">
+    <p class="dark-card-label">Good to Know</p>
+    <p class="dark-card-text">Hawera: Te reo Māori — ha (breath), wera (hot/burnt) — a night raid in which a marae was set on fire, killing most occupants. Largest south Taranaki town. Home to Fonterra's Whareroa dairy processing site, one of New Zealand's largest dairy factories, drawing milk supply from Levin to Piopio to Waiouru with approximately 50 continuous tanker runs.</p>
+  </div>
+</div>
+
+<div class="region-panel" id="panel-stratford">
+  <p class="eyebrow">Taranaki</p>
+  <h2 class="section-heading">Stratford</h2>
+  <p class="body-text">Full name Stratford upon Patea, with streets named after Shakespeare's plays and a Glockenspiel clock tower performing Romeo and Juliet at 10am, 1pm, 3pm and 7pm. Junction town for the Forgotten Highway (SH43) east to the self-declared 'Republic of Whangamomona' — worth timing a visit around Republic Day in January. Closest town to Manganui Ski Field on Taranaki's slopes.</p>
+  <div class="dark-card">
+    <p class="dark-card-label">Good to Know</p>
+    <p class="dark-card-text">Stratford (full name Stratford upon Patea): named in tribute to Stratford-upon-Avon, England, birthplace of Shakespeare. Streets carry Shakespearian names. Junction for State Highway 43, the Forgotten Highway, leading to Taumarunui via Whangamomona — a village that declared itself an independent republic following a local government boundary dispute. Republic Day in January is a popular event.</p>
+  </div>
+</div>
+
+<div class="region-panel" id="panel-patea">
+  <p class="eyebrow">Taranaki</p>
+  <h2 class="section-heading">Patea</h2>
+  <img src="locations_images/patea_waka.jpg" alt="Patea" class="pretty-pic">
+  <p class="body-text">Named for the explorer Turi, marked by a concrete waka on the main street. Once one of New Zealand's busiest export ports until the freezing works closed in the early 1980s, hitting the town hard. Briefly world-famous in 1984 when local Dalvanius Prime co-wrote Poi E, which topped the charts for a month and sent the Patea Māori Club touring internationally.</p>
+  <div class="dark-card">
+    <p class="dark-card-label">Good to Know</p>
+    <p class="dark-card-text">Patea: full name Patea nui a Turi. A concrete Māori waka on the main street honours explorer Turi, after whom many landmarks between Kawhia and Patea are named. Turi concluded his overland journey here. Europeans built a meat processing plant and shipping port; the port has since closed.</p>
+  </div>
+</div>
+
+<div class="region-panel" id="panel-waverley">
+  <p class="eyebrow">Whanganui/Manwatu</p>
+  <h2 class="section-heading">Waverley</h2>
+  <img src="locations_images/Taranaki_south_coast.jpg" alt="Waverley" class="pretty-pic">
+  <p class="body-text">Home town of Kiwi, the thousand-dollar farm horse bought by sheep farmer Snow Lupton, who went on to win the 1983 Wellington Cup and, most famously, stormed from last to first in the 1984 Melbourne Cup.</p>
+  <div class="dark-card">
+    <p class="dark-card-label">Good to Know</p>
+    <p class="dark-card-text">Waverley is most associated with racehorse Kiwi, a chestnut thoroughbred purchased for $1,000 by sheep farmer Snow Lupton as a farm worker. Kiwi won the 1983 Wellington Cup and the 1983 Washington DC International at Laurel Park, USA, defeating elite international competition. He recorded 13 wins from 60 starts.</p>
+  </div>
+</div>
+
+<div class="region-panel" id="panel-whanganui">
+  <p class="eyebrow">Whanganui/Manwatu</p>
+  <h2 class="section-heading">Whanganui</h2>
+  <img src="locations_images/Whanganui_dury_hill.jpg; whanganui_tunnel.jpg" alt="Whanganui" class="pretty-pic">
+  <p class="body-text">A city that spent a decade in the headlines under mayor Michael Laws — first over a gang patch ban, then a long-running fight to restore the 'h' to its name. Highlights include the Durie Hill elevator (a 205-metre tunnel leading to the only earth-bound lift of its kind in New Zealand), riverboat trips on the Whanganui River, and a Boxing Day motorcycle race through the city streets. South of town, a turn-off leads to Rātana, home of the Rātana Church founded in 1918.</p>
+  <div class="dark-card">
+    <p class="dark-card-label">Good to Know</p>
+    <p class="dark-card-text">Whanganui: Te reo Māori — whanga (harbour), nui (big). The city gained national attention through former mayor Michael Laws' gang patch ban and a prolonged spelling debate (Whanganui vs Wanganui), resolved in favour of the te reo spelling. Known for arts, Victorian architecture, and the Whanganui River — in 2017 the first river in the world to be granted legal personhood.</p>
+  </div>
+</div>
+
+<div class="region-panel" id="panel-bulls">
+  <p class="eyebrow">Whanganui/Manwatu</p>
+  <h2 class="section-heading">Bulls</h2>
+  <p class="body-text">A town that leans hard into its name — Account-a-Bull, Educate-a-Bull, and more scattered through the shopfronts. Service town for RNZAF Base Ohakea, former home of 75 Squadron, the most decorated — and hardest hit — Bomber Command squadron of WWII.</p>
+  <div class="dark-card">
+    <p class="dark-card-label">Good to Know</p>
+    <p class="dark-card-text">Bulls was named after its founding Bull family and enthusiastically embraces wordplay with business signs throughout town (account-a-bull, educate-a-bull, etc.). Close to RNZAF Base Ohakea, one of New Zealand's main Air Force installations.</p>
+  </div>
+</div>
+
+<div class="region-panel" id="panel-sanson">
+  <p class="eyebrow">Whanganui/Manwatu</p>
+  <h2 class="section-heading">Sanson</h2>
+  <p class="body-text">Junction town beside RNZAF Base Ohakea. Heading south, turn right at the main intersection — miss it and you'll end up on an unplanned detour through Palmerston North.</p>
+  <div class="dark-card">
+    <p class="dark-card-label">Good to Know</p>
+    <p class="dark-card-text">Sanson is a small junction town adjacent to RNZAF Base Ohakea. Travellers heading south on SH 1 should turn right at the main intersection to avoid an unintended detour through Palmerston North.</p>
+  </div>
+</div>
+
+<div class="region-panel" id="panel-foxton">
+  <p class="eyebrow">Whanganui/Manwatu</p>
+  <h2 class="section-heading">Foxton</h2>
+  <p class="body-text">Named after four-time Premier William Fox. The deMolen windmill, built in 2003 to authentic 17th-century Dutch specifications, doubles as the information centre — free entry, open daily. The area has deep Māori history tied to flax, once a hugely valuable trade resource along the lower Manawatu.</p>
+  <div class="dark-card">
+    <p class="dark-card-label">Good to Know</p>
+    <p class="dark-card-text">Foxton was named after four-times Premier William Fox. The deMolen windmill, built 2003 to authentic 17th-century Dutch flour mill specifications, serves as the information centre (open daily, free ground floor entry). Foxton has significant Māori and European flax-milling history, as flax was critically important for rope, nets, bags, and clothing.</p>
+  </div>
+</div>
+
+<div class="region-panel" id="panel-otaki">
+  <p class="eyebrow">Whanganui/Manwatu</p>
+  <h2 class="section-heading">Otaki</h2>
+  <p class="body-text">Home ground of war chief Te Rauparaha, who led Ngāti Toa south from Waikato to dominate the Kāpiti Coast down to Blenheim. The haka Ka Mate — made famous worldwide by the All Blacks — was composed by Te Rauparaha after narrowly escaping death, hidden in a kūmara pit near Tauranga. The Rangiātea Church here, built with his family's involvement, burned down in 1995; a replica has been planned since.</p>
+  <div class="dark-card">
+    <p class="dark-card-label">Good to Know</p>
+    <p class="dark-card-text">Ōtaki: Te reo Māori — O (place of), taki (stuck in) — a staff embedded in the ground. Historically associated with war chief Te Rauparaha (1768–1849) of the Ngāti Toa, who established dominance from Waikato to Blenheim. Composer of the haka Ka mate!, widely known through the All Blacks but originating with Te Rauparaha.</p>
+  </div>
+</div>
+
+<div class="region-panel" id="panel-paraparaumu">
+  <p class="eyebrow">Wellington</p>
+  <h2 class="section-heading">Paraparaumu</h2>
+  <p class="body-text">Locally just 'Parapram'. Home to the Southwards Car Museum — one of the finest vehicle collections in the Southern Hemisphere, including Marlene Dietrich's 1934 Cadillac and gangster Mickey Cohen's 1950s Cadillac, alongside motorbikes and aircraft.</p>
+  <div class="dark-card">
+    <p class="dark-card-label">Good to Know</p>
+    <p class="dark-card-text">Paraparaumu: Te reo Māori — parapara (food scraps), umu (earth oven) — a war party found only leftovers at a raided village. Locally known as Parapram. Home to the Southwards Car Museum, one of the Southern Hemisphere's finest vehicle collections, including Marlene Dietrich's 1934 Cadillac and gangster Mickey Cohen's 1950s Cadillac.</p>
+  </div>
+</div>
+
+<div class="region-panel" id="panel-paekakariki">
+  <p class="eyebrow">Wellington</p>
+  <h2 class="section-heading">Paekakariki</h2>
+  <p class="body-text">A quiet seaside escape for Wellingtonians today, but home to a major US Army training base during WWII. American engineers offered to build a multi-lane highway all the way to Auckland — the offer was declined, which is why Wellington still runs on just two main roads in and out.</p>
+  <div class="dark-card">
+    <p class="dark-card-label">Good to Know</p>
+    <p class="dark-card-text">Paekakariki: Te reo Māori — pae (perch), kakariki (endangered native parakeet). During WWII a significant US Army training facility operated near the town. American engineers offered to build a multi-lane highway north from Wellington — the offer was declined. Now a popular coastal escape for Wellingtonians.</p>
+  </div>
+</div>
+
+<div class="region-panel" id="panel-porirua">
+  <p class="eyebrow">Wellington</p>
+  <h2 class="section-heading">Porirua</h2>
+  <p class="body-text">Outer Wellington city built through the 1950s State Housing scheme, with a strong Polynesian community. Worth a stop at the Pataka Art Gallery for a solid rotation of contemporary New Zealand and international exhibits.</p>
+  <div class="dark-card">
+    <p class="dark-card-label">Good to Know</p>
+    <p class="dark-card-text">Porirua: misspelling of Parirua — Te reo Māori — pari (flowing tide), rua (two) — referring to the two harbour arms. Designed in the 1950s as an outer Wellington suburb, developed largely through the State Housing scheme (est. 1935). One of New Zealand's most culturally diverse cities with a large Polynesian community.</p>
+  </div>
+</div>
+
+<div class="region-panel" id="panel-wellington">
+  <p class="eyebrow">Wellington</p>
+  <h2 class="section-heading">Wellington</h2>
+  <img src="locations_images/Wellington_scape.jpg; Wellington_the_beehive.jpg; wellington.jpg; Cable_car.jpg; red_rocks_wellingon.jpg" alt="Wellington" class="pretty-pic">
+  <p class="body-text">New Zealand's capital, built on three active fault lines and shaken daily by mostly-unfelt tremors. The 1855 quake lifted the harbour foreshore so far that Lambton Quay — once the actual shoreline — now sits three blocks from the water. Don't rush Te Papa; budget most of a day. Wellywood earned its nickname through Weta Workshop and the Lord of the Rings trilogy — the Embassy Theatre hosted the Return of the King premiere. For views, Mount Victoria; for wildlife, Zealandia's predator-fenced valley ten minutes from the CBD; for politics, the parliamentary precinct spanning a century of architecture from the wooden 1897 library to the 1981 Beehive.</p>
+  <div class="dark-card">
+    <p class="dark-card-label">Good to Know</p>
+    <p class="dark-card-text">Wellington: named after Arthur Wellesley, first Duke of Wellington. New Zealand's capital and second largest city. Sits on three major active fault lines with daily minor earthquakes. Known as Wellywood for its film industry (particularly Weta Workshop). Consistently ranked among the world's most liveable cities for its arts, café culture, and compact waterfront. Population approximately 450,000.</p>
+  </div>
+</div>
+
+<div class="region-panel" id="panel-hutt_cities">
+  <p class="eyebrow">Wellington</p>
+  <h2 class="section-heading">Hutt Cities</h2>
+  <p class="body-text">Two cities — Lower Hutt (industry, suburbs, close to the harbour) and Upper Hutt (residential, inland) — connected to Wellington by rail and forming an affordable commuter alternative to the capital. Eastbourne, on the eastern harbour shore, is worth the drive or ferry for a relaxed lunch. The Fellowship of the Ring's kayak-away scene was filmed on the Hutt River. North of the valley, Hutt Road becomes SH2 and climbs the Remutaka Range — the summit lookout is worth saving a photo for.</p>
+  <div class="dark-card">
+    <p class="dark-card-label">Good to Know</p>
+    <p class="dark-card-text">The Hutt Valley is named after Sir William Hutt, British MP and NZ Company chairman. Contains two cities: Lower Hutt (closer to Wellington Harbour, light industry and suburban) and Upper Hutt (residential, inland). Both are affordable commuter suburbs of Wellington with good rail connections.</p>
+  </div>
+</div>
+
+<div class="region-panel" id="panel-featherston">
+  <p class="eyebrow">Wairapara</p>
+  <h2 class="section-heading">Featherston</h2>
+  <p class="body-text">A town that's been a coach stop, railway camp, and military base. A WWI training camp here sent young men to Belgium, where most died — the town is twinned with Messines and holds a memorial on Messines Way. In WWII the same camp held Japanese POWs; a 1943 protest ended in gunfire that killed 31 prisoners instantly, with 17 more dying later. A monument marks the site — worth a quiet stop.</p>
+  <div class="dark-card">
+    <p class="dark-card-label">Good to Know</p>
+    <p class="dark-card-text">Featherston was named after Isaac Featherston, first Superintendent of the Wellington Provincial Council. Served as a coach stop, railway settlement, public works camp, military base, and POW camp. Housed workers constructing the Remutaka road and rail link. The former railway station is now the information centre.</p>
+  </div>
+</div>
+
+<div class="region-panel" id="panel-carterton">
+  <p class="eyebrow">Wairapara</p>
+  <h2 class="section-heading">Carterton</h2>
+  <p class="body-text">Home of Georgina Beyer, the world's first transgender mayor (elected 1995) and, from 1999, the world's first openly transgender Member of Parliament — a remarkable milestone from a small Wairarapa farming town.</p>
+  <div class="dark-card">
+    <p class="dark-card-label">Good to Know</p>
+    <p class="dark-card-text">Carterton was named after Charles Carter, supporter of the Wairarapa Small Farms Association. Home of Georgina Beyer, the world's first transgender Mayor (elected 1995) and world's first openly transgender Member of Parliament. She underwent gender reassignment surgery in 1984 and built her public profile through community radio before entering politics.</p>
+  </div>
+</div>
+
+<div class="region-panel" id="panel-greytown">
+  <p class="eyebrow">Wairapara</p>
+  <h2 class="section-heading">Greytown</h2>
+  <p class="body-text">One of the oldest Wairarapa settlements, with a main street of genuinely well-preserved Victorian architecture. Worth a slow drive or short walk.</p>
+  <div class="dark-card">
+    <p class="dark-card-label">Good to Know</p>
+    <p class="dark-card-text">Greytown was named after Governor George Grey. The main street features well-preserved Victorian architecture from the earliest Wairarapa settlement. Today known for boutique shopping, galleries, and cafes; a popular Wellington weekend destination.</p>
+  </div>
+</div>
+
+<div class="region-panel" id="panel-masterton">
+  <p class="eyebrow">Wairapara</p>
+  <h2 class="section-heading">Masterton</h2>
+  <p class="body-text">Economic hub of the Wairarapa, effectively Wellington's northernmost commuter suburb via a two-hour rail link. Hosts the Golden Shears each March — the shearing world championships — when accommodation across the region books out months in advance.</p>
+  <div class="dark-card">
+    <p class="dark-card-label">Good to Know</p>
+    <p class="dark-card-text">Masterton was founded in 1854 by Joseph Masters (Masters Town → Masterton). Economic and political centre of the Wairarapa; significant numbers of residents commute to Wellington by rail. Internationally known for the Golden Shears competition (annually in early March), the world championship of shearing and wool handling.</p>
+  </div>
+</div>
+
+<div class="region-panel" id="panel-mt_bruce_wildlife_centre">
+  <p class="eyebrow">Wairapara</p>
+  <h2 class="section-heading">Mt Bruce Wildlife Centre.</h2>
+  <p class="body-text">One of the best stops on this stretch of highway. Home to tuatara (the world's oldest living reptile lineage), kiwi, kākā, and the once-thought-extinct takahē, set within 1,000 acres of forest spared from clearing in 1887. First place in the world to successfully breed tuatara in captivity. Café and facilities on site.</p>
+  <div class="dark-card">
+    <p class="dark-card-label">Good to Know</p>
+    <p class="dark-card-text">Pukaha Mt Bruce Wildlife Centre, on SH 2 approximately 30km north of Masterton, is built around 1,000 acres of forest preserved in 1887. Home to Tuatara (world's oldest living reptile lineage), Kiwi, Kaka, and the rare Takahē (once believed extinct). Café and facilities available. A major conservation centre and highly recommended stop.</p>
+  </div>
+</div>
+
+<div class="region-panel" id="panel-ekatahuna">
+  <p class="eyebrow">Wairapara</p>
+  <h2 class="section-heading">Ekatahuna</h2>
+  <p class="body-text">A small, ordinary farming town saddled with an undeserved reputation for backwater remoteness, thanks to tongue-in-cheek 1970s magazine articles that New Zealanders still reference as a punchline.</p>
+  <div class="dark-card">
+    <p class="dark-card-label">Good to Know</p>
+    <p class="dark-card-text">Ekatahuna: Te reo Māori — eka (to run around), tahuna (sandbank) — the point on the Makakahi River where sandbanks made canoe travel impossible and portage was required. Gained an undeserved reputation for remoteness from satirical 1970s Listener magazine articles. In reality a small farming community.</p>
+  </div>
+</div>
+
+<div class="region-panel" id="panel-pahiatua_manganatokia">
+  <p class="eyebrow">Wairapara</p>
+  <h2 class="section-heading">Pahiatua/Manganatokia</h2>
+  <p class="body-text">Junction town linking the Manawatū and Wairarapa via three routes over the Ruahine Range — SH2 through the Manawatu Gorge is the easiest. Just north is the Tui Brewery, a long-standing rite of passage for Massey University students — arrange a sober driver, as the nearest accommodation is back in Pahiatua.</p>
+  <div class="dark-card">
+    <p class="dark-card-label">Good to Know</p>
+    <p class="dark-card-text">Pahiatua: Te reo Māori — pahi (resting place), atua (god) — a chief guided by a deity rested here after battle. Mangatainoka: manga (stream), tanoka (native broom). Pahiatua is a Manawatū–Wairarapa junction. Mangatainoka is home to Tui Brewery, one of New Zealand's most recognised beer brands.</p>
+  </div>
+</div>
+
+<div class="region-panel" id="panel-woodville">
+  <p class="eyebrow">Wairapara</p>
+  <h2 class="section-heading">Woodville</h2>
+  <img src="locations_images/woodville.jpg" alt="Woodville" class="pretty-pic">
+  <p class="body-text">Grew from a forest-clearing settlement in the Seventy Mile Block — hence the name. Now known for four antique stores along the main street. On the way out toward Dannevirke, the Wharetupuna at Te Ahu a Tūranga Marae is worth pulling over for — its carving embodies the hapū's whakapapa.</p>
+  <div class="dark-card">
+    <p class="dark-card-label">Good to Know</p>
+    <p class="dark-card-text">Woodville originated as a settlement in the 70 Mile Bush, a major forest-clearing operation linking southern regions to Hastings. Today known for four antique stores on or near the main street. Original native bush visible on the right heading north toward Dannevirke.</p>
+  </div>
+</div>
+
+<div class="region-panel" id="panel-dannevirke_norsewood">
+  <p class="eyebrow">Wairapara</p>
+  <h2 class="section-heading">Dannevirke/Norsewood</h2>
+  <p class="body-text">Founded by Scandinavian settlers who landed at Napier in 1872 and trekked inland to clear bush and build roads — Viking signage and Nordic street names still mark the town. Neighbouring Norsewood is home to Norsewear, maker of the classic farm-fleck wool sock worn by Sir Edmund Hillary, Scott Base staff, and generations of New Zealand farmers. Factory shop right on SH2.</p>
+  <div class="dark-card">
+    <p class="dark-card-label">Good to Know</p>
+    <p class="dark-card-text">Dannevirke: Danish — a Dane's work. In 1872 ships brought 365 Norwegians, 11 Swedes, and 71 Danes who trekked from Napier to work in road construction and bush clearing. The town and nearby Norsewood retain strong Scandinavian heritage in signage, street names, and community events.</p>
+  </div>
+</div>
+
+<div class="region-panel" id="panel-waipukurau">
+  <p class="eyebrow">Hawkes Bay</p>
+  <h2 class="section-heading">Waipukurau</h2>
+  <img src="locations_images/hastings_sheep.jpg" alt="Waipukurau" class="pretty-pic">
+  <p class="body-text">Founded in the 1860s by Henry Russell as a carefully planned model village — he personally vetted tenants and house plans. An hour southeast is Taumatawhakatangihangakoauauotamateaturipukakapikimaungahoronukupokaiwhenuakitanatahu, the longest place name in any English-speaking country (locally just 'Taumata') — a four-hour return walk to the 305m summit through private farmland. Heading north toward Hastings, watch the horizon on the right for Te Mata, a hill line shaped like a sleeping man.</p>
+  <div class="dark-card">
+    <p class="dark-card-label">Good to Know</p>
+    <p class="dark-card-text">Waipukurau: Te reo Māori — wai (water), pukurau (large white mushroom) — stream where white mushrooms grow. (Alternative: waipuke/flood + rau/many = place of many floods.) Founded in the 1860s by Henry Russell as a planned model village; he personally vetted tenants and approved house plans. Land later became freehold.</p>
+  </div>
+</div>
+
+<div class="region-panel" id="panel-hastings">
+  <p class="eyebrow">Hawkes Bay</p>
+  <h2 class="section-heading">Hastings</h2>
+  <p class="body-text">Nearly named Hicksville, saved by fashion for naming towns after British colonial figures. Grew past neighbour Napier on the back of the fertile Heretaunga Plains and the rise of Wattie's, once New Zealand's largest food processor. Shares Napier's 1931 earthquake history and its own strong Art Deco streetscape, but escaped the fire that devastated Napier afterward. Also the hometown of novelist Alan Duff, whose Once Were Warriors drew directly on the city's harder side.</p>
+  <div class="dark-card">
+    <p class="dark-card-label">Good to Know</p>
+    <p class="dark-card-text">Hastings narrowly avoided being named Hicksville (after Francis Hicks, first to subdivide 1870s). Renamed after Warren Hastings, India's first Governor-General. Since WWII grown to become the economic centre of Hawke's Bay, New Zealand's primary fruit-growing region (apples, grapes, stone fruit, vegetables).</p>
+  </div>
+</div>
+
+<div class="region-panel" id="panel-napier">
+  <p class="eyebrow">Hawkes Bay</p>
+  <h2 class="section-heading">Napier</h2>
+  <img src="locations_images/napier2.jpg; National_aquarium.jpg; napier_soundscape.jpg" alt="Napier" class="pretty-pic">
+  <p class="body-text">Rebuilt almost entirely in Art Deco style after the 1931 earthquake killed 161 people and levelled much of the city — the result is the highest concentration of Art Deco buildings per capita anywhere in the world. Pick up the Art Deco walking guide from the i-SITE, or time a visit for the February festival. Also a major wine region, home to the National Aquarium, and the start of the spectacular but demanding Napier–Taupō Highway inland.</p>
+  <div class="dark-card">
+    <p class="dark-card-label">Good to Know</p>
+    <p class="dark-card-text">Napier was named after Sir Charles Napier, British military leader at the Battle of Meeanee. On 3 February 1931 a magnitude 7.8 earthquake killed 256 and destroyed much of the city. Reconstruction in Art Deco style created one of the world's finest concentrations of Art Deco architecture. The annual Art Deco Festival is a major international event.</p>
+  </div>
+</div>
+
+<div class="region-panel" id="panel-rotorua">
+  <p class="eyebrow">Bay of Plenty</p>
+  <h2 class="section-heading">Rotorua</h2>
+  <img src="locations_images/Rotorua_gardens.jpg; Wai_ariki.JPG; treetop_walk.JPG; tarawera.jpg; Marae.JPG; wingspan.jpg" alt="Rotorua" class="pretty-pic">
+  <p class="body-text">New Zealand's geothermal capital and its main centre for Māori cultural tourism — expect a lingering sulphur smell most visitors stop noticing after a day or two. Each geothermal park (Wai-o-tapu, Whakarewarewa, Hells Gate) offers the same core sights with its own point of difference, so pick one rather than doing them all. Also home to zorbing (a Kiwi invention), the Agrodome farm show, and the Buried Village, telling the story of the 1886 Tarawera eruption that destroyed the famous Pink and White Terraces.</p>
+  <div class="dark-card">
+    <p class="dark-card-label">Good to Know</p>
+    <p class="dark-card-text">Rotorua: Te reo Māori — roto (lake), rua (two) — the second lake discovered in the area. The city sits within New Zealand's major volcanic zone, producing extensive geothermal activity (hot pools, mud pools, geysers, steam vents). Māori have used geothermal features for cooking and bathing for centuries. The primary centre of Māori cultural tourism in New Zealand: performances, hangi, and carved meeting houses of the Te Arawa people.</p>
+  </div>
+</div>
+
+<div class="region-panel" id="panel-wai_o_tapu">
+  <p class="eyebrow">Bay of Plenty</p>
+  <h2 class="section-heading">Wai-o-tapu</h2>
+  <img src="locations_images/mudlo.jpg" alt="Wai-o-tapu" class="pretty-pic">
+  <p class="body-text">One of the region's larger geothermal parks, with mud pools, steam vents and vividly coloured sulphuric pools. Centrepiece is the Lady Knox Geyser, coaxed into erupting on schedule every morning at 10:30am with a shot of soap to break the water's surface tension — the eruption itself is entirely natural, just nudged onto a timetable.</p>
+  <div class="dark-card">
+    <p class="dark-card-label">Good to Know</p>
+    <p class="dark-card-text">Wai-o-tapu: Te reo Māori — wai (water), o (place of), tapu (sacred). A major geothermal park with geysers, mud pools, steam vents, and vivid sulphuric pools. The Lady Knox Geyser erupts daily at 10:30 am with the aid of soap to disrupt surface tension. Entry fee applies.</p>
+  </div>
+</div>
+
+<div class="region-panel" id="panel-te_puke">
+  <p class="eyebrow">Bay of Plenty</p>
+  <h2 class="section-heading">Te Puke</h2>
+  <p class="body-text">Kiwifruit Capital of the World — the fruit itself is Chinese in origin, renamed from 'Chinese Gooseberry' to 'Kiwifruit' in the 1950s by exporters trying to win over American buyers. Industry grew from around 100 tonnes of exports in the 1970s to a $539 million annual business today. Worth the short detour east to Maketū, believed to be where the Arawa and Tainui people first sighted land after their voyage from Hawaiki.</p>
+  <div class="dark-card">
+    <p class="dark-card-label">Good to Know</p>
+    <p class="dark-card-text">Te Puke: Te reo Māori — te (the), puke (hill). Kiwifruit Capital of the World — the world's largest kiwifruit exporting region. Kiwifruit originated in China (yang-táo) and were propagated in New Zealand by Whanganui nurseryman Alexander Allison. New Zealand growers rebranded the fruit from Chinese gooseberry to Kiwifruit in the 1950s.</p>
+  </div>
+</div>
+
+<div class="region-panel" id="panel-tauranga_mt_maunganui">
+  <p class="eyebrow">Bay of Plenty</p>
+  <h2 class="section-heading">Tauranga/Mt Maunganui</h2>
+  <p class="body-text">Twin cities — Mount Maunganui for beach and surf lifestyle around a 232m volcanic cone (an hour's climb to 360-degree views, plus geothermal pools without the Rotorua smell), Tauranga as the commercial centre and New Zealand's busiest export port. Also New Zealand's fastest-growing city. Cameron Road and the suburb of Gate Pā mark the site of an 1864 battle where 235 Māori defenders held off 300 British soldiers at heavy cost to the attackers — one of the more remarkable engagements of the New Zealand Wars.</p>
+  <div class="dark-card">
+    <p class="dark-card-label">Good to Know</p>
+    <p class="dark-card-text">Tauranga: Te reo Māori — sheltered anchorage. Mt Maunganui: maunga (mountain), nui (big). Mount Maunganui is a popular surf and beach lifestyle destination with a golden sand beach from Papamoa to the Mount. The volcanic cone (232m) has a popular walking track. Tauranga is the commercial centre and New Zealand's busiest port. One of New Zealand's fastest-growing regions.</p>
+  </div>
+</div>
+
+<div class="region-panel" id="panel-katikati">
+  <p class="eyebrow">Bay of Plenty</p>
+  <h2 class="section-heading">Katikati</h2>
+  <p class="body-text">New Zealand's Mural Town — over 50 heritage murals painted across the town from 1991 onward, when a local resident inspired by a Canadian logging town's revival talked the community into painting its way out of economic decline. Worked: the town was attracting two new families a week within five years.</p>
+  <div class="dark-card">
+    <p class="dark-card-label">Good to Know</p>
+    <p class="dark-card-text">Katikati: shortened from Katikati o Tamatekapua — the nibbling of chief Tamatekapua (who ate slowly while his crew hurried). In 1991, facing economic decline, the community commissioned heritage murals on building walls throughout town. Over 50 murals now make Katikati New Zealand's Mural Town.</p>
+  </div>
+</div>
+
+<div class="region-panel" id="panel-te_kaha">
+  <p class="eyebrow">Bay of Plenty</p>
+  <h2 class="section-heading">Te Kaha</h2>
+  <img src="locations_images/te_kaha.JPG" alt="Te Kaha" class="pretty-pic">
+  <p class="body-text">A welcome stop on SH35 where options are thin — a couple of dairies and a resort restaurant. Worth timing a break here if you're tackling the East Cape road in a day.</p>
+  <div class="dark-card">
+    <p class="dark-card-label">Good to Know</p>
+    <p class="dark-card-text">Te Kaha: Te reo Māori — te kaha nui a Tikirakau (the fishing rope of Tikirakau). A small coastal settlement with dairies and a resort restaurant. A useful stop on SH 35 as options are limited along this stretch.</p>
+  </div>
+</div>
+
+<div class="region-panel" id="panel-opotiki">
+  <p class="eyebrow">Bay of Plenty</p>
+  <h2 class="section-heading">Opotiki</h2>
+  <p class="body-text">Western gateway to SH35 around the East Cape, close to Whakatāne. Fuel up and stock up here — services are scarce for long stretches of the Cape road in either direction.</p>
+  <div class="dark-card">
+    <p class="dark-card-label">Good to Know</p>
+    <p class="dark-card-text">Ōpōtiki: Te reo Māori — O (place of), Potiki (ancestor Potiki maitawhiti, believed part of the great Hawaiiki migration). A small town near Whakatāne, serving as the western gateway to SH 35 around the East Cape.</p>
+  </div>
+</div>
+
+<div class="region-panel" id="panel-whakatane">
+  <p class="eyebrow">Bay of Plenty</p>
+  <h2 class="section-heading">Whakatane</h2>
+  <p class="body-text">Commercial centre of the eastern Bay of Plenty, named for an act of courage — Wairaka, daughter of the Mataatua waka's leader, took command and saved the drifting canoe when the men went ashore, declaring she'd act as a man. Good cafés, a beautiful estuary, and on a clear day a view out to Whakaari/White Island, an active marine volcano steaming quietly on the horizon.</p>
+  <div class="dark-card">
+    <p class="dark-card-label">Good to Know</p>
+    <p class="dark-card-text">Whakatāne: Te reo Māori — to act like a man. When the waka Mataatua drifted as men went ashore, Toroa's daughter Wairaka led the women in saving it, declaring she would act as a man. Commercial centre of eastern Bay of Plenty, population approximately 20,000. Whakaari (White Island) active marine volcano visible offshore.</p>
+  </div>
+</div>
+
+<div class="region-panel" id="panel-waihi">
+  <p class="eyebrow">Bay of Plenty</p>
+  <h2 class="section-heading">Waihi</h2>
+  <p class="body-text">Boundary town between the Bay of Plenty and the Coromandel — orchard country meets gold country. Home to the Martha Mine, still producing around 100,000 ounces of gold and 750,000 ounces of silver a year across two operations. In 1912, a bitter miners' strike here turned violent on 'Black Tuesday', when unionist Fred Evans was beaten and later died — the only person to die as a direct result of industrial action in New Zealand history.</p>
+  <div class="dark-card">
+    <p class="dark-card-label">Good to Know</p>
+    <p class="dark-card-text">Waihi: Te reo Māori — wai (water), hi (to gush forth). Junction of Bay of Plenty and Coromandel. Economy defined by gold and silver mining; the Martha Mine is one of New Zealand's richest deposits and remains active. November 1912 saw a significant labour dispute between miners, unions, and mining companies, an important chapter in NZ labour history.</p>
+  </div>
+</div>
+
+<div class="region-panel" id="panel-karangahake_gorge">
+  <p class="eyebrow">Bay of Plenty</p>
+  <h2 class="section-heading">Karangahake Gorge</h2>
+  <img src="locations_images/karangahake_gorge.jpg" alt="Karangahake Gorge" class="pretty-pic">
+  <p class="body-text">A DOC reserve threading short walking tracks through the remains of a once-thriving gold mining valley — stamper batteries, old machinery, and tunnels. Good spot for a bush picnic, but stick to marked tracks; concealed vertical mine shafts are a real hazard, and don't enter unlit or signposted-unsafe tunnels.</p>
+  <div class="dark-card">
+    <p class="dark-card-label">Good to Know</p>
+    <p class="dark-card-text">Karangahake Gorge: Te reo Māori — karanga (ridge), hake (hunchback) — the local cluster of hills. DOC reserve with short tracks through historic gold mining remains. Important safety note: stick to marked tracks — concealed vertical mine shafts are a genuine hazard. Do not enter tunnels without a torch or if signposted unsafe.</p>
+  </div>
+</div>
+
+<div class="region-panel" id="panel-gisborne">
+  <p class="eyebrow">East Coast/Poverty Bay</p>
+  <h2 class="section-heading">Gisborne</h2>
+  <img src="locations_images/Gisborne_clock.jpg; Gisborne_port.JPG; Cpt_cook.JPG; Young_Nick.JPG; Young_Nick.JPG; Footrot_flats" alt="Gisborne" class="pretty-pic">
+  <p class="body-text">A small city on Poverty Bay — Cook's disappointed naming after failing to trade for supplies — known to Māori as Tūranganui-a-Kiwa. Three statues on Waikanae Beach mark the layered history here: the great migration waka, Captain Cook, and Nicholas Young, the ship's boy who first sighted land. North of the city, State Highway 35 around the East Cape is one of the country's great coastal drives.</p>
+  <div class="dark-card">
+    <p class="dark-card-label">Good to Know</p>
+    <p class="dark-card-text">Gisborne: named in 1870 after civil servant William Gisborne. A city of approximately 30,000 on the shores of Tūranganui-a-Kiwa (Poverty Bay, named by Cook in 1769 after failing to obtain supplies). Near the International Date Line, among the first cities to greet each new day. Cook's first New Zealand landfall was in this region, October 1769. Known for Chardonnay, Chenin Blanc, and surf culture.</p>
+  </div>
+</div>
+
+<div class="region-panel" id="panel-tolaga_bay">
+  <p class="eyebrow">East Coast/Poverty Bay</p>
+  <h2 class="section-heading">Tolaga Bay</h2>
+  <img src="locations_images/tolga_bay_wharf.jpg" alt="Tolaga Bay" class="pretty-pic">
+  <p class="body-text">Named Tolago by Cook for reasons nobody has ever pinned down; the Māori name Uawa (rainy season) is the more practical one. The 660m wharf, built in 1929, mostly unloaded equipment for the roads that would eventually make it redundant. A 30-minute return walk to the end is a quiet, worthwhile stop.</p>
+  <div class="dark-card">
+    <p class="dark-card-label">Good to Know</p>
+    <p class="dark-card-text">Tolaga Bay: English name from Cook's Tolago (origin unclear); Māori name Uawa (rainy season). The town's 660-metre wharf, built 1929, is a local landmark. Most cargo unloaded was road-building equipment — the resulting roads made the wharf redundant. A 30-minute return walk to the wharf end offers good coastal views.</p>
+  </div>
+</div>
+
+<div class="region-panel" id="panel-tokomaru_bay">
+  <p class="eyebrow">East Coast/Poverty Bay</p>
+  <h2 class="section-heading">Tokomaru Bay</h2>
+  <img src="locations_images/tokomaru_bay.jpg; tokomaru_bay_wharf.jpg" alt="Tokomaru Bay" class="pretty-pic">
+  <p class="body-text">Named after one of the great migration waka. A quiet coastal settlement with a former supply wharf that once served the surrounding farming district — the coast road before there was a coast road.</p>
+  <div class="dark-card">
+    <p class="dark-card-label">Good to Know</p>
+    <p class="dark-card-text">Tokomaru Bay: named after the waka Tokomaru, one of the canoes of the great Māori migration from Hawaiiki. A small rural coastal settlement with a former supply wharf serving the surrounding farming district.</p>
+  </div>
+</div>
+
+<div class="region-panel" id="panel-ruatoria">
+  <p class="eyebrow">East Coast/Poverty Bay</p>
+  <h2 class="section-heading">Ruatoria</h2>
+  <img src="locations_images/ruatoria.jpg; ruatoria_po.jpg; ruatoria_landscape.JPG" alt="Ruatoria" class="pretty-pic">
+  <p class="body-text">Cultural heart of Ngāti Porou, with a strong, distinct Māori identity. Reggae band Herbs' 1987 visit here is still fondly remembered nationally. Closest settlement to Hikurangi, the North Island's highest non-volcanic peak — a serious seven-hour expert hike to the summit, but a local 4WD tour can get you to the base for sunrise, among the first in New Zealand to see it each day.</p>
+  <div class="dark-card">
+    <p class="dark-card-label">Good to Know</p>
+    <p class="dark-card-text">Ruatōria: Te reo Māori — rua-a-Torea (storage pits of master grower Torea). Cultural centre of Ngāti Porou. In 1987 New Zealand reggae band Herbs visited in an act of solidarity that became part of NZ cultural memory. Local company Rua now operates a licensed medicinal cannabis growing operation.</p>
+  </div>
+</div>
+
+<div class="region-panel" id="panel-east_cape">
+  <p class="eyebrow">East Coast/Poverty Bay</p>
+  <h2 class="section-heading">East Cape</h2>
+  <p class="body-text">The easternmost point of mainland New Zealand. The lighthouse was moved here from offshore East Island in 1922 after the original site proved too dangerous to service — a 30-minute return clifftop walk from the road gets you out to it.</p>
+  <div class="dark-card">
+    <p class="dark-card-label">Good to Know</p>
+    <p class="dark-card-text">East Cape is the easternmost point of mainland New Zealand. The East Cape Lighthouse was relocated from East Island to its current position in 1922. Accessible via a 30-minute return walk from the road. The cape greets New Zealand's first sunrise each day.</p>
+  </div>
+</div>
+
+<div class="region-panel" id="panel-hicks_bay">
+  <p class="eyebrow">East Coast/Poverty Bay</p>
+  <h2 class="section-heading">Hicks Bay</h2>
+  <img src="locations_images/hicks_bay.JPG" alt="Hicks Bay" class="pretty-pic">
+  <p class="body-text">Named after Lieutenant Zachary Hicks of Cook's Endeavour, the first European to sight the bay in 1769. The hill approach before the road drops down offers one of the best views on this stretch of coast on a clear day.</p>
+  <div class="dark-card">
+    <p class="dark-card-label">Good to Know</p>
+    <p class="dark-card-text">Hicks Bay: named after Lieutenant Zachary Hicks, crew member of Cook's Endeavour and the first European to sight the bay (1769). The approach over the hill before descending offers spectacular coastal views on a clear day.</p>
+  </div>
+</div>
+
+<div class="region-panel" id="panel-thames">
+  <p class="eyebrow">Thames Valley (Coromandel)</p>
+  <h2 class="section-heading">Thames</h2>
+  <p class="body-text">Main town of the Coromandel Peninsula, named by Cook for its resemblance to the English river. Once bigger than Auckland during the gold rush (population 20,000, now around 7,000). A gold mine tour north of town is genuinely worth the stop, and the Pinnacles walk (7-8 hours return, or split over two days staying at Pinnacles Hut) rewards with some of the best views in the region. Allow 90 minutes for the 60km drive north to Coromandel Town — the road is slower and windier than the map suggests.</p>
+  <div class="dark-card">
+    <p class="dark-card-label">Good to Know</p>
+    <p class="dark-card-text">Thames was named by Captain Cook in 1769, who felt the Waihoa River resembled England's Thames. Once a gold mining town of 20,000 — larger than Auckland — Thames now has approximately 7,000 residents and is the main town of the Coromandel Peninsula. The Mineralogical Museum and historic goldfields are worth visiting.</p>
+  </div>
+</div>
+
+<div class="region-panel" id="panel-coromandel_town">
+  <p class="eyebrow">Thames Valley (Coromandel)</p>
+  <h2 class="section-heading">Coromandel Town</h2>
+  <img src="locations_images/coromandel_town.jpg; Coromandel_sunset_01.JPG" alt="Coromandel Town" class="pretty-pic">
+  <p class="body-text">Usually just called 'Coromandel' — add 'Town' when talking about it to avoid confusion with the peninsula. Oldest gold mining town on the Coromandel, now sustained by a thriving mussel farming industry. Don't miss Driving Creek Railway, built by potter Barry Brickell to haul clay from the hills, and The Waterworks on the 309 Road, a park of quirky water-powered contraptions. The Twin Kauri Scenic Reserve, also on the 309, lets you get right up to (and touch) two kauri trees via a boardwalk.</p>
+  <div class="dark-card">
+    <p class="dark-card-label">Good to Know</p>
+    <p class="dark-card-text">Coromandel Town (locally just called Coromandel) is 60km from Thames but requires 90+ minutes to drive. Lookouts on the summit hills offer views across the Hauraki Gulf to Auckland on clear days. Strong arts and crafts community, good cafes, and gateway to the northern peninsula.</p>
+  </div>
+</div>
+
+<div class="region-panel" id="panel-whitianga">
+  <p class="eyebrow">Thames Valley (Coromandel)</p>
+  <h2 class="section-heading">Whitianga</h2>
+  <img src="locations_images/coromandel.jpg" alt="Whitianga" class="pretty-pic">
+  <p class="body-text">A resort town on Mercury Bay, named by Cook after observing the transit of Mercury here in 1769. Base for three of the Coromandel's biggest draws: Hot Water Beach (dig your own thermal spa in the sand at low tide — get there early and bring cool water to temper the heat), Cathedral Cove (an hour and a half return walk to the most photographed arch on the coast), and Hahei's beaches. Further north, Matarangi is a quiet holiday-home settlement that boomed in the 1980s-90s property booms.</p>
+  <div class="dark-card">
+    <p class="dark-card-label">Good to Know</p>
+    <p class="dark-card-text">Whitianga: Te reo Māori — crossing; full name Whitianga a Kupe (a river crossing attributed to Kupe). Popular resort town on Mercury Bay with a sheltered golden beach. Nearby: Hahei, Cathedral Cove, and Hot Water Beach (thermal pool digging at low tide). Mercury Bay named by Cook in 1769 during his observation of the transit of Mercury.</p>
+  </div>
+</div>
+
+<div class="region-panel" id="panel-picton">
+  <p class="eyebrow">Marlborough</p>
+  <h2 class="section-heading">Picton</h2>
+  <img src="locations_images/picton.jpg" alt="Picton" class="pretty-pic">
+  <p class="body-text">South Island terminal for the Interislander ferry and gateway to the Marlborough Sounds. Water taxis run out to the Queen Charlotte Track, a stunning multi-day ridgeline walk — book ahead in summer, it gets busy.</p>
+  <div class="dark-card">
+    <p class="dark-card-label">Good to Know</p>
+    <p class="dark-card-text">Picton is the South Island terminal for the Interislander ferry and gateway to the Marlborough Sounds. Water taxis access the Queen Charlotte Sound and Queen Charlotte Track (popular multi-day walk). Wine tours to Marlborough (approximately $50) are available — a recommended afternoon activity. Do not plan to drive after the wine tour.</p>
+  </div>
+</div>
+
+<div class="region-panel" id="panel-havelock">
+  <p class="eyebrow">Marlborough</p>
+  <h2 class="section-heading">Havelock</h2>
+  <img src="locations_images/havelock.JPG" alt="Havelock" class="pretty-pic">
+  <p class="body-text">New Zealand's Green Shell Mussel capital — the industry out-earns even Marlborough's wine — with fresh mussels sold straight from local stores. Also the primary school of two of the 20th century's most significant scientists: Lord Ernest Rutherford, who split the atom, and Dr William Pickering, who led NASA's Jet Propulsion Laboratory through America's early planetary missions.</p>
+  <div class="dark-card">
+    <p class="dark-card-label">Good to Know</p>
+    <p class="dark-card-text">Havelock is New Zealand's Green Shell Mussel capital, with the mussel industry bringing more income to Marlborough than wine. Fresh mussels available from local stores. Havelock is also the primary school attended by Lord Ernest Rutherford (1871–1937, father of nuclear physics, first to split the atom) and Dr William Pickering (director of NASA's Jet Propulsion Laboratory, first successful US satellite launch).</p>
+  </div>
+</div>
+
+<div class="region-panel" id="panel-ward">
+  <p class="eyebrow">Marlborough</p>
+  <h2 class="section-heading">Ward</h2>
+  <p class="body-text">Between Ward and Seddon is Lake Grassmere, home to Dominion Salt — New Zealand's only commercial salt works, operating since 1943 and producing roughly half the country's domestic salt using little more than sun, a shallow basin, and proximity to the sea.</p>
+  <div class="dark-card">
+    <p class="dark-card-label">Good to Know</p>
+    <p class="dark-card-text">Ward: named after Sir Joseph Ward, New Zealand Prime Minister 1906–1912 and 1928–1930. Between Ward and Seddon is Lake Grassmere — Dominion Salt's extraction plant, New Zealand's only commercial salt works operating since 1943. Chosen for proximity to the sea, shallow basin, and Marlborough sunshine. Produces approximately half of New Zealand's domestic salt.</p>
+  </div>
+</div>
+
+<div class="region-panel" id="panel-seddon">
+  <p class="eyebrow">Marlborough</p>
+  <h2 class="section-heading">Seddon</h2>
+  <p class="body-text">Named after Richard Seddon ('King Dick'), one of New Zealand's longest-serving Prime Ministers (1893-1906), who rose from near-bankrupt hotelier to champion of miners' rights and eventually introduced old age pensions, free secondary education, and — in 1893 — the world's first women's suffrage in a self-governing country. Died at sea returning from Australia in 1906.</p>
+  <div class="dark-card">
+    <p class="dark-card-label">Good to Know</p>
+    <p class="dark-card-text">Seddon: named after Prime Minister Richard Seddon, in office 1893 until his death at sea in 1906 — one of New Zealand's longest-serving leaders. Built his reputation defending miners in legal disputes. His government introduced women's suffrage in 1893 (world's first) and enacted wide social reform. Known as King Dick.</p>
+  </div>
+</div>
+
+<div class="region-panel" id="panel-blenheim">
+  <p class="eyebrow">Marlborough</p>
+  <h2 class="section-heading">Blenheim</h2>
+  <img src="locations_images/Omaka.jpg; Blenhiem_church.jpg" alt="Blenheim" class="pretty-pic">
+  <p class="body-text">Commercial heart of the Marlborough wine region, internationally known for benchmark Sauvignon Blanc alongside excellent Pinot Noir, Riesling and sparkling wine — plenty of cellar doors nearby, but arrange transport if you're drinking. Close to the Omaka Aviation Heritage Centre, Peter Jackson's WWI-to-Vietnam aircraft collection presented as immersive theatrical dioramas rather than static museum displays — genuinely one of the best of its kind anywhere.</p>
+  <div class="dark-card">
+    <p class="dark-card-label">Good to Know</p>
+    <p class="dark-card-text">Blenheim: named 1859 to honour the Duke of Marlborough's victory at the Battle of Blenheim (1704). Commercial centre of the Marlborough wine region, internationally known for Sauvignon Blanc, Pinot Noir, Riesling, and sparkling wine. The Omaka Aviation Heritage Centre near the airfield — Sir Peter Jackson's WWI aircraft collection in theatrical dioramas — is one of the world's finest aviation museums.</p>
+  </div>
+</div>
+
+<div class="region-panel" id="panel-nelson">
+  <p class="eyebrow">Tasman</p>
+  <h2 class="section-heading">Nelson.</h2>
+  <img src="locations_images/Christs_Church.jpg" alt="Nelson." class="pretty-pic">
+  <p class="body-text">New Zealand's sunniest city (around 2,300 hours a year) and its third largest in the South Island. Declared a city in 1858 by Queen Victoria when the population was just 2,700 — the requirement then was a cathedral, not a headcount. Home of the first rugby match played in New Zealand (1879), the Centre of New Zealand lookout, and McCashin's/Mac's Brewery, which pushed craft beer into a market once locked up by two big players.</p>
+  <div class="dark-card">
+    <p class="dark-card-label">Good to Know</p>
+    <p class="dark-card-text">Nelson was named after Admiral Lord Nelson. New Zealand's second city (Queen Victoria's 1858 letter of patent when population was just 2,700), now the South Island's third largest city with approximately 52,000 residents. Consistently one of New Zealand's sunniest cities. Known for arts, food and wine, and proximity to Abel Tasman and Nelson Lakes National Parks.</p>
+  </div>
+</div>
+
+<div class="region-panel" id="panel-motueka">
+  <p class="eyebrow">Tasman</p>
+  <h2 class="section-heading">Motueka.</h2>
+  <img src="locations_images/tasman_bobs_lookout.jpg" alt="Motueka." class="pretty-pic">
+  <p class="body-text">Base for most Abel Tasman tour operators — kayak hire, water taxis, and a local skydive company for those who'd rather see the park from above before dropping into it. Surrounding area grows hops, tobacco and fruit; unhurried place to slow down before heading into the park.</p>
+  <div class="dark-card">
+    <p class="dark-card-label">Good to Know</p>
+    <p class="dark-card-text">Motueka: believed a corruption of Motuweka — motu (island of bush), weka (wood hen). Small coastal town on the southern edge of Abel Tasman National Park. Most Abel Tasman operators (kayak hire, water taxis) are based here. Surrounding region produces hops, tobacco, and various fruits.</p>
+  </div>
+</div>
+
+<div class="region-panel" id="panel-abel_tasman_national_park">
+  <p class="eyebrow">Tasman</p>
+  <h2 class="section-heading">Abel Tasman National Park</h2>
+  <img src="locations_images/abel_tasman_walk.jpg; abel_tasman.jpg" alt="Abel Tasman National Park" class="pretty-pic">
+  <p class="body-text">New Zealand's smallest national park, named for Dutch explorer Abel Tasman, who first sighted New Zealand at Golden Bay in 1642. The Nelson day-trip option (bus to Kaiteriteri, water taxi to Bark or Torrent Bay, then a roughly 5-hour coastal walk back to Mārahau) is good value at around $60. Track signage is patchy — grab a map from a visitor centre first, and bring your own food and water; there are no cafés in the park.</p>
+  <div class="dark-card">
+    <p class="dark-card-label">Good to Know</p>
+    <p class="dark-card-text">Abel Tasman National Park was named after Dutch explorer Abel Tasman, first European to sight New Zealand (Golden Bay, 1642). Opened December 1942, exactly 300 years later. New Zealand's smallest national park; the Abel Tasman Coast Track is a Great Walk. Day trip option: bus from Nelson to Kaiteriteri, water taxi to Bark Bay or Torrent Bay, coastal walk back to Mārahau.</p>
+  </div>
+</div>
+
+<div class="region-panel" id="panel-t_kaka">
+  <p class="eyebrow">Tasman</p>
+  <h2 class="section-heading">Tákaka</h2>
+  <img src="locations_images/Takaka_hill.jpg" alt="Tákaka" class="pretty-pic">
+  <p class="body-text">A slow-paced town with a strong alternative-lifestyle community and good organic cafés. Gateway to Golden Bay and the northern entrance to Abel Tasman — quieter than the Mārahau end, though it still fills up over the Christmas–January peak.</p>
+  <div class="dark-card">
+    <p class="dark-card-label">Good to Know</p>
+    <p class="dark-card-text">Tākaka: Te reo Māori — bracken fern. Known for its alternative lifestyle community and organic cafes. Gateway to Golden Bay, Farewell Spit, Wharariki Beach, and the northern Abel Tasman entrance. The northern park entrance is generally less crowded than the Mārahau end.</p>
+  </div>
+</div>
+
+<div class="region-panel" id="panel-murchison">
+  <p class="eyebrow">Tasman</p>
+  <h2 class="section-heading">Murchison.</h2>
+  <p class="body-text">A stagecoach town turned rafting base, sitting on the Buller River. Hit hard by a major earthquake on 17 June 1929, which killed 17 and was felt nationwide — so violent people couldn't stand upright. Now a solid base for whitewater rafting on some of the South Island's best rivers.</p>
+  <div class="dark-card">
+    <p class="dark-card-label">Good to Know</p>
+    <p class="dark-card-text">Murchison takes its name from Mt Murchison, named after Scottish geologist Sir Roderick Murchison. On 17 June 1929 a major earthquake struck at 10:30 am, killing 17 and reducing much of the town to rubble — felt nationwide and so violent people could not stand upright. Today a base for Buller River whitewater rafting.</p>
+  </div>
+</div>
+
+<div class="region-panel" id="panel-inangahua_junction">
+  <p class="eyebrow">West Coast</p>
+  <h2 class="section-heading">Inangahua Junction</h2>
+  <p class="body-text">Junction of SH6 (Nelson–Westport) and SH7 (Reefton–Greymouth). The inland SH7 route saves time but misses the coastal scenery — worth staying on the coast road if you can spare it. Also whitebait country; look for the small shed-like stands along West Coast rivers and try a fritter at any local fish and chip shop when in season.</p>
+  <div class="dark-card">
+    <p class="dark-card-label">Good to Know</p>
+    <p class="dark-card-text">Inangahua Junction: blends te reo Māori — inanga (whitebait), hua (plenty) — with English 'junction'. Located at the intersection of SH 6 (Nelson to Westport) and SH 7 (Reefton to Greymouth). Inland SH 7 saves time but misses West Coast coastal scenery. Inanga is one of three Galaxiidae species collectively known as whitebait.</p>
+  </div>
+</div>
+
+<div class="region-panel" id="panel-westport">
+  <p class="eyebrow">West Coast</p>
+  <h2 class="section-heading">Westport.</h2>
+  <img src="locations_images/dennison_mine.jpg" alt="Westport." class="pretty-pic">
+  <p class="body-text">Founded almost by accident in 1861 after a Nelson storekeeper traced a gold payment back to the Buller River mouth. Gold never really came through, but coal did — by 1903 the port was shipping five million tonnes a year. Last town of any real size before the Heaphy Track, so stock up here.</p>
+  <div class="dark-card">
+    <p class="dark-card-label">Good to Know</p>
+    <p class="dark-card-text">Westport's origins trace to Nelson storekeeper Reuben Waite, who in 1861 chartered a vessel to deliver miners to the Buller River mouth after receiving gold as payment. Gold finds were modest but coal became the dominant industry, making Westport the South Island's coal capital. Small town at the northern end of spectacular West Coast coastal scenery.</p>
+  </div>
+</div>
+
+<div class="region-panel" id="panel-cape_foulwind">
+  <p class="eyebrow">West Coast</p>
+  <h2 class="section-heading">Cape Foulwind</h2>
+  <img src="locations_images/Cape_foulwind.jpg; Tauranga_bay.jpg" alt="Cape Foulwind" class="pretty-pic">
+  <p class="body-text">Collected three names across history — Tauranga (Māori, safe harbour), Clyppygen Hoek (Tasman's Dutch, Rocky Point), and Cape Foulwind (Cook's name, after getting caught in dangerous swirling winds here). A fur seal colony sits at the tip, reachable by a 40-minute walk from the lighthouse or a 5-minute walk from the Tauranga Bay carpark.</p>
+  <div class="dark-card">
+    <p class="dark-card-label">Good to Know</p>
+    <p class="dark-card-text">Cape Foulwind has had three names: Tauranga (Te reo Māori — safe harbour, where Māori sheltered canoes during seal hunting); Clyppygen Hoek (old Dutch — Rocky Point, Abel Tasman's name); Cape Foulwind (Cook's name, after dangerous swirling winds). A walkway from the road leads to the cape and seasonal NZ fur seal colony.</p>
+  </div>
+</div>
+
+<div class="region-panel" id="panel-charleston">
+  <p class="eyebrow">West Coast</p>
+  <h2 class="section-heading">Charleston</h2>
+  <p class="body-text">A near-vanished gold rush town that had 1,200 people within two months of founding in 1866, and 18,000 by 1869 — 80 hotels, three breweries, and imported 'dancing girls' from Australia under contracts requiring, among other things, good moral tone. Population today: around 80 in winter, 130 in summer.</p>
+  <div class="dark-card">
+    <p class="dark-card-label">Good to Know</p>
+    <p class="dark-card-text">Charleston was established 1866 and within two months had 1,200 residents during the West Coast gold rush. Captain Charles Bonner's courageous supply run through rough seas gave the town its name. At its peak had dozens of hotels. Today a quiet settlement surrounded by spectacular coastal scenery.</p>
+  </div>
+</div>
+
+<div class="region-panel" id="panel-paparoa_national_park">
+  <p class="eyebrow">West Coast</p>
+  <h2 class="section-heading">Paparoa National Park</h2>
+  <p class="body-text">Where mountains meet sea in a tight strip, packing an unusually wide range of ecosystems on limestone bedrock. Also the site of the 1995 Cave Creek tragedy, where a collapsed DOC viewing platform killed 14 people and led to a nationwide overhaul of public safety standards for outdoor structures — worth a quiet moment as you pass. North of Punakaiki, the Truman Track is a 7-minute walk to a dramatic limestone-framed bay (currents too strong for swimming, but worth the look).</p>
+  <div class="dark-card">
+    <p class="dark-card-label">Good to Know</p>
+    <p class="dark-card-text">Paparoa National Park sits where mountains meet the sea, with diverse ecosystems on limestone bedrock. The park is also the site of the Cave Creek tragedy (1995) in which 14 people died when a DOC walkway platform collapsed, prompting a major overhaul of public safety standards for NZ conservation infrastructure.</p>
+  </div>
+</div>
+
+<div class="region-panel" id="panel-punakaiki">
+  <p class="eyebrow">West Coast</p>
+  <h2 class="section-heading">Punakaiki</h2>
+  <img src="locations_images/punakaiki.jpg" alt="Punakaiki" class="pretty-pic">
+  <p class="body-text">Home of the Pancake Rocks — layered limestone formed over millions of years as softer clay eroded away, leaving the harder rock stacked exactly like pancakes. A blowhole at the centre fires seawater skyward on the right tide in heavy seas. Easy 20-minute loop walk from the road; check tide tables if you want the full blowhole show. Not really a town — stock up on groceries before you arrive.</p>
+  <div class="dark-card">
+    <p class="dark-card-label">Good to Know</p>
+    <p class="dark-card-text">Punakaiki: Te reo Māori — puna (spring), kaiki (misspelling of kaike, to lie in a heap). Home to the Pancake Rocks, the West Coast's most iconic feature. Formed through stylobedding — alternating hard and soft layers compressed 24–37 million years ago. Soft layers eroded to create the pancake appearance. Blowholes fire seawater skyward at high tide with swell. Free entry to coastal walkway.</p>
+  </div>
+</div>
+
+<div class="region-panel" id="panel-greymouth">
+  <p class="eyebrow">West Coast</p>
+  <h2 class="section-heading">Greymouth</h2>
+  <img src="locations_images/greymouth.jpg; grey_river.jpg; kumar.jpg" alt="Greymouth" class="pretty-pic">
+  <p class="body-text">Largest town on the West Coast, founded in 1865 during the gold rush and still a working town more than a tourist one. Western terminus of the TranzAlpine, one of the world's great rail journeys. Look out for The Barber — a cold wind funnelled off the mountains through the Grey River gap that catches you by surprise. Home to Monteith's Brewery (good value tour, worth pairing with the Railway Hotel barbecue package) and the starting point, at nearby Kumara, of the Coast to Coast multisport race across the width of the South Island.</p>
+  <div class="dark-card">
+    <p class="dark-card-label">Good to Know</p>
+    <p class="dark-card-text">Greymouth: named after Governor George Grey. Established 1865 during the West Coast gold rush. Stagecoach service to Christchurch via Arthur's Pass from 1866; Otira rail tunnel completed 1923. Largest West Coast town (population under 10,000). Western terminus for the TranzAlpine train — widely regarded as one of the world's great rail journeys.</p>
+  </div>
+</div>
+
+<div class="region-panel" id="panel-hokitika">
+  <p class="eyebrow">West Coast</p>
+  <h2 class="section-heading">Hokitika</h2>
+  <img src="locations_images/hokitika.jpg" alt="Hokitika" class="pretty-pic">
+  <p class="body-text">New Zealand's pounamu (greenstone/jade) capital — all the country's pounamu comes from the West Coast, and finding a piece up to fist-size on a beach yourself is legal, though deliberate prospecting isn't. Numerous galleries in town sell it, with traditional customs around blessing a taonga before wearing it. Hosts the Wildfoods Festival every March.</p>
+  <div class="dark-card">
+    <p class="dark-card-label">Good to Know</p>
+    <p class="dark-card-text">Hokitika: Te reo Māori — hoki (to return), tika (directly). New Zealand's pounamu (greenstone/jade) capital — all NZ pounamu originates from the West Coast. Jade forms under extreme tectonic pressure along plate collision zones (NZ, China, Canada, Russia, Japan). Numerous galleries and workshops offer pounamu viewing and purchase. Wildfoods Festival held annually in March.</p>
+  </div>
+</div>
+
+<div class="region-panel" id="panel-ross">
+  <p class="eyebrow">West Coast</p>
+  <h2 class="section-heading">Ross</h2>
+  <p class="body-text">Site of the largest gold nugget ever found in New Zealand — the 2,807g 'Honourable Roddy', discovered in the early 1900s, briefly used as a doorstop before being melted down (reportedly into a tea set for King George V's coronation) and lost to history. The i-SITE offers visitor gold panning, and pounamu carver Steve Maitland's studio across the road is worth a stop even if you're not buying.</p>
+  <div class="dark-card">
+    <p class="dark-card-label">Good to Know</p>
+    <p class="dark-card-text">Ross: named after George Arthur Ross, Canterbury Provincial Council treasurer (1860s). In the early 1900s New Zealand's largest gold nugget (2,807g), the Honourable Roddy, was discovered at nearby Jones Creek. Used as a doorstop before being purchased by the Government for King George V's 1911 coronation. Believed melted into a tea set and lost. The i-site offers visitor gold panning.</p>
+  </div>
+</div>
+
+<div class="region-panel" id="panel-harihari">
+  <p class="eyebrow">West Coast</p>
+  <h2 class="section-heading">Harihari</h2>
+  <p class="body-text">Landing site — if you can call it that — of the first solo trans-Tasman flight, when Australian aviator Guy Menzies mistook a swamp for a paddock in 1931 and cartwheeled his plane, walking away unhurt. A mural on the local rugby grandstand marks the event. Menzies later died when shot down over Italy in WWII.</p>
+  <div class="dark-card">
+    <p class="dark-card-label">Good to Know</p>
+    <p class="dark-card-text">Harihari: Te reo Māori — a song encouraging collective effort. In 1931 Australian aviator Guy Lampdon Menzies completed the first solo trans-Tasman flight (Sydney to NZ) in 11 hours 45 minutes. His landing failed — a chosen field was a swamp, cartwheeling the plane. Menzies was uninjured. A mural on the local rugby grandstand marks the event.</p>
+  </div>
+</div>
+
+<div class="region-panel" id="panel-whataroa">
+  <p class="eyebrow">West Coast</p>
+  <h2 class="section-heading">Whataroa</h2>
+  <p class="body-text">Access point for Okarito, home to the critically endangered Rowi kiwi and the only regular nesting site in New Zealand for the kōtuku (white heron), from September to November. Guided nesting tours run from Whataroa during that window.</p>
+  <div class="dark-card">
+    <p class="dark-card-label">Good to Know</p>
+    <p class="dark-card-text">Whataroa: Te reo Māori — whata (storehouse), roa (long). Access point for Okarito, home to the Okarito Kiwi (Rowi), the rarest kiwi species. The Kōtuku (white heron) nests annually at the Waitangiroto Nature Reserve — the only regular NZ nesting site. Guided tours available September to November.</p>
+  </div>
+</div>
+
+<div class="region-panel" id="panel-franz_josef_glacier">
+  <p class="eyebrow">West Coast</p>
+  <h2 class="section-heading">Franz Josef Glacier</h2>
+  <img src="locations_images/franz_josef.jpg; glacier_blue_ice.JPG; glacier_blue_ice.JPG" alt="Franz Josef Glacier" class="pretty-pic">
+  <p class="body-text">One of the world's most accessible glaciers, dropping from 2,700m almost to sea level through rainforest. Briefly renamed Prince Albert Glacier after Queen Victoria's consort, until it turned out to be bigger than the nearby 'Queen Victoria Glacier' — an awkward look that got both names reverted. Don't go past the barriers without a guide; both this glacier and Fox move fast and are genuinely dangerous. Options range from affordable half-day walks on the lower ice to full-day hikes, ice climbing, and heli-hikes onto clean blue ice — book ahead in summer.</p>
+  <div class="dark-card">
+    <p class="dark-card-label">Good to Know</p>
+    <p class="dark-card-text">Franz Josef Glacier: named 1865 by Julius von Haast after Austrian Emperor Franz Josef. Previously named Prince Albert Glacier; renamed when the size comparison with the Queen Victoria Glacier proved diplomatically awkward. One of the world's most accessible glaciers, descending from 2,700m to near sea level through rainforest. Guided glacier walks and helicopter tours available. Layered clothing is essential; boots, socks, and crampons are provided.</p>
+  </div>
+</div>
+
+<div class="region-panel" id="panel-fox_glacier">
+  <p class="eyebrow">West Coast</p>
+  <h2 class="section-heading">Fox Glacier</h2>
+  <img src="locations_images/lake_mathesion.jpg; lake_mathesion_2.jpg; SH6a.jpg" alt="Fox Glacier" class="pretty-pic">
+  <p class="body-text">Smaller and quieter than Franz Josef up the road, with the same range of guided walks, ice climbing and heli-hike options. The real draw nearby is Lake Matheson — New Zealand's most photographed lake — a 40-minute return walk to a viewing platform where calm mornings or evenings produce mirror reflections of Aoraki/Mt Cook and Mt Tasman. Go early or late for the best light and to beat the tour buses.</p>
+  <div class="dark-card">
+    <p class="dark-card-label">Good to Know</p>
+    <p class="dark-card-text">Fox Glacier: renamed 1872 after NZ Premier William Fox. Smaller and less visited than Franz Josef; same guided walk and helicopter options. Nearby Lake Matheson is New Zealand's most photographed lake, offering mirror reflections of Aoraki/Mt Cook and Mt Tasman on calm mornings. 40-minute return walk to the viewing platform. Best visited early.</p>
+  </div>
+</div>
+
+<div class="region-panel" id="panel-haast">
+  <p class="eyebrow">West Coast</p>
+  <h2 class="section-heading">Haast</h2>
+  <img src="locations_images/Haast.jpg; haast_pass.jpg; Pleasent_Flat.jpg" alt="Haast" class="pretty-pic">
+  <p class="body-text">Southernmost settlement on the West Coast, named after geologist Julius von Haast, who claimed to be first across the pass — he wasn't, arriving weeks after prospector Charles Cameron in 1863, and centuries after Māori first used the route for pounamu trade. Haast Pass is the lowest and southernmost of the Southern Alps crossings at 562m. A former venison export port from the 1930s to the late 1980s.</p>
+  <div class="dark-card">
+    <p class="dark-card-label">Good to Know</p>
+    <p class="dark-card-text">Haast: named by Julius von Haast, who falsely claimed to be the first European to cross the pass. Māori used the route for centuries. Surveyor JH Baker discovered the pass in 1861 but did not cross; prospector Charles Cameron crossed it in 1863, weeks before Von Haast. The Haast Pass (562m) is the southernmost road crossing of the Southern Alps.</p>
+  </div>
+</div>
+
+<div class="region-panel" id="panel-makarora">
+  <p class="eyebrow">Lakes District (Otago)</p>
+  <h2 class="section-heading">Makarora</h2>
+  <img src="locations_images/Makaroa.jpg; makaroa_High_country_heli.jpg; siberia_experience.jpg" alt="Makarora" class="pretty-pic">
+  <p class="body-text">Eastern gateway to the Haast Pass, and a former base for deer cullers from the 1930s-80s — a wild chapter of NZ history involving gunship-style helicopter hunting, jet boats built for centimetres of water, and around three million deer culled between 1932 and 1954 before the industry shifted to live capture for farming. Wilkin River Jet Boats' Siberia Experience (flight, walk, jet boat) is a genuine highlight if you have the time and budget.</p>
+  <div class="dark-card">
+    <p class="dark-card-label">Good to Know</p>
+    <p class="dark-card-text">Makarora: South Island dialect — maka (stream), rora (spread out). Eastern entry to the Haast Pass in a glacially formed valley. Government deer cullers based here 1930s–1980s. Deer introduced from 1851 proliferated without predators; the shift from aerial deer culling to live capture for farming transformed the backcountry economy.</p>
+  </div>
+</div>
+
+<div class="region-panel" id="panel-hawea">
+  <p class="eyebrow">Lakes District (Otago)</p>
+  <h2 class="section-heading">Hawea</h2>
+  <img src="locations_images/lake_hawea2.jpg; lake_hawea1.jpg" alt="Hawea" class="pretty-pic">
+  <p class="body-text">On the southern shore of Lake Hāwea, a glacially carved lake formed alongside Lake Wānaka by two meeting glaciers — the ice at the dividing point, now called the Neck, was around 1,000m thick. Good trout and salmon fishing where the Clutha River exits the lake. The lake level was raised 8 metres in 1958 for the Roxburgh power station downstream.</p>
+  <div class="dark-card">
+    <p class="dark-card-label">Good to Know</p>
+    <p class="dark-card-text">Hāwea: the name derives from a Waitaha sub-tribe, among the earliest South Island inhabitants. Situated on the southern shores of Lake Hāwea, a glacially formed lake. Lake Hāwea and Lake Wānaka were shaped by two glaciers meeting at the Neck — the high point between the two valleys. The Clutha River exiting near town supports brown trout and salmon fishing.</p>
+  </div>
+</div>
+
+<div class="region-panel" id="panel-wanaka">
+  <p class="eyebrow">Lakes District (Otago)</p>
+  <h2 class="section-heading">Wanaka</h2>
+  <img src="locations_images/wanaka_tree.jpg; lake_wanaka.jpg" alt="Wanaka" class="pretty-pic">
+  <p class="body-text">Quieter alternative to Queenstown over the Crown Range, with lake activities, Mt Aspiring National Park access, and ski fields (Treble Cone, Cardrona) nearby — book accommodation well ahead for peak summer and winter periods. Every second Easter hosts Warbirds Over Wānaka, a major airshow. Puzzling World's illusion rooms and outdoor maze are worth an hour, and Mt Aspiring National Park to the northwest is New Zealand's third largest, home to the Routeburn, Greenstone and Caples tracks.</p>
+  <div class="dark-card">
+    <p class="dark-card-label">Good to Know</p>
+    <p class="dark-card-text">Wānaka: believed a mistranslation of Wānanga (sacred knowledge). Māori on seasonal West Coast journeys are thought to have stopped here to teach children tribal skills. Popular tourist resort with lake activities, Mt Aspiring National Park, Rob Roy Glacier (summer), and ski fields (winter). Quieter than Queenstown but accommodation fills quickly during peak periods — advance booking essential.</p>
+  </div>
+</div>
+
+<div class="region-panel" id="panel-crown_range">
+  <p class="eyebrow">Lakes District (Otago)</p>
+  <h2 class="section-heading">Crown Range</h2>
+  <img src="locations_images/crown_range.jpg" alt="Crown Range" class="pretty-pic">
+  <p class="body-text">New Zealand's highest sealed road, connecting Wānaka and Queenstown via the Cardrona Valley with genuinely spectacular ridge-top views — allow extra time for the switchbacks. The historic Cardrona Hotel down in the valley, made famous by Speight's advertising, is worth a stop for a drink. The road up to Cardrona Ski Farm hosts the Race to the Sky hillclimb, where rally legend Possum Bourne was killed in 2003. Watch for low-flying planes on the descent — it's a Queenstown Airport approach path.</p>
+  <div class="dark-card">
+    <p class="dark-card-label">Good to Know</p>
+    <p class="dark-card-text">Crown Range: connects Wānaka and Queenstown via the Cardrona Valley and New Zealand's highest sealed road. Home to the historic Cardrona Hotel (Speights beer advertising fame) and Cardrona ski field. Ridge offers panoramic Queenstown Lakes views. The descent has steep switchbacks — allow extra time.</p>
+  </div>
+</div>
+
+<div class="region-panel" id="panel-cromwell">
+  <p class="eyebrow">Lakes District (Otago)</p>
+  <h2 class="section-heading">Cromwell</h2>
+  <img src="locations_images/cromwell.jpg" alt="Cromwell" class="pretty-pic">
+  <p class="body-text">The town you see isn't the original — that one sits at the bottom of Lake Dunstan, flooded when the Clyde Dam was completed as part of the 1970s Think Big energy programme. The town was relocated to higher ground before the valley filled in 1992. Now known for stone fruit — cherries, peaches, nectarines, apricots — grown in Central Otago's hot, dry climate, with stunning autumn colours through the orchards.</p>
+  <div class="dark-card">
+    <p class="dark-card-label">Good to Know</p>
+    <p class="dark-card-text">Cromwell: named after Oliver Cromwell. The current town is rebuilt — the original was submerged when Lake Dunstan was created by the Clyde Dam (completed 1993, part of 1970s Think Big energy programme). Residents and heritage buildings were relocated before flooding. Renowned for stone fruit orchards (cherries, peaches, nectarines, apricots) in the hot dry Central Otago climate.</p>
+  </div>
+</div>
+
+<div class="region-panel" id="panel-queenstown">
+  <p class="eyebrow">Lakes District (Otago)</p>
+  <h2 class="section-heading">Queenstown</h2>
+  <img src="locations_images/gibbson_valley.jpg; shotover.JPG; earnslaw_dock.jpg; remarkables.jpg; ledgesc.jpg" alt="Queenstown" class="pretty-pic">
+  <p class="body-text">New Zealand's adventure tourism capital, on the shores of Lake Wakatipu — population swings from 10,000 off-season to 30,000-plus at peak. No free camping anywhere in the district; it's actively patrolled and fined. Birthplace of commercial bungy jumping (AJ Hackett, Kawarau River), with five ski fields (Coronet Peak, The Remarkables, Cardrona, Cardrona Ski Farm, Treble Cone) accessible by shuttle in winter. Book Milford and Doubtful Sound as guided bus trips rather than self-driving — the roads deserve full attention and the scenery deserves yours.</p>
+  <div class="dark-card">
+    <p class="dark-card-label">Good to Know</p>
+    <p class="dark-card-text">Queenstown: declared 'fit for a queen' by early gold prospectors. On the shores of Lake Wakatipu, population 10,000 (off-season) to 30,000+ (peak). NO free camping in the Queenstown district — actively patrolled with fines. New Zealand's adventure tourism capital: bungy jumping, jet boating, skiing, skydiving, paragliding, whitewater rafting. Advance booking strongly recommended.</p>
+  </div>
+</div>
+
+<div class="region-panel" id="panel-bennets_bluff">
+  <p class="eyebrow">Lakes District (Otago)</p>
+  <h2 class="section-heading">Bennets Bluff</h2>
+  <img src="locations_images/Bennet_bluff.jpg; Bennets_Bluff.JPG; GY_road.JPG" alt="Bennets Bluff" class="pretty-pic">
+  <p class="body-text">Bennett's Bluff: a roadside pull-off on the Glenorchy road with sweeping views up Lake Wakatipu towards Glenorchy on clear days.</p>
+  <div class="dark-card">
+    <p class="dark-card-label">Good to Know</p>
+    <p class="dark-card-text">Bennett's Bluff: a roadside pull-off on the Glenorchy road with sweeping views up Lake Wakatipu towards Glenorchy on clear days.</p>
+  </div>
+</div>
+
+<div class="region-panel" id="panel-glenorchy">
+  <p class="eyebrow">Lakes District (Otago)</p>
+  <h2 class="section-heading">Glenorchy</h2>
+  <img src="locations_images/GY_Races.jpg" alt="Glenorchy" class="pretty-pic">
+  <p class="body-text">45 minutes from Queenstown at the head of Lake Wakatipu, surrounded by mountains that have played Middle Earth (Fellowship of the Ring) and K2 (Vertical Limit) on screen — Bennett's Bluff on the way in is worth a two-minute stop for the view. Base for Dart River jet boat safaris, Rees Valley horse trekking, and the Routeburn Track (3-4 days one-way, arrange transport out) and Greenstone/Caples loop (3-4 days, returns to Kinloch).</p>
+  <div class="dark-card">
+    <p class="dark-card-label">Good to Know</p>
+    <p class="dark-card-text">Glenorchy sits at the head of Lake Wakatipu, approximately 45 minutes west of Queenstown. The mountain landscape has featured in Lord of the Rings, Willow, Vertical Limit, and many car commercials. Bennett's Bluff on the Queenstown–Glenorchy road offers an accessible spectacular viewpoint of the Thomson and Humboldt Ranges.</p>
+  </div>
+</div>
+
+<div class="region-panel" id="panel-kingston">
+  <p class="eyebrow">Lakes District (Otago)</p>
+  <h2 class="section-heading">Kingston</h2>
+  <img src="locations_images/kingston.jpg" alt="Kingston" class="pretty-pic">
+  <p class="body-text">Home to the Kingston Flyer, one of New Zealand's last working steam locomotives, which once teamed up with the TSS Earnslaw to move people and freight between Invercargill and Queenstown. Now runs a short 14km tourist excursion south of town — made famous nationally through a long-running 1980s Cadbury TV ad.</p>
+  <div class="dark-card">
+    <p class="dark-card-label">Good to Know</p>
+    <p class="dark-card-text">Kingston is home to the Kingston Flyer, one of New Zealand's last surviving steam locomotives. Originally worked with TSS Earnslaw to transport passengers and goods from Invercargill to Queenstown. Now runs tourist excursions on a short track south of Kingston. Made famous through a long-running 1980s Cadbury chocolate TV commercial.</p>
+  </div>
+</div>
+
+<div class="region-panel" id="panel-mossburn">
+  <p class="eyebrow">Southland</p>
+  <h2 class="section-heading">Mossburn.</h2>
+  <img src="locations_images/mossburn.jpg" alt="Mossburn." class="pretty-pic">
+  <p class="body-text">Self-proclaimed Deer Capital of New Zealand, backed up by the deer farms visible across the surrounding hills. The industry took off almost overnight in the early 1970s as helicopters shifted from culling wild deer to live-capturing them for farms — by the 1990s, 1.8 million farmed deer across 5,200 properties were producing 30,000 tonnes of venison a year.</p>
+  <div class="dark-card">
+    <p class="dark-card-label">Good to Know</p>
+    <p class="dark-card-text">Mossburn: self-proclaimed Deer Capital of New Zealand due to the high concentration of local deer farms. Deer farming began in the early 1970s as sheep stations converted. Helicopters shifted from wild deer culling to live capture for farms. By the 1990s approximately 1.8 million deer across 5,200 properties produced around 30,000 tonnes of venison annually.</p>
+  </div>
+</div>
+
+<div class="region-panel" id="panel-fiordland_national_park">
+  <p class="eyebrow">Southland</p>
+  <h2 class="section-heading">Fiordland National Park</h2>
+  <img src="locations_images/Top_Bowen_falls.jpg; Doubtful Sound.JPG" alt="Fiordland National Park" class="pretty-pic">
+  <p class="body-text">New Zealand's largest national park, carved by glaciers 10,000-15,000 years ago and flooded by the sea as they retreated — Milford Sound is technically a fiord, not a sound, but the name has stuck. Milford makes a full-day trip from Te Anau; take a bus tour rather than self-driving, since the road demands full attention and a scenic flight back is a good option. Doubtful Sound is better done as an overnight trip via Lake Manapouri. The Milford Track (4 days, book up to a year ahead through Ultimate Hikes) is New Zealand's most famous walk. Home to the takahē, rediscovered here in 1948 after 50 years presumed extinct, and to the kākāpō recovery search.</p>
+  <div class="dark-card">
+    <p class="dark-card-label">Good to Know</p>
+    <p class="dark-card-text">Fiordland National Park is New Zealand's largest (1,251,924 hectares) and one of the world's largest. The fiords were carved by glaciers during the last ice age (10,000–15,000 years ago); rising sea levels flooded the valleys to create the inlets. Milford Sound is technically a fiord, not a sound. UNESCO World Heritage Site.</p>
+  </div>
+</div>
+
+<div class="region-panel" id="panel-te_anau">
+  <p class="eyebrow">Southland</p>
+  <h2 class="section-heading">Te Anau</h2>
+  <p class="body-text">On New Zealand's second largest lake, with three fiord-like arms reaching into the Murchison Mountains. Main base for Milford Sound, Doubtful Sound, and the Milford Track. Before heading into the park, the 32-minute Ata Whenua — Shadowlands film at the local cinema is a genuinely good introduction, filmed over five years by helicopter, jet boat and on foot.</p>
+  <div class="dark-card">
+    <p class="dark-card-label">Good to Know</p>
+    <p class="dark-card-text">Te Anau: Te reo Māori — disputed; most likely named after a chief's daughter. Other meanings: lake of many arms, water current in cave, to move as reeds. A town of approximately 1,800 on New Zealand's second largest lake (344km², 417m deep). Three fiord-like arms extend west into the Murchison Mountains. Primary base for Milford Sound and Doubtful Sound trips.</p>
+  </div>
+</div>
+
+<div class="region-panel" id="panel-manapouri">
+  <p class="eyebrow">Southland</p>
+  <h2 class="section-heading">Manapouri</h2>
+  <p class="body-text">One of New Zealand's most beautiful lakes, and the unlikely site of the country's largest hydroelectric station. A 1960s plan to raise the lake 11 metres for power generation sparked one of New Zealand's first major environmental protests — the redesign that followed instead tunnels water 213 metres down through the mountains to turbines hidden in solid rock, entirely invisible from the lake surface. Most of the power feeds the Tiwai Point aluminium smelter. Small township (population ~240) and starting point for Doubtful Sound trips.</p>
+  <div class="dark-card">
+    <p class="dark-card-label">Good to Know</p>
+    <p class="dark-card-text">Manapouri: shortened from Manawapopore — manawa (heart), popore (sorrowful). Original name Moturau (many islands). Considered one of New Zealand's most beautiful lakes. Beneath the western mountains lies New Zealand's largest hydroelectric power station, powering the Tiwai Point aluminium smelter. 1960s plans to raise the lake level sparked one of New Zealand's first major environmental protest campaigns.</p>
+  </div>
+</div>
+
+<div class="region-panel" id="panel-doubtful_sound">
+  <p class="eyebrow">Southland</p>
+  <h2 class="section-heading">Doubtful Sound</h2>
+  <img src="locations_images/doubtful_sound_BW; Doubtful Sound.JPG" alt="Doubtful Sound" class="pretty-pic">
+  <p class="body-text">Named by Cook in 1769, who wasn't confident he could sail back out against the wind and gave the fiord a wide berth. Quieter and more remote than Milford — access is by ferry across Lake Manapouri and bus down a narrow gravel road to Deep Cove, deliberately restricted, which keeps crowds down. Weather changes fast; four seasons in a day is a realistic expectation, not an exaggeration.</p>
+  <div class="dark-card">
+    <p class="dark-card-label">Good to Know</p>
+    <p class="dark-card-text">Doubtful Sound: named by Captain Cook in 1769 when he passed the entrance but was uncertain he could get winds to exit — he described it as 'a very snug harbour.' Less visited than Milford Sound and considered by many more dramatic. Access via ferry across Lake Manapouri and bus to Deep Cove. Day trips and overnight cruises operate from Deep Cove wharf.</p>
+  </div>
+</div>
+
+<div class="region-panel" id="panel-lumsden">
+  <p class="eyebrow">Southland</p>
+  <h2 class="section-heading">Lumsden</h2>
+  <p class="body-text">Once the central rail junction for the whole southern region (1878-1979), with four lines radiating to Invercargill, Gore, Mossburn and Kingston. The old railway station is now the information centre — rail is long gone, and today the town is simply a useful road junction heading south.</p>
+  <div class="dark-card">
+    <p class="dark-card-label">Good to Know</p>
+    <p class="dark-card-text">Lumsden: originally named Elbow (bend in the Ōreti River), renamed after former Invercargill mayor George Lumsden. A historic rail junction from 1878 to 1979, with four lines serving Invercargill, Gore, Mossburn, and Kingston. The former railway station is now the information centre.</p>
+  </div>
+</div>
+
+<div class="region-panel" id="panel-winton">
+  <p class="eyebrow">Southland</p>
+  <h2 class="section-heading">Winton</h2>
+  <p class="body-text">Commercial centre of a wealthy farming district, but better known as the home of Minnie Dean, the only woman ever hanged in New Zealand. Convicted of infanticide after running an informal baby-adoption business from her home, she was executed in 1895 and is buried in Winton — her grave went unmarked until 2009.</p>
+  <div class="dark-card">
+    <p class="dark-card-label">Good to Know</p>
+    <p class="dark-card-text">Winton: named after Thomas Winton, who helped survey the town in 1862. Commercial centre of a wealthy farming district. Also known as the home of Minnie Dean (Williamina Dean), the first and only woman hanged in New Zealand (1895). A Scottish immigrant who operated as a baby farmer before being convicted of murder.</p>
+  </div>
+</div>
+
+<div class="region-panel" id="panel-invercargill">
+  <p class="eyebrow">Southland</p>
+  <h2 class="section-heading">Invercargill</h2>
+  <img src="locations_images/offerings_to_the_gods_of_speed.jpg; invercargill_chain.jpg; burt_special.jpg" alt="Invercargill" class="pretty-pic">
+  <p class="body-text">New Zealand's southernmost city, founded in 1856 to import Australian livestock through the port at Bluff. Home to New Zealand's only indoor velodrome and its only fees-free polytechnic (SIT). Nearby Bluff has the famous Bluff oyster and marks the southernmost point of mainland New Zealand — the windswept signpost there is one of the country's most photographed spots. Also home town of Burt Munro, who spent 20-plus years in his shed converting a 1920 Indian motorcycle into a 288km/h land-speed record holder at age 68 — the story behind The World's Fastest Indian.</p>
+  <div class="dark-card">
+    <p class="dark-card-label">Good to Know</p>
+    <p class="dark-card-text">Invercargill: Scottish Gaelic inver (river mouth) + Cargill (Captain William Cargill, Dunedin co-founder). Established 1856 to provide a southern port for importing Australian livestock. New Zealand's southernmost city on a wide grid across fertile Southland plains. Notable for Scottish heritage, Bluff oysters, and Burt Munro (world speed record on a 1920 Indian motorcycle, celebrated in The World's Fastest Indian).</p>
+  </div>
+</div>
+
+<div class="region-panel" id="panel-stewart_island_rakiura">
+  <p class="eyebrow">Southland</p>
+  <h2 class="section-heading">Stewart Island/Rakiura</h2>
+  <img src="locations_images/kaka.jpg; Obahn.jpg; SI_Chain.jpg" alt="Stewart Island/Rakiura" class="pretty-pic">
+  <p class="body-text">New Zealand's southernmost main island, reached by ferry from Bluff or light aircraft from Invercargill. Most of the island is DOC reserve and one of the best places in the country to see a kiwi in the wild — ask at the Oban information centre about tours. Ulva Island, a short ferry and walk away, has been predator-free since 1997 and the birdsong shows it.</p>
+  <div class="dark-card">
+    <p class="dark-card-label">Good to Know</p>
+    <p class="dark-card-text">Stewart Island/Rakiura: named after William Stewart, first officer of the sealing ship Pegasus (1809). Rakiura: Te reo Māori — raki (sky), ura (glowing) — the island's exceptional sunsets and frequent Southern Lights. Small permanent population in Oban. Most of the island is DOC reserve, recognised as one of the best places in NZ to encounter native wildlife.</p>
+  </div>
+</div>
+
+<div class="region-panel" id="panel-catlins_forest_coast">
+  <p class="eyebrow">Southland</p>
+  <h2 class="section-heading">Catlins Forest Coast</h2>
+  <img src="locations_images/Catlins.jpg" alt="Catlins Forest Coast" class="pretty-pic">
+  <p class="body-text">A slow, scenic coastal route from Invercargill to Balclutha through native forest and rugged coastline — Nugget Point, Cathedral Caves, Slope Point, waterfalls and big cold surf breaks. Worth doing properly with an overnight stop if you have the time; if you're pressed for time, take SH1 through Gore instead, since the narrow, twisting Catlins road punishes rushing.</p>
+  <div class="dark-card">
+    <p class="dark-card-label">Good to Know</p>
+    <p class="dark-card-text">The Catlins: a coastal route from Invercargill to Balclutha through Catlins Forest along the rugged southeast coast. Notable features: Nugget Point Lighthouse, Cathedral Caves, Slope Point (southernmost South Island mainland point), waterfalls, sea stacks, and beaches. Wildlife: NZ sea lions, fur seals, yellow-eyed penguins, Hector's dolphins. Best explored slowly with overnight camping stops.</p>
+  </div>
+</div>
+
+<div class="region-panel" id="panel-milford_sound_self_drive_day_trip">
+  <p class="eyebrow">Southland</p>
+  <h2 class="section-heading">Milford Sound (self drive day trip)</h2>
+  <p class="body-text">This can be a challenging road to drive, especially if you are wanting too see the landscape as you drive. While there is many rewarding views, it is a road that has many near and not so near misses as drivers are distracted by what is around them.</p>
+  <p class="body-text">I recommend taking a bus from either Queenstown or Te Anau.</p>
+  <p class="body-text">If you do choose to drive yourself, allow a minimum of three hours' driving from Te Anau, and be aware of the many tourbuses that run the route especially aiming to arrive for the early afternoon sailings at the fiord. Winter driving conditions can be treacherous so pay close attention to road warnings and signage.</p>
+  <div class="dark-card">
+    <p class="dark-card-label">Good to Know</p>
+    <p class="dark-card-text">Milford Sound receives approximately seven metres of rain annually. Allow a minimum of three hours driving from Te Anau. Obey all road signage strictly — Road Closed in winter is enforced. Be aware of tour bus traffic with ferry deadlines. Permanent waterfalls: Lady Bowen and Stirling Falls. After heavy rain, hundreds of temporary waterfalls appear. Kipling called it the eighth wonder of the world.</p>
+  </div>
+</div>
+
+<div class="region-panel" id="panel-balclutha">
+  <p class="eyebrow">Otago</p>
+  <h2 class="section-heading">Balclutha</h2>
+  <p class="body-text">Economic hub for rural southern Otago, home to Fonterra and Silver Fern Farms processing plants. Northern gateway to the Catlins Coast. The heritage-listed five-arch bridge over the Clutha River, built 1933, is the defining local landmark.</p>
+  <div class="dark-card">
+    <p class="dark-card-label">Good to Know</p>
+    <p class="dark-card-text">Balclutha: Scottish Gaelic — town on the Clyde (correctly Baile Chluaidh). Economic hub for southern Otago with Fonterra and Silver Fern Farms processing sites. The five-arched heritage bridge (244m, built 1933) carrying SH 1 over the Clutha River is the town's landmark. Northern gateway to the Catlins Coast.</p>
+  </div>
+</div>
+
+<div class="region-panel" id="panel-dunedin">
+  <p class="eyebrow">Otago</p>
+  <h2 class="section-heading">Dunedin</h2>
+  <img src="locations_images/YEPenguin.jpg ; albatross.jpg; albatross_chick.jpg; albatross2.jpg; kekeno.jpg; sea_lion.jpg; sea_lions.jpg; george_st.jpg" alt="Dunedin" class="pretty-pic">
+  <p class="body-text">A city built on Scottish identity — named after Edinburgh's old Gaelic name — with a strong University of Otago student population (locally 'Scarfies') and grey stone architecture from its gold rush and Victorian heyday. Highlights: Baldwin Street, the second-steepest street in the world and site of the annual Cadbury Jaffa Race; a Cadbury World tour, the only one outside the UK; and the Otago Peninsula, home to the only mainland royal albatross colony in the world plus yellow-eyed penguins and NZ sea lions. Larnach Castle is better described as a grand Victorian house — no moat, no walls, but worth the visit anyway.</p>
+  <div class="dark-card">
+    <p class="dark-card-label">Good to Know</p>
+    <p class="dark-card-text">Dunedin: Scottish Gaelic ancient name for Edinburgh. Named 1845 by Scottish founders who considered New Edinburgh. Grey stone architecture reflects gold rush and Scottish heritage. University of Otago (New Zealand's oldest university) gives strong academic character. The Otago Peninsula hosts the world's only mainland royal albatross colony, yellow-eyed penguins, and NZ sea lions.</p>
+  </div>
+</div>
+
+<div class="region-panel" id="panel-moeraki">
+  <p class="eyebrow">Otago</p>
+  <h2 class="section-heading">Moeraki</h2>
+  <img src="locations_images/moeraki.jpg" alt="Moeraki" class="pretty-pic">
+  <p class="body-text">Home to the Moeraki Boulders — 60-million-year-old limestone concretions up to 2 metres across, scattered on Koekohe Beach as the softer surrounding mudstone erodes away. Often mistaken for fossilised dinosaur droppings; they're not. Please don't climb on them — they're slowly eroding themselves. The beachside café is a good stop for fresh local seafood.</p>
+  <div class="dark-card">
+    <p class="dark-card-label">Good to Know</p>
+    <p class="dark-card-text">Moeraki: Te reo Māori — moe (to sleep), raki (day or sky) — to sleep during the day. Famous for the Moeraki Boulders — 60-million-year-old limestone concretions up to 2 metres in diameter on Koekohe Beach. Formed on the ancient sea floor as calcium carbonate accumulated around organic fragments. Surrounding mudstone has eroded to expose them. Short walk from roadside carpark.</p>
+  </div>
+</div>
+
+<div class="region-panel" id="panel-oamaru">
+  <p class="eyebrow">Otago</p>
+  <h2 class="section-heading">Oamaru</h2>
+  <img src="locations_images/Omaru.jpg" alt="Oamaru" class="pretty-pic">
+  <p class="body-text">A town of quiet surprises: a blue penguin colony (night tours are best, timed to the birds returning at dusk), a Victorian limestone precinct built from locally quarried 'Oamaru Stone' (soft enough to saw when first cut, hardening once exposed to air), and the Totara Estate, source of the sheep on board the Dunedin's 1882 voyage — the first successful refrigerated shipment of frozen meat from New Zealand to London, and a turning point for the whole agricultural economy.</p>
+  <div class="dark-card">
+    <p class="dark-card-label">Good to Know</p>
+    <p class="dark-card-text">Oamaru: Te reo Māori — O (place of), maru (an unnamed person). A quiet coastal town with a blue penguin colony (Eudyptula minor). Day and night tours available; evening tours recommended as birds return at dusk. Tour structured around an active monitoring programme. Victorian limestone precinct and steampunk culture add distinctive character.</p>
+  </div>
+</div>
+
+<div class="region-panel" id="panel-waitaki_valley">
+  <p class="eyebrow">Otago</p>
+  <h2 class="section-heading">Waitaki Valley</h2>
+  <img src="locations_images/maori_paintings.jpg" alt="Waitaki Valley" class="pretty-pic">
+  <p class="body-text">Defined by the Waitaki hydroelectric scheme — three major dams (Waitaki, Aviemore, Benmore) plus five smaller ones producing nearly 8,000 gigawatt hours between them. Benmore is New Zealand's largest earth-filled dam and second-largest power station after Manapouri. Near Duntroon, look for early 19th-century Māori rock art marking the seasonal route South Island Māori once followed between the coasts. Worth the detour rather than shortcutting up the coast — the Mackenzie Country scenery ahead more than repays the extra time.</p>
+  <div class="dark-card">
+    <p class="dark-card-label">Good to Know</p>
+    <p class="dark-card-text">Waitaki Valley: Te reo Māori — wai (water), taki (noisy) — the river in full flood moved boulders audibly before it was visible. The valley is defined by the Waitaki hydroelectric scheme. Surrounding landscape of braided flats, tussock hills, and Southern Alps peaks is spectacular.</p>
+  </div>
+</div>
+
+<div class="region-panel" id="panel-omaramara">
+  <p class="eyebrow">Otago</p>
+  <h2 class="section-heading">Omaramara</h2>
+  <p class="body-text">A flat, mountain-ringed basin that produces near-perfect gliding conditions — hosted the 2007 World Grand Prix Gliding Championships. Tandem flights are available through the local club if you want to ride the thermals yourself.</p>
+  <div class="dark-card">
+    <p class="dark-card-label">Good to Know</p>
+    <p class="dark-card-text">Ōmārama: Te reo Māori — O (place of), marama (light) — moonlight reflecting off the alps created the illusion of light at the valley's end. The flat mountain-ringed basin produces excellent thermals for gliding. World Grand Prix Gliding Championship held here 2007. Tandem glider flights available.</p>
+  </div>
+</div>
+
+<div class="region-panel" id="panel-mackenzie_country">
+  <p class="eyebrow">Canterbury</p>
+  <h2 class="section-heading">Mackenzie Country</h2>
+  <img src="locations_images/mckenzie_country.jpg" alt="Mackenzie Country" class="pretty-pic">
+  <p class="body-text">Named after James Mackenzie, a Scotsman convicted of sheep rustling in 1855 with the help of a legendary Gaelic-only sheepdog named Friday — he escaped custody three times before being pardoned and vanishing; Friday, deemed too clever to be a normal dog, was hanged by suspicious locals. The name has since expanded to cover this whole vast, windswept high-country basin of tussock and braided rivers, one of the most distinctive landscapes in New Zealand.</p>
+  <div class="dark-card">
+    <p class="dark-card-label">Good to Know</p>
+    <p class="dark-card-text">Mackenzie Country: named after James Mackenzie, a Scottish settler accused in 1855 of stealing 1,000 sheep. He allegedly used his extraordinarily trained Gaelic-only sheepdog Friday. Convicted but escaped prison three times before pardon. The vast high-altitude tussock landscape named after him is one of New Zealand's most distinctive.</p>
+  </div>
+</div>
+
+<div class="region-panel" id="panel-twizel">
+  <p class="eyebrow">Canterbury</p>
+  <h2 class="section-heading">Twizel</h2>
+  <p class="body-text">Built in the 1960s as a temporary construction camp for the Waitaki Power Scheme, and saved from planned demolition by residents who fought to keep the town after the project finished. Now a comfortable base for the Mackenzie Country, with salmon farming in the nearby canal system.</p>
+  <div class="dark-card">
+    <p class="dark-card-label">Good to Know</p>
+    <p class="dark-card-text">Twizel: named by surveyor JT Thomson after a Northumberland bridge near the Battle of Flodden site (1513). Built as a temporary construction camp for the Waitaki Power Scheme (1960s); saved from planned demolition by local residents. Now a base for exploring the Mackenzie Country and near salmon farming operations in the Waitaki canal system.</p>
+  </div>
+</div>
+
+<div class="region-panel" id="panel-lake_pukaki">
+  <p class="eyebrow">Canterbury</p>
+  <h2 class="section-heading">Lake Pukaki</h2>
+  <img src="locations_images/lake_pukakai.jpg" alt="Lake Pukaki" class="pretty-pic">
+  <p class="body-text">One of New Zealand's most celebrated views — Aoraki/Mt Cook and Mt Tasman visible at the southern end on a clear day. The lake's vivid, almost luminous blue comes from glacial flour, fine rock particles ground up by the Tasman Glacier and suspended in the water; the colour fades the further downstream you follow the Waitaki River as the flour settles out.</p>
+  <div class="dark-card">
+    <p class="dark-card-label">Good to Know</p>
+    <p class="dark-card-text">Lake Pukaki: Te reo Māori — pukaki (the source) — headwaters of the Waitaki River. The lake's iridescent blue colour is caused by glacial flour — microscopic rock particles from the Tasman Glacier suspended in the water. On clear days Aoraki/Mt Cook and Mt Tasman are visible at the lake's southern end. One of New Zealand's most celebrated views.</p>
+  </div>
+</div>
+
+<div class="region-panel" id="panel-mt_cook_national_park">
+  <p class="eyebrow">Canterbury</p>
+  <h2 class="section-heading">Mt Cook National Park</h2>
+  <img src="locations_images/Mt_cook.jpg" alt="Mt Cook National Park" class="pretty-pic">
+  <p class="body-text">Home to 27 of New Zealand's 3,000m-plus peaks, including Aoraki/Mt Cook (3,763m, the country's highest) and Mt Tasman. Neither Cook nor Tasman ever actually saw these mountains — cloud blocked Cook's view both times he passed, and Tasman never sailed this far south. No Māori is recorded as having climbed Aoraki, since the summit is considered tapu. First scaled on Christmas Day 1894 by three New Zealanders racing to beat an Englishman to the top. Hillary trained here before his 1953 Everest climb. The Tasman Glacier, NZ's longest at 30km, is accessible from Mt Cook Village, though Franz Josef and Fox on the coast offer more developed glacier tours.</p>
+  <div class="dark-card">
+    <p class="dark-card-label">Good to Know</p>
+    <p class="dark-card-text">Aoraki/Mt Cook National Park: 27 of NZ's 28 peaks over 3,000 metres. Aoraki/Mt Cook (3,763m) is New Zealand's highest peak; Mt Tasman is second. Neither Cook nor Tasman ever saw the mountains named after them — Tasman never sailed this far south, cloud obscured Cook's view on both passes. UNESCO World Heritage Site. Tasman Glacier (NZ's longest) offers guided walks and ski-plane landings.</p>
+  </div>
+</div>
+
+<div class="region-panel" id="panel-lake_tekapo">
+  <p class="eyebrow">Canterbury</p>
+  <h2 class="section-heading">Lake Tekapo</h2>
+  <img src="locations_images/lake_tekapo.jpg; sheep_dog_2.jpg" alt="Lake Tekapo" class="pretty-pic">
+  <p class="body-text">A stunning lakeside town that books out fast in both summer and winter. Home to the Church of the Good Shepherd (1935, built from local stone, framed windows looking straight out over the lake) and a bronze sheepdog memorial. Sits within the Mackenzie Basin Dark Sky Reserve — one of the best stargazing spots in the world, with nightly tours up Mt John Observatory. Also home to an NZDF Antarctic survival training base, and Irishman's Creek Station, birthplace of Bill Hamilton's jet boat in 1954.</p>
+  <div class="dark-card">
+    <p class="dark-card-label">Good to Know</p>
+    <p class="dark-card-text">Lake Tekapo: misspelling of takapo — taka (floor mat), po (night) — recalling the night Rākaihautu's party fled in darkness. The Church of the Good Shepherd is one of NZ's most photographed buildings. The Mackenzie Basin Dark Sky Reserve offers outstanding stargazing; Mt John Observatory runs evening tours. Accommodation fills quickly — advance booking essential.</p>
+  </div>
+</div>
+
+<div class="region-panel" id="panel-fairlie">
+  <p class="eyebrow">Canterbury</p>
+  <h2 class="section-heading">Fairlie</h2>
+  <p class="body-text">A junction town, named after a Scottish honeymoon spot. Turn left here for the faster route to Christchurch via Geraldine, or continue straight for the detour to Waitohi, site of an early aviation milestone — worth it if you've got the time and curiosity.</p>
+  <div class="dark-card">
+    <p class="dark-card-label">Good to Know</p>
+    <p class="dark-card-text">Fairlie: named 1884 by David Hamilton after Fairlie, Ayrshire, Scotland, his honeymoon location. A junction point: left toward Geraldine leads to Christchurch; continuing through leads to Waitohi, site of an important early aviation milestone. Good café and services for travellers.</p>
+  </div>
+</div>
+
+<div class="region-panel" id="panel-waitohi">
+  <p class="eyebrow">Canterbury</p>
+  <h2 class="section-heading">Waitohi</h2>
+  <img src="locations_images/richard_pearce_momument.jpg" alt="Waitohi" class="pretty-pic">
+  <p class="body-text">Where reclusive farmer Richard Pearse — dismissed locally as 'Mad Pearse' — attempted a powered flight in his home-built plane on 31 March, possibly in 1903, months before the Wright Brothers. The date is disputed and the flight itself was uncontrolled, ending in a hedge, but Pearse's self-built engine and design features (ailerons, tricycle undercarriage, low-mounted monoplane wing) were genuinely ahead of their time. A roadside monument with a replica aircraft marks the spot.</p>
+  <div class="dark-card">
+    <p class="dark-card-label">Good to Know</p>
+    <p class="dark-card-text">Waitohi: Te reo Māori — a baptismal rite performed in a river. In 1903 or 1904 (date disputed) farmer Richard Pearse, locally called Mad Pearse, achieved one of the world's first powered controlled flights. Whether this preceded the Wright Brothers' December 1903 flight is contested. Largely unwitnessed. A roadside monument with a replica aircraft commemorates him.</p>
+  </div>
+</div>
+
+<div class="region-panel" id="panel-temuka">
+  <p class="eyebrow">Canterbury</p>
+  <h2 class="section-heading">Temuka</h2>
+  <img src="locations_images/phar_lap.jpg" alt="Temuka" class="pretty-pic">
+  <p class="body-text">Birthplace of Phar Lap, arguably the greatest racehorse in history — won 37 of 51 starts including the 1930 Melbourne Cup, before dying suddenly and mysteriously in California in 1932. Modern tests confirm arsenic in his system, though whether from poisoning, taxidermy, or period animal husbandry practices remains unresolved. His hide, heart and skeleton are split between museums in Melbourne, Canberra and Wellington; a bronze statue stands at the nearby Phar Lap Raceway.</p>
+  <div class="dark-card">
+    <p class="dark-card-label">Good to Know</p>
+    <p class="dark-card-text">Temuka: corruption of Te Umukaha — te (the), umu (earth oven), kaha (strong). Birthplace of Phar Lap (born Seadown, 4 October 1926), widely regarded as one of the greatest racehorses ever. Won 37 of 51 starts including the 1930 Melbourne Cup. Death in California 1932 remains unexplained. His hide is at Museum Victoria (Melbourne), skeleton at Te Papa (Wellington), and heart at the National Museum (Canberra).</p>
+  </div>
+</div>
+
+<div class="region-panel" id="panel-geraldine">
+  <p class="eyebrow">Canterbury</p>
+  <h2 class="section-heading">Geraldine</h2>
+  <img src="locations_images/WL_jumper.jpg" alt="Geraldine" class="pretty-pic">
+  <p class="body-text">A well-known, well-serviced rest stop between Fairlie and Christchurch. Once home to the (since-beaten) world's largest knitted jersey, and to a 33-year, two-million-piece steel mosaic recreation of the Bayeux Tapestry, now on permanent display in Bayeux, France. Rangitata Rafts nearby offers whitewater rafting from complete beginner to grade five.</p>
+  <div class="dark-card">
+    <p class="dark-card-label">Good to Know</p>
+    <p class="dark-card-text">Geraldine: named after the Irish clan form of FitzGerald, honouring district councillor James Edward FitzGerald. Well-located rest stop between Fairlie and Christchurch. Formerly held the Guinness World Record for the World's Largest Knitted Jersey, created by local residents Michael and Gillian Linton.</p>
+  </div>
+</div>
+
+<div class="region-panel" id="panel-rakaia">
+  <p class="eyebrow">Canterbury</p>
+  <h2 class="section-heading">Rakaia</h2>
+  <p class="body-text">Sits beside one of the finest braided river systems in the world — channels constantly shift and reconnect across a wide shingle bed. The SH1 bridge, completed in 1939, was the longest road bridge in the Southern Hemisphere at 1.8km when built. Well known for salmon fishing.</p>
+  <div class="dark-card">
+    <p class="dark-card-label">Good to Know</p>
+    <p class="dark-card-text">Rakaia: Te reo Māori — arranged in ranks, referring to men crossing the river in formation to break its force. The Rakaia River is one of the world's finest braided river examples. The SH 1 bridge (1.8km, built 1939) was the Southern Hemisphere's longest road bridge at the time. Renowned for salmon fishing.</p>
+  </div>
+</div>
+
+<div class="region-panel" id="panel-christchurch">
+  <p class="eyebrow">Canterbury</p>
+  <h2 class="section-heading">Christchurch</h2>
+  <img src="locations_images/christchurch_memorial.jpg" alt="Christchurch" class="pretty-pic">
+  <p class="body-text">Planned as an English city on a grid across the flat Canterbury Plains, much as Dunedin was planned Scottish. Home town of Kate Sheppard, whose campaign won New Zealand women the vote in 1893 — the first self-governing country to do so; she's on the $10 note. Struck by two major earthquakes — Darfield in September 2010 (no deaths) and a shallower, more destructive quake on 22 February 2011 that killed 185 people, New Zealand's deadliest disaster since 1931. The rebuild has produced genuinely interesting new architecture, though central-city accommodation can still be tight. The International Antarctic Centre near the airport, largely undamaged, is well worth a visit — including a recreated Antarctic storm and Hagglund rides.</p>
+  <div class="dark-card">
+    <p class="dark-card-label">Good to Know</p>
+    <p class="dark-card-text">Christchurch: named after Christ Church College, Oxford, by ex-pupil John Robert Godley. Planned as an English city on a grid across flat Canterbury Plains. On 22 February 2011 a magnitude 6.3 earthquake killed 185 people — New Zealand's deadliest natural disaster since 1931. The ongoing central city rebuild has produced innovative architecture. Key attractions: Botanic Gardens, Cathedral precinct, Cardboard Cathedral.</p>
+  </div>
+</div>
+
+<div class="region-panel" id="panel-amberley">
+  <p class="eyebrow">Canterbury</p>
+  <h2 class="section-heading">Amberley</h2>
+  <p class="body-text">First sign of the Waipara wine region, about 45 minutes north of Christchurch — the vineyards themselves sit a little further up the road. Known for Pinot Noir, Riesling and Gewürztraminer from a warm, sheltered valley. Worth a short cellar-door detour if wine's on the agenda.</p>
+  <div class="dark-card">
+    <p class="dark-card-label">Good to Know</p>
+    <p class="dark-card-text">Amberley: named after a town in Oxfordshire, England, birthplace of the landowner who subdivided the site in the late 1850s. On SH 1, approximately 45 minutes north of Christchurch. Access point for the Waipara wine region (vineyards a few minutes further north), known for Pinot Noir, Riesling, and Gewürztraminer.</p>
+  </div>
+</div>
+
+<div class="region-panel" id="panel-cheviot">
+  <p class="eyebrow">Canterbury</p>
+  <h2 class="section-heading">Cheviot</h2>
+  <p class="body-text">A sensible rest stop roughly two hours north of Christchurch and under an hour from Kaikōura. The road tightens and winds considerably as it nears the Kaikōura coast, so worth fuelling up and stretching your legs here first.</p>
+  <div class="dark-card">
+    <p class="dark-card-label">Good to Know</p>
+    <p class="dark-card-text">Cheviot: named after the nearby Cheviot Hills farm, itself named after the Scottish border country. Practical rest stop approximately two hours north of Christchurch and under an hour from Kaikōura. The road ahead becomes narrower and more winding — good point to stop, refuel, and stretch.</p>
+  </div>
+</div>
+
+<div class="region-panel" id="panel-kaikoura">
+  <p class="eyebrow">Canterbury</p>
+  <h2 class="section-heading">Kaikoura</h2>
+  <img src="locations_images/dolphins.jpg; dolphin_swim.jpg; whale_tail.jpg; whale_tail_2.jpg; kaikoura.jpg; kaikoura_range.jpg" alt="Kaikoura" class="pretty-pic">
+  <p class="body-text">The coastline's real draw: the sea floor drops away almost as steeply as the mountains rise, drawing an unusually rich range of marine life close to shore year-round. Whale Watch Kaikōura (2.5-3 hours, mostly sperm whales, departs from the old railway station) and Dolphin Encounter both come with refund/rebooking guarantees if they don't find what you came for. Locally caught crayfish is genuinely good, but prices vary — worth shopping around. The 2016 earthquake reshaped parts of this coastline.</p>
+  <div class="dark-card">
+    <p class="dark-card-label">Good to Know</p>
+    <p class="dark-card-text">Kaikōura: shortened from Te Ahi-kai-koura-a-Tamakiterangi — kai (food), koura (crayfish). The sea floor drops sharply offshore bringing diverse marine life close to shore year-round, including resident sperm whales, dolphins, and fur seals. The Kaikōura Ranges rise directly behind the town. The 2016 earthquake uplifted the seabed and reshaped the coastline. Key activities: whale watching, dolphin swimming, crayfish, fur seal viewing.</p>
+  </div>
+</div>
+
+<script>
+function showRegion(val) {
+  document.getElementById('default-state').style.display = val ? 'none' : 'block';
+  var panels = document.querySelectorAll('.region-panel');
+  panels.forEach(function(p) { p.classList.remove('active'); });
+  if (val) {
+    var panel = document.getElementById('panel-' + val);
+    if (panel) {
+      panel.classList.add('active');
+      window.scrollTo(0, 0);
+    }
+  }
+}
+</script>
+
+</body>
+</html>
