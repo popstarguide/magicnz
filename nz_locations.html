@@ -109,6 +109,10 @@
     max-height: 100%;
     border-radius: 8px;
     object-fit: contain;
+    touch-action: none;
+  }
+  .lightbox-overlay {
+    touch-action: none;
   }
 
 
@@ -2178,6 +2182,8 @@ function lbPrev() {
 }
 
 var lbTouchStartX = null;
+var lbTouchStartY = null;
+var lbTouchIsSwipe = false;
 
 document.addEventListener('DOMContentLoaded', function() {
   var lb = document.getElementById('lightbox');
@@ -2186,16 +2192,32 @@ document.addEventListener('DOMContentLoaded', function() {
       closeLightbox();
     }
   });
+
   lb.addEventListener('touchstart', function(e) {
-    lbTouchStartX = e.changedTouches[0].clientX;
+    lbTouchStartX = e.touches[0].clientX;
+    lbTouchStartY = e.touches[0].clientY;
+    lbTouchIsSwipe = false;
   }, {passive: true});
+
+  lb.addEventListener('touchmove', function(e) {
+    if (lbTouchStartX === null) return;
+    var dx = e.touches[0].clientX - lbTouchStartX;
+    var dy = e.touches[0].clientY - lbTouchStartY;
+    if (Math.abs(dx) > Math.abs(dy) && Math.abs(dx) > 10) {
+      lbTouchIsSwipe = true;
+      e.preventDefault(); // stop the WebView treating this as scroll/back-navigation
+    }
+  }, {passive: false});
+
   lb.addEventListener('touchend', function(e) {
     if (lbTouchStartX === null) return;
     var dx = e.changedTouches[0].clientX - lbTouchStartX;
-    if (Math.abs(dx) > 40) {
+    if (lbTouchIsSwipe && Math.abs(dx) > 40) {
       if (dx < 0) { lbNext(); } else { lbPrev(); }
     }
     lbTouchStartX = null;
+    lbTouchStartY = null;
+    lbTouchIsSwipe = false;
   }, {passive: true});
 });
 </script>
