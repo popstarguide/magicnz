@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<style>
+  * { box-sizing: border-box; }
+
+  .region-select {
+    width: 100%;
+    padding: 12px 16px;
+    font-size: 15px;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    color: #1A1410;
+    background: #fff;
+    border: 2px solid #e8e8e8;
+    border-radius: 10px;
+    appearance: none;
+    -webkit-appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23F25E0D' stroke-width='2' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 16px center;
+    cursor: pointer;
+    margin: 0 0 20px;
+    display: block;
+  }
+  .region-select:focus {
+    outline: none;
+    border-color: #F25E0D;
+  }
+
+  .answer-panel { display: none; }
+  .answer-panel.active { display: block; }
+
+  .placeholder-state {
+    text-align: center;
+    padding: 40px 20px;
+    color: #aaa;
+    font-size: 14px;
+  }
+
+  .pretty-pic {
+    width: 100%;
+    border-radius: 10px;
+    display: block;
+    margin: 0 0 16px;
+    object-fit: cover;
+    max-height: 260px;
+  }
+
+  .eyebrow {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: #F2784B;
+    margin: 0 0 2px;
+  }
+
+  .section-heading {
+    font-size: 22px;
+    font-weight: 700;
+    color: #F25E0D;
+    line-height: 1.2;
+    margin: 0 0 12px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #e8e8e8;
+  }
+
+  .body-text {
+    font-size: 14px;
+    color: #1A1410;
+    margin: 0 0 12px;
+    line-height: 1.8;
+  }
+
+  .fact-row {
+    font-size: 14px;
+    padding: 8px 0;
+    border-bottom: 1px solid #e8e8e8;
+    color: #1A1410;
+    margin: 0;
+  }
+</style>
+</head>
+<body style="background:#ffffff;color:#1A1410;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;font-weight:300;line-height:1.75;padding:16px 18px 60px;margin:0;">
+
+<p style="font-size:15px;font-weight:400;color:#5C4A3A;line-height:1.8;border-left:3px solid #F25E0D;padding-left:14px;margin:0 0 24px;font-style:italic;">When travelling you are faced with decisions on where to spend your hard earned money — which activity will give you bang for buck? This section answers some of the questions I get asked most, and where I haven't named an operator directly, you'll find a full list of everyone who helped me below.</p>
+
+<!-- Question selector -->
+<select class="region-select" onchange="showAnswer(this.value)">
+  <option value="">What are you thinking of doing?</option>
+  <option value="q2">How do I experience the Maori Culture?</option>
+  <option value="q3">Which Glacier should I visit?</option>
+  <option value="q4">How should I see the glaciers?</option>
+  <option value="q5">Where should I go rafting?</option>
+  <option value="q6">Which Bungie Jump?</option>
+  <option value="q7">Which Jet boat ride?</option>
+  <option value="q8">Where should I Skydive?</option>
+  <option value="q9">Where should I horse trek?</option>
+  <option value="q10">Can I see Dolphins?</option>
+  <option value="q11">Where can I see whales.</option>
+  <option value="q12">Where should I learn to surf?</option>
+  <option value="q13">Which bush walk (tramp) should I do?</option>
+  <option value="q14">Operators that helped me that I wish to mention.</option>
+</select>
+
+<!-- Default state -->
+<div id="default-state">
+  <div class="placeholder-state">
+    <p>Select a question above to explore</p>
+  </div>
+</div>
+
+<div class="answer-panel" id="panel-q2">
+  <p class="eyebrow">What, How, Why</p>
+  <h2 class="section-heading">How do I experience the Maori Culture?</h2>
+  <img src="advice_attractions_images/maori_show_waitangi.JPG" alt="Māori cultural performance, Waitangi" class="pretty-pic">
+  <p class="body-text">Modern Maori culture is largely integrated with in secular society so is all around you. The Maori no longer live in separate villages or wear traditional dress (they largely gave this up around the early 1900’s)</p>
+  <p class="body-text">Traditional Maori culture can be easily accessed mainly in Rotorua with a wide range of options to suit budget and time. One of the big operators runs shows in Christchurch also.</p>
+  <p class="body-text">Personally I recommend the tours that include a hangi. All of the tours will take you through a powhiri some may include a whero, all with have a performance of some kind and a hongi for some of the audience.</p>
+  <p class="body-text">Experiencing the traditional Maori culture outside these types of shows is rare for non-Maori, as a born and bred pakeha New Zealander I have only experienced one Powhiri outside a show in my life, and I consider myself someone interested in the Maori culture.</p>
+  <p class="body-text">The protocol that the shows follow is the traditional protocol, although some exceptions are made to allow for tourism, like for instance the powhiri should take place before sunset, this is largely ignored let people be a part of the show in the evenings.</p>
+  <p class="body-text">If you go to Paihia and visit Waitangi there is a good show at the Waitangi grounds also.</p>
+</div>
+
+<div class="answer-panel" id="panel-q3">
+  <p class="eyebrow">What, How, Why</p>
+  <h2 class="section-heading">Which Glacier should I visit?</h2>
+  <img src="advice_attractions_images/glacier.jpg" alt="Franz Josef Glacier valley" class="pretty-pic">
+  <p class="body-text">Of the 3 most famous glaciers, Franz Josef's the most visited, and all the operators have a greater number of options available here. All of their operations bases are set up at the little town near this glacier. The biggest reason for this is because for the amount of effort required verses the views gained Franz Josef's the easier of the 3. Fox Glacier is the second most visited then Tasman Glacier.</p>
+</div>
+
+<div class="answer-panel" id="panel-q4">
+  <p class="eyebrow">What, How, Why</p>
+  <h2 class="section-heading">How should I see the glaciers?</h2>
+  <img src="advice_attractions_images/glacier_blue_ice.JPG" alt="Blue ice, Franz Josef Glacier" class="pretty-pic">
+  <p class="body-text">As written in the Franz Josef section:</p>
+  <p class="body-text">Being amongst the most accessible glaciers in the world there is many different ways of experiencing the glaciers, depend- ing on ability, time and money.</p>
+  <p class="body-text">DO NOT ACCESS THE GLACIERS WITHOUT GLACIAL EXPERIENCE OR GUIDE.</p>
+  <p class="body-text">There is an access road and walk where the glacier can be viewed for free. Do not go past protective signs and barriers, people have been regularly killed here by ignoring the signage.</p>
+  <p class="body-text">Guided Trips:</p>
+  <p class="body-text">1/2 and 3/4 day guided hikes access the lower glacier the lower glacier that is predominately gravel ladened ice. But is a good cheap way of safely accessing the glacier. These hikes are incredibly popular so book early especially in summer.</p>
+  <p class="body-text">Full day hikes get you the furthest up the glacier of all the walk only hikes. Giving you spectacular views and clean blue ice.</p>
+  <p class="body-text">Ice climb options are more adventurous involving the climbing of vertical walls of ice and abseiling (repelling) into crevasse. Although it doesn’t get as high as the full day it does get near and achieves similar views.</p>
+  <p class="body-text">Heli-hikes are the most expensive way of accessing the glacier but the rewarding views from the helicopter and hiking high on the glacier can make it worth while. Most guides agree this is the best way to see the glacier. As trips involve about 15min helicopter ride above the higher reaches of the glacier under the mountains Cook &amp; Tasman, landing and providing a 2 hour guided hike on the glacier all amongst clean blue ice, before 5min flight back to town. Again hugely popular so book early.</p>
+</div>
+
+<div class="answer-panel" id="panel-q5">
+  <p class="eyebrow">What, How, Why</p>
+  <h2 class="section-heading">Where should I go rafting?</h2>
+  <p class="body-text">This question has multiple answers depending on what kind and level rafting you wish to partake in.</p>
+  <p class="body-text">White water rafting has grades to determine the danger/technical challenge to the rapids. The grades start at 1 and go right up to 6, 1 being the easiest with no skill level required to 6 that experts only should try and undertake.</p>
+  <p class="body-text">A very loosely defined cousin of white water rafting is black water rafting. Black water rafting usually doesn’t involve rapids, What black water rafting is is riding in an inner tyre tube in a river/stream running through a cave system.</p>
+  <p class="body-text">The where’s:</p>
+  <p class="body-text">What is billed as the best commercial white water rafting in New Zealand are the Rangitata Rafts. Based 2 hours from Christchurch their day trip encompasses up to grade 5 rapids (an option to walk around those section is there for those not too keen to take on this level rafting) BBQ meal, showers, wet suits and stunning scenery. Refer to Geraldine (pg.?) for more information.</p>
+  <p class="body-text">For those who don’t want to dedicate a whole day to rafting and believe that bigger is better then Kaitiaki Adventures based in Rotorua offer the opportunity to raft the largest commercially rafted waterfall in the world. The 2 hour raft trip descends 3 waterfalls the last one is 7m high. The river is a canal naturally formed in the calderas floor, that apart from the waterfalls offers really only a swift flowing river. The best thing about the Kaitiaki activity is it is a great way to learn to get your feet wet.</p>
+  <p class="body-text">When it comes to Black Water Rafting, there is only one that stands above the rest (or should that be below?) and that is the Black Water Rafting Company. Black Water Rafting Company are the originals when it comes to this activity. They offer a very professional fun trip for those wanting a unique way to see the Waitomo caves. Although they don’t raft the Main Cave, the iconic glowworm caves, they do show you glow worms.</p>
+</div>
+
+<div class="answer-panel" id="panel-q6">
+  <p class="eyebrow">What, How, Why</p>
+  <h2 class="section-heading">Which Bungie Jump?</h2>
+  <img src="advice_attractions_images/ledge_bungy.jpg" alt="The Ledge bungy jump, Queenstown, at night" class="pretty-pic">
+  <p class="body-text">There are a number of operators that offer bungie jumping nationwide. However if I could only do one jump I would do the Ledge at Queenstown.</p>
+  <p class="body-text">Operated through A J Hackett, the Ledge although not the original Kawerau Bungie site (the first commercial bungie jump site in the world) it is a Queenstown jump and it is an A J Hackett jump.</p>
+  <p class="body-text">Launching off the side of the mountain Ben Lomond from an altitude of 400 m above the town the 47m jump feels like a much larger jump. The jump also has a body type harness attachment as opposed to the traditional feet hold, giving you the ability to swan dive, flip, back flip, run, what ever style of launch you wish into the jump.</p>
+  <p class="body-text">The camera is mounted on the hillside to your left which when taking the photo/dvd option has Lake Wakatipu and Queenstown nicely filling the background behind you.</p>
+  <p class="body-text">I recommend dusk is the best time for the photo. Included in the price is the gondola ride from downtown Queenstown to the restaurant/lookout and bungie launch pad at the top.</p>
+  <p class="body-text">Since the Covid pandemic staffing has been an issue in Queenstown, check AJ Hackets website prior to visit or enquire when in town.</p>
+</div>
+
+<div class="answer-panel" id="panel-q7">
+  <p class="eyebrow">What, How, Why</p>
+  <h2 class="section-heading">Which Jet boat ride?</h2>
+  <img src="advice_attractions_images/High_country.jpg" alt="Jet boat on the river" class="pretty-pic">
+  <p class="body-text">Jet boat's being invented in New Zealand is one of those iconic trips to do while in the country. of all the ones I have seen two rise to the top.</p>
+  <p class="body-text">1.	Backcountry Helicopter/Jet boat's based in Makarora offer a trip for about $200 that is a 30 min helicopter trip up into the stunning Mt Aspiring national park to a waiting jet boat that will deliver you back to Makarora and your waiting car/bus/van.</p>
+  <p class="body-text">2.	Dart river jet boats again for about $200. The Dart River flows from under Mt Earnslaw to the head of Lake Wakatipu at Glenorchy. The location is absolutely stunning as a number of movies have proved (Lord of the Rings and Narnia to name a couple). Including lunch and transport to and from the river from Queenstown the trip lasts for over 2 hours.</p>
+</div>
+
+<div class="answer-panel" id="panel-q8">
+  <p class="eyebrow">What, How, Why</p>
+  <h2 class="section-heading">Where should I Skydive?</h2>
+  <img src="advice_attractions_images/skydiving_02.jpg" alt="Tandem skydive" class="pretty-pic">
+  <p class="body-text">This is a hard question to answer as it is such a weather dependent activity, however saying that the weather will be perfect through out your trip the answer is Taupo.</p>
+  <p class="body-text">Taupo has a large set up for skydiving three companies operate from the Drop Zone. With such high level of competition and high turnaround of clients they can offer some of the cheapest jumping in the country. All three are well set up with gear and safety standards. With such I high standards in gear they all also offer the better videos to remember your jump by. (I do recommend spending the extra and getting a dvd of your jump as that is the easiest way to remember your jump, of my first jump I remember very little) if you miss Taupo because of weather Jump wherever you can (the weather allows) All other jump zones are around similar pricing (from $200 to $300 for a tandem jump plus dvd) There are Jump Zones at Able Tasman, Fox Glacier, Wanaka, Queenstown and Christchurch that are all well set	up for tourists (they operate 7 days a week wether permitting).</p>
+  <p class="body-text">A question I heard often is which one has the best scenery. Honestly they all do, the scenery is amazing wherever you jump and if it’s your first jump you wont really take it in that much anyway, so it wont matter if you are over the largest volcanic lake in the world or next to the southern alps its all stunning!</p>
+</div>
+
+<div class="answer-panel" id="panel-q9">
+  <p class="eyebrow">What, How, Why</p>
+  <h2 class="section-heading">Where should I horse trek?</h2>
+  <img src="advice_attractions_images/HCH_trek.JPG" alt="High Country horse trek" class="pretty-pic">
+  <p class="body-text">There are a number of horse trekking companies around the country offering slightly different features, like “can cater for skilled riders, or unskilled riders”, “is an overnight trip”, “is a beach ride” etc. Elsewhere in this book I recommend horse trekking as a great excuse to access particular regions, in other words the horse trek is a nice excuse to visit somewhere rather than just visiting region to just visit it.</p>
+  <p class="body-text">Firstly I would like to state that Horse riding and equestrian activities are the most dangerous activities you can be involved in with in New Zealand. Ok I admit that statement does include horse racing and pony club riders. However horses have brains of their own, and sometimes the most unpredictable thoughts happen in their brains, coupled with the fact that horses like all herbivores are reactive creatures, can lead to some unexpected actions on behalf of the horse. So I believe that generally when looking at a horse trek company how the horses are handled and looked after in relation to how you the client is educated is what will make one company seem better than another.</p>
+  <p class="body-text">High Country Horses at Glenorchy (40 min West of Queenstown) offer a great variety of rides from short 2 hour riders to multi day treks. The award winning set up will have you riding in and around the Glenorchy basin. The scenery is second to none and its obvious as to why many movies and TV advertisements are filmed in this area.</p>
+</div>
+
+<div class="answer-panel" id="panel-q10">
+  <p class="eyebrow">What, How, Why</p>
+  <h2 class="section-heading">Can I see Dolphins?</h2>
+  <img src="advice_attractions_images/dolphins.jpg" alt="Dolphins, Kaikoura" class="pretty-pic">
+  <p class="body-text">Yes, there are a few Dolphin sight seeing tours, however the award winning Dolphin Encounter in Kaikoura has won awards for good reason.</p>
+  <p class="body-text">The large dolphin experience operation offer swimming with the dolphins and or just watching options.</p>
+  <p class="body-text">The water temperature doesn’t vary much thought out the year, so regardless of season the experience in the water will be the same.</p>
+</div>
+
+<div class="answer-panel" id="panel-q11">
+  <p class="eyebrow">What, How, Why</p>
+  <h2 class="section-heading">Where can I see whales.</h2>
+  <img src="advice_attractions_images/whale_tail.jpg" alt="Whale tail, Kaikoura" class="pretty-pic">
+  <p class="body-text">The Whale watch company in Kaikoura offer a unique trip for New Zealand. The purpose built boats not only show you whales in the wild but also provide you information on the whales and surrounding environment, so you can understand more what you’re amongst.</p>
+</div>
+
+<div class="answer-panel" id="panel-q12">
+  <p class="eyebrow">What, How, Why</p>
+  <h2 class="section-heading">Where should I learn to surf?</h2>
+  <img src="advice_attractions_images/me_surfing.JPG" alt="Surfing, Taranaki" class="pretty-pic">
+  <p class="body-text">For those that have only just started surfing or want to learn, New Plymouth and the Taranaki region offer a good variety of surf from the expert only breaks to beginner breaks. if you are looking for a lesson or two Daisy Day’s Surf School is one of the best surf schools in the country. https://learntosurfwithdaisy.weebly.com.</p>
+</div>
+
+<div class="answer-panel" id="panel-q13">
+  <p class="eyebrow">What, How, Why</p>
+  <h2 class="section-heading">Which bush walk (tramp) should I do?</h2>
+  <img src="advice_attractions_images/taranaki.jpg" alt="Mt Taranaki" class="pretty-pic">
+  <p class="body-text">Tongariro Crossing, Rated as the top one day alpine pass walk in the world this is not one to be missed. The walk crosses from the base ofRuapehu, between Ngaruahoe and Tongariro, and down to the base ofTongariro. With a steep climb in the beginning the track meanders its way for the rest of the walk. Not a walk to be done in adverse conditions and the track is often closed during winter due to ice and snow. Suitable for absolute beginners. Take minimum equipment as per advised in tramping guide section. has good safety options with a pick up and delivery service option advised.</p>
+  <p class="body-text">Able Tasman National Park an easy walk following the coastline of the national park. The track is rarely closed and light walking equipment is all that is required, T-shirt, fleece, jacket shorts or long pants, can be done in jeans. Take cut lunch. With pick up and delivery options available good safety back ups are in place.</p>
+  <p class="body-text">Summit Mt Taranaki. On one hand is the most dangerous mountain in the country with it’s changeable conditions, good preparation is a must (Minimum equipment as per advised in trekking section) moderate fitness required. DO NOT climb if the weather even hints of changing to not looking good! The mountain is a true alpine experience starting out amongst lush bush climbing through scoria (loose gravel), climbing over larva boulders to reach the summit of the conical mountain. The view from the top is well worth the effort.</p>
+</div>
+
+<div class="answer-panel" id="panel-q14">
+  <p class="eyebrow">What, How, Why</p>
+  <h2 class="section-heading">Operators that helped me that I wish to mention.</h2>
+  <p class="body-text" style="font-weight:600;color:#F25E0D;margin:16px 0 6px;">Operators that helped me that I wish to mention.</p>
+  <p class="fact-row"><span style="color:#F25E0D;">▸ </span>Magic traveller’s network ‘Magic bus’ (No longer in business)</p>
+  <p class="fact-row"><span style="color:#F25E0D;">▸ </span>Tamaki Tours - Maori Cultural Experience (Rotorua)</p>
+  <p class="fact-row"><span style="color:#F25E0D;">▸ </span>Whakarewarewa - Geothermal Park (Rotorua)</p>
+  <p class="fact-row"><span style="color:#F25E0D;">▸ </span>Rock ‘n’ Ropes - high ropes adventure park (Taupo)</p>
+  <p class="fact-row"><span style="color:#F25E0D;">▸ </span>Taupo Tandem Skydive (Taupo)</p>
+  <p class="fact-row"><span style="color:#F25E0D;">▸ </span>Mohewa Horse Treks (Taupo)</p>
+  <p class="fact-row"><span style="color:#F25E0D;">▸ </span>Te Papa National Museum (Wellington)</p>
+  <p class="fact-row"><span style="color:#F25E0D;">▸ </span>Zealanda - wildlife park (Wellington)</p>
+  <p class="fact-row"><span style="color:#F25E0D;">▸ </span>Pukaka Mt Bruce - wild life park (Masterton)</p>
+  <p class="fact-row"><span style="color:#F25E0D;">▸ </span>Transit Coachlines (Nelson - Able Tasman transport)</p>
+  <p class="fact-row"><span style="color:#F25E0D;">▸ </span>Jade art studio (Ross)</p>
+  <p class="fact-row"><span style="color:#F25E0D;">▸ </span>Franz JosefGlacier Guides (Franz Josef)</p>
+  <p class="fact-row"><span style="color:#F25E0D;">▸ </span>Backcountry Helicopters (Makarora)</p>
+  <p class="fact-row"><span style="color:#F25E0D;">▸ </span>A J Hackett Bungie (Queenstown)</p>
+  <p class="fact-row"><span style="color:#F25E0D;">▸ </span>High Country Horses (Glenorchy)</p>
+  <p class="fact-row"><span style="color:#F25E0D;">▸ </span>Milford Sound Select (Queenstown)</p>
+  <p class="fact-row"><span style="color:#F25E0D;">▸ </span>Elm Wildlife Tours (Dunedin)</p>
+  <p class="fact-row"><span style="color:#F25E0D;">▸ </span>Whale watch (Kaikoura)</p>
+  <p class="fact-row"><span style="color:#F25E0D;">▸ </span>Dolphin Encounter (Kaikoura)</p>
+  <p class="body-text" style="font-weight:600;color:#F25E0D;margin:16px 0 6px;">Accommodation providers that looked after me and again I’d like to mention</p>
+  <p class="fact-row"><span style="color:#F25E0D;">▸ </span>YHA Juno Hall (Waitomo)</p>
+  <p class="fact-row"><span style="color:#F25E0D;">▸ </span>Haka House(Taupo)</p>
+  <p class="fact-row"><span style="color:#F25E0D;">▸ </span>Paradiso Backpackers (Nelson)</p>
+  <p class="fact-row"><span style="color:#F25E0D;">▸ </span>Montrose Backpackers (Franz Josef)</p>
+  <p class="fact-row"><span style="color:#F25E0D;">▸ </span>Makarora Tourist Centre (Makarora)</p>
+  <p class="fact-row"><span style="color:#F25E0D;">▸ </span>Purple Cow Backpackers (Wanaka)</p>
+  <p class="fact-row"><span style="color:#F25E0D;">▸ </span>Aspen Lodge (Queenstown)</p>
+  <p class="fact-row"><span style="color:#F25E0D;">▸ </span>Elm Lodge (Dunedin)</p>
+  <p class="fact-row"><span style="color:#F25E0D;">▸ </span>Lake front lodge (Tekapo)</p>
+  <p class="fact-row"><span style="color:#F25E0D;">▸ </span>Dusky Lodge (Kaikoura)</p>
+  <p class="fact-row"><span style="color:#F25E0D;">▸ </span>Deco Backpackers (Napier)</p>
+  <p class="fact-row"><span style="color:#F25E0D;">▸ </span>Pacific Coast Lodge (Mt Maunganui)</p>
+  <p class="fact-row"><span style="color:#F25E0D;">▸ </span>Pickled Parrot Backpackers (Paihia)</p>
+  <p class="fact-row"><span style="color:#F25E0D;">▸ </span>Kerikeri Farm Hostel (Kerikeri)</p>
+</div>
+
+<script>
+function showAnswer(val) {
+  document.getElementById('default-state').style.display = val ? 'none' : 'block';
+  var panels = document.querySelectorAll('.answer-panel');
+  panels.forEach(function(p) { p.classList.remove('active'); });
+  if (val) {
+    var panel = document.getElementById('panel-' + val);
+    if (panel) {
+      panel.classList.add('active');
+      window.scrollTo(0, 0);
+    }
+  }
+}
+</script>
+
+</body>
+</html>
