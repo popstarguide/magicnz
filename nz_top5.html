@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<style>
+  * { box-sizing: border-box; }
+
+  .top5-list {
+    margin: 0 0 20px;
+  }
+  .top5-row {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 12px 4px;
+    border-bottom: 1px solid #e8e8e8;
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .top5-row:active {
+    background: #fff5f0;
+  }
+  .top5-thumb {
+    width: 56px;
+    height: 56px;
+    border-radius: 8px;
+    object-fit: contain;
+    background: #f7f3ef;
+    border: 1px solid #e8e8e8;
+    flex-shrink: 0;
+    padding: 4px;
+  }
+  .top5-name {
+    font-size: 15px;
+    font-weight: 600;
+    color: #1A1410;
+  }
+
+  .activity-panel { display: none; }
+  .activity-panel.active { display: block; }
+
+  .back-to-list {
+    display: none;
+    align-items: center;
+    gap: 4px;
+    color: #F25E0D;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    padding: 0 0 16px;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .back-to-list.active { display: flex; }
+
+  .pretty-pic {
+    width: 100%;
+    border-radius: 10px;
+    display: block;
+    margin: 0 0 16px;
+    object-fit: contain;
+    max-height: 220px;
+    background: #f7f3ef;
+  }
+
+  .eyebrow {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: #F2784B;
+    margin: 0 0 2px;
+  }
+
+  .section-heading {
+    font-size: 22px;
+    font-weight: 700;
+    color: #F25E0D;
+    line-height: 1.2;
+    margin: 0 0 12px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #e8e8e8;
+  }
+
+  .body-text {
+    font-size: 14px;
+    color: #1A1410;
+    margin: 0 0 12px;
+    line-height: 1.8;
+  }
+</style>
+</head>
+<body style="background:#ffffff;color:#1A1410;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;font-weight:300;line-height:1.75;padding:16px 18px 60px;margin:0;">
+
+<h1 style="font-size:28px;font-weight:800;color:#F25E0D;margin:0 0 4px;letter-spacing:0.02em;">TOP 5</h1>
+<p style="font-size:13px;color:#aaa;font-style:italic;margin:0 0 20px;">Tap an activity to find out more</p>
+
+<div id="list-view">
+  <div class="top5-list">
+  <div class="top5-row" onclick="showActivity('a13')">
+    <img src="top_5_images/scenic.jpg" alt="Fiordland National Park" class="top5-thumb">
+    <span class="top5-name">Fiordland National Park</span>
+  </div>
+  <div class="top5-row" onclick="showActivity('a12')">
+    <img src="top_5_images/action.jpg" alt="Rock n Ropes" class="top5-thumb">
+    <span class="top5-name">Rock n Ropes</span>
+  </div>
+  <div class="top5-row" onclick="showActivity('a11')">
+    <img src="top_5_images/cultural.jpg" alt="Maori Culture Show" class="top5-thumb">
+    <span class="top5-name">Maori Culture Show</span>
+  </div>
+  <div class="top5-row" onclick="showActivity('a10')">
+    <img src="top_5_images/photo.jpg" alt="Elm Wildlife Tours" class="top5-thumb">
+    <span class="top5-name">Elm Wildlife Tours</span>
+  </div>
+  <div class="top5-row" onclick="showActivity('a9')">
+    <img src="top_5_images/cultural.jpg" alt="Te Papa" class="top5-thumb">
+    <span class="top5-name">Te Papa</span>
+  </div>
+  </div>
+</div>
+
+<div class="back-to-list" id="back-to-list" onclick="showActivity('')">&#8249; Back to Top 5</div>
+
+<div class="activity-panel" id="panel-a13">
+  <p class="eyebrow">Top 5</p>
+  <h2 class="section-heading">Fiordland National Park</h2>
+  <p class="body-text">Visit the Fiordland National Park. However you see the park, hike a track, bus trip to Milford Sound or Doubtful Sound. A visit to the national park is a must.</p>
+</div>
+
+<div class="activity-panel" id="panel-a12">
+  <p class="eyebrow">Top 5</p>
+  <h2 class="section-heading">Rock n Ropes</h2>
+  <img src="top_5_images/Rock_n_Ropes.png" alt="Rock n Ropes" class="pretty-pic">
+  <p class="body-text">Rock n Ropes near Taupo, the cheapest thrill/adrenaline-pumping/action activity in the country. A high ropes adventure corse designed to test your nerve and ability to deal with heights. For around $80 for a half day course and with a fear factor far above bungie jumping this is bang for buck. The course is one of the safest activities of its type available yet the perceived danger is higher than it’s equivalentents.</p>
+</div>
+
+<div class="activity-panel" id="panel-a11">
+  <p class="eyebrow">Top 5</p>
+  <h2 class="section-heading">Maori Culture Show</h2>
+  <p class="body-text">Maori culture show at Rotorua, a great introduction to the traditional Maori culture. taking you through a welcome and traditional challenge as well as providing great evenings entertainment. Some of the tours provide a hangi (traditional style earth cook meal).</p>
+</div>
+
+<div class="activity-panel" id="panel-a10">
+  <p class="eyebrow">Top 5</p>
+  <h2 class="section-heading">Elm Wildlife Tours</h2>
+  <img src="top_5_images/elmwildlifetours.svg" alt="Elm Wildlife Tours" class="pretty-pic">
+  <p class="body-text">Elm Wildlife tour at Taiaroa Heads near Dunedin. For around the $180 the tour shows you the Royal Southern Albatross (the largest flying bird in the world), the yellow-eyed penguin (one of the rarest penguins in the world), the Hooker sea lion (native to the southern coast) and the Kekeno the New Zealand fur seal (found all round the south island but still fun to watch). The tour shows you rare and endangered wildlife unique to the this region in their own environment, no zoo’s or reserves. The tour lasts 4 hours plus and is held every afternoon. The guides are knowledgeable and patient.</p>
+</div>
+
+<div class="activity-panel" id="panel-a9">
+  <p class="eyebrow">Top 5</p>
+  <h2 class="section-heading">Te Papa</h2>
+  <img src="top_5_images/ART_Building_an_Earthquake_Ready_Future_TePapaLogo_sml.jpeg" alt="Te Papa" class="pretty-pic">
+  <p class="body-text">Te Papa National Museum, offers a fantastic overview of New Zealand’s history and culture. Has fantastic displays with as little or as much reading as you wish without loosing an understanding of the displays. It also houses some of the countries most treasured artefacts.</p>
+  <p class="body-text">Te Papa is the kind of place you can easily loose yourself for a day in. They have touring exhibitions as well as permanent displays. Many of the wildlife, or events that are mentioned in this app are displayed at the museum.</p>
+  <p class="body-text">The Haast Eagle, the Moa, volcanic activity, earthquakes, settlement of NZ, Maori culture and NZ technologies are all on display.</p>
+  <p class="body-text">International tourists over the age of 16 have an entry fee around $35-40.</p>
+</div>
+
+<script>
+function showActivity(val) {
+  document.getElementById('list-view').style.display = val ? 'none' : 'block';
+  document.getElementById('back-to-list').classList.toggle('active', !!val);
+  var panels = document.querySelectorAll('.activity-panel');
+  panels.forEach(function(p) { p.classList.remove('active'); });
+  if (val) {
+    var panel = document.getElementById('panel-' + val);
+    if (panel) {
+      panel.classList.add('active');
+      window.scrollTo(0, 0);
+    }
+  }
+}
+</script>
+
+</body>
+</html>
