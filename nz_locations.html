@@ -245,6 +245,16 @@
     background: #f7f3ef;
     border-radius: 8px;
     overflow: hidden;
+    touch-action: none;
+  }
+  .detail-map-zoom {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    transform-origin: center center;
+    will-change: transform;
   }
   .detail-map-bg {
     position: absolute;
@@ -254,6 +264,7 @@
     height: 100%;
     object-fit: cover;
     display: block;
+    pointer-events: none;
   }
   .map-dot {
     position: absolute;
@@ -413,36 +424,41 @@
     <div class="back-to-map" id="back-to-map" onclick="backToMap()">&#8249; Back to map</div>
 <div class="region-detail" id="detail-auckland">
   <div class="detail-map-wrap" style="aspect-ratio:3271/3491;">
-    <img class="detail-map-bg" src="location_maps/auckland.png" alt="auckland map">
-    <div class="map-dot" style="left:38.07%; top:35.27%;" onclick="showRegion('auckland')"><span class="map-dot-marker"></span><span class="map-dot-label">Auckland</span></div>
+  <div class="detail-map-zoom">
+      <img class="detail-map-bg" src="location_maps/auckland.png" alt="auckland map">
+      <div class="map-dot" style="left:39.69%; top:40.62%;" onclick="showRegion('warkworth')"><span class="map-dot-marker"></span><span class="map-dot-label">Warkworth</span></div>
+      <div class="map-dot" style="left:38.07%; top:35.27%;" onclick="showRegion('wellsford')"><span class="map-dot-marker"></span><span class="map-dot-label">Wellsford</span></div>
+  </div>
   </div>
 </div>
 
 <div class="region-detail" id="detail-northland">
   <div class="detail-map-wrap" style="aspect-ratio:3271/3492;">
-    <img class="detail-map-bg" src="location_maps/northland.png" alt="northland map">
-    <div class="map-dot" style="left:8.58%; top:8.54%;" onclick="showRegion('warkworth')"><span class="map-dot-marker"></span><span class="map-dot-label">Warkworth</span></div>
-    <div class="map-dot" style="left:31.76%; top:39.96%;" onclick="showRegion('matakohe')"><span class="map-dot-marker"></span><span class="map-dot-label">Matakohe</span></div>
-    <div class="map-dot" style="left:67.27%; top:49.87%;" onclick="showRegion('dargaville')"><span class="map-dot-marker"></span><span class="map-dot-label">Dargaville</span></div>
-    <div class="map-dot" style="left:68.5%; top:51.07%;" onclick="showRegion('waipoua_forest')"><span class="map-dot-marker"></span><span class="map-dot-label">Waipoua Forest</span></div>
-    <div class="map-dot" style="left:55.15%; top:55.25%;" onclick="showRegion('hokianga_harbour')"><span class="map-dot-marker"></span><span class="map-dot-label">Hokianga Harbour</span></div>
-    <div class="map-dot" style="left:38.06%; top:55.64%;" onclick="showRegion('opononi')"><span class="map-dot-marker"></span><span class="map-dot-label">Opononi</span></div>
-    <div class="map-dot" style="left:38.64%; top:61.01%;" onclick="showRegion('kaikohe')"><span class="map-dot-marker"></span><span class="map-dot-label">Kaikohe</span></div>
-    <div class="map-dot" style="left:76.41%; top:68.69%;" onclick="showRegion('kaitaia')"><span class="map-dot-marker"></span><span class="map-dot-label">Kaitaia</span></div>
-    <div class="map-dot" style="left:49.71%; top:72.06%;" onclick="showRegion('cape_reinga')"><span class="map-dot-marker"></span><span class="map-dot-label">Cape Reinga</span></div>
-    <div class="map-dot" style="left:66.88%; top:83.35%;" onclick="showRegion('paihia_bay_of_islands')"><span class="map-dot-marker"></span><span class="map-dot-label">Paihia (Bay of Islands)</span></div>
+  <div class="detail-map-zoom">
+      <img class="detail-map-bg" src="location_maps/northland.png" alt="northland map">
+      <div class="map-dot" style="left:31.76%; top:39.96%;" onclick="showRegion('matakohe')"><span class="map-dot-marker"></span><span class="map-dot-label">Matakohe</span></div>
+      <div class="map-dot" style="left:67.27%; top:49.87%;" onclick="showRegion('dargaville')"><span class="map-dot-marker"></span><span class="map-dot-label">Dargaville</span></div>
+      <div class="map-dot" style="left:68.5%; top:51.07%;" onclick="showRegion('waipoua_forest')"><span class="map-dot-marker"></span><span class="map-dot-label">Waipoua Forest</span></div>
+      <div class="map-dot" style="left:55.15%; top:55.25%;" onclick="showRegion('hokianga_harbour')"><span class="map-dot-marker"></span><span class="map-dot-label">Hokianga Harbour</span></div>
+      <div class="map-dot" style="left:38.06%; top:55.64%;" onclick="showRegion('opononi')"><span class="map-dot-marker"></span><span class="map-dot-label">Opononi</span></div>
+      <div class="map-dot" style="left:38.64%; top:61.01%;" onclick="showRegion('kaikohe')"><span class="map-dot-marker"></span><span class="map-dot-label">Kaikohe</span></div>
+      <div class="map-dot" style="left:76.41%; top:68.69%;" onclick="showRegion('kaitaia')"><span class="map-dot-marker"></span><span class="map-dot-label">Kaitaia</span></div>
+      <div class="map-dot" style="left:49.71%; top:72.06%;" onclick="showRegion('cape_reinga')"><span class="map-dot-marker"></span><span class="map-dot-label">Cape Reinga</span></div>
+      <div class="map-dot" style="left:66.88%; top:83.35%;" onclick="showRegion('paihia_bay_of_islands')"><span class="map-dot-marker"></span><span class="map-dot-label">Paihia (Bay of Islands)</span></div>
+  </div>
   </div>
   <p class="town-list-heading" style="margin-top:16px;">More in this region</p>
     <div class="town-link" onclick="showRegion('waitangi')">Waitangi</div>
     <div class="town-link" onclick="showRegion('whangarei')">Whangarei</div>
-    <div class="town-link" onclick="showRegion('wellsford')">Wellsford</div>
 </div>
 
 <div class="region-detail" id="detail-waikato">
   <div class="detail-map-wrap" style="aspect-ratio:3270/3491;">
-    <img class="detail-map-bg" src="location_maps/waikato.png" alt="waikato map">
-    <div class="map-dot" style="left:59.44%; top:30.16%;" onclick="showRegion('rangariri')"><span class="map-dot-marker"></span><span class="map-dot-label">Rangariri</span></div>
-    <div class="map-dot" style="left:80.46%; top:58.42%;" onclick="showRegion('huntly_taupiri')"><span class="map-dot-marker"></span><span class="map-dot-label">Huntly/Taupiri</span></div>
+  <div class="detail-map-zoom">
+      <img class="detail-map-bg" src="location_maps/waikato.png" alt="waikato map">
+      <div class="map-dot" style="left:59.44%; top:30.16%;" onclick="showRegion('rangariri')"><span class="map-dot-marker"></span><span class="map-dot-label">Rangariri</span></div>
+      <div class="map-dot" style="left:80.46%; top:58.42%;" onclick="showRegion('huntly_taupiri')"><span class="map-dot-marker"></span><span class="map-dot-label">Huntly/Taupiri</span></div>
+  </div>
   </div>
   <p class="town-list-heading" style="margin-top:16px;">More in this region</p>
     <div class="town-link" onclick="showRegion('taupiri')">Taupiri.</div>
@@ -461,30 +477,34 @@
 
 <div class="region-detail" id="detail-kingcountry">
   <div class="detail-map-wrap" style="aspect-ratio:3270/3492;">
-    <img class="detail-map-bg" src="location_maps/king%20country.png" alt="kingcountry map">
-    <div class="map-dot" style="left:64.79%; top:27.08%;" onclick="showRegion('otorohanga')"><span class="map-dot-marker"></span><span class="map-dot-label">Otorohanga</span></div>
-    <div class="map-dot" style="left:60.44%; top:27.83%;" onclick="showRegion('waitomo')"><span class="map-dot-marker"></span><span class="map-dot-label">Waitomo</span></div>
-    <div class="map-dot" style="left:61.73%; top:34.18%;" onclick="showRegion('te_kuiti')"><span class="map-dot-marker"></span><span class="map-dot-label">Te Kuiti</span></div>
-    <div class="map-dot" style="left:55.76%; top:39.63%;" onclick="showRegion('piopio')"><span class="map-dot-marker"></span><span class="map-dot-label">Piopio</span></div>
-    <div class="map-dot" style="left:45.36%; top:44.6%;" onclick="showRegion('awakino')"><span class="map-dot-marker"></span><span class="map-dot-label">Awakino</span></div>
-    <div class="map-dot" style="left:45.36%; top:46.93%;" onclick="showRegion('mokau')"><span class="map-dot-marker"></span><span class="map-dot-label">Mokau</span></div>
+  <div class="detail-map-zoom">
+      <img class="detail-map-bg" src="location_maps/king%20country.png" alt="kingcountry map">
+      <div class="map-dot" style="left:64.79%; top:27.08%;" onclick="showRegion('otorohanga')"><span class="map-dot-marker"></span><span class="map-dot-label">Otorohanga</span></div>
+      <div class="map-dot" style="left:60.44%; top:27.83%;" onclick="showRegion('waitomo')"><span class="map-dot-marker"></span><span class="map-dot-label">Waitomo</span></div>
+      <div class="map-dot" style="left:61.73%; top:34.18%;" onclick="showRegion('te_kuiti')"><span class="map-dot-marker"></span><span class="map-dot-label">Te Kuiti</span></div>
+      <div class="map-dot" style="left:55.76%; top:39.63%;" onclick="showRegion('piopio')"><span class="map-dot-marker"></span><span class="map-dot-label">Piopio</span></div>
+      <div class="map-dot" style="left:45.36%; top:44.6%;" onclick="showRegion('awakino')"><span class="map-dot-marker"></span><span class="map-dot-label">Awakino</span></div>
+      <div class="map-dot" style="left:45.36%; top:46.93%;" onclick="showRegion('mokau')"><span class="map-dot-marker"></span><span class="map-dot-label">Mokau</span></div>
+  </div>
   </div>
 </div>
 
 <div class="region-detail" id="detail-taranaki">
   <div class="detail-map-wrap" style="aspect-ratio:3270/3492;">
-    <img class="detail-map-bg" src="location_maps/Taranaki.png" alt="taranaki map">
-    <div class="map-dot" style="left:52.49%; top:29.82%;" onclick="showRegion('uruti')"><span class="map-dot-marker"></span><span class="map-dot-label">Uruti</span></div>
-    <div class="map-dot" style="left:42.5%; top:31.33%;" onclick="showRegion('motunui')"><span class="map-dot-marker"></span><span class="map-dot-label">Motunui</span></div>
-    <div class="map-dot" style="left:29.27%; top:38.41%;" onclick="showRegion('waitara')"><span class="map-dot-marker"></span><span class="map-dot-label">Waitara</span></div>
-    <div class="map-dot" style="left:27.12%; top:43.78%;" onclick="showRegion('new_plymouth')"><span class="map-dot-marker"></span><span class="map-dot-label">New Plymouth</span></div>
-    <div class="map-dot" style="left:44.5%; top:44.23%;" onclick="showRegion('surf_highway_45')"><span class="map-dot-marker"></span><span class="map-dot-label">Surf Highway 45</span></div>
-    <div class="map-dot" style="left:27.65%; top:45.74%;" onclick="showRegion('puniho')"><span class="map-dot-marker"></span><span class="map-dot-label">Puniho</span></div>
-    <div class="map-dot" style="left:31.77%; top:51.68%;" onclick="showRegion('parihaka')"><span class="map-dot-marker"></span><span class="map-dot-label">Parihaka</span></div>
-    <div class="map-dot" style="left:38.88%; top:53.2%;" onclick="showRegion('stent_road')"><span class="map-dot-marker"></span><span class="map-dot-label">Stent Road</span></div>
-    <div class="map-dot" style="left:45.18%; top:55.07%;" onclick="showRegion('opunake')"><span class="map-dot-marker"></span><span class="map-dot-label">Opunake</span></div>
-    <div class="map-dot" style="left:50.87%; top:62.08%;" onclick="showRegion('manaia')"><span class="map-dot-marker"></span><span class="map-dot-label">Manaia</span></div>
-    <div class="map-dot" style="left:61.61%; top:65.59%;" onclick="showRegion('hawera')"><span class="map-dot-marker"></span><span class="map-dot-label">Hawera</span></div>
+  <div class="detail-map-zoom">
+      <img class="detail-map-bg" src="location_maps/Taranaki.png" alt="taranaki map">
+      <div class="map-dot" style="left:52.49%; top:29.82%;" onclick="showRegion('uruti')"><span class="map-dot-marker"></span><span class="map-dot-label">Uruti</span></div>
+      <div class="map-dot" style="left:42.5%; top:31.33%;" onclick="showRegion('motunui')"><span class="map-dot-marker"></span><span class="map-dot-label">Motunui</span></div>
+      <div class="map-dot" style="left:29.27%; top:38.41%;" onclick="showRegion('waitara')"><span class="map-dot-marker"></span><span class="map-dot-label">Waitara</span></div>
+      <div class="map-dot" style="left:27.12%; top:43.78%;" onclick="showRegion('new_plymouth')"><span class="map-dot-marker"></span><span class="map-dot-label">New Plymouth</span></div>
+      <div class="map-dot" style="left:44.5%; top:44.23%;" onclick="showRegion('surf_highway_45')"><span class="map-dot-marker"></span><span class="map-dot-label">Surf Highway 45</span></div>
+      <div class="map-dot" style="left:27.65%; top:45.74%;" onclick="showRegion('puniho')"><span class="map-dot-marker"></span><span class="map-dot-label">Puniho</span></div>
+      <div class="map-dot" style="left:31.77%; top:51.68%;" onclick="showRegion('parihaka')"><span class="map-dot-marker"></span><span class="map-dot-label">Parihaka</span></div>
+      <div class="map-dot" style="left:38.88%; top:53.2%;" onclick="showRegion('stent_road')"><span class="map-dot-marker"></span><span class="map-dot-label">Stent Road</span></div>
+      <div class="map-dot" style="left:45.18%; top:55.07%;" onclick="showRegion('opunake')"><span class="map-dot-marker"></span><span class="map-dot-label">Opunake</span></div>
+      <div class="map-dot" style="left:50.87%; top:62.08%;" onclick="showRegion('manaia')"><span class="map-dot-marker"></span><span class="map-dot-label">Manaia</span></div>
+      <div class="map-dot" style="left:61.61%; top:65.59%;" onclick="showRegion('hawera')"><span class="map-dot-marker"></span><span class="map-dot-label">Hawera</span></div>
+  </div>
   </div>
   <p class="town-list-heading" style="margin-top:16px;">More in this region</p>
     <div class="town-link" onclick="showRegion('stratford')">Stratford</div>
@@ -493,15 +513,17 @@
 
 <div class="region-detail" id="detail-whanganui">
   <div class="detail-map-wrap" style="aspect-ratio:5302/5661;">
-    <img class="detail-map-bg" src="location_maps/manawatu_whanganui.png" alt="whanganui map">
-    <div class="map-dot" style="left:55.75%; top:36.14%;" onclick="showRegion('waverley')"><span class="map-dot-marker"></span><span class="map-dot-label">Waverley</span></div>
-    <div class="map-dot" style="left:59.43%; top:36.14%;" onclick="showRegion('whanganui')"><span class="map-dot-marker"></span><span class="map-dot-label">Whanganui</span></div>
-    <div class="map-dot" style="left:69.47%; top:64.53%;" onclick="showRegion('bulls')"><span class="map-dot-marker"></span><span class="map-dot-label">Bulls</span></div>
-    <div class="map-dot" style="left:46.96%; top:65.81%;" onclick="showRegion('sanson')"><span class="map-dot-marker"></span><span class="map-dot-label">Sanson</span></div>
-    <div class="map-dot" style="left:67.78%; top:65.81%;" onclick="showRegion('foxton')"><span class="map-dot-marker"></span><span class="map-dot-label">Foxton</span></div>
-    <div class="map-dot" style="left:63.75%; top:66.74%;" onclick="showRegion('otaki')"><span class="map-dot-marker"></span><span class="map-dot-label">Otaki</span></div>
-    <div class="map-dot" style="left:61.26%; top:72.0%;" onclick="showRegion('mt_bruce_wildlife_centre')"><span class="map-dot-marker"></span><span class="map-dot-label">Mt Bruce Wildlife Centre.</span></div>
-    <div class="map-dot" style="left:59.92%; top:76.71%;" onclick="showRegion('ekatahuna')"><span class="map-dot-marker"></span><span class="map-dot-label">Ekatahuna</span></div>
+  <div class="detail-map-zoom">
+      <img class="detail-map-bg" src="location_maps/manawatu_whanganui.png" alt="whanganui map">
+      <div class="map-dot" style="left:55.75%; top:36.14%;" onclick="showRegion('waverley')"><span class="map-dot-marker"></span><span class="map-dot-label">Waverley</span></div>
+      <div class="map-dot" style="left:59.43%; top:36.14%;" onclick="showRegion('whanganui')"><span class="map-dot-marker"></span><span class="map-dot-label">Whanganui</span></div>
+      <div class="map-dot" style="left:69.47%; top:64.53%;" onclick="showRegion('bulls')"><span class="map-dot-marker"></span><span class="map-dot-label">Bulls</span></div>
+      <div class="map-dot" style="left:46.96%; top:65.81%;" onclick="showRegion('sanson')"><span class="map-dot-marker"></span><span class="map-dot-label">Sanson</span></div>
+      <div class="map-dot" style="left:67.78%; top:65.81%;" onclick="showRegion('foxton')"><span class="map-dot-marker"></span><span class="map-dot-label">Foxton</span></div>
+      <div class="map-dot" style="left:63.75%; top:66.74%;" onclick="showRegion('otaki')"><span class="map-dot-marker"></span><span class="map-dot-label">Otaki</span></div>
+      <div class="map-dot" style="left:61.26%; top:72.0%;" onclick="showRegion('mt_bruce_wildlife_centre')"><span class="map-dot-marker"></span><span class="map-dot-label">Mt Bruce Wildlife Centre.</span></div>
+      <div class="map-dot" style="left:59.92%; top:76.71%;" onclick="showRegion('ekatahuna')"><span class="map-dot-marker"></span><span class="map-dot-label">Ekatahuna</span></div>
+  </div>
   </div>
   <p class="town-list-heading" style="margin-top:16px;">More in this region</p>
     <div class="town-link" onclick="showRegion('pahiatua_manganatokia')">Pahiatua/Manganatokia</div>
@@ -511,11 +533,13 @@
 
 <div class="region-detail" id="detail-wellington">
   <div class="detail-map-wrap" style="aspect-ratio:3270/3492;">
-    <img class="detail-map-bg" src="location_maps/wellington.png" alt="wellington map">
-    <div class="map-dot" style="left:43.6%; top:48.57%;" onclick="showRegion('paraparaumu')"><span class="map-dot-marker"></span><span class="map-dot-label">Paraparaumu</span></div>
-    <div class="map-dot" style="left:41.26%; top:51.48%;" onclick="showRegion('paekakariki')"><span class="map-dot-marker"></span><span class="map-dot-label">Paekakariki</span></div>
-    <div class="map-dot" style="left:39.08%; top:54.45%;" onclick="showRegion('porirua')"><span class="map-dot-marker"></span><span class="map-dot-label">Porirua</span></div>
-    <div class="map-dot" style="left:37.81%; top:55.97%;" onclick="showRegion('wellington')"><span class="map-dot-marker"></span><span class="map-dot-label">Wellington</span></div>
+  <div class="detail-map-zoom">
+      <img class="detail-map-bg" src="location_maps/wellington.png" alt="wellington map">
+      <div class="map-dot" style="left:43.6%; top:48.57%;" onclick="showRegion('paraparaumu')"><span class="map-dot-marker"></span><span class="map-dot-label">Paraparaumu</span></div>
+      <div class="map-dot" style="left:41.26%; top:51.48%;" onclick="showRegion('paekakariki')"><span class="map-dot-marker"></span><span class="map-dot-label">Paekakariki</span></div>
+      <div class="map-dot" style="left:39.08%; top:54.45%;" onclick="showRegion('porirua')"><span class="map-dot-marker"></span><span class="map-dot-label">Porirua</span></div>
+      <div class="map-dot" style="left:37.81%; top:55.97%;" onclick="showRegion('wellington')"><span class="map-dot-marker"></span><span class="map-dot-label">Wellington</span></div>
+  </div>
   </div>
   <p class="town-list-heading" style="margin-top:16px;">More in this region</p>
     <div class="town-link" onclick="showRegion('hutt_cities')">Hutt Cities</div>
@@ -523,19 +547,23 @@
 
 <div class="region-detail" id="detail-wairarapa">
   <div class="detail-map-wrap" style="aspect-ratio:5302/5661;">
-    <img class="detail-map-bg" src="location_maps/wairarapa_bush.png" alt="wairarapa map">
-    <div class="map-dot" style="left:61.76%; top:41.21%;" onclick="showRegion('featherston')"><span class="map-dot-marker"></span><span class="map-dot-label">Featherston</span></div>
-    <div class="map-dot" style="left:53.96%; top:47.34%;" onclick="showRegion('carterton')"><span class="map-dot-marker"></span><span class="map-dot-label">Carterton</span></div>
-    <div class="map-dot" style="left:46.75%; top:50.87%;" onclick="showRegion('greytown')"><span class="map-dot-marker"></span><span class="map-dot-label">Greytown</span></div>
-    <div class="map-dot" style="left:39.39%; top:52.26%;" onclick="showRegion('masterton')"><span class="map-dot-marker"></span><span class="map-dot-label">Masterton</span></div>
+  <div class="detail-map-zoom">
+      <img class="detail-map-bg" src="location_maps/wairarapa_bush.png" alt="wairarapa map">
+      <div class="map-dot" style="left:61.76%; top:41.21%;" onclick="showRegion('featherston')"><span class="map-dot-marker"></span><span class="map-dot-label">Featherston</span></div>
+      <div class="map-dot" style="left:53.96%; top:47.34%;" onclick="showRegion('carterton')"><span class="map-dot-marker"></span><span class="map-dot-label">Carterton</span></div>
+      <div class="map-dot" style="left:46.75%; top:50.87%;" onclick="showRegion('greytown')"><span class="map-dot-marker"></span><span class="map-dot-label">Greytown</span></div>
+      <div class="map-dot" style="left:39.39%; top:52.26%;" onclick="showRegion('masterton')"><span class="map-dot-marker"></span><span class="map-dot-label">Masterton</span></div>
+  </div>
   </div>
 </div>
 
 <div class="region-detail" id="detail-hawkesbay">
   <div class="detail-map-wrap" style="aspect-ratio:3271/3491;">
-    <img class="detail-map-bg" src="location_maps/hawkes%20bay.png" alt="hawkesbay map">
-    <div class="map-dot" style="left:85.94%; top:34.16%;" onclick="showRegion('waipukurau')"><span class="map-dot-marker"></span><span class="map-dot-label">Waipukurau</span></div>
-    <div class="map-dot" style="left:34.45%; top:73.97%;" onclick="showRegion('hastings')"><span class="map-dot-marker"></span><span class="map-dot-label">Hastings</span></div>
+  <div class="detail-map-zoom">
+      <img class="detail-map-bg" src="location_maps/hawkes%20bay.png" alt="hawkesbay map">
+      <div class="map-dot" style="left:85.94%; top:34.16%;" onclick="showRegion('waipukurau')"><span class="map-dot-marker"></span><span class="map-dot-label">Waipukurau</span></div>
+      <div class="map-dot" style="left:34.45%; top:73.97%;" onclick="showRegion('hastings')"><span class="map-dot-marker"></span><span class="map-dot-label">Hastings</span></div>
+  </div>
   </div>
   <p class="town-list-heading" style="margin-top:16px;">More in this region</p>
     <div class="town-link" onclick="showRegion('napier')">Napier</div>
@@ -543,11 +571,13 @@
 
 <div class="region-detail" id="detail-bayofplenty">
   <div class="detail-map-wrap" style="aspect-ratio:3270/3491;">
-    <img class="detail-map-bg" src="location_maps/bay%20of%20plenty.png" alt="bayofplenty map">
-    <div class="map-dot" style="left:21.62%; top:39.06%;" onclick="showRegion('rotorua')"><span class="map-dot-marker"></span><span class="map-dot-label">Rotorua</span></div>
-    <div class="map-dot" style="left:73.71%; top:39.66%;" onclick="showRegion('wai_o_tapu')"><span class="map-dot-marker"></span><span class="map-dot-label">Wai-o-tapu</span></div>
-    <div class="map-dot" style="left:45.55%; top:46.91%;" onclick="showRegion('te_puke')"><span class="map-dot-marker"></span><span class="map-dot-label">Te Puke</span></div>
-    <div class="map-dot" style="left:57.19%; top:51.01%;" onclick="showRegion('tauranga_mt_maunganui')"><span class="map-dot-marker"></span><span class="map-dot-label">Tauranga/Mt Maunganui</span></div>
+  <div class="detail-map-zoom">
+      <img class="detail-map-bg" src="location_maps/bay%20of%20plenty.png" alt="bayofplenty map">
+      <div class="map-dot" style="left:21.62%; top:39.06%;" onclick="showRegion('rotorua')"><span class="map-dot-marker"></span><span class="map-dot-label">Rotorua</span></div>
+      <div class="map-dot" style="left:73.71%; top:39.66%;" onclick="showRegion('wai_o_tapu')"><span class="map-dot-marker"></span><span class="map-dot-label">Wai-o-tapu</span></div>
+      <div class="map-dot" style="left:45.55%; top:46.91%;" onclick="showRegion('te_puke')"><span class="map-dot-marker"></span><span class="map-dot-label">Te Puke</span></div>
+      <div class="map-dot" style="left:57.19%; top:51.01%;" onclick="showRegion('tauranga_mt_maunganui')"><span class="map-dot-marker"></span><span class="map-dot-label">Tauranga/Mt Maunganui</span></div>
+  </div>
   </div>
   <p class="town-list-heading" style="margin-top:16px;">More in this region</p>
     <div class="town-link" onclick="showRegion('katikati')">Katikati</div>
@@ -560,12 +590,14 @@
 
 <div class="region-detail" id="detail-eastcoast">
   <div class="detail-map-wrap" style="aspect-ratio:3271/3492;">
-    <img class="detail-map-bg" src="location_maps/east%20coast%20bays.png" alt="eastcoast map">
-    <div class="map-dot" style="left:60.13%; top:26.65%;" onclick="showRegion('gisborne')"><span class="map-dot-marker"></span><span class="map-dot-label">Gisborne</span></div>
-    <div class="map-dot" style="left:63.77%; top:29.51%;" onclick="showRegion('tolaga_bay')"><span class="map-dot-marker"></span><span class="map-dot-label">Tolaga Bay</span></div>
-    <div class="map-dot" style="left:62.99%; top:37.66%;" onclick="showRegion('tokomaru_bay')"><span class="map-dot-marker"></span><span class="map-dot-label">Tokomaru Bay</span></div>
-    <div class="map-dot" style="left:60.13%; top:50.21%;" onclick="showRegion('ruatoria')"><span class="map-dot-marker"></span><span class="map-dot-label">Ruatoria</span></div>
-    <div class="map-dot" style="left:59.54%; top:61.29%;" onclick="showRegion('east_cape')"><span class="map-dot-marker"></span><span class="map-dot-label">East Cape</span></div>
+  <div class="detail-map-zoom">
+      <img class="detail-map-bg" src="location_maps/east%20coast%20bays.png" alt="eastcoast map">
+      <div class="map-dot" style="left:60.13%; top:26.65%;" onclick="showRegion('gisborne')"><span class="map-dot-marker"></span><span class="map-dot-label">Gisborne</span></div>
+      <div class="map-dot" style="left:63.77%; top:29.51%;" onclick="showRegion('tolaga_bay')"><span class="map-dot-marker"></span><span class="map-dot-label">Tolaga Bay</span></div>
+      <div class="map-dot" style="left:62.99%; top:37.66%;" onclick="showRegion('tokomaru_bay')"><span class="map-dot-marker"></span><span class="map-dot-label">Tokomaru Bay</span></div>
+      <div class="map-dot" style="left:60.13%; top:50.21%;" onclick="showRegion('ruatoria')"><span class="map-dot-marker"></span><span class="map-dot-label">Ruatoria</span></div>
+      <div class="map-dot" style="left:59.54%; top:61.29%;" onclick="showRegion('east_cape')"><span class="map-dot-marker"></span><span class="map-dot-label">East Cape</span></div>
+  </div>
   </div>
   <p class="town-list-heading" style="margin-top:16px;">More in this region</p>
     <div class="town-link" onclick="showRegion('hicks_bay')">Hicks Bay</div>
@@ -580,10 +612,12 @@
 
 <div class="region-detail" id="detail-marlborough">
   <div class="detail-map-wrap" style="aspect-ratio:4542/4850;">
-    <img class="detail-map-bg" src="location_maps/marlborough.png" alt="marlborough map">
-    <div class="map-dot" style="left:60.95%; top:36.28%;" onclick="showRegion('picton')"><span class="map-dot-marker"></span><span class="map-dot-label">Picton</span></div>
-    <div class="map-dot" style="left:69.85%; top:47.69%;" onclick="showRegion('havelock')"><span class="map-dot-marker"></span><span class="map-dot-label">Havelock</span></div>
-    <div class="map-dot" style="left:68.38%; top:53.75%;" onclick="showRegion('ward')"><span class="map-dot-marker"></span><span class="map-dot-label">Ward</span></div>
+  <div class="detail-map-zoom">
+      <img class="detail-map-bg" src="location_maps/marlborough.png" alt="marlborough map">
+      <div class="map-dot" style="left:60.95%; top:36.28%;" onclick="showRegion('picton')"><span class="map-dot-marker"></span><span class="map-dot-label">Picton</span></div>
+      <div class="map-dot" style="left:69.85%; top:47.69%;" onclick="showRegion('havelock')"><span class="map-dot-marker"></span><span class="map-dot-label">Havelock</span></div>
+      <div class="map-dot" style="left:68.38%; top:53.75%;" onclick="showRegion('ward')"><span class="map-dot-marker"></span><span class="map-dot-label">Ward</span></div>
+  </div>
   </div>
   <p class="town-list-heading" style="margin-top:16px;">More in this region</p>
     <div class="town-link" onclick="showRegion('seddon')">Seddon</div>
@@ -592,27 +626,31 @@
 
 <div class="region-detail" id="detail-tasman">
   <div class="detail-map-wrap" style="aspect-ratio:4542/4850;">
-    <img class="detail-map-bg" src="location_maps/tasman.png" alt="tasman map">
-    <div class="map-dot" style="left:58.36%; top:31.04%;" onclick="showRegion('nelson')"><span class="map-dot-marker"></span><span class="map-dot-label">Nelson.</span></div>
-    <div class="map-dot" style="left:52.24%; top:32.13%;" onclick="showRegion('motueka')"><span class="map-dot-marker"></span><span class="map-dot-label">Motueka.</span></div>
-    <div class="map-dot" style="left:58.36%; top:38.72%;" onclick="showRegion('abel_tasman_national_park')"><span class="map-dot-marker"></span><span class="map-dot-label">Abel Tasman National Park</span></div>
-    <div class="map-dot" style="left:52.24%; top:56.61%;" onclick="showRegion('t_kaka')"><span class="map-dot-marker"></span><span class="map-dot-label">Tákaka</span></div>
-    <div class="map-dot" style="left:42.04%; top:61.53%;" onclick="showRegion('murchison')"><span class="map-dot-marker"></span><span class="map-dot-label">Murchison.</span></div>
+  <div class="detail-map-zoom">
+      <img class="detail-map-bg" src="location_maps/tasman.png" alt="tasman map">
+      <div class="map-dot" style="left:58.36%; top:31.04%;" onclick="showRegion('nelson')"><span class="map-dot-marker"></span><span class="map-dot-label">Nelson.</span></div>
+      <div class="map-dot" style="left:52.24%; top:32.13%;" onclick="showRegion('motueka')"><span class="map-dot-marker"></span><span class="map-dot-label">Motueka.</span></div>
+      <div class="map-dot" style="left:58.36%; top:38.72%;" onclick="showRegion('abel_tasman_national_park')"><span class="map-dot-marker"></span><span class="map-dot-label">Abel Tasman National Park</span></div>
+      <div class="map-dot" style="left:52.24%; top:56.61%;" onclick="showRegion('t_kaka')"><span class="map-dot-marker"></span><span class="map-dot-label">Tákaka</span></div>
+      <div class="map-dot" style="left:42.04%; top:61.53%;" onclick="showRegion('murchison')"><span class="map-dot-marker"></span><span class="map-dot-label">Murchison.</span></div>
+  </div>
   </div>
 </div>
 
 <div class="region-detail" id="detail-westcoast">
   <div class="detail-map-wrap" style="aspect-ratio:5881/6278;">
-    <img class="detail-map-bg" src="location_maps/west_coast.png" alt="westcoast map">
-    <div class="map-dot" style="left:59.22%; top:23.98%;" onclick="showRegion('inangahua_junction')"><span class="map-dot-marker"></span><span class="map-dot-label">Inangahua Junction</span></div>
-    <div class="map-dot" style="left:57.39%; top:29.02%;" onclick="showRegion('westport')"><span class="map-dot-marker"></span><span class="map-dot-label">Westport.</span></div>
-    <div class="map-dot" style="left:52.38%; top:41.73%;" onclick="showRegion('cape_foulwind')"><span class="map-dot-marker"></span><span class="map-dot-label">Cape Foulwind</span></div>
-    <div class="map-dot" style="left:49.01%; top:46.85%;" onclick="showRegion('charleston')"><span class="map-dot-marker"></span><span class="map-dot-label">Charleston</span></div>
-    <div class="map-dot" style="left:42.48%; top:52.36%;" onclick="showRegion('paparoa_national_park')"><span class="map-dot-marker"></span><span class="map-dot-label">Paparoa National Park</span></div>
-    <div class="map-dot" style="left:47.23%; top:52.36%;" onclick="showRegion('punakaiki')"><span class="map-dot-marker"></span><span class="map-dot-label">Punakaiki</span></div>
-    <div class="map-dot" style="left:37.8%; top:54.58%;" onclick="showRegion('greymouth')"><span class="map-dot-marker"></span><span class="map-dot-label">Greymouth</span></div>
-    <div class="map-dot" style="left:36.9%; top:55.43%;" onclick="showRegion('hokitika')"><span class="map-dot-marker"></span><span class="map-dot-label">Hokitika</span></div>
-    <div class="map-dot" style="left:18.65%; top:67.4%;" onclick="showRegion('ross')"><span class="map-dot-marker"></span><span class="map-dot-label">Ross</span></div>
+  <div class="detail-map-zoom">
+      <img class="detail-map-bg" src="location_maps/west_coast.png" alt="westcoast map">
+      <div class="map-dot" style="left:59.22%; top:23.98%;" onclick="showRegion('inangahua_junction')"><span class="map-dot-marker"></span><span class="map-dot-label">Inangahua Junction</span></div>
+      <div class="map-dot" style="left:57.39%; top:29.02%;" onclick="showRegion('westport')"><span class="map-dot-marker"></span><span class="map-dot-label">Westport.</span></div>
+      <div class="map-dot" style="left:52.38%; top:41.73%;" onclick="showRegion('cape_foulwind')"><span class="map-dot-marker"></span><span class="map-dot-label">Cape Foulwind</span></div>
+      <div class="map-dot" style="left:49.01%; top:46.85%;" onclick="showRegion('charleston')"><span class="map-dot-marker"></span><span class="map-dot-label">Charleston</span></div>
+      <div class="map-dot" style="left:42.48%; top:52.36%;" onclick="showRegion('paparoa_national_park')"><span class="map-dot-marker"></span><span class="map-dot-label">Paparoa National Park</span></div>
+      <div class="map-dot" style="left:47.23%; top:52.36%;" onclick="showRegion('punakaiki')"><span class="map-dot-marker"></span><span class="map-dot-label">Punakaiki</span></div>
+      <div class="map-dot" style="left:37.8%; top:54.58%;" onclick="showRegion('greymouth')"><span class="map-dot-marker"></span><span class="map-dot-label">Greymouth</span></div>
+      <div class="map-dot" style="left:36.9%; top:55.43%;" onclick="showRegion('hokitika')"><span class="map-dot-marker"></span><span class="map-dot-label">Hokitika</span></div>
+      <div class="map-dot" style="left:18.65%; top:67.4%;" onclick="showRegion('ross')"><span class="map-dot-marker"></span><span class="map-dot-label">Ross</span></div>
+  </div>
   </div>
   <p class="town-list-heading" style="margin-top:16px;">More in this region</p>
     <div class="town-link" onclick="showRegion('harihari')">Harihari</div>
@@ -624,14 +662,16 @@
 
 <div class="region-detail" id="detail-southland">
   <div class="detail-map-wrap" style="aspect-ratio:5301/5660;">
-    <img class="detail-map-bg" src="location_maps/southland.png" alt="southland map">
-    <div class="map-dot" style="left:43.55%; top:22.55%;" onclick="showRegion('mossburn')"><span class="map-dot-marker"></span><span class="map-dot-label">Mossburn.</span></div>
-    <div class="map-dot" style="left:41.39%; top:37.79%;" onclick="showRegion('fiordland_national_park')"><span class="map-dot-marker"></span><span class="map-dot-label">Fiordland National Park</span></div>
-    <div class="map-dot" style="left:30.98%; top:41.58%;" onclick="showRegion('te_anau')"><span class="map-dot-marker"></span><span class="map-dot-label">Te Anau</span></div>
-    <div class="map-dot" style="left:38.75%; top:42.52%;" onclick="showRegion('manapouri')"><span class="map-dot-marker"></span><span class="map-dot-label">Manapouri</span></div>
-    <div class="map-dot" style="left:46.72%; top:45.26%;" onclick="showRegion('doubtful_sound')"><span class="map-dot-marker"></span><span class="map-dot-label">Doubtful Sound</span></div>
-    <div class="map-dot" style="left:50.68%; top:48.95%;" onclick="showRegion('lumsden')"><span class="map-dot-marker"></span><span class="map-dot-label">Lumsden</span></div>
-    <div class="map-dot" style="left:48.55%; top:77.5%;" onclick="showRegion('winton')"><span class="map-dot-marker"></span><span class="map-dot-label">Winton</span></div>
+  <div class="detail-map-zoom">
+      <img class="detail-map-bg" src="location_maps/southland.png" alt="southland map">
+      <div class="map-dot" style="left:43.55%; top:22.55%;" onclick="showRegion('mossburn')"><span class="map-dot-marker"></span><span class="map-dot-label">Mossburn.</span></div>
+      <div class="map-dot" style="left:41.39%; top:37.79%;" onclick="showRegion('fiordland_national_park')"><span class="map-dot-marker"></span><span class="map-dot-label">Fiordland National Park</span></div>
+      <div class="map-dot" style="left:30.98%; top:41.58%;" onclick="showRegion('te_anau')"><span class="map-dot-marker"></span><span class="map-dot-label">Te Anau</span></div>
+      <div class="map-dot" style="left:38.75%; top:42.52%;" onclick="showRegion('manapouri')"><span class="map-dot-marker"></span><span class="map-dot-label">Manapouri</span></div>
+      <div class="map-dot" style="left:46.72%; top:45.26%;" onclick="showRegion('doubtful_sound')"><span class="map-dot-marker"></span><span class="map-dot-label">Doubtful Sound</span></div>
+      <div class="map-dot" style="left:50.68%; top:48.95%;" onclick="showRegion('lumsden')"><span class="map-dot-marker"></span><span class="map-dot-label">Lumsden</span></div>
+      <div class="map-dot" style="left:48.55%; top:77.5%;" onclick="showRegion('winton')"><span class="map-dot-marker"></span><span class="map-dot-label">Winton</span></div>
+  </div>
   </div>
   <p class="town-list-heading" style="margin-top:16px;">More in this region</p>
     <div class="town-link" onclick="showRegion('invercargill')">Invercargill</div>
@@ -643,16 +683,18 @@
 <div class="region-detail" id="detail-otago">
   <p class="town-list-heading">Lakes District</p>
   <div class="detail-map-wrap" style="aspect-ratio:4543/4850;">
-    <img class="detail-map-bg" src="location_maps/otago.png" alt="lakes district map">
-    <div class="map-dot" style="left:43.6%; top:18.02%;" onclick="showRegion('makarora')"><span class="map-dot-marker"></span><span class="map-dot-label">Makarora</span></div>
-    <div class="map-dot" style="left:43.6%; top:31.53%;" onclick="showRegion('hawea')"><span class="map-dot-marker"></span><span class="map-dot-label">Hawea</span></div>
-    <div class="map-dot" style="left:39.67%; top:34.17%;" onclick="showRegion('wanaka')"><span class="map-dot-marker"></span><span class="map-dot-label">Wanaka</span></div>
-    <div class="map-dot" style="left:30.23%; top:42.78%;" onclick="showRegion('crown_range')"><span class="map-dot-marker"></span><span class="map-dot-label">Crown Range</span></div>
-    <div class="map-dot" style="left:40.84%; top:44.64%;" onclick="showRegion('cromwell')"><span class="map-dot-marker"></span><span class="map-dot-label">Cromwell</span></div>
-    <div class="map-dot" style="left:80.82%; top:44.64%;" onclick="showRegion('queenstown')"><span class="map-dot-marker"></span><span class="map-dot-label">Queenstown</span></div>
-    <div class="map-dot" style="left:32.88%; top:51.78%;" onclick="showRegion('bennets_bluff')"><span class="map-dot-marker"></span><span class="map-dot-label">Bennets Bluff</span></div>
-    <div class="map-dot" style="left:77.77%; top:51.78%;" onclick="showRegion('glenorchy')"><span class="map-dot-marker"></span><span class="map-dot-label">Glenorchy</span></div>
-    <div class="map-dot" style="left:53.12%; top:79.44%;" onclick="showRegion('kingston')"><span class="map-dot-marker"></span><span class="map-dot-label">Kingston</span></div>
+  <div class="detail-map-zoom">
+      <img class="detail-map-bg" src="location_maps/otago.png" alt="lakes district map">
+      <div class="map-dot" style="left:43.6%; top:18.02%;" onclick="showRegion('makarora')"><span class="map-dot-marker"></span><span class="map-dot-label">Makarora</span></div>
+      <div class="map-dot" style="left:43.6%; top:31.53%;" onclick="showRegion('hawea')"><span class="map-dot-marker"></span><span class="map-dot-label">Hawea</span></div>
+      <div class="map-dot" style="left:39.67%; top:34.17%;" onclick="showRegion('wanaka')"><span class="map-dot-marker"></span><span class="map-dot-label">Wanaka</span></div>
+      <div class="map-dot" style="left:30.23%; top:42.78%;" onclick="showRegion('crown_range')"><span class="map-dot-marker"></span><span class="map-dot-label">Crown Range</span></div>
+      <div class="map-dot" style="left:40.84%; top:44.64%;" onclick="showRegion('cromwell')"><span class="map-dot-marker"></span><span class="map-dot-label">Cromwell</span></div>
+      <div class="map-dot" style="left:80.82%; top:44.64%;" onclick="showRegion('queenstown')"><span class="map-dot-marker"></span><span class="map-dot-label">Queenstown</span></div>
+      <div class="map-dot" style="left:32.88%; top:51.78%;" onclick="showRegion('bennets_bluff')"><span class="map-dot-marker"></span><span class="map-dot-label">Bennets Bluff</span></div>
+      <div class="map-dot" style="left:77.77%; top:51.78%;" onclick="showRegion('glenorchy')"><span class="map-dot-marker"></span><span class="map-dot-label">Glenorchy</span></div>
+      <div class="map-dot" style="left:53.12%; top:79.44%;" onclick="showRegion('kingston')"><span class="map-dot-marker"></span><span class="map-dot-label">Kingston</span></div>
+  </div>
   </div>
   <p class="town-list-heading" style="margin-top:16px;">Otago</p>
     <div class="town-link" onclick="showRegion('balclutha')">Balclutha</div>
@@ -665,18 +707,20 @@
 
 <div class="region-detail" id="detail-canterbury">
   <div class="detail-map-wrap" style="aspect-ratio:5301/5661;">
-    <img class="detail-map-bg" src="location_maps/canterbury.png" alt="canterbury map">
-    <div class="map-dot" style="left:83.53%; top:19.32%;" onclick="showRegion('mackenzie_country')"><span class="map-dot-marker"></span><span class="map-dot-label">Mackenzie Country</span></div>
-    <div class="map-dot" style="left:74.82%; top:30.96%;" onclick="showRegion('twizel')"><span class="map-dot-marker"></span><span class="map-dot-label">Twizel</span></div>
-    <div class="map-dot" style="left:65.12%; top:39.82%;" onclick="showRegion('lake_pukaki')"><span class="map-dot-marker"></span><span class="map-dot-label">Lake Pukaki</span></div>
-    <div class="map-dot" style="left:50.32%; top:57.04%;" onclick="showRegion('mt_cook_national_park')"><span class="map-dot-marker"></span><span class="map-dot-label">Mt Cook National Park</span></div>
-    <div class="map-dot" style="left:21.43%; top:57.98%;" onclick="showRegion('lake_tekapo')"><span class="map-dot-marker"></span><span class="map-dot-label">Lake Tekapo</span></div>
-    <div class="map-dot" style="left:14.82%; top:63.05%;" onclick="showRegion('fairlie')"><span class="map-dot-marker"></span><span class="map-dot-label">Fairlie</span></div>
-    <div class="map-dot" style="left:26.94%; top:63.05%;" onclick="showRegion('waitohi')"><span class="map-dot-marker"></span><span class="map-dot-label">Waitohi</span></div>
-    <div class="map-dot" style="left:36.15%; top:65.08%;" onclick="showRegion('temuka')"><span class="map-dot-marker"></span><span class="map-dot-label">Temuka</span></div>
-    <div class="map-dot" style="left:33.77%; top:66.02%;" onclick="showRegion('geraldine')"><span class="map-dot-marker"></span><span class="map-dot-label">Geraldine</span></div>
-    <div class="map-dot" style="left:36.15%; top:67.56%;" onclick="showRegion('rakaia')"><span class="map-dot-marker"></span><span class="map-dot-label">Rakaia</span></div>
-    <div class="map-dot" style="left:10.82%; top:70.16%;" onclick="showRegion('christchurch')"><span class="map-dot-marker"></span><span class="map-dot-label">Christchurch</span></div>
+  <div class="detail-map-zoom">
+      <img class="detail-map-bg" src="location_maps/canterbury.png" alt="canterbury map">
+      <div class="map-dot" style="left:83.53%; top:19.32%;" onclick="showRegion('mackenzie_country')"><span class="map-dot-marker"></span><span class="map-dot-label">Mackenzie Country</span></div>
+      <div class="map-dot" style="left:74.82%; top:30.96%;" onclick="showRegion('twizel')"><span class="map-dot-marker"></span><span class="map-dot-label">Twizel</span></div>
+      <div class="map-dot" style="left:65.12%; top:39.82%;" onclick="showRegion('lake_pukaki')"><span class="map-dot-marker"></span><span class="map-dot-label">Lake Pukaki</span></div>
+      <div class="map-dot" style="left:50.32%; top:57.04%;" onclick="showRegion('mt_cook_national_park')"><span class="map-dot-marker"></span><span class="map-dot-label">Mt Cook National Park</span></div>
+      <div class="map-dot" style="left:21.43%; top:57.98%;" onclick="showRegion('lake_tekapo')"><span class="map-dot-marker"></span><span class="map-dot-label">Lake Tekapo</span></div>
+      <div class="map-dot" style="left:14.82%; top:63.05%;" onclick="showRegion('fairlie')"><span class="map-dot-marker"></span><span class="map-dot-label">Fairlie</span></div>
+      <div class="map-dot" style="left:26.94%; top:63.05%;" onclick="showRegion('waitohi')"><span class="map-dot-marker"></span><span class="map-dot-label">Waitohi</span></div>
+      <div class="map-dot" style="left:36.15%; top:65.08%;" onclick="showRegion('temuka')"><span class="map-dot-marker"></span><span class="map-dot-label">Temuka</span></div>
+      <div class="map-dot" style="left:33.77%; top:66.02%;" onclick="showRegion('geraldine')"><span class="map-dot-marker"></span><span class="map-dot-label">Geraldine</span></div>
+      <div class="map-dot" style="left:36.15%; top:67.56%;" onclick="showRegion('rakaia')"><span class="map-dot-marker"></span><span class="map-dot-label">Rakaia</span></div>
+      <div class="map-dot" style="left:10.82%; top:70.16%;" onclick="showRegion('christchurch')"><span class="map-dot-marker"></span><span class="map-dot-label">Christchurch</span></div>
+  </div>
   </div>
   <p class="town-list-heading" style="margin-top:16px;">More in this region</p>
     <div class="town-link" onclick="showRegion('amberley')">Amberley</div>
@@ -2445,6 +2489,7 @@ function selectRegion(slug) {
   document.querySelectorAll('.region-detail').forEach(function(el) { el.classList.remove('active'); });
   var detail = document.getElementById('detail-' + slug);
   if (detail) detail.classList.add('active');
+  document.querySelectorAll('.detail-map-wrap').forEach(function(w) { if (w._resetZoom) w._resetZoom(); });
   window.scrollTo(0, 0);
 }
 
@@ -2522,7 +2567,111 @@ var lbTouchStartX = null;
 var lbTouchStartY = null;
 var lbTouchIsSwipe = false;
 
+function initMapPinchZoom() {
+  var MIN_SCALE = 1;
+  var MAX_SCALE = 4;
+
+  document.querySelectorAll('.detail-map-wrap').forEach(function(wrap) {
+    var zoom = wrap.querySelector('.detail-map-zoom');
+    if (!zoom || wrap._pinchInit) return;
+    wrap._pinchInit = true;
+
+    var scale = 1, panX = 0, panY = 0;
+    var startDist = 0, startScale = 1, startPanX = 0, startPanY = 0;
+    var lastX = 0, lastY = 0;
+    var pinching = false, panning = false;
+    var lastTapTime = 0;
+
+    function apply(withTransition) {
+      zoom.style.transition = withTransition ? 'transform 0.2s ease' : '';
+      zoom.style.transform = 'translate(' + panX + 'px,' + panY + 'px) scale(' + scale + ')';
+    }
+
+    function clampPan() {
+      if (scale <= 1) { panX = 0; panY = 0; return; }
+      var rect = wrap.getBoundingClientRect();
+      var maxX = (rect.width * (scale - 1)) / 2;
+      var maxY = (rect.height * (scale - 1)) / 2;
+      panX = Math.max(-maxX, Math.min(maxX, panX));
+      panY = Math.max(-maxY, Math.min(maxY, panY));
+    }
+
+    function dist(touches) {
+      var dx = touches[0].clientX - touches[1].clientX;
+      var dy = touches[0].clientY - touches[1].clientY;
+      return Math.sqrt(dx * dx + dy * dy);
+    }
+
+    function reset() {
+      scale = 1; panX = 0; panY = 0;
+      apply(true);
+    }
+    wrap._resetZoom = reset;
+
+    wrap.addEventListener('touchstart', function(e) {
+      if (e.touches.length === 2) {
+        pinching = true;
+        panning = false;
+        startDist = dist(e.touches);
+        startScale = scale;
+        startPanX = panX;
+        startPanY = panY;
+      } else if (e.touches.length === 1) {
+        pinching = false;
+        panning = scale > 1.02;
+        lastX = e.touches[0].clientX;
+        lastY = e.touches[0].clientY;
+        var now = Date.now();
+        if (now - lastTapTime < 300) {
+          reset();
+          lastTapTime = 0;
+          panning = false;
+        } else {
+          lastTapTime = now;
+        }
+      }
+    }, {passive: true});
+
+    wrap.addEventListener('touchmove', function(e) {
+      if (pinching && e.touches.length === 2) {
+        e.preventDefault(); // stop the WebView treating this as page scroll
+        var newDist = dist(e.touches);
+        scale = Math.max(MIN_SCALE, Math.min(MAX_SCALE, startScale * (newDist / startDist)));
+        panX = startPanX;
+        panY = startPanY;
+        clampPan();
+        apply(false);
+      } else if (panning && e.touches.length === 1) {
+        e.preventDefault();
+        var dx = e.touches[0].clientX - lastX;
+        var dy = e.touches[0].clientY - lastY;
+        lastX = e.touches[0].clientX;
+        lastY = e.touches[0].clientY;
+        panX += dx;
+        panY += dy;
+        clampPan();
+        apply(false);
+      }
+    }, {passive: false});
+
+    wrap.addEventListener('touchend', function(e) {
+      if (e.touches.length === 0) {
+        pinching = false;
+        panning = false;
+        if (scale < 1.02) { scale = 1; panX = 0; panY = 0; apply(true); }
+      } else if (e.touches.length === 1) {
+        pinching = false;
+        lastX = e.touches[0].clientX;
+        lastY = e.touches[0].clientY;
+        panning = scale > 1.02;
+      }
+    }, {passive: true});
+  });
+}
+
 document.addEventListener('DOMContentLoaded', function() {
+  initMapPinchZoom();
+
   var lb = document.getElementById('lightbox');
   lb.addEventListener('click', function(e) {
     if (e.target.id === 'lightbox' || e.target.id === 'lightbox-counter') {
