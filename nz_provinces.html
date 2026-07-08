@@ -217,6 +217,21 @@
     font-style: italic;
   }
 
+  .intro-quote.collapsed {
+    max-height: 3.4em;
+    overflow: hidden;
+    position: relative;
+  }
+  .intro-quote.collapsed::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 1.6em;
+    background: linear-gradient(to bottom, rgba(255,255,255,0), #ffffff);
+  }
+
   .expand-btn {
     background: none;
     border: none;
@@ -249,6 +264,7 @@
 <body style="background:#ffffff;color:#1A1410;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;font-weight:300;line-height:1.75;padding:16px 18px 60px;margin:0;">
 
 <p class="intro-quote">Early in New Zealand's settlement by the Europeans the country was divided into regions. Initially the idea was for provincial self-government with an overarching nationally based government — like the states of America or the Australian states. The experiment was short-lived; within 30 years the provinces were abolished in favour of full central government. The provincial identity however did not disappear and remains strong to this day.</p>
+<button class="expand-btn" id="intro-toggle" style="display:none;">Read more</button>
 
 <!-- Back to map (shown only when a region panel is open) -->
 <div class="back-to-map" id="back-to-map" onclick="showRegion('')">‹ Back to all regions</div>
@@ -259,7 +275,7 @@
 <!-- Default state: tappable interactive region map -->
 <div id="default-state">
   <div class="region-map-wrap">
-    <img class="map-bg" src="location_maps/locations_nz_map.png" alt="New Zealand Provincial Map">
+    <img class="map-bg" src="provincal_maps/provincial_maps.png" alt="New Zealand Provincial Map">
     <svg id="nz-region-map" width="100%" height="100%" viewBox="0 0 12807 18327" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;">
     <g transform="matrix(1,0,0,1,-1716.07,-525.391)">
         <g transform="matrix(4.16667,0,0,4.16667,30.7554,228.512)">
@@ -364,8 +380,8 @@
 <div class="region-panel" id="panel-northland">
   <p class="eyebrow">North Island — Far North</p>
   <h2 class="section-heading">Northland</h2>
-  <img src="russel.jpg" alt="Russell, Northland" class="pretty-pic">
-  <img src="Northland_colours.jpg" alt="Northland region map" class="colours-map">
+  <img src="pretty_pics/russel.jpg" alt="Russell, Northland" class="pretty-pic">
+  <img src="provincal_maps/northland.png" alt="Northland region map" class="colours-map">
 
   <p class="body-text">The province extending from Auckland to the northern tip of the country. Often referred to as the winterless north due to its consistently warm climate. The pre-European Māori settlement of the country was driven by available resources and climate — even today Māori settlement is more dense in Northland, graduating to the sparseness of Southland.</p>
 
@@ -393,8 +409,8 @@
 <div class="region-panel" id="panel-auckland">
   <p class="eyebrow">North Island — Upper North</p>
   <h2 class="section-heading">Auckland</h2>
-  <img src="mt eden.jpg" alt="Mt Eden, Auckland" class="pretty-pic">
-  <img src="Auckland_colours.jpg" alt="Auckland region map" class="colours-map">
+  <img src="pretty_pics/Mt_Eden.JPG" alt="Mt Eden, Auckland" class="pretty-pic">
+  <img src="provincal_maps/auckland.png" alt="Auckland region map" class="colours-map">
 
   <p class="body-text">Auckland region is predominantly a city built on 53 volcanic sites, many of which are easily visible as you drive around. Not all are elevated — some have formed the harbours the city uses for recreation.</p>
 
@@ -415,8 +431,8 @@
 <div class="region-panel" id="panel-waikato">
   <p class="eyebrow">North Island — Central West</p>
   <h2 class="section-heading">Waikato</h2>
-  <img src="fitzgerald glade.jpg" alt="Fitzgerald Glade, Waikato" class="pretty-pic">
-  <img src="Waikato_colours.jpg" alt="Waikato region map" class="colours-map">
+  <img src="pretty_pics/Fitzgerald_galde_01.JPG" alt="Fitzgerald Glade, Waikato" class="pretty-pic">
+  <img src="provincal_maps/waikato.png" alt="Waikato region map" class="colours-map">
 
   <p class="body-text">Heading south, Waikato is where the real New Zealand starts. The Bombay Hills mark the northern boundary, the Mokau River the south, and the Kaimai Range to the east. The essence of the region is in its name — <em>wai</em> meaning water, <em>kato</em> meaning the pull of water to the sea.</p>
 
@@ -439,8 +455,8 @@
 <div class="region-panel" id="panel-kingcountry">
   <p class="eyebrow">North Island — Central West</p>
   <h2 class="section-heading">King Country</h2>
-  <img src="awakino.jpg" alt="Awakino Gorge, King Country" class="pretty-pic">
-  <img src="king_country_colours.jpg" alt="King Country region map" class="colours-map">
+  <img src="pretty_pics/awakino.jpg" alt="Awakino Gorge, King Country" class="pretty-pic">
+  <img src="provincal_maps/king_country.png" alt="King Country region map" class="colours-map">
 
   <p class="body-text">The King Country is the area largely unwanted by early Europeans due to its steep, bush-clad hills. When King Tāwhiao retreated into friendly territory owned by the Ngāti Maniapoto, part of the peace agreement was that European settlers wouldn't enter — which is how the region got its name.</p>
 
@@ -458,8 +474,8 @@
 <div class="region-panel" id="panel-thamesvalley">
   <p class="eyebrow">North Island — East Coast</p>
   <h2 class="section-heading">Thames Valley (Coromandel)</h2>
-  <img src="coromandel.jpg" alt="Coromandel Peninsula" class="pretty-pic">
-  <img src="Thames_Valley_colours.jpg" alt="Thames Valley region map" class="colours-map">
+  <img src="pretty_pics/Coromandel _sunset_01.JPG" alt="Coromandel Peninsula" class="pretty-pic">
+  <img src="provincal_maps/thanms_valley.png" alt="Thames Valley region map" class="colours-map">
 
   <p class="body-text">The peninsula acquired its name from HMS Coromandel, a sailing ship that came to the area in search of kauri timber for the Royal Navy. The Coromandel Peninsula extends north from Thames and Waihi, its central mountain spine acting like a giant breakwater creating the tranquil Hauraki Gulf to its west.</p>
 
@@ -477,8 +493,8 @@
 <div class="region-panel" id="panel-bayofplenty">
   <p class="eyebrow">North Island — East Coast</p>
   <h2 class="section-heading">Bay of Plenty</h2>
-  <img src="marae.jpg" alt="Marae, Bay of Plenty" class="pretty-pic">
-  <img src="BOP_colours.jpg" alt="Bay of Plenty region map" class="colours-map">
+  <img src="pretty_pics/Marae.JPG" alt="Marae, Bay of Plenty" class="pretty-pic">
+  <img src="provincal_maps/BOP.png" alt="Bay of Plenty region map" class="colours-map">
 
   <p class="body-text">The Bay of Plenty stretches from Tauranga in the west to Cape Runaway in the east. It includes most of New Zealand's geothermal attractions and is home to some of the most famous Māori cultural shows in the country.</p>
 
@@ -494,8 +510,8 @@
 <div class="region-panel" id="panel-taupo">
   <p class="eyebrow">North Island — Central</p>
   <h2 class="section-heading">Taupo &amp; National Park</h2>
-  <img src="central plateau.jpg" alt="Central Plateau" class="pretty-pic">
-  <img src="Waikato_colours.jpg" alt="Taupo region map" class="colours-map">
+  <img src="pretty_pics/Central_plateu.jpg" alt="Central Plateau" class="pretty-pic">
+  <img src="provincal_maps/waikato.png" alt="Taupo region map" class="colours-map">
 
   <p class="body-text">Although Taupō and National Park districts are technically part of the Waikato province, they deserve their own recognition. Combined, they make up roughly half of the adventure playgrounds of the North Island.</p>
 
@@ -514,8 +530,8 @@
 <div class="region-panel" id="panel-eastcoast">
   <p class="eyebrow">North Island — East Cape</p>
   <h2 class="section-heading">East Coast / Poverty Bay</h2>
-  <img src="hicks bay.jpg" alt="Hicks Bay, East Coast" class="pretty-pic">
-  <img src="East_Coast_colours.jpg" alt="East Coast region map" class="colours-map">
+  <img src="pretty_pics/hicks_bay.JPG" alt="Hicks Bay, East Coast" class="pretty-pic">
+  <img src="provincal_maps/east_coast.png" alt="East Coast region map" class="colours-map">
 
   <p class="body-text">The prominent easternmost peninsula in New Zealand sits east of Whakatāne and north of Hawke's Bay. For travellers with time, the East Cape is richly rewarding — beautiful vistas, a strong living Māori culture, and a pace of life that feels different from the rest of the country.</p>
 
@@ -535,8 +551,8 @@
 <div class="region-panel" id="panel-hawkesbay">
   <p class="eyebrow">North Island — East Coast</p>
   <h2 class="section-heading">Hawkes Bay</h2>
-  <img src="napier soundscape.jpg" alt="Napier Soundscape, Hawkes Bay" class="pretty-pic">
-  <img src="hawkes_bay_colours.jpg" alt="Hawkes Bay region map" class="colours-map">
+  <img src="pretty_pics/napier_soundscape.jpg" alt="Napier Soundscape, Hawkes Bay" class="pretty-pic">
+  <img src="provincal_maps/hawkes_bay.png" alt="Hawkes Bay region map" class="colours-map">
 
   <p class="body-text">The province stretching from just south of Woodville and the Kaweka Ranges to just north of the Māhia Peninsula. Named by Captain Cook in 1779 in honour of Sir Edward Hawke, First Lord of the Admiralty.</p>
 
@@ -557,8 +573,8 @@
 <div class="region-panel" id="panel-taranaki">
   <p class="eyebrow">North Island — West Coast</p>
   <h2 class="section-heading">Taranaki</h2>
-  <img src="taranaki.jpg" alt="Mt Taranaki" class="pretty-pic">
-  <img src="taranaki_colours.jpg" alt="Taranaki region map" class="colours-map">
+  <img src="pretty_pics/taranaki.jpg" alt="Mt Taranaki" class="pretty-pic">
+  <img src="provincal_maps/taranaki.png" alt="Taranaki region map" class="colours-map">
 
   <p class="body-text">When looking at a map of the North Island, Taranaki is the thumb poking out the left-hand side. Extending from the Mokau River to Nukumaru, it is a province often overlooked by tourists. There are only three roads in or out — two of which traverse difficult terrain.</p>
 
@@ -581,8 +597,8 @@
 <div class="region-panel" id="panel-whanganui">
   <p class="eyebrow">North Island — Central West</p>
   <h2 class="section-heading">Whanganui / Manawatu</h2>
-  <img src="huntaway dog landscape.jpg" alt="Huntaway dog, Manawatu" class="pretty-pic">
-  <img src="manawatu_colours.jpg" alt="Manawatu region map" class="colours-map">
+  <img src="pretty_pics/huntaway_dog_landscape.jpg" alt="Huntaway dog, Manawatu" class="pretty-pic">
+  <img src="provincal_maps/manawatu.png" alt="Manawatu region map" class="colours-map">
 
   <p class="body-text">One of the North Island's largest provincial regions — from Ruapehu in the north to Levin in the south, the Tasman Sea to the west and ranges to the east. The region contains several mountain ranges as well as the large coastal Manawatu plain.</p>
 
@@ -603,8 +619,8 @@
 <div class="region-panel" id="panel-wairarapa">
   <p class="eyebrow">North Island — South East</p>
   <h2 class="section-heading">Wairarapa</h2>
-  <img src="martinborough grapes.jpg" alt="Martinborough Grapes, Wairarapa" class="pretty-pic">
-  <img src="wairapara_colours.jpg" alt="Wairarapa region map" class="colours-map">
+  <img src="pretty_pics/martiniborough_grapes.jpg" alt="Martinborough Grapes, Wairarapa" class="pretty-pic">
+  <img src="provincal_maps/wairapara.png" alt="Wairarapa region map" class="colours-map">
 
   <p class="pull-quote"><em>Wai</em> — water. <em>Rarapa</em> — glistening waters. In reference to the waters of Lake Wairarapa near Masterton.</p>
 
@@ -619,8 +635,8 @@
 <div class="region-panel" id="panel-wellington">
   <p class="eyebrow">North Island — Southern Tip</p>
   <h2 class="section-heading">Wellington Region</h2>
-  <img src="Wellington scape.jpg" alt="Wellington Cityscape" class="pretty-pic">
-  <img src="wellington_colours.jpg" alt="Wellington region map" class="colours-map">
+  <img src="pretty_pics/Wellington_scape.jpg" alt="Wellington Cityscape" class="pretty-pic">
+  <img src="provincal_maps/wellington.png" alt="Wellington region map" class="colours-map">
 
   <p class="body-text">Geographically Wellington Region sits at the bottom of the North Island, next to some dominating geological structures. The Tararua, Akatarawa and Rimutaka ranges break the region into thirds like a narrow Mercedes logo — Kāpiti Coast to the west, Wellington and Hutt Cities wedged in the bottom, the lower Wairarapa to the east.</p>
 
@@ -636,8 +652,8 @@
 <div class="region-panel" id="panel-tasman">
   <p class="eyebrow">South Island — Top of the South</p>
   <h2 class="section-heading">Tasman &amp; Nelson</h2>
-  <img src="abel tasman.jpg" alt="Abel Tasman National Park" class="pretty-pic">
-  <img src="tasman_colours.jpg" alt="Tasman region map" class="colours-map">
+  <img src="pretty_pics/abel_tasman.jpg" alt="Abel Tasman National Park" class="pretty-pic">
+  <img src="provincal_maps/tasman.png" alt="Tasman region map" class="colours-map">
 
   <p class="body-text">These two regions are home to Nelson City, Abel Tasman National Park, and the Kahurangi National Park. The regions enjoy a warm, sunny climate that makes it easy to relax and enjoy the surrounding opportunities.</p>
 
@@ -655,8 +671,8 @@
 <div class="region-panel" id="panel-marlborough">
   <p class="eyebrow">South Island — Top of the South</p>
   <h2 class="section-heading">Marlborough</h2>
-  <img src="blenheim church.jpg" alt="Blenheim, Marlborough" class="pretty-pic">
-  <img src="marlborough_colours.jpg" alt="Marlborough region map" class="colours-map">
+  <img src="pretty_pics/Blenhiem_church.jpg" alt="Blenheim, Marlborough" class="pretty-pic">
+  <img src="provincal_maps/marlborough.png" alt="Marlborough region map" class="colours-map">
 
   <p class="body-text">The north-eastern province of the South Island, boxed in between hills to the south and west and the Cook Strait to the north. The hills soak up the prevailing westerly rain and channel the runoff into the streams and shallow water table that flow through the Blenheim valley — creating ideal wine-growing conditions.</p>
 
@@ -677,8 +693,8 @@
 <div class="region-panel" id="panel-westcoast">
   <p class="eyebrow">South Island — West</p>
   <h2 class="section-heading">West Coast</h2>
-  <img src="irimahewhero.jpg" alt="Irimahewhero, West Coast" class="pretty-pic">
-  <img src="west_coast_colours.jpg" alt="West Coast region map" class="colours-map">
+  <img src="pretty_pics/irimahewhero.jpg" alt="Irimahewhero, West Coast" class="pretty-pic">
+  <img src="provincal_maps/west_coast.png" alt="West Coast region map" class="colours-map">
 
   <p class="body-text">The West Coast — often just called "the Coast" — is a long, narrow region following the west coast from Karamea to Big Bay south of Haast, its eastern border the Southern Alps. Due to silting harbours, rugged seas and harsh mountains, the coast became one of the mythical areas of the country.</p>
 
@@ -699,8 +715,8 @@
 <div class="region-panel" id="panel-canterbury">
   <p class="eyebrow">South Island — East Central</p>
   <h2 class="section-heading">Canterbury</h2>
-  <img src="kaikoura.jpg" alt="Kaikoura, Canterbury" class="pretty-pic">
-  <img src="canturbury_colours.jpg" alt="Canterbury region map" class="colours-map">
+  <img src="pretty_pics/kaikoura.jpg" alt="Kaikoura, Canterbury" class="pretty-pic">
+  <img src="provincal_maps/canturbury.png" alt="Canterbury region map" class="colours-map">
 
   <p class="body-text">Canterbury makes up the central east coast of the South Island — bordered by mountains on three sides and the Pacific Ocean to the east. Though the region includes some of the country's most famous ski fields, the province is largely flat.</p>
 
@@ -724,8 +740,8 @@
 <div class="region-panel" id="panel-lakesdistrict">
   <p class="eyebrow">South Island — Central Otago</p>
   <h2 class="section-heading">Lakes District (Otago)</h2>
-  <img src="bennets bluff.jpg" alt="Bennetts Bluff, Lakes District" class="pretty-pic">
-  <img src="otago_colours.jpg" alt="Lakes District region map" class="colours-map">
+  <img src="pretty_pics/Bennets_Bluff.JPG" alt="Bennetts Bluff, Lakes District" class="pretty-pic">
+  <img src="provincal_maps/otago.png" alt="Lakes District region map" class="colours-map">
 
   <p class="body-text">Lakes District is part of the larger Otago province — usually referred to as Central Otago or just 'Central.' This region is the envy of most other tourism regions in New Zealand, with more activities on offer than just about anywhere else in the country.</p>
 
@@ -746,8 +762,8 @@
 <div class="region-panel" id="panel-otago">
   <p class="eyebrow">South Island — South East</p>
   <h2 class="section-heading">Otago</h2>
-  <img src="moreraki.jpg" alt="Moeraki Boulders, Otago" class="pretty-pic">
-  <img src="otago_colours.jpg" alt="Otago region map" class="colours-map">
+  <img src="pretty_pics/moeraki.jpg" alt="Moeraki Boulders, Otago" class="pretty-pic">
+  <img src="provincal_maps/otago.png" alt="Otago region map" class="colours-map">
 
   <p class="pull-quote"><em>O</em> — place of. <em>Takau</em> — Māori god, son of Ranginui and Papatūānuku. A mispronunciation of Otakau.</p>
 
@@ -766,8 +782,8 @@
 <div class="region-panel" id="panel-southland">
   <p class="eyebrow">South Island — Far South</p>
   <h2 class="section-heading">Southland</h2>
-  <img src="invercargill chain.jpg" alt="Invercargill, Southland" class="pretty-pic">
-  <img src="southand_colours.jpg" alt="Southland region map" class="colours-map">
+  <img src="pretty_pics/invercargill_chain.jpg" alt="Invercargill, Southland" class="pretty-pic">
+  <img src="provincal_maps/southland.png" alt="Southland region map" class="colours-map">
 
   <p class="body-text">The southernmost province is home to New Zealand's southernmost city and largest electricity generation project. Geographically walled to the west with massive mountains and large hills to the north and east, leaving the centre relatively flat. Inside Fiordland National Park some of New Zealand's most precious flora and fauna live.</p>
 
@@ -785,6 +801,22 @@
 </div>
 
 <script>
+(function() {
+  var intro = document.querySelector('.intro-quote');
+  var toggleBtn = document.getElementById('intro-toggle');
+  if (!intro || !toggleBtn) return;
+  if (localStorage.getItem('nzProvincesIntroSeen')) {
+    intro.classList.add('collapsed');
+    toggleBtn.style.display = 'block';
+  } else {
+    localStorage.setItem('nzProvincesIntroSeen', '1');
+  }
+  toggleBtn.addEventListener('click', function() {
+    var isCollapsed = intro.classList.toggle('collapsed');
+    toggleBtn.textContent = isCollapsed ? 'Read more' : 'Show less';
+  });
+})();
+
 function showRegion(val) {
   // Hide default state (the interactive map)
   document.getElementById('default-state').style.display = val ? 'none' : 'block';
