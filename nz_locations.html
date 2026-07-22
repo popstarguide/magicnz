@@ -2741,11 +2741,33 @@ document.addEventListener('DOMContentLoaded', function() {
     var params = new URLSearchParams(window.location.search);
     var loc = params.get('loc');
     var region = params.get('region');
+    var deepLinked = !!(loc || region);
+
     if (loc && typeof showRegion === 'function') {
       showRegion(loc);
     } else if (region && typeof selectRegion === 'function') {
       selectRegion(region);
     }
+
+    if (!deepLinked) return;
+
+    // When we arrived here via a link from nz_routes.html, the normal back
+    // buttons just cycle through this page's own map/panel states with no
+    // way to leave — that's the "stuck in a loop" bug. Point them back to
+    // wherever we came from instead.
+    function goBack() {
+      if (window.history.length > 1) {
+        window.history.back();
+      } else {
+        window.location.href = 'nz_routes.html';
+      }
+    }
+
+    var panelBackBtn = document.getElementById('panel-back-btn');
+    if (panelBackBtn) panelBackBtn.onclick = goBack;
+
+    var backToMapBtn = document.getElementById('back-to-map');
+    if (backToMapBtn) backToMapBtn.onclick = goBack;
   })();
 </script>
 
