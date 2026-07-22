@@ -2734,5 +2734,20 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 </script>
 
+<script>
+  // Deep-link support: ?loc=<panel-slug> jumps straight to a town panel,
+  // ?region=<region-slug> jumps to a region's town list. Used by nz_routes.html.
+  (function() {
+    var params = new URLSearchParams(window.location.search);
+    var loc = params.get('loc');
+    var region = params.get('region');
+    if (loc && typeof showRegion === 'function') {
+      showRegion(loc);
+    } else if (region && typeof selectRegion === 'function') {
+      selectRegion(region);
+    }
+  })();
+</script>
+
 </body>
 </html>
