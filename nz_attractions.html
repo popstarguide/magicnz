@@ -8,41 +8,65 @@
   * { box-sizing: border-box; }
 
   .eyebrow {
-    font-size: 10px;
-    font-weight: 600;
-    letter-spacing: 0.16em;
-    text-transform: uppercase;
-    color: #F2784B;
-    margin: 0 0 2px;
+    font-size: 10px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase;
+    color: #F2784B; margin: 0 0 2px;
   }
-
   .section-heading {
-    font-size: 22px;
-    font-weight: 700;
-    color: #F25E0D;
-    line-height: 1.2;
-    margin: 0 0 12px;
-    padding-bottom: 10px;
-    border-bottom: 1px solid #e8e8e8;
+    font-size: 22px; font-weight: 700; color: #F25E0D; line-height: 1.2;
+    margin: 0 0 12px; padding-bottom: 10px; border-bottom: 1px solid #e8e8e8;
+  }
+  .body-text { font-size: 14px; color: #1A1410; margin: 0 0 12px; line-height: 1.8; }
+
+  select.location-dropdown {
+    width: 100%; font-size: 15px; font-weight: 600; color: #1A1410;
+    background: #F7F3EF url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="%23F25E0D" stroke-width="3"><path d="M6 9l6 6 6-6"/></svg>') no-repeat right 14px center;
+    background-size: 14px; border: 1px solid #e8e8e8; border-radius: 10px;
+    padding: 14px 40px 14px 16px; margin: 0 0 16px; appearance: none; -webkit-appearance: none;
   }
 
-  .body-text {
-    font-size: 14px;
-    color: #1A1410;
-    margin: 0 0 12px;
-    line-height: 1.8;
+  .fee-filter-bar { display: flex; gap: 8px; margin: 0 0 20px; }
+  .fee-filter-btn {
+    flex: 1; background: #F7F3EF; color: #1A1410; border: 1px solid #e8e8e8;
+    border-radius: 999px; padding: 9px 10px; font-size: 13px; font-weight: 600;
+    cursor: pointer; text-align: center;
   }
+  .fee-filter-btn.active { background: #F25E0D; border-color: #F25E0D; color: #fff; }
 
-  .placeholder-state {
-    text-align: center;
-    padding: 60px 20px;
-    color: #aaa;
-    font-size: 14px;
+  .placeholder-state { text-align: center; padding: 60px 20px; color: #aaa; font-size: 14px; }
+  .placeholder-state .nz-icon { font-size: 48px; margin-bottom: 12px; display: block; }
+  .filter-empty-state { padding: 30px 20px; }
+  .filter-empty-state .nz-icon { font-size: 32px; margin-bottom: 8px; }
+
+  .location-panel { display: none; }
+  .location-panel.active { display: block; }
+
+  .activity-card { padding: 16px 0; border-bottom: 1px solid #e8e8e8; }
+  .activity-card:last-child { border-bottom: none; }
+  .activity-card.filtered-out { display: none; }
+  .activity-card-row { display: flex; gap: 12px; margin: 0 0 10px; }
+  .activity-icon { width: 40px; height: 40px; object-fit: cover; border-radius: 8px; flex-shrink: 0; }
+  .activity-card-body { flex: 1; min-width: 0; }
+  .activity-card-head {
+    display: flex; align-items: baseline; justify-content: space-between;
+    gap: 8px; flex-wrap: wrap; margin: 0 0 4px;
   }
-  .placeholder-state .nz-icon {
-    font-size: 48px;
-    margin-bottom: 12px;
-    display: block;
+  .activity-card-name { font-size: 15px; font-weight: 700; color: #1A1410; margin: 0; }
+  .activity-badges { display: flex; gap: 6px; flex-wrap: wrap; }
+  .activity-badge {
+    font-size: 10px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase;
+    border-radius: 999px; padding: 3px 8px; white-space: nowrap;
+  }
+  .activity-badge.top5 { background: #F25E0D; color: #fff; }
+  .activity-card-desc { font-size: 13px; color: #5C4A3A; line-height: 1.7; margin: 0; }
+
+  .activity-photo {
+    width: 100%; max-height: 200px; object-fit: cover; border-radius: 10px;
+    display: block; margin: 0 0 6px; cursor: pointer;
+  }
+  .activity-thumb-row { display: flex; gap: 6px; overflow-x: auto; }
+  .activity-thumb {
+    width: 56px; height: 56px; object-fit: cover; border-radius: 6px;
+    flex-shrink: 0; cursor: pointer;
   }
 </style>
 </head>
@@ -51,11 +75,625 @@
 <p class="eyebrow">Magic New Zealand</p>
 <h2 class="section-heading">Attractions</h2>
 
-<div class="placeholder-state">
-  <span class="nz-icon">🚧</span>
-  <p>This page is still under construction.</p>
-  <p style="font-size:13px;">Attraction details for this location are coming soon.</p>
+<select class="location-dropdown" id="location-select">
+<option value="abel_tasman_national_park">Abel Tasman National Park</option>
+<option value="auckland">Auckland</option>
+<option value="paihia_bay_of_islands">Bay of Islands (Paihia)</option>
+<option value="cape_reinga">Cape Reinga</option>
+<option value="christchurch">Christchurch</option>
+<option value="dunedin">Dunedin</option>
+<option value="kaitaia">Kaitaia</option>
+<option value="matakohe">Matakohe</option>
+<option value="nelson">Nelson</option>
+<option value="opononi">Opononi</option>
+<option value="queenstown">Queenstown</option>
+<option value="rotorua">Rotorua</option>
+<option value="taup">Taupo</option>
+<option value="turangi">Turangi</option>
+<option value="waipoua_forest">Waipoua Forest</option>
+<option value="waitangi">Waitangi</option>
+<option value="wellington">Wellington</option>
+</select>
+
+<div class="fee-filter-bar" id="fee-filter-bar">
+  <button type="button" class="fee-filter-btn active" data-filter="all">All</button>
+  <button type="button" class="fee-filter-btn" data-filter="free">Without fees</button>
+  <button type="button" class="fee-filter-btn" data-filter="paid">With fees</button>
 </div>
+
+<div id="panels-wrap">
+<div class="location-panel" id="panel-abel_tasman_national_park" data-slug="abel_tasman_national_park">
+  <p class="eyebrow">Abel Tasman National Park</p>
+  <h2 class="section-heading">Things to do</h2>
+  <div class="activity-card" data-free="false">
+    <div class="activity-card-row">
+      <img class="activity-icon" src="top_5_images/scenic.jpg" alt="">
+      <div class="activity-card-body">
+        <div class="activity-card-head">
+          <p class="activity-card-name">Abel Tasman National Park</p>
+          <div class="activity-badges"></div>
+        </div>
+        <p class="activity-card-desc">The National Park is easily accessible from either Marahau or Takaka ends. There is multi-day or one-day hike available in the park. Often the one-day, one-way hike from Torrent or Bark Bay is a great way to spend the day regardless of time of year.<br><br>The one-day hike starts with a water taxi ride to your start point then follows the coast back to where you’ve left or pick up your transport home. Relatively easy walk with no serious climbs or difficult terrain to traverse.</p>
+      </div>
+    </div>
+    <img class="activity-photo" src="activity_photos/abel_tasman_walk.jpg" alt="Abel Tasman National Park" loading="lazy"><div class="activity-thumb-row"><img class="activity-thumb" src="activity_photos/abel_tasman.jpg" alt="Abel Tasman National Park" loading="lazy"></div>
+  </div>
+  <p class="placeholder-state filter-empty-state" style="display:none;"><span class="nz-icon">🧭</span>Nothing matches that filter here.</p>
+</div>
+<div class="location-panel" id="panel-auckland" data-slug="auckland">
+  <p class="eyebrow">Auckland</p>
+  <h2 class="section-heading">Things to do</h2>
+  <div class="activity-card" data-free="false">
+    <div class="activity-card-row">
+      <img class="activity-icon" src="top_5_images/scenic.jpg" alt="">
+      <div class="activity-card-body">
+        <div class="activity-card-head">
+          <p class="activity-card-name">North Shore City</p>
+          <div class="activity-badges"></div>
+        </div>
+        <p class="activity-card-desc">Jumping on the ferry to Devonport allows you to see the Auckland Harbour from a boat without paying big money to go on a chartered yacht. <br><br>A nice by-product of jumping on a ferry is the less crowded shopping in Devonport the quaint southern suburb of the North Shore.</p>
+      </div>
+    </div>
+    
+  </div>
+  <div class="activity-card" data-free="false">
+    <div class="activity-card-row">
+      <img class="activity-icon" src="top_5_images/beach.jpg" alt="">
+      <div class="activity-card-body">
+        <div class="activity-card-head">
+          <p class="activity-card-name">Auckland City Beaches</p>
+          <div class="activity-badges"></div>
+        </div>
+        <p class="activity-card-desc">The city beaches are all “safe&quot; beaches to swim as there is no strong dangerous currents in the water. During fine summer weekends the beaches and surrounding grounds become very busy with local sun-worshipers. if you are looking for somewhere to catch up on your travel diary or relax before or after your adventures a afternoon at the beach wouldn’t go a miss.</p>
+      </div>
+    </div>
+    <img class="activity-photo" src="activity_photos/orewa.JPG" alt="Auckland City Beaches" loading="lazy">
+  </div>
+  <div class="activity-card" data-free="false">
+    <div class="activity-card-row">
+      <img class="activity-icon" src="top_5_images/scenic.jpg" alt="">
+      <div class="activity-card-body">
+        <div class="activity-card-head">
+          <p class="activity-card-name">One Tree Hill</p>
+          <div class="activity-badges"></div>
+        </div>
+        <p class="activity-card-desc">One (None) Tree Hill work the trip more because of its history as well as the views. <br><br>Originally named Maungakiekie (trans; Mountain of the kiekie, or Totara that stands alone) <br><br>The site was once home to the largest Maori Pa (fortified village) ever built pre-European times, home to 5000 inhabitants. Just prior to the European arrival the Maori had largely left the area due to tribal battles in the north. Although time has played its part today it is still easy to see the earthworks that were created as a by-product of the Pa. <br><br>Once the early European settlers settled the area one of Auckland&#x27;s founding fathers John Logan Campbell owned the hill. Originally planning to farm the hill he changed his mind when he saw the rapid development of the area for housing and infrastructure, so created the reserve Cornwall Park. <br><br>During this period there was a Pohutukawa tree growing near the summit of the hill, due to vandalism or the need for firewood the tree was cut down. The original tree which gave the hill its name was replaced by a Californian Radiata Pine in the 1870’s. <br><br>The tree has been under attack in differing forms by Maori activists trying to make their political point known over the years. The only successful attack came in October 2000 by activist Mike Smith who used a chainsaw to try to remove the pine, however a chainsaw at 2am is easily heard and he was prevented from finishing his cut. The damage he had done was enough that the tree died and had to be removed by the local council. <br><br>The hill is also honoured in song, most famously by the Irish group U2 in their song One Tree Hill, written in honour of their Kiwi roadie Greg Carroll who was killed in a motorcycle accident while they were writing the Joshua Tree album. The song was only released in New Zealand and promptly went to number 1 on the music charts.</p>
+      </div>
+    </div>
+    
+  </div>
+  <div class="activity-card" data-free="false">
+    <div class="activity-card-row">
+      <img class="activity-icon" src="top_5_images/cultural.jpg" alt="">
+      <div class="activity-card-body">
+        <div class="activity-card-head">
+          <p class="activity-card-name">MOTAT (Museum of Transport and Technology)</p>
+          <div class="activity-badges"></div>
+        </div>
+        <p class="activity-card-desc">The museum located a short bus trip from down town pays homage to all things mechanical that have a connection with New Zealand. <br><br>Spread over 2 locations joined by a restored Auckland tram line the grounds bracket the Auckland Zoo. As well as all the usual things you would expect to find (trucks, tractors, busses, steam engines, planes...) <br><br>MOTAT houses some very unique pieces; a replica of the first powered aircraft, built from the plans of the inventor Richard Pearce and arguably the first person to achieve a controlled powered flight, <br><br>Displays about aviation pioneers Jean Batten and the Walsh brothers, a Lancaster bomber and a replica of Sir Keith Parks (the defender of London in WW2) Hurricane fighter.</p>
+      </div>
+    </div>
+    <img class="activity-photo" src="activity_photos/MOTAT_OK.jpg" alt="MOTAT (Museum of Transport and Technology)" loading="lazy"><div class="activity-thumb-row"><img class="activity-thumb" src="activity_photos/MOTAT_logbook.jpg" alt="MOTAT (Museum of Transport and Technology)" loading="lazy"></div>
+  </div>
+  <div class="activity-card" data-free="false">
+    <div class="activity-card-row">
+      <img class="activity-icon" src="top_5_images/action.jpg" alt="">
+      <div class="activity-card-body">
+        <div class="activity-card-head">
+          <p class="activity-card-name">Sky Jump</p>
+          <div class="activity-badges"></div>
+        </div>
+        <p class="activity-card-desc">If you don’t like the idea of freewill, this is a fun activity to do in Auckland and a quick way to the bottom of the tower.<br><br>The Sky Jump has been described to me as a “let down” (its a controlled descent fall, from the top, like a bungie jump but no actual free fall).</p>
+      </div>
+    </div>
+    
+  </div>
+  <div class="activity-card" data-free="false">
+    <div class="activity-card-row">
+      <img class="activity-icon" src="top_5_images/action.jpg" alt="">
+      <div class="activity-card-body">
+        <div class="activity-card-head">
+          <p class="activity-card-name">Sky Tower</p>
+          <div class="activity-badges"></div>
+        </div>
+        <p class="activity-card-desc">Sky Tower is New Zealand’s tallest building and offers great views of the city from the top of the tower are a great way to see the city.</p>
+      </div>
+    </div>
+    
+  </div>
+  <div class="activity-card" data-free="false">
+    <div class="activity-card-row">
+      <img class="activity-icon" src="top_5_images/photo.jpg" alt="">
+      <div class="activity-card-body">
+        <div class="activity-card-head">
+          <p class="activity-card-name">Kelly Tarltons</p>
+          <div class="activity-badges"></div>
+        </div>
+        <p class="activity-card-desc">Kelly Tarltons Aquarium. Situated a short bus trip east of the downtown is the by-product of New Zealand&#x27;s own diver/ adventurer Kelly Tarlton.<br><br>Kelly Tarltons dream was to bring the Southern Oceans life as viewed by divers to the everyday public with out getting their feet wet. <br><br>Converting a disused sewer treatment plant to a giant aquarium Kelly made his dream come true in 1985. Kelly died only a couple of months after its opening but he did get a glimpse of how successful it was to really become, as the same day he died the 10,000 visitors passed through its doors. <br><br>Here is a fantastic opportunity to see the ocean alive with out having to pass a dive certificate or don a wetsuit.</p>
+      </div>
+    </div>
+    
+  </div>
+  <p class="placeholder-state filter-empty-state" style="display:none;"><span class="nz-icon">🧭</span>Nothing matches that filter here.</p>
+</div>
+<div class="location-panel" id="panel-paihia_bay_of_islands" data-slug="paihia_bay_of_islands">
+  <p class="eyebrow">Bay of Islands (Paihia)</p>
+  <h2 class="section-heading">Things to do</h2>
+  <div class="activity-card" data-free="false">
+    <div class="activity-card-row">
+      <img class="activity-icon" src="top_5_images/scenic.jpg" alt="">
+      <div class="activity-card-body">
+        <div class="activity-card-head">
+          <p class="activity-card-name">Ferry to Russell</p>
+          <div class="activity-badges"></div>
+        </div>
+        <p class="activity-card-desc">A short ferry trip across the Bay of Islands is New Zealand&#x27;s first capital - Russell. The small town once the ‘hell hole of the Pacific’ is now a wee settlement surrounded by stunning beaches and scenery. All the while steeped in history.<br><br>You can drive around the bay to Russell if you’d prefer. This does give you the option of transport, making visiting the flag pole that Hone Heke cut down in 1846 or the protected beaches close by to the town. The drive is narrow and winding.</p>
+      </div>
+    </div>
+    <img class="activity-photo" src="activity_photos/Russel_wharf.jpg" alt="Ferry to Russell" loading="lazy">
+  </div>
+  <div class="activity-card" data-free="false">
+    <div class="activity-card-row">
+      <img class="activity-icon" src="top_5_images/beach.jpg" alt="">
+      <div class="activity-card-body">
+        <div class="activity-card-head">
+          <p class="activity-card-name">Bay of Islands beaches</p>
+          <div class="activity-badges"><span class="activity-badge top5">Top 5</span></div>
+        </div>
+        <p class="activity-card-desc">Both Paihia and Waitangi sit on the shore line of a stunning white sand beach and are easily walking accessible from the town.</p>
+      </div>
+    </div>
+    <img class="activity-photo" src="activity_photos/BOI_Beach.jpg" alt="Bay of Islands beaches" loading="lazy"><div class="activity-thumb-row"><img class="activity-thumb" src="activity_photos/BOI_Beach2.jpg" alt="Bay of Islands beaches" loading="lazy"></div>
+  </div>
+  <div class="activity-card" data-free="false">
+    <div class="activity-card-row">
+      <img class="activity-icon" src="top_5_images/scenic.jpg" alt="">
+      <div class="activity-card-body">
+        <div class="activity-card-head">
+          <p class="activity-card-name">Visit the islands</p>
+          <div class="activity-badges"></div>
+        </div>
+        <p class="activity-card-desc">The Bay of Islands has as its name suggests many islands. Paihia is the main town of the region and is home to many operators willing to take you out into the bay.<br><br>There is everything from spending a day on a yacht with “She&#x27;s a Lady” to the 1.5hr jet boat ride of the Mac Attack.<br><br>Call into the i-site and find a trip that suits you.</p>
+      </div>
+    </div>
+    <img class="activity-photo" src="activity_photos/Bay_of_Islands.jpg" alt="Visit the islands" loading="lazy">
+  </div>
+  <div class="activity-card" data-free="false">
+    <div class="activity-card-row">
+      <img class="activity-icon" src="top_5_images/cultural.jpg" alt="">
+      <div class="activity-card-body">
+        <div class="activity-card-head">
+          <p class="activity-card-name">Waitangi grounds</p>
+          <div class="activity-badges"></div>
+        </div>
+        <p class="activity-card-desc">The Treaty of Waitangi is the founding document between the indigenous Maori and the English Crown. Signed on 6 February 1840 this document has an interesting journey, both in why is was written and signed and also its legacy.<br><br>A visit to the Waitangi Grounds is well worth is both in its historical value to New Zealand and also the views from the grounds itself.<br><br>if you are there at the right time you can also see a Maori culture show.</p>
+      </div>
+    </div>
+    <img class="activity-photo" src="activity_photos/waitangi_flag_pole.JPG" alt="Waitangi grounds" loading="lazy">
+  </div>
+  <p class="placeholder-state filter-empty-state" style="display:none;"><span class="nz-icon">🧭</span>Nothing matches that filter here.</p>
+</div>
+<div class="location-panel" id="panel-cape_reinga" data-slug="cape_reinga">
+  <p class="eyebrow">Cape Reinga</p>
+  <h2 class="section-heading">Things to do</h2>
+  <div class="activity-card" data-free="false">
+    <div class="activity-card-row">
+      <img class="activity-icon" src="top_5_images/scenic.jpg" alt="">
+      <div class="activity-card-body">
+        <div class="activity-card-head">
+          <p class="activity-card-name">Cape Reinga</p>
+          <div class="activity-badges"></div>
+        </div>
+        <p class="activity-card-desc">Right at the northern end of State Highway 1 is the Cape Reinga Lighthouse.<br><br>While the landmark is an iconic and beautiful photo opportunity, making the trip is as much about the journey. To access the lighthouse you will probably drive up State Highway 1. <br><br>But on the drive back you might wish to pop out to 99 Mile beach and drive along New Zealand&#x27;s only beach that is also a recognised road (Be aware most rental car companies will state you are not insured if you do).<br><br>Tapoutpotu Beach is just short of the cape and is an awesome place to camp or stop for a picnic lunch.<br><br>Please note, that while there is a few Dairies along the way, there is really nowhere to buy food/drink from 40km south of the cape.</p>
+      </div>
+    </div>
+    <img class="activity-photo" src="activity_photos/cape_reinga.jpg" alt="Cape Reinga" loading="lazy">
+  </div>
+  <p class="placeholder-state filter-empty-state" style="display:none;"><span class="nz-icon">🧭</span>Nothing matches that filter here.</p>
+</div>
+<div class="location-panel" id="panel-christchurch" data-slug="christchurch">
+  <p class="eyebrow">Christchurch</p>
+  <h2 class="section-heading">Things to do</h2>
+  <div class="activity-card" data-free="true">
+    <div class="activity-card-row">
+      <img class="activity-icon" src="top_5_images/cultural.jpg" alt="">
+      <div class="activity-card-body">
+        <div class="activity-card-head">
+          <p class="activity-card-name">Maori Culture Show</p>
+          <div class="activity-badges"><span class="activity-badge top5">Top 5</span></div>
+        </div>
+        <p class="activity-card-desc">Maori culture show at Rotorua, a great introduction to the traditional Maori culture. taking you through a welcome and traditional challenge as well as providing great evenings entertainment. Some of the tours provide a hangi (traditional style earth cook meal).</p>
+      </div>
+    </div>
+    <img class="activity-photo" src="activity_photos/maori_show_waitangi.JPG" alt="Maori Culture Show" loading="lazy"><div class="activity-thumb-row"><img class="activity-thumb" src="activity_photos/maori_show_waitangi_2.JPG" alt="Maori Culture Show" loading="lazy"></div>
+  </div>
+  <p class="placeholder-state filter-empty-state" style="display:none;"><span class="nz-icon">🧭</span>Nothing matches that filter here.</p>
+</div>
+<div class="location-panel" id="panel-dunedin" data-slug="dunedin">
+  <p class="eyebrow">Dunedin</p>
+  <h2 class="section-heading">Things to do</h2>
+  <div class="activity-card" data-free="true">
+    <div class="activity-card-row">
+      <img class="activity-icon" src="top_5_images/scenic.jpg" alt="">
+      <div class="activity-card-body">
+        <div class="activity-card-head">
+          <p class="activity-card-name">Elm Wildlife Tours</p>
+          <div class="activity-badges"><span class="activity-badge top5">Top 5</span></div>
+        </div>
+        <p class="activity-card-desc">Elm Wildlife tour at Taiaroa Heads near Dunedin. For around the $180 the tour shows you the Royal Southern Albatross (the largest flying bird in the world), the yellow-eyed penguin (one of the rarest penguins in the world), the Hooker sea lion (native to the southern coast) and the Kekeno the New Zealand fur seal (found all round the south island but still fun to watch). The tour shows you rare and endangered wildlife unique to the this region in their own environment, no zoo’s or reserves. The tour lasts 4 hours plus and is held every afternoon. The guides are knowledgeable and patient.</p>
+      </div>
+    </div>
+    <img class="activity-photo" src="activity_photos/YEPenguin.jpg" alt="Elm Wildlife Tours" loading="lazy">
+  </div>
+  <p class="placeholder-state filter-empty-state" style="display:none;"><span class="nz-icon">🧭</span>Nothing matches that filter here.</p>
+</div>
+<div class="location-panel" id="panel-kaitaia" data-slug="kaitaia">
+  <p class="eyebrow">Kaitaia</p>
+  <h2 class="section-heading">Things to do</h2>
+  <div class="activity-card" data-free="false">
+    <div class="activity-card-row">
+      <img class="activity-icon" src="top_5_images/cultural.jpg" alt="">
+      <div class="activity-card-body">
+        <div class="activity-card-head">
+          <p class="activity-card-name">Gum Diggers Park</p>
+          <div class="activity-badges"></div>
+        </div>
+        <p class="activity-card-desc">Kauri museum, highlighting the local Kauri industry that in the regions early years provided a strong economy.</p>
+      </div>
+    </div>
+    <img class="activity-photo" src="activity_photos/Gum_diggers.jpg" alt="Gum Diggers Park" loading="lazy">
+  </div>
+  <p class="placeholder-state filter-empty-state" style="display:none;"><span class="nz-icon">🧭</span>Nothing matches that filter here.</p>
+</div>
+<div class="location-panel" id="panel-matakohe" data-slug="matakohe">
+  <p class="eyebrow">Matakohe</p>
+  <h2 class="section-heading">Things to do</h2>
+  <div class="activity-card" data-free="false">
+    <div class="activity-card-row">
+      <img class="activity-icon" src="top_5_images/cultural.jpg" alt="">
+      <div class="activity-card-body">
+        <div class="activity-card-head">
+          <p class="activity-card-name">Matakohe Kauri Museum</p>
+          <div class="activity-badges"></div>
+        </div>
+        <p class="activity-card-desc">The Kauri tree during the pioneering days was a valuable resource for the Coromandel and Northland regions.<br><br>Providing an economy as well as a building material. The tree not only was valuable for is straight lumber but also for its gum. The museum at Matakohe is well worth the stop to learn about the part the tree played in the regions culture and history.<br><br>the museum and its cafe are a comfortable drive north of Auckland that it also makes a welcome comfort stop point.</p>
+      </div>
+    </div>
+    <img class="activity-photo" src="activity_photos/matakohe_museum1.JPG" alt="Matakohe Kauri Museum" loading="lazy"><div class="activity-thumb-row"><img class="activity-thumb" src="activity_photos/Matakohe_museum2.JPG" alt="Matakohe Kauri Museum" loading="lazy"><img class="activity-thumb" src="activity_photos/matakohe_museum3.JPG" alt="Matakohe Kauri Museum" loading="lazy"><img class="activity-thumb" src="activity_photos/matakohe_museum4.JPG" alt="Matakohe Kauri Museum" loading="lazy"></div>
+  </div>
+  <p class="placeholder-state filter-empty-state" style="display:none;"><span class="nz-icon">🧭</span>Nothing matches that filter here.</p>
+</div>
+<div class="location-panel" id="panel-nelson" data-slug="nelson">
+  <p class="eyebrow">Nelson</p>
+  <h2 class="section-heading">Things to do</h2>
+  <div class="activity-card" data-free="false">
+    <div class="activity-card-row">
+      <img class="activity-icon" src="top_5_images/scenic.jpg" alt="">
+      <div class="activity-card-body">
+        <div class="activity-card-head">
+          <p class="activity-card-name">Abel Tasman National Park</p>
+          <div class="activity-badges"></div>
+        </div>
+        <p class="activity-card-desc">The National Park is easily accessible from either Marahau or Takaka ends. There is multi-day or one-day hike available in the park. Often the one-day, one-way hike from Torrent or Bark Bay is a great way to spend the day regardless of time of year.<br><br>The one-day hike starts with a water taxi ride to your start point then follows the coast back to where you’ve left or pick up your transport home. Relatively easy walk with no serious climbs or difficult terrain to traverse.</p>
+      </div>
+    </div>
+    <img class="activity-photo" src="activity_photos/abel_tasman_walk.jpg" alt="Abel Tasman National Park" loading="lazy"><div class="activity-thumb-row"><img class="activity-thumb" src="activity_photos/abel_tasman.jpg" alt="Abel Tasman National Park" loading="lazy"></div>
+  </div>
+  <p class="placeholder-state filter-empty-state" style="display:none;"><span class="nz-icon">🧭</span>Nothing matches that filter here.</p>
+</div>
+<div class="location-panel" id="panel-opononi" data-slug="opononi">
+  <p class="eyebrow">Opononi</p>
+  <h2 class="section-heading">Things to do</h2>
+  <div class="activity-card" data-free="false">
+    <div class="activity-card-row">
+      <img class="activity-icon" src="top_5_images/cultural.jpg" alt="">
+      <div class="activity-card-body">
+        <div class="activity-card-head">
+          <p class="activity-card-name">Opononi Information Centre</p>
+          <div class="activity-badges"></div>
+        </div>
+        <p class="activity-card-desc">As well as providing information on the region, it also delivers the story of Opo. Opo was dolphin that visited the region and became friendly with people. For a while Opo was the big attraction for the region.</p>
+      </div>
+    </div>
+    
+  </div>
+  <p class="placeholder-state filter-empty-state" style="display:none;"><span class="nz-icon">🧭</span>Nothing matches that filter here.</p>
+</div>
+<div class="location-panel" id="panel-queenstown" data-slug="queenstown">
+  <p class="eyebrow">Queenstown</p>
+  <h2 class="section-heading">Things to do</h2>
+  <div class="activity-card" data-free="true">
+    <div class="activity-card-row">
+      <img class="activity-icon" src="top_5_images/scenic.jpg" alt="">
+      <div class="activity-card-body">
+        <div class="activity-card-head">
+          <p class="activity-card-name">Fiordland National Park</p>
+          <div class="activity-badges"><span class="activity-badge top5">Top 5</span></div>
+        </div>
+        <p class="activity-card-desc">Visit the Fiordland National Park. However you see the park, hike a track, bus trip to Milford Sound or Doubtful Sound. A visit to the national park is a must.</p>
+      </div>
+    </div>
+    <img class="activity-photo" src="activity_photos/doubtful_sound_BW.jpg" alt="Fiordland National Park" loading="lazy"><div class="activity-thumb-row"><img class="activity-thumb" src="activity_photos/Doubtful_Sound.JPG" alt="Fiordland National Park" loading="lazy"><img class="activity-thumb" src="activity_photos/milford_sound_2.jpg" alt="Fiordland National Park" loading="lazy"><img class="activity-thumb" src="activity_photos/milford_sound_3.jpg" alt="Fiordland National Park" loading="lazy"><img class="activity-thumb" src="activity_photos/Milford_sound.jpg" alt="Fiordland National Park" loading="lazy"><img class="activity-thumb" src="activity_photos/Milford_soundl.jpg" alt="Fiordland National Park" loading="lazy"><img class="activity-thumb" src="activity_photos/mitre_peak.jpg" alt="Fiordland National Park" loading="lazy"><img class="activity-thumb" src="activity_photos/pops_corner_bus.jpg" alt="Fiordland National Park" loading="lazy"><img class="activity-thumb" src="activity_photos/pops_corner2.jpg" alt="Fiordland National Park" loading="lazy"></div>
+  </div>
+  <p class="placeholder-state filter-empty-state" style="display:none;"><span class="nz-icon">🧭</span>Nothing matches that filter here.</p>
+</div>
+<div class="location-panel" id="panel-rotorua" data-slug="rotorua">
+  <p class="eyebrow">Rotorua</p>
+  <h2 class="section-heading">Things to do</h2>
+  <div class="activity-card" data-free="false">
+    <div class="activity-card-row">
+      <img class="activity-icon" src="top_5_images/action.jpg" alt="">
+      <div class="activity-card-body">
+        <div class="activity-card-head">
+          <p class="activity-card-name">Velocity Park</p>
+          <div class="activity-badges"></div>
+        </div>
+        <p class="activity-card-desc">If adrenaline is your thing then this park is where you’ll find your fix. From the Swoop a giant swing, freefall into a safety net, racing in a capsule on a monorail, virtual skydive or strapping into a jetsprint boat, this place will get your heart racing.</p>
+      </div>
+    </div>
+    
+  </div>
+  <div class="activity-card" data-free="false">
+    <div class="activity-card-row">
+      <img class="activity-icon" src="top_5_images/photo.jpg" alt="">
+      <div class="activity-card-body">
+        <div class="activity-card-head">
+          <p class="activity-card-name">Agrodome</p>
+          <div class="activity-badges"></div>
+        </div>
+        <p class="activity-card-desc">Showcasing our agricultural New Zealand. The show has sheep on performance, sheep being shorn, dogs working all with good nature and banter.<br><br>A world class show that has won many tourism awards.</p>
+      </div>
+    </div>
+    
+  </div>
+  <div class="activity-card" data-free="false">
+    <div class="activity-card-row">
+      <img class="activity-icon" src="top_5_images/photo.jpg" alt="">
+      <div class="activity-card-body">
+        <div class="activity-card-head">
+          <p class="activity-card-name">Wingspan</p>
+          <div class="activity-badges"></div>
+        </div>
+        <p class="activity-card-desc">This native raptor sanctuary is a jewel in the regions crown of activities.<br><br>Not only does Wingspan aid the recovery of sick and injured raptors for release they also have displays of falconry.<br><br>You will get to see New Zealand&#x27;s fasted bird of prey the karearea (falcon) hunt a decoy, you also get to see these birds up close as they are introduced to you.</p>
+      </div>
+    </div>
+    <img class="activity-photo" src="activity_photos/wingspan.jpg" alt="Wingspan" loading="lazy">
+  </div>
+  <div class="activity-card" data-free="false">
+    <div class="activity-card-row">
+      <img class="activity-icon" src="top_5_images/scenic.jpg" alt="">
+      <div class="activity-card-body">
+        <div class="activity-card-head">
+          <p class="activity-card-name">Whakarewarewa Geothermal Park and Cultural Experience</p>
+          <div class="activity-badges"></div>
+        </div>
+        <p class="activity-card-desc">Whakarewarewa Geothermal park in the southern district of Rotorua is a geothermal park like the others in respect of its geothermal activity on show.<br><br>But the park also houses a carving school where young carvers come to learn traditional carving. Visitors can walk around and see the students at work or what they are working on.<br><br>At 12:30 daily there is a cultural show in front of the Wharenui.</p>
+      </div>
+    </div>
+    
+  </div>
+  <div class="activity-card" data-free="false">
+    <div class="activity-card-row">
+      <img class="activity-icon" src="top_5_images/scenic.jpg" alt="">
+      <div class="activity-card-body">
+        <div class="activity-card-head">
+          <p class="activity-card-name">Wai-o-tapu Geothermal Park</p>
+          <div class="activity-badges"></div>
+        </div>
+        <p class="activity-card-desc">South of Rotorua is a Wai-o-tapu Geothermal Park.<br><br>It has on display all of the geothermal wonders, hot bubbling mud, sulphur laden pools of bright yellow shores, weird coloured pools and geysers.<br><br>It is home to the Lady Knox Geyser, the geyser is triggered daily at 10:15.</p>
+      </div>
+    </div>
+    
+  </div>
+  <div class="activity-card" data-free="false">
+    <div class="activity-card-row">
+      <img class="activity-icon" src="top_5_images/scenic.jpg" alt="">
+      <div class="activity-card-body">
+        <div class="activity-card-head">
+          <p class="activity-card-name">Redwood forest and Treetop walk</p>
+          <div class="activity-badges"></div>
+        </div>
+        <p class="activity-card-desc">The Redwood Forest is a tree growing experiment when the future of New Zealand commercial forestry was being explored. While Radiata Pine was discovered to flourish and grow quickly in New Zealand and become the predominant species for commercial forests. this stand of Redwoods remains.<br><br>It is free to walk through the Redwood forest and enjoy the trees and is an enjoyable short walk.<br><br>At night however the treetop walk comes alive. The tress and David Trubridge art that hangs in the tress and from the walkway are illuminated. Providing a stunning spectacle.</p>
+      </div>
+    </div>
+    <img class="activity-photo" src="activity_photos/redwood_David_trubridge.JPG" alt="Redwood forest and Treetop walk" loading="lazy">
+  </div>
+  <div class="activity-card" data-free="false">
+    <div class="activity-card-row">
+      <img class="activity-icon" src="top_5_images/cultural.jpg" alt="">
+      <div class="activity-card-body">
+        <div class="activity-card-head">
+          <p class="activity-card-name">Tamaki Tours</p>
+          <div class="activity-badges"></div>
+        </div>
+        <p class="activity-card-desc">This Maori culture show is an experience not just a show. While you can drive, I suggest you take the bus pick up option. They will pick you up and take you to their village.<br><br>At the village you will be welcomed via a whero (challenge).<br><br>Once the challenge has been accepted you will look through what a Maori village would have looked like pre-European arrival. then to the powhiri (welcome) where you will be treated to song and dance, with lots of lighthearted humour.<br><br>Now you have been welcomed you move to the wharekai where a prepared buffet hangi (food cooked in an earth oven) has been prepared.<br><br>While this is a polished tourism operation it is a slice of traditional culture and well worth the money.</p>
+      </div>
+    </div>
+    
+  </div>
+  <div class="activity-card" data-free="false">
+    <div class="activity-card-row">
+      <img class="activity-icon" src="top_5_images/beach.jpg" alt="">
+      <div class="activity-card-body">
+        <div class="activity-card-head">
+          <p class="activity-card-name">Wai ariki</p>
+          <div class="activity-badges"></div>
+        </div>
+        <p class="activity-card-desc">Deluxe thermal spa. Wai Ariki is locally Maori owned and operated day spa. Offering a range of exquisite spa treatments.<br><br>While not the place for people wanting low budget options. If you are prepared to splash out and treat yourself, soaking for a few hours in the pools and enjoying a massage with native essential oils is a magical way to spend an afternoon.</p>
+      </div>
+    </div>
+    <img class="activity-photo" src="activity_photos/Wai_ariki.JPG" alt="Wai ariki" loading="lazy">
+  </div>
+  <div class="activity-card" data-free="true">
+    <div class="activity-card-row">
+      <img class="activity-icon" src="top_5_images/cultural.jpg" alt="">
+      <div class="activity-card-body">
+        <div class="activity-card-head">
+          <p class="activity-card-name">Maori Culture Show</p>
+          <div class="activity-badges"><span class="activity-badge top5">Top 5</span></div>
+        </div>
+        <p class="activity-card-desc">Maori culture show at Rotorua, a great introduction to the traditional Maori culture. taking you through a welcome and traditional challenge as well as providing great evenings entertainment. Some of the tours provide a hangi (traditional style earth cook meal).</p>
+      </div>
+    </div>
+    <img class="activity-photo" src="activity_photos/maori_show_waitangi.JPG" alt="Maori Culture Show" loading="lazy"><div class="activity-thumb-row"><img class="activity-thumb" src="activity_photos/maori_show_waitangi_2.JPG" alt="Maori Culture Show" loading="lazy"></div>
+  </div>
+  <p class="placeholder-state filter-empty-state" style="display:none;"><span class="nz-icon">🧭</span>Nothing matches that filter here.</p>
+</div>
+<div class="location-panel" id="panel-taup" data-slug="taup">
+  <p class="eyebrow">Taupo</p>
+  <h2 class="section-heading">Things to do</h2>
+  <div class="activity-card" data-free="false">
+    <div class="activity-card-row">
+      <img class="activity-icon" src="top_5_images/scenic.jpg" alt="">
+      <div class="activity-card-body">
+        <div class="activity-card-head">
+          <p class="activity-card-name">Tongario Crossing</p>
+          <div class="activity-badges"></div>
+        </div>
+        <p class="activity-card-desc">The Tongariro Crossing is a one day alpine crossing that transverses Mt Tongariro. It is billed as one of the best most accessible alpine crossings in the world.<br><br>Like all alpine activities it is very weather dependant as per its safety. You can drive yourself to the start.. but remember you will need to get from the end back to the start (its a one way trek).<br><br>I recommend for safety, comfort and ease sake to use a transport operator out of Taupo or Turangi. They will take you to the start and pick you up at the end. Also inform your safety concerns that may be relevant for that day.<br><br>This is an alpine trek, you will need to take, warm clothes as well as clothes for if you get hot. Quick drying attire and windproof over clothes are highly recommended. Take sunscreen and food (light and easy eating foods) with lots of water.</p>
+      </div>
+    </div>
+    
+  </div>
+  <div class="activity-card" data-free="true">
+    <div class="activity-card-row">
+      <img class="activity-icon" src="top_5_images/action.jpg" alt="">
+      <div class="activity-card-body">
+        <div class="activity-card-head">
+          <p class="activity-card-name">Rock n Ropes</p>
+          <div class="activity-badges"><span class="activity-badge top5">Top 5</span></div>
+        </div>
+        <p class="activity-card-desc">Rock n Ropes near Taupo, the cheapest thrill/adrenaline-pumping/action activity in the country. A high ropes adventure corse designed to test your nerve and ability to deal with heights. For around $80 for a half day course and with a fear factor far above bungie jumping this is bang for buck. The course is one of the safest activities of its type available yet the perceived danger is higher than it’s equivalentents.</p>
+      </div>
+    </div>
+    <img class="activity-photo" src="activity_photos/Rock n Ropes.png" alt="Rock n Ropes" loading="lazy">
+  </div>
+  <p class="placeholder-state filter-empty-state" style="display:none;"><span class="nz-icon">🧭</span>Nothing matches that filter here.</p>
+</div>
+<div class="location-panel" id="panel-turangi" data-slug="turangi">
+  <p class="eyebrow">Turangi</p>
+  <h2 class="section-heading">Things to do</h2>
+  <div class="activity-card" data-free="false">
+    <div class="activity-card-row">
+      <img class="activity-icon" src="top_5_images/scenic.jpg" alt="">
+      <div class="activity-card-body">
+        <div class="activity-card-head">
+          <p class="activity-card-name">Tongario Crossing</p>
+          <div class="activity-badges"></div>
+        </div>
+        <p class="activity-card-desc">The Tongariro Crossing is a one day alpine crossing that transverses Mt Tongariro. It is billed as one of the best most accessible alpine crossings in the world.<br><br>Like all alpine activities it is very weather dependant as per its safety. You can drive yourself to the start.. but remember you will need to get from the end back to the start (its a one way trek).<br><br>I recommend for safety, comfort and ease sake to use a transport operator out of Taupo or Turangi. They will take you to the start and pick you up at the end. Also inform your safety concerns that may be relevant for that day.<br><br>This is an alpine trek, you will need to take, warm clothes as well as clothes for if you get hot. Quick drying attire and windproof over clothes are highly recommended. Take sunscreen and food (light and easy eating foods) with lots of water.</p>
+      </div>
+    </div>
+    
+  </div>
+  <p class="placeholder-state filter-empty-state" style="display:none;"><span class="nz-icon">🧭</span>Nothing matches that filter here.</p>
+</div>
+<div class="location-panel" id="panel-waipoua_forest" data-slug="waipoua_forest">
+  <p class="eyebrow">Waipoua Forest</p>
+  <h2 class="section-heading">Things to do</h2>
+  <div class="activity-card" data-free="false">
+    <div class="activity-card-row">
+      <img class="activity-icon" src="top_5_images/scenic.jpg" alt="">
+      <div class="activity-card-body">
+        <div class="activity-card-head">
+          <p class="activity-card-name">Tane Mahuta</p>
+          <div class="activity-badges"></div>
+        </div>
+        <p class="activity-card-desc">Nestled in the Waipoua Forest a short walk from the road is Tane Mahuta.<br><br>The approximately 2000 year old Kauri tree having a volume of 516 cubic metres (18,000 cubic feet) is the largest tree by volume in the Southern Hemisphere.<br><br>His name translates to God of the Forest, referencing back to his role in separating Papatunuku (Earth mother) and Rangi Nui (Sky Father).<br><br>Due to the deadly disease &quot;Kauri dieback&quot; that as its name suggests is a fungal infection that often kills the Kauri tree, touching the tree is not allowed incase you have accidently transported the fungus in your travels.</p>
+      </div>
+    </div>
+    <img class="activity-photo" src="activity_photos/tane_mahuta.jpg" alt="Tane Mahuta" loading="lazy">
+  </div>
+  <p class="placeholder-state filter-empty-state" style="display:none;"><span class="nz-icon">🧭</span>Nothing matches that filter here.</p>
+</div>
+<div class="location-panel" id="panel-waitangi" data-slug="waitangi">
+  <p class="eyebrow">Waitangi</p>
+  <h2 class="section-heading">Things to do</h2>
+  <div class="activity-card" data-free="true">
+    <div class="activity-card-row">
+      <img class="activity-icon" src="top_5_images/cultural.jpg" alt="">
+      <div class="activity-card-body">
+        <div class="activity-card-head">
+          <p class="activity-card-name">Maori Culture Show</p>
+          <div class="activity-badges"><span class="activity-badge top5">Top 5</span></div>
+        </div>
+        <p class="activity-card-desc">Maori culture show at Rotorua, a great introduction to the traditional Maori culture. taking you through a welcome and traditional challenge as well as providing great evenings entertainment. Some of the tours provide a hangi (traditional style earth cook meal).</p>
+      </div>
+    </div>
+    <img class="activity-photo" src="activity_photos/maori_show_waitangi.JPG" alt="Maori Culture Show" loading="lazy"><div class="activity-thumb-row"><img class="activity-thumb" src="activity_photos/maori_show_waitangi_2.JPG" alt="Maori Culture Show" loading="lazy"></div>
+  </div>
+  <p class="placeholder-state filter-empty-state" style="display:none;"><span class="nz-icon">🧭</span>Nothing matches that filter here.</p>
+</div>
+<div class="location-panel" id="panel-wellington" data-slug="wellington">
+  <p class="eyebrow">Wellington</p>
+  <h2 class="section-heading">Things to do</h2>
+  <div class="activity-card" data-free="true">
+    <div class="activity-card-row">
+      <img class="activity-icon" src="top_5_images/cultural.jpg" alt="">
+      <div class="activity-card-body">
+        <div class="activity-card-head">
+          <p class="activity-card-name">Te Papa</p>
+          <div class="activity-badges"><span class="activity-badge top5">Top 5</span></div>
+        </div>
+        <p class="activity-card-desc">Te Papa National Museum, offers a fantastic overview of New Zealand’s history and culture. Has fantastic displays with as little or as much reading as you wish without loosing an understanding of the displays. It also houses some of the countries most treasured artefacts.<br><br>Te Papa is the kind of place you can easily loose yourself for a day in. They have touring exhibitions as well as permanent displays. Many of the wildlife, or events that are mentioned in this app are displayed at the museum.<br><br>The Haast Eagle, the Moa, volcanic activity, earthquakes, settlement of NZ, Maori culture and NZ technologies are all on display.<br><br>International tourists over the age of 16 have an entry fee around $35-40.</p>
+      </div>
+    </div>
+    <img class="activity-photo" src="activity_photos/ART_Building_an_Earthquake_Ready_Future_TePapaLogo_sml.jpeg" alt="Te Papa" loading="lazy">
+  </div>
+  <p class="placeholder-state filter-empty-state" style="display:none;"><span class="nz-icon">🧭</span>Nothing matches that filter here.</p>
+</div>
+</div>
+
+<div class="placeholder-state" id="no-location-state" style="display:none;">
+  <span class="nz-icon">🧭</span>
+  <p>No attractions added for this location yet.</p>
+</div>
+
+<script>
+  (function() {
+    var select = document.getElementById('location-select');
+    var panels = document.querySelectorAll('.location-panel');
+    var filterBtns = document.querySelectorAll('.fee-filter-btn');
+    var currentFilter = 'all';
+
+    function showSlug(slug) {
+      panels.forEach(function(p) { p.classList.toggle('active', p.dataset.slug === slug); });
+      applyFilter();
+    }
+
+    function applyFilter() {
+      panels.forEach(function(panel) {
+        var cards = panel.querySelectorAll('.activity-card');
+        var visibleCount = 0;
+        cards.forEach(function(card) {
+          var isFree = card.dataset.free === 'true';
+          var matches = currentFilter === 'all' || (currentFilter === 'free' && isFree) || (currentFilter === 'paid' && !isFree);
+          card.classList.toggle('filtered-out', !matches);
+          if (matches) visibleCount++;
+        });
+        var emptyState = panel.querySelector('.filter-empty-state');
+        if (emptyState) emptyState.style.display = (visibleCount === 0 && cards.length > 0) ? 'block' : 'none';
+      });
+    }
+
+    filterBtns.forEach(function(btn) {
+      btn.addEventListener('click', function() {
+        currentFilter = btn.dataset.filter;
+        filterBtns.forEach(function(b) { b.classList.toggle('active', b === btn); });
+        applyFilter();
+      });
+    });
+
+    select.addEventListener('change', function() { showSlug(select.value); });
+
+    var params = new URLSearchParams(window.location.search);
+    var loc = params.get('loc');
+    if (loc && Array.from(panels).some(function(p) { return p.dataset.slug === loc; })) {
+      select.value = loc;
+    }
+    showSlug(select.value);
+  })();
+</script>
 
 </body>
 </html>
