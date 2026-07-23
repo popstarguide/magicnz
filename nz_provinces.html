@@ -61,14 +61,18 @@
     display: none;
     align-items: center;
     gap: 6px;
-    color: #F25E0D;
-    font-size: 17px;
+    color: #ffffff;
+    background: #F25E0D;
+    font-size: 14px;
     font-weight: 700;
     cursor: pointer;
-    padding: 0 0 20px;
+    padding: 9px 16px;
+    border-radius: 8px;
+    margin: 0 0 20px;
     -webkit-tap-highlight-color: transparent;
   }
-  .back-to-map.active { display: flex; }
+  .back-to-map.active { display: inline-flex; }
+  .back-to-map:active { background: #d94f09; }
 
   .attractions-link {
     display: none;
@@ -826,7 +830,9 @@ function showRegion(val) {
   // Toggle the back-to-map button
   document.getElementById('back-to-map').classList.toggle('active', !!val);
 
-  // Toggle and wire up the attractions link for this region
+  // Toggle and wire up the attractions link for this region, and move it
+  // to the end of that region's blurb (rather than leaving it pinned above
+  // every panel) so it reads as the natural next step after the content.
   var attractionsLink = document.getElementById('attractions-link');
   attractionsLink.classList.toggle('active', !!val);
   attractionsLink.href = val ? ('nz_attractions.html?region=' + val) : '#';
@@ -848,6 +854,7 @@ function showRegion(val) {
     var panel = document.getElementById('panel-' + val);
     if (panel) {
       panel.classList.add('active');
+      panel.appendChild(attractionsLink);
     }
   }
   window.scrollTo(0, 0);
