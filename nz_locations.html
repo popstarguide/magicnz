@@ -205,15 +205,21 @@
   }
 
   .back-to-map {
-    display: flex;
+    display: inline-flex;
     align-items: center;
     gap: 4px;
-    color: #F25E0D;
+    color: #ffffff;
+    background: #F25E0D;
     font-size: 13px;
     font-weight: 600;
     cursor: pointer;
-    padding: 0 0 16px;
+    padding: 9px 16px;
+    border-radius: 8px;
+    margin: 0 0 16px;
     -webkit-tap-highlight-color: transparent;
+  }
+  .back-to-map:active {
+    background: #d94f09;
   }
 
   .region-detail { display: none; }
@@ -269,7 +275,9 @@
   }
   .map-dot {
     position: absolute;
-    transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%) scale(var(--dot-declutter, 1));
+    transform-origin: center center;
+    transition: transform 0.12s ease-out;
     display: flex;
     align-items: center;
     gap: 5px;
@@ -2622,6 +2630,11 @@ function initMapPinchZoom() {
     function apply(withTransition) {
       zoom.style.transition = withTransition ? 'transform 0.2s ease' : '';
       zoom.style.transform = 'translate(' + panX + 'px,' + panY + 'px) scale(' + scale + ')';
+      // As the map scales up, dots move further apart on screen, but their
+      // own size/text would scale up right along with them and stay just as
+      // overlapped. Shrinking dots relative to the zoom (by 1/sqrt(scale))
+      // makes labels separate out and become readable as you zoom in.
+      zoom.style.setProperty('--dot-declutter', (1 / Math.sqrt(scale)).toFixed(3));
     }
 
     function clampPan() {
@@ -2703,6 +2716,42 @@ function initMapPinchZoom() {
         panning = scale > 1.02;
       }
     }, {passive: true});
+
+    // Desktop-only: trackpad pinch / mouse-wheel zoom and click-drag pan,
+    // so this can be tested in a Mac browser (no touchscreen needed).
+    // Safari/Chrome report a trackpad pinch as a wheel event with ctrlKey
+    // set, so this same handler covers both a real pinch and a plain
+    // scroll-wheel.
+    wrap.addEventListener('wheel', function(e) {
+      e.preventDefault();
+      var factor = Math.exp(-e.deltaY * 0.012);
+      scale = Math.max(MIN_SCALE, Math.min(MAX_SCALE, scale * factor));
+      clampPan();
+      apply(false);
+      if (scale < 1.02) { scale = 1; panX = 0; panY = 0; }
+    }, {passive: false});
+
+    var mouseDown = false;
+    wrap.addEventListener('mousedown', function(e) {
+      if (scale <= 1.02) return;
+      mouseDown = true;
+      lastX = e.clientX;
+      lastY = e.clientY;
+    });
+    window.addEventListener('mousemove', function(e) {
+      if (!mouseDown) return;
+      var dx = e.clientX - lastX;
+      var dy = e.clientY - lastY;
+      lastX = e.clientX;
+      lastY = e.clientY;
+      panX += dx;
+      panY += dy;
+      clampPan();
+      apply(false);
+    });
+    window.addEventListener('mouseup', function() { mouseDown = false; });
+
+    wrap.addEventListener('dblclick', function() { reset(); });
   });
 }
 
