@@ -94,11 +94,11 @@
     margin: 0 0 16px;
   }
   .drum-track {
-    height: 240px;
+    height: 170px;
     overflow-y: scroll;
     scroll-snap-type: y mandatory;
     -webkit-overflow-scrolling: touch;
-    padding: 100px 0;
+    padding: 65px 0;
     scrollbar-width: none;
   }
   .drum-track::-webkit-scrollbar { display: none; }
@@ -127,12 +127,12 @@
     background: #e8e8e8;
     pointer-events: none;
   }
-  .drum-frame-line.top { top: 100px; }
-  .drum-frame-line.bottom { bottom: 100px; }
+  .drum-frame-line.top { top: 65px; }
+  .drum-frame-line.bottom { bottom: 65px; }
   .drum-fade {
     position: absolute;
     left: 0; right: 0;
-    height: 90px;
+    height: 60px;
     pointer-events: none;
     z-index: 2;
   }
@@ -166,8 +166,9 @@
   }
   .legend-detail-image {
     width: 100%;
-    max-height: 220px;
-    object-fit: cover;
+    max-height: 260px;
+    object-fit: contain;
+    background: #0f0c09;
     border-radius: 8px;
     display: block;
     margin: 0 0 14px;
@@ -212,16 +213,40 @@
   var intro = document.getElementById('legends-intro');
   var toggleBtn = document.getElementById('intro-toggle');
   if (!intro || !toggleBtn) return;
-  if (localStorage.getItem('nzLegendsIntroSeen')) {
+
+  var seenBefore = false;
+  try { seenBefore = !!localStorage.getItem('nzLegendsIntroSeen'); } catch (e) {}
+
+  if (seenBefore) {
     intro.classList.add('collapsed');
     toggleBtn.style.display = 'block';
   } else {
-    localStorage.setItem('nzLegendsIntroSeen', '1');
+    try { localStorage.setItem('nzLegendsIntroSeen', '1'); } catch (e) {}
   }
+
   toggleBtn.addEventListener('click', function() {
     var isCollapsed = intro.classList.toggle('collapsed');
     toggleBtn.textContent = isCollapsed ? 'Read more' : 'Show less';
   });
+
+  // Some in-app WebViews don't persist localStorage between visits, which
+  // would make the intro reappear in full every time. As a safety net,
+  // once the person starts actually browsing (scrolls the drum or taps
+  // search), treat that as "read it" and collapse the intro for the rest
+  // of this visit even if it never showed collapsed on load.
+  function collapseOnFirstInteraction() {
+    if (!intro.classList.contains('collapsed')) {
+      intro.classList.add('collapsed');
+      toggleBtn.textContent = 'Read more';
+      toggleBtn.style.display = 'block';
+    }
+    drumEl.removeEventListener('scroll', collapseOnFirstInteraction);
+    searchEl.removeEventListener('focus', collapseOnFirstInteraction);
+  }
+  var drumEl = document.getElementById('drum-track');
+  var searchEl = document.getElementById('legends-search');
+  if (drumEl) drumEl.addEventListener('scroll', collapseOnFirstInteraction, {passive: true});
+  if (searchEl) searchEl.addEventListener('focus', collapseOnFirstInteraction);
 })();
 
 // All legends. Images are optional -- if a file named below isn't yet in
