@@ -204,6 +204,26 @@
     flex-shrink: 0;
   }
   .inline-detail .activity-card-body { flex: 1; min-width: 0; }
+  .inline-detail .activity-photo {
+    width: 100%;
+    max-height: 200px;
+    object-fit: cover;
+    border-radius: 10px;
+    display: block;
+    margin: 0 0 6px;
+  }
+  .inline-detail .activity-thumb-row {
+    display: flex;
+    gap: 6px;
+    overflow-x: auto;
+  }
+  .inline-detail .activity-thumb {
+    width: 56px;
+    height: 56px;
+    object-fit: cover;
+    border-radius: 6px;
+    flex-shrink: 0;
+  }
   .inline-detail .activity-card-head {
     display: flex;
     align-items: baseline;
@@ -246,6 +266,24 @@
     color: #757575;
     line-height: 1.7;
     margin: 0;
+  }
+  .inline-detail .activity-card-desc.collapsed {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  .inline-detail .read-more-btn {
+    display: block;
+    background: none;
+    border: none;
+    padding: 6px 0 0;
+    margin: 0;
+    color: #20b8b8;
+    font-size: 12px;
+    font-weight: 700;
+    cursor: pointer;
+    font-family: inherit;
   }
 
   .placeholder-state {
@@ -3036,9 +3074,43 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     function sanitizeFragment(el) {
+      // Rewire any lightbox-triggering images to this page's own openLightbox
+      // function before stripping onclick generally — the attractions page's
+      // inline onclick text would otherwise be discarded along with everything
+      // else, since we don't trust arbitrary onclick from a fetched fragment.
+      el.querySelectorAll('img[data-gallery]').forEach(function(img) {
+        img.addEventListener('click', function() { openLightbox(img); });
+      });
       el.querySelectorAll('[onclick]').forEach(function(node) { node.removeAttribute('onclick'); });
       el.querySelectorAll('script').forEach(function(node) { node.remove(); });
       return el;
+    }
+
+    function setupReadMore(scopeEl) {
+      if (!scopeEl) return;
+      scopeEl.querySelectorAll('.activity-card').forEach(function(card) {
+        if (card.dataset.readmoreInit === 'true') return;
+        card.dataset.readmoreInit = 'true';
+        var desc = card.querySelector('.activity-card-desc');
+        if (!desc) return;
+        desc.classList.add('collapsed');
+        requestAnimationFrame(function() {
+          if (desc.scrollHeight > desc.clientHeight + 2) {
+            var link = document.createElement('button');
+            link.type = 'button';
+            link.className = 'read-more-btn';
+            link.textContent = 'Read more';
+            link.addEventListener('click', function() {
+              var expanded = desc.classList.toggle('expanded');
+              desc.classList.toggle('collapsed', !expanded);
+              link.textContent = expanded ? 'Show less' : 'Read more';
+            });
+            desc.insertAdjacentElement('afterend', link);
+          } else {
+            desc.classList.remove('collapsed');
+          }
+        });
+      });
     }
 
     function closePanel(panelEl, btnEl, label) {
@@ -3086,6 +3158,7 @@ document.addEventListener('DOMContentLoaded', function() {
               wrap.innerHTML = '<p class="body-text" style="margin:0;">Nothing found for this location yet.</p>';
             }
             panelEl.appendChild(wrap);
+            setupReadMore(wrap);
           })
           .catch(function() {
             panelEl.innerHTML = '<div class="inline-detail-inner"><p class="body-text" style="margin:0;">Could not load that right now.</p></div>';
