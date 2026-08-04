@@ -123,15 +123,129 @@
 
   .attraction-btn {
     display: block;
+    width: 100%;
     text-align: center;
     background: #20b8b8;
     color: #fff;
     font-size: 14px;
     font-weight: 600;
     text-decoration: none;
+    border: none;
     border-radius: 10px;
     padding: 12px 16px;
     margin: 0 0 16px;
+    cursor: pointer;
+    font-family: inherit;
+  }
+  .attraction-btn.loading {
+    opacity: 0.6;
+  }
+
+  /* ---- Pulled-in content (attractions listing) ---- */
+  .inline-detail {
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    transition: max-height 0.35s ease, opacity 0.3s ease;
+    margin: 0;
+  }
+  .inline-detail.open {
+    max-height: 4000px;
+    opacity: 1;
+    margin: 0 0 16px;
+  }
+  .inline-detail-inner {
+    border: 1px solid #e8e8e8;
+    border-radius: 10px;
+    padding: 16px;
+  }
+  .inline-loading {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 13px;
+    color: #999;
+    padding: 4px 2px;
+  }
+  .inline-loading-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #20b8b8;
+    animation: pulse-dot 1s ease-in-out infinite;
+  }
+  .inline-loading-dot:nth-child(2) { animation-delay: 0.15s; }
+  .inline-loading-dot:nth-child(3) { animation-delay: 0.3s; }
+  @keyframes pulse-dot {
+    0%, 80%, 100% { opacity: 0.25; transform: scale(0.85); }
+    40% { opacity: 1; transform: scale(1); }
+  }
+  .inline-detail .dark-card {
+    background: #010707;
+    border-radius: 10px;
+    padding: 16px 18px;
+    margin: 0;
+  }
+  .inline-detail .activity-card {
+    padding: 16px 0;
+    border-bottom: 1px solid #e8e8e8;
+  }
+  .inline-detail .activity-card:last-child { border-bottom: none; }
+  .inline-detail .activity-card-row {
+    display: flex;
+    gap: 12px;
+    margin: 0 0 10px;
+  }
+  .inline-detail .activity-icon {
+    width: 40px;
+    height: 40px;
+    object-fit: cover;
+    border-radius: 8px;
+    flex-shrink: 0;
+  }
+  .inline-detail .activity-card-body { flex: 1; min-width: 0; }
+  .inline-detail .activity-card-head {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin: 0 0 4px;
+  }
+  .inline-detail .activity-card-name {
+    font-size: 15px;
+    font-weight: 700;
+    color: #010707;
+    margin: 0;
+  }
+  .inline-detail .activity-badges {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+  }
+  .inline-detail .activity-badge {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    border-radius: 999px;
+    padding: 3px 8px;
+    white-space: nowrap;
+  }
+  .inline-detail .activity-badge.top5 {
+    background: #0A3939;
+    color: #fff;
+  }
+  .inline-detail .activity-badge.fee {
+    background: #F7F3EF;
+    color: #757575;
+    border: 1px solid #e8e8e8;
+  }
+  .inline-detail .activity-card-desc {
+    font-size: 13px;
+    color: #757575;
+    line-height: 1.7;
+    margin: 0;
   }
 
   .placeholder-state {
@@ -759,6 +873,8 @@
     <p class="dark-card-label">Good to Know</p>
     <p class="dark-card-text">Auckland: named by Governor William Hobson in 1840 after George Eden, Earl of Auckland. New Zealand's largest city, with around 1.4 million people spread across two harbours and 63 volcanic cones (dormant, not extinct). Capital of New Zealand from 1840 to 1865. World's largest Polynesian city, with strong Pacific and Māori cultural influence, including the genre of Pacifica Hip-Hop (OMC, Che Fu, King Kapisi) that emerged from South Auckland in the late 1990s. Held the America's Cup from 1995 until losing it to Switzerland's Alinghi in 2007.</p>
   </div>
+  <button type="button" class="attraction-btn attraction-pull-btn" data-slug="auckland" data-label="See Attractions">See Attractions</button>
+  <div class="inline-detail" id="attr-inline-auckland"></div>
 </div>
 
 <div class="region-panel" id="panel-warkworth">
@@ -779,6 +895,8 @@
     <p class="dark-card-label">Good to Know</p>
     <p class="dark-card-text">Matakohe: te reo Māori for the area where kohekohe trees grow (mata, headland; kohe, kohekohe). Home to the Kauri Museum, showcasing the region's kauri timber and gum industries. Kauri is New Zealand's largest native tree, growing up to 30m tall with girths to 23m; some specimens are estimated at 2,000 years old. Harvesting native kauri timber is now illegal.</p>
   </div>
+  <button type="button" class="attraction-btn attraction-pull-btn" data-slug="matakohe" data-label="See Attractions">See Attractions</button>
+  <div class="inline-detail" id="attr-inline-matakohe"></div>
 </div>
 
 <div class="region-panel" id="panel-dargaville">
@@ -800,6 +918,8 @@
     <p class="dark-card-label">Good to Know</p>
     <p class="dark-card-text">Waipoua Forest: te reo Māori, likely wai (water) and poua (shellfish), referencing shellfish once gathered at nearby river mouths. The largest remaining stand of native forest in Northland, saved from logging in 1952 after a 70,000-signature petition; 15,000 hectares are now a protected reserve. Home to Tāne Mahuta (Lord of the Forest), New Zealand's largest living kauri at 51.2m tall and 13.7m girth, and Te Matua Ngahere (Father of the Forest), the oldest known kauri at an estimated 2,000 years.</p>
   </div>
+  <button type="button" class="attraction-btn attraction-pull-btn" data-slug="waipoua_forest" data-label="See Attractions">See Attractions</button>
+  <div class="inline-detail" id="attr-inline-waipoua_forest"></div>
 </div>
 
 <div class="region-panel" id="panel-hokianga_harbour">
@@ -820,6 +940,8 @@
     <p class="dark-card-label">Good to Know</p>
     <p class="dark-card-text">Opononi: name possibly a misspelling of Opounoni, referencing a fishing pot used at a nearby stream mouth. A small settlement on the Hokianga Harbour, famous for Opo — a wild bottlenose dolphin who befriended locals and visitors over the 1955-56 summer before dying suddenly, days after being granted legal protection. A monument on the foreshore and a short film at the information centre tell her story.</p>
   </div>
+  <button type="button" class="attraction-btn attraction-pull-btn" data-slug="opononi" data-label="See Attractions">See Attractions</button>
+  <div class="inline-detail" id="attr-inline-opononi"></div>
 </div>
 
 <div class="region-panel" id="panel-kaikohe">
@@ -844,6 +966,8 @@
     <p class="dark-card-label">Good to Know</p>
     <p class="dark-card-text">Kaitaia: te reo Māori, kai (food) and taia (thrown about) — from a legend of two women competing to store the most food. New Zealand's northernmost town and consistently its warmest, supporting avocado and grape growing. Home to a strong Dalmatian immigrant community dating from the 1880s kauri gum rush, with many local Māori able to trace Dalmatian ancestry. Last major shopping stop before Cape Rēinga — no fuel or supplies further north beyond a lone service station just south of town.</p>
   </div>
+  <button type="button" class="attraction-btn attraction-pull-btn" data-slug="kaitaia" data-label="See Attractions">See Attractions</button>
+  <div class="inline-detail" id="attr-inline-kaitaia"></div>
 </div>
 
 <div class="region-panel" id="panel-cape_reinga">
@@ -858,6 +982,8 @@
     <p class="dark-card-label">Good to Know</p>
     <p class="dark-card-text">Cape Rēinga: te reo Māori for 'the underworld'. The spiritual departure point for Māori spirits after death, said to descend an 800-year-old pōhutukawa clinging to the cliff before leaping to Hawaiki. The northernmost point of State Highway 1, marked by an iconic lighthouse where the Tasman Sea meets the Pacific Ocean. Tapotupotu Bay, just south, offers a DOC-managed beachside campsite (basic facilities, small fee, strong currents).</p>
   </div>
+  <button type="button" class="attraction-btn attraction-pull-btn" data-slug="cape_reinga" data-label="See Attractions">See Attractions</button>
+  <div class="inline-detail" id="attr-inline-cape_reinga"></div>
 </div>
 
 <div class="region-panel" id="panel-paihia_bay_of_islands">
@@ -869,6 +995,8 @@
     <p class="dark-card-label">Good to Know</p>
     <p class="dark-card-text">Paihia: believed to come from pai (good, te reo Māori) plus 'here' (English) — it's good here. Main tourist hub of the Bay of Islands, with most regional tour operators based in or booking through town. Accommodation books out months ahead over summer and Christmas. A ferry connects to Russell (formerly Kororāreka) across the water.</p>
   </div>
+  <button type="button" class="attraction-btn attraction-pull-btn" data-slug="paihia_bay_of_islands" data-label="See Attractions">See Attractions</button>
+  <div class="inline-detail" id="attr-inline-paihia_bay_of_islands"></div>
 </div>
 
 <div class="region-panel" id="panel-waitangi">
@@ -883,6 +1011,8 @@
     <p class="dark-card-label">Good to Know</p>
     <p class="dark-card-text">Waitangi: te reo Māori, wai (water) and tangi (to weep) — the weeping waters, from a nearby waterfall. Site of the Treaty of Waitangi, signed 6 February 1840 between the British Crown and Māori chiefs — New Zealand's founding document and the basis of Waitangi Day. The Māori and English versions of the Treaty differ significantly on the question of sovereignty, a discrepancy still debated and litigated today.</p>
   </div>
+  <button type="button" class="attraction-btn attraction-pull-btn" data-slug="waitangi" data-label="See Attractions">See Attractions</button>
+  <div class="inline-detail" id="attr-inline-waitangi"></div>
 </div>
 
 <div class="region-panel" id="panel-whangarei">
@@ -987,6 +1117,8 @@
     <p class="dark-card-label">Good to Know</p>
     <p class="dark-card-text">Taupō: abbreviated from Taupō nui a Tia — the great shoulder cloak of Tia (the lake's discoverer). Lake Taupō is New Zealand's largest lake, in a supervolcanic caldera. The Taupō eruption approximately 1,800 years ago was one of the most violent in recorded human history. The Waikato River (New Zealand's longest) begins here. Major tourism centre for fishing, adventure activities, and volcanic plateau access.</p>
   </div>
+  <button type="button" class="attraction-btn attraction-pull-btn" data-slug="taup" data-label="See Attractions">See Attractions</button>
+  <div class="inline-detail" id="attr-inline-taup"></div>
 </div>
 
 <div class="region-panel" id="panel-wairakei">
@@ -1007,6 +1139,8 @@
     <p class="dark-card-label">Good to Know</p>
     <p class="dark-card-text">Tūrangi: named after a Māori chief — tu (to stand), rangi (sky). Small fishing, tourism, and forestry town. SH 1 continues south through the Three Sisters and Desert Road, a high-altitude volcanic plateau route. Rangipo Prison Farm is passed along this route. Taupō is generally a better base unless you are a serious trout angler.</p>
   </div>
+  <button type="button" class="attraction-btn attraction-pull-btn" data-slug="turangi" data-label="See Attractions">See Attractions</button>
+  <div class="inline-detail" id="attr-inline-turangi"></div>
 </div>
 
 <div class="region-panel" id="panel-waiouru">
@@ -1058,6 +1192,8 @@
     <p class="dark-card-label">Good to Know</p>
     <p class="dark-card-text">Matamata: Te reo Māori — matamata (headland), originally referring to a pā above a swamp. Internationally known as the filming location for Hobbiton from Peter Jackson's Lord of the Rings and Hobbit trilogies. Guided tours of the farm set's earthworks and hobbit hole doors are available.</p>
   </div>
+  <button type="button" class="attraction-btn attraction-pull-btn" data-slug="matamata" data-label="See Attractions">See Attractions</button>
+  <div class="inline-detail" id="attr-inline-matamata"></div>
 </div>
 
 <div class="region-panel" id="panel-otorohanga">
@@ -1386,6 +1522,8 @@
     <p class="dark-card-label">Good to Know</p>
     <p class="dark-card-text">Wellington: named after Arthur Wellesley, first Duke of Wellington. New Zealand's capital and second largest city. Sits on three major active fault lines with daily minor earthquakes. Known as Wellywood for its film industry (particularly Weta Workshop). Consistently ranked among the world's most liveable cities for its arts, café culture, and compact waterfront. Population approximately 450,000.</p>
   </div>
+  <button type="button" class="attraction-btn attraction-pull-btn" data-slug="wellington" data-label="See Attractions">See Attractions</button>
+  <div class="inline-detail" id="attr-inline-wellington"></div>
 </div>
 
 <div class="region-panel" id="panel-hutt_cities">
@@ -1456,6 +1594,8 @@
     <p class="dark-card-label">Good to Know</p>
     <p class="dark-card-text">Ekatahuna: Te reo Māori — eka (to run around), tahuna (sandbank) — the point on the Makakahi River where sandbanks made canoe travel impossible and portage was required. Gained an undeserved reputation for remoteness from satirical 1970s Listener magazine articles. In reality a small farming community.</p>
   </div>
+  <button type="button" class="attraction-btn attraction-pull-btn" data-slug="eketahuna" data-label="See Attractions">See Attractions</button>
+  <div class="inline-detail" id="attr-inline-eketahuna"></div>
 </div>
 
 <div class="region-panel" id="panel-pahiatua_manganatokia">
@@ -1466,6 +1606,10 @@
     <p class="dark-card-label">Good to Know</p>
     <p class="dark-card-text">Pahiatua: Te reo Māori — pahi (resting place), atua (god) — a chief guided by a deity rested here after battle. Mangatainoka: manga (stream), tanoka (native broom). Pahiatua is a Manawatū–Wairarapa junction. Mangatainoka is home to Tui Brewery, one of New Zealand's most recognised beer brands.</p>
   </div>
+  <button type="button" class="attraction-btn attraction-pull-btn" data-slug="pahiatua" data-label="See Pahiatua Attractions">See Pahiatua Attractions</button>
+  <div class="inline-detail" id="attr-inline-pahiatua"></div>
+  <button type="button" class="attraction-btn attraction-pull-btn" data-slug="mangatainoka" data-label="See Mangatainoka Attractions">See Mangatainoka Attractions</button>
+  <div class="inline-detail" id="attr-inline-mangatainoka"></div>
 </div>
 
 <div class="region-panel" id="panel-woodville">
@@ -1477,6 +1621,8 @@
     <p class="dark-card-label">Good to Know</p>
     <p class="dark-card-text">Woodville originated as a settlement in the 70 Mile Bush, a major forest-clearing operation linking southern regions to Hastings. Today known for four antique stores on or near the main street. Original native bush visible on the right heading north toward Dannevirke.</p>
   </div>
+  <button type="button" class="attraction-btn attraction-pull-btn" data-slug="woodville" data-label="See Attractions">See Attractions</button>
+  <div class="inline-detail" id="attr-inline-woodville"></div>
 </div>
 
 <div class="region-panel" id="panel-dannevirke_norsewood">
@@ -1487,6 +1633,8 @@
     <p class="dark-card-label">Good to Know</p>
     <p class="dark-card-text">Dannevirke: Danish — a Dane's work. In 1872 ships brought 365 Norwegians, 11 Swedes, and 71 Danes who trekked from Napier to work in road construction and bush clearing. The town and nearby Norsewood retain strong Scandinavian heritage in signage, street names, and community events.</p>
   </div>
+  <button type="button" class="attraction-btn attraction-pull-btn" data-slug="norsewood" data-label="See Attractions">See Attractions</button>
+  <div class="inline-detail" id="attr-inline-norsewood"></div>
 </div>
 
 <div class="region-panel" id="panel-waipukurau">
@@ -1508,6 +1656,8 @@
     <p class="dark-card-label">Good to Know</p>
     <p class="dark-card-text">Hastings narrowly avoided being named Hicksville (after Francis Hicks, first to subdivide 1870s). Renamed after Warren Hastings, India's first Governor-General. Since WWII grown to become the economic centre of Hawke's Bay, New Zealand's primary fruit-growing region (apples, grapes, stone fruit, vegetables).</p>
   </div>
+  <button type="button" class="attraction-btn attraction-pull-btn" data-slug="hastings" data-label="See Attractions">See Attractions</button>
+  <div class="inline-detail" id="attr-inline-hastings"></div>
 </div>
 
 <div class="region-panel" id="panel-napier">
@@ -1523,6 +1673,8 @@
     <p class="dark-card-label">Good to Know</p>
     <p class="dark-card-text">Napier was named after Sir Charles Napier, British military leader at the Battle of Meeanee. On 3 February 1931 a magnitude 7.8 earthquake killed 256 and destroyed much of the city. Reconstruction in Art Deco style created one of the world's finest concentrations of Art Deco architecture. The annual Art Deco Festival is a major international event.</p>
   </div>
+  <button type="button" class="attraction-btn attraction-pull-btn" data-slug="napier" data-label="See Attractions">See Attractions</button>
+  <div class="inline-detail" id="attr-inline-napier"></div>
 </div>
 
 <div class="region-panel" id="panel-rotorua">
@@ -1541,6 +1693,8 @@
     <p class="dark-card-label">Good to Know</p>
     <p class="dark-card-text">Rotorua: Te reo Māori — roto (lake), rua (two) — the second lake discovered in the area. The city sits within New Zealand's major volcanic zone, producing extensive geothermal activity (hot pools, mud pools, geysers, steam vents). Māori have used geothermal features for cooking and bathing for centuries. The primary centre of Māori cultural tourism in New Zealand: performances, hangi, and carved meeting houses of the Te Arawa people.</p>
   </div>
+  <button type="button" class="attraction-btn attraction-pull-btn" data-slug="rotorua" data-label="See Attractions">See Attractions</button>
+  <div class="inline-detail" id="attr-inline-rotorua"></div>
 </div>
 
 <div class="region-panel" id="panel-wai_o_tapu">
@@ -1562,6 +1716,8 @@
     <p class="dark-card-label">Good to Know</p>
     <p class="dark-card-text">Te Puke: Te reo Māori — te (the), puke (hill). Kiwifruit Capital of the World — the world's largest kiwifruit exporting region. Kiwifruit originated in China (yang-táo) and were propagated in New Zealand by Whanganui nurseryman Alexander Allison. New Zealand growers rebranded the fruit from Chinese gooseberry to Kiwifruit in the 1950s.</p>
   </div>
+  <button type="button" class="attraction-btn attraction-pull-btn" data-slug="te_puke" data-label="See Attractions">See Attractions</button>
+  <div class="inline-detail" id="attr-inline-te_puke"></div>
 </div>
 
 <div class="region-panel" id="panel-tauranga_mt_maunganui">
@@ -1572,6 +1728,10 @@
     <p class="dark-card-label">Good to Know</p>
     <p class="dark-card-text">Tauranga: Te reo Māori — sheltered anchorage. Mt Maunganui: maunga (mountain), nui (big). Mount Maunganui is a popular surf and beach lifestyle destination with a golden sand beach from Papamoa to the Mount. The volcanic cone (232m) has a popular walking track. Tauranga is the commercial centre and New Zealand's busiest port. One of New Zealand's fastest-growing regions.</p>
   </div>
+  <button type="button" class="attraction-btn attraction-pull-btn" data-slug="tauranga" data-label="See Tauranga Attractions">See Tauranga Attractions</button>
+  <div class="inline-detail" id="attr-inline-tauranga"></div>
+  <button type="button" class="attraction-btn attraction-pull-btn" data-slug="mount_maunganui" data-label="See Mt Maunganui Attractions">See Mt Maunganui Attractions</button>
+  <div class="inline-detail" id="attr-inline-mount_maunganui"></div>
 </div>
 
 <div class="region-panel" id="panel-katikati">
@@ -1593,6 +1753,8 @@
     <p class="dark-card-label">Good to Know</p>
     <p class="dark-card-text">Te Kaha: Te reo Māori — te kaha nui a Tikirakau (the fishing rope of Tikirakau). A small coastal settlement with dairies and a resort restaurant. A useful stop on SH 35 as options are limited along this stretch.</p>
   </div>
+  <button type="button" class="attraction-btn attraction-pull-btn" data-slug="te_kaha" data-label="See Attractions">See Attractions</button>
+  <div class="inline-detail" id="attr-inline-te_kaha"></div>
 </div>
 
 <div class="region-panel" id="panel-opotiki">
@@ -1603,6 +1765,8 @@
     <p class="dark-card-label">Good to Know</p>
     <p class="dark-card-text">Ōpōtiki: Te reo Māori — O (place of), Potiki (ancestor Potiki maitawhiti, believed part of the great Hawaiki migration). A small town near Whakatāne, serving as the western gateway to SH 35 around the East Cape.</p>
   </div>
+  <button type="button" class="attraction-btn attraction-pull-btn" data-slug="opotiki" data-label="See Attractions">See Attractions</button>
+  <div class="inline-detail" id="attr-inline-opotiki"></div>
 </div>
 
 <div class="region-panel" id="panel-whakatane">
@@ -1613,6 +1777,8 @@
     <p class="dark-card-label">Good to Know</p>
     <p class="dark-card-text">Whakatāne: Te reo Māori — to act like a man. When the waka Mataatua drifted as men went ashore, Toroa's daughter Wairaka led the women in saving it, declaring she would act as a man. Commercial centre of eastern Bay of Plenty, population approximately 20,000. Whakaari (White Island) active marine volcano visible offshore.</p>
   </div>
+  <button type="button" class="attraction-btn attraction-pull-btn" data-slug="whakatane" data-label="See Attractions">See Attractions</button>
+  <div class="inline-detail" id="attr-inline-whakatane"></div>
 </div>
 
 <div class="region-panel" id="panel-waihi">
@@ -1623,6 +1789,8 @@
     <p class="dark-card-label">Good to Know</p>
     <p class="dark-card-text">Waihi: Te reo Māori — wai (water), hi (to gush forth). Junction of Bay of Plenty and Coromandel. Economy defined by gold and silver mining; the Martha Mine is one of New Zealand's richest deposits and remains active. November 1912 saw a significant labour dispute between miners, unions, and mining companies, an important chapter in NZ labour history.</p>
   </div>
+  <button type="button" class="attraction-btn attraction-pull-btn" data-slug="waihi" data-label="See Attractions">See Attractions</button>
+  <div class="inline-detail" id="attr-inline-waihi"></div>
 </div>
 
 <div class="region-panel" id="panel-karangahake_gorge">
@@ -1645,6 +1813,8 @@
     <p class="dark-card-label">Good to Know</p>
     <p class="dark-card-text">Mahia: shortened from Te Mahiamaitawhiti — the murmurings of home. Explorer Ruawharo settled here after the peninsula's shape reminded him of a whale, following his mother's advice. Offers sheltered swimming beaches and exposed surf breaks, largely unpatrolled. Became Rocket Lab's first commercial orbital launch site in 2017.</p>
   </div>
+  <button type="button" class="attraction-btn attraction-pull-btn" data-slug="mahia_peninsula" data-label="See Attractions">See Attractions</button>
+  <div class="inline-detail" id="attr-inline-mahia_peninsula"></div>
 </div>
 
 <div class="region-panel" id="panel-gisborne">
@@ -1663,6 +1833,8 @@
     <p class="dark-card-label">Good to Know</p>
     <p class="dark-card-text">Gisborne: named in 1870 after civil servant William Gisborne. A city of approximately 30,000 on the shores of Tūranganui-a-Kiwa (Poverty Bay, named by Cook in 1769 after failing to obtain supplies). Near the International Date Line, among the first cities to greet each new day. Cook's first New Zealand landfall was in this region, October 1769. Known for Chardonnay, Chenin Blanc, and surf culture.</p>
   </div>
+  <button type="button" class="attraction-btn attraction-pull-btn" data-slug="gisborne" data-label="See Attractions">See Attractions</button>
+  <div class="inline-detail" id="attr-inline-gisborne"></div>
 </div>
 
 <div class="region-panel" id="panel-tolaga_bay">
@@ -1674,6 +1846,8 @@
     <p class="dark-card-label">Good to Know</p>
     <p class="dark-card-text">Tolaga Bay: English name from Cook's Tolago (origin unclear); Māori name Uawa (rainy season). The town's 660-metre wharf, built 1929, is a local landmark. Most cargo unloaded was road-building equipment — the resulting roads made the wharf redundant. A 30-minute return walk to the wharf end offers good coastal views.</p>
   </div>
+  <button type="button" class="attraction-btn attraction-pull-btn" data-slug="tolaga_bay" data-label="See Attractions">See Attractions</button>
+  <div class="inline-detail" id="attr-inline-tolaga_bay"></div>
 </div>
 
 <div class="region-panel" id="panel-tokomaru_bay">
@@ -1688,6 +1862,8 @@
     <p class="dark-card-label">Good to Know</p>
     <p class="dark-card-text">Tokomaru Bay: named after the waka Tokomaru, one of the canoes of the great Māori migration from Hawaiki. A small rural coastal settlement with a former supply wharf serving the surrounding farming district.</p>
   </div>
+  <button type="button" class="attraction-btn attraction-pull-btn" data-slug="tokomaru_bay" data-label="See Attractions">See Attractions</button>
+  <div class="inline-detail" id="attr-inline-tokomaru_bay"></div>
 </div>
 
 <div class="region-panel" id="panel-ruatoria">
@@ -1713,6 +1889,8 @@
     <p class="dark-card-label">Good to Know</p>
     <p class="dark-card-text">East Cape is the easternmost point of mainland New Zealand. The East Cape Lighthouse was relocated from East Island to its current position in 1922. Accessible via a 30-minute return walk from the road. The cape greets New Zealand's first sunrise each day.</p>
   </div>
+  <button type="button" class="attraction-btn attraction-pull-btn" data-slug="east_cape" data-label="See Attractions">See Attractions</button>
+  <div class="inline-detail" id="attr-inline-east_cape"></div>
 </div>
 
 <div class="region-panel" id="panel-hicks_bay">
@@ -1724,6 +1902,8 @@
     <p class="dark-card-label">Good to Know</p>
     <p class="dark-card-text">Hicks Bay: named after Lieutenant Zachary Hicks, crew member of Cook's Endeavour and the first European to sight the bay (1769). The approach over the hill before descending offers spectacular coastal views on a clear day.</p>
   </div>
+  <button type="button" class="attraction-btn attraction-pull-btn" data-slug="hicks_bay" data-label="See Attractions">See Attractions</button>
+  <div class="inline-detail" id="attr-inline-hicks_bay"></div>
 </div>
 
 <div class="region-panel" id="panel-thames">
@@ -1826,6 +2006,8 @@
     <p class="dark-card-label">Good to Know</p>
     <p class="dark-card-text">Nelson was named after Admiral Lord Nelson. New Zealand's second city (Queen Victoria's 1858 letter of patent when population was just 2,700), now the South Island's third largest city with approximately 52,000 residents. Consistently one of New Zealand's sunniest cities. Known for arts, food and wine, and proximity to Abel Tasman and Nelson Lakes National Parks.</p>
   </div>
+  <button type="button" class="attraction-btn attraction-pull-btn" data-slug="nelson" data-label="See Attractions">See Attractions</button>
+  <div class="inline-detail" id="attr-inline-nelson"></div>
 </div>
 
 <div class="region-panel" id="panel-motueka">
@@ -1851,6 +2033,8 @@
     <p class="dark-card-label">Good to Know</p>
     <p class="dark-card-text">Abel Tasman National Park was named after Dutch explorer Abel Tasman, first European to sight New Zealand (Golden Bay, 1642). Opened December 1942, exactly 300 years later. New Zealand's smallest national park; the Abel Tasman Coast Track is a Great Walk. Day trip option: bus from Nelson to Kaiteriteri, water taxi to Bark Bay or Torrent Bay, coastal walk back to Mārahau.</p>
   </div>
+  <button type="button" class="attraction-btn attraction-pull-btn" data-slug="abel_tasman_national_park" data-label="See Attractions">See Attractions</button>
+  <div class="inline-detail" id="attr-inline-abel_tasman_national_park"></div>
 </div>
 
 <div class="region-panel" id="panel-t_kaka">
@@ -2121,6 +2305,8 @@
     <p class="dark-card-label">Good to Know</p>
     <p class="dark-card-text">Queenstown: declared 'fit for a queen' by early gold prospectors. On the shores of Lake Wakatipu, population 10,000 (off-season) to 30,000+ (peak). NO free camping in the Queenstown district — actively patrolled with fines. New Zealand's adventure tourism capital: bungy jumping, jet boating, skiing, skydiving, paragliding, whitewater rafting. Advance booking strongly recommended.</p>
   </div>
+  <button type="button" class="attraction-btn attraction-pull-btn" data-slug="queenstown" data-label="See Attractions">See Attractions</button>
+  <div class="inline-detail" id="attr-inline-queenstown"></div>
 </div>
 
 <div class="region-panel" id="panel-bennets_bluff">
@@ -2320,6 +2506,8 @@
     <p class="dark-card-label">Good to Know</p>
     <p class="dark-card-text">Dunedin: Scottish Gaelic ancient name for Edinburgh. Named 1845 by Scottish founders who considered New Edinburgh. Grey stone architecture reflects gold rush and Scottish heritage. University of Otago (New Zealand's oldest university) gives strong academic character. The Otago Peninsula hosts the world's only mainland royal albatross colony, yellow-eyed penguins, and NZ sea lions.</p>
   </div>
+  <button type="button" class="attraction-btn attraction-pull-btn" data-slug="dunedin" data-label="See Attractions">See Attractions</button>
+  <div class="inline-detail" id="attr-inline-dunedin"></div>
 </div>
 
 <div class="region-panel" id="panel-moeraki">
@@ -2484,6 +2672,8 @@
     <p class="dark-card-label">Good to Know</p>
     <p class="dark-card-text">Christchurch: named after Christ Church College, Oxford, by ex-pupil John Robert Godley. Planned as an English city on a grid across flat Canterbury Plains. On 22 February 2011 a magnitude 6.3 earthquake killed 185 people — New Zealand's deadliest natural disaster since 1931. The ongoing central city rebuild has produced innovative architecture. Key attractions: Botanic Gardens, Cathedral precinct, Cardboard Cathedral.</p>
   </div>
+  <button type="button" class="attraction-btn attraction-pull-btn" data-slug="christchurch" data-label="See Attractions">See Attractions</button>
+  <div class="inline-detail" id="attr-inline-christchurch"></div>
 </div>
 
 <div class="region-panel" id="panel-amberley">
@@ -2828,6 +3018,83 @@ document.addEventListener('DOMContentLoaded', function() {
 
     var backToMapBtn = document.getElementById('back-to-map');
     if (backToMapBtn) backToMapBtn.onclick = goBack;
+  })();
+</script>
+
+<script>
+  // ---- Attractions pull-in: fetches nz_attractions.html once, caches the
+  // parsed document, then lifts the matching panel fragment straight into
+  // this page instead of navigating away. Mirrors the pattern in nz_routes.html.
+  (function() {
+    var docCache = {};
+    function fetchDoc(url) {
+      if (docCache[url]) return docCache[url];
+      docCache[url] = fetch(url)
+        .then(function(res) { return res.text(); })
+        .then(function(html) { return new DOMParser().parseFromString(html, 'text/html'); });
+      return docCache[url];
+    }
+
+    function sanitizeFragment(el) {
+      el.querySelectorAll('[onclick]').forEach(function(node) { node.removeAttribute('onclick'); });
+      el.querySelectorAll('script').forEach(function(node) { node.remove(); });
+      return el;
+    }
+
+    function closePanel(panelEl, btnEl, label) {
+      panelEl.classList.remove('open');
+      panelEl.innerHTML = '';
+      btnEl.textContent = label;
+      btnEl.dataset.open = '';
+    }
+
+    function openLoading(panelEl) {
+      panelEl.innerHTML = '<div class="inline-loading"><span class="inline-loading-dot"></span><span class="inline-loading-dot"></span><span class="inline-loading-dot"></span><span>Pulling attractions…</span></div>';
+      panelEl.classList.add('open');
+    }
+
+    document.querySelectorAll('.attraction-pull-btn').forEach(function(btnEl) {
+      var slug = btnEl.dataset.slug;
+      var defaultLabel = btnEl.dataset.label || 'See Attractions';
+      var panelEl = document.getElementById('attr-inline-' + slug);
+      if (!panelEl) return;
+
+      btnEl.addEventListener('click', function() {
+        var isOpen = btnEl.dataset.open === 'true';
+        if (isOpen) {
+          closePanel(panelEl, btnEl, defaultLabel);
+          return;
+        }
+        btnEl.dataset.open = 'true';
+        btnEl.textContent = 'Hide';
+        btnEl.classList.add('loading');
+        openLoading(panelEl);
+
+        var minDelay = new Promise(function(resolve) { setTimeout(resolve, 450); });
+        Promise.all([fetchDoc('nz_attractions.html'), minDelay])
+          .then(function(results) {
+            var doc = results[0];
+            var panel = doc.getElementById('panel-' + slug);
+            panelEl.innerHTML = '';
+            var wrap = document.createElement('div');
+            wrap.className = 'inline-detail-inner';
+            if (panel) {
+              var clone = panel.cloneNode(true);
+              clone.removeAttribute('id');
+              wrap.appendChild(sanitizeFragment(clone));
+            } else {
+              wrap.innerHTML = '<p class="body-text" style="margin:0;">Nothing found for this location yet.</p>';
+            }
+            panelEl.appendChild(wrap);
+          })
+          .catch(function() {
+            panelEl.innerHTML = '<div class="inline-detail-inner"><p class="body-text" style="margin:0;">Could not load that right now.</p></div>';
+          })
+          .finally(function() {
+            btnEl.classList.remove('loading');
+          });
+      });
+    });
   })();
 </script>
 
