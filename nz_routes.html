@@ -339,6 +339,37 @@
     color: #757575;
     border: 1px solid #e8e8e8;
   }
+  .lightbox-overlay {
+    display: none;
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(26,20,16,0.92);
+    z-index: 9999;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    touch-action: none;
+  }
+  .lightbox-overlay.open {
+    display: flex;
+  }
+  .lightbox-overlay img {
+    max-width: 100%;
+    max-height: 100%;
+    border-radius: 8px;
+    object-fit: contain;
+    touch-action: none;
+  }
+  .lightbox-counter {
+    position: absolute;
+    bottom: 24px;
+    left: 0; right: 0;
+    text-align: center;
+    color: #F7F3EF;
+    font-size: 13px;
+    letter-spacing: 0.05em;
+  }
+
   .inline-detail .activity-card-desc {
     font-size: 13px;
     color: #757575;
@@ -443,6 +474,11 @@
 </style>
 </head>
 <body style="background:#ffffff;color:#010707;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;font-weight:300;line-height:1.75;padding:16px 18px 60px;margin:0;">
+
+<div class="lightbox-overlay" id="lightbox">
+  <img id="lightbox-img" src="" alt="">
+  <div class="lightbox-counter" id="lightbox-counter"></div>
+</div>
 
 <p class="eyebrow">Magic New Zealand</p>
 <h2 class="section-heading">Route Locations</h2>
@@ -660,6 +696,7 @@
             wrap.innerHTML = '<p class="body-text" style="margin:0;">Nothing found for this location yet.</p>';
           }
           panelEl.appendChild(wrap);
+          bindLightboxImages(wrap);
         })
         .catch(() => {
           panelEl.innerHTML = '<div class="inline-detail-inner"><p class="body-text" style="margin:0;">Could not load that right now.</p></div>';
@@ -701,6 +738,98 @@
       return sanitizeFragment(clone);
     });
   });
+
+  // ---- Lightbox (ported from nz_attractions.html) ----
+  // The attractions fragment above has its onclick/script stripped by
+  // sanitizeFragment, so the gallery images need their click handlers
+  // re-bound here once the fragment lands in the DOM. See bindLightboxImages().
+  var lbGallery = [];
+  var lbIndex = 0;
+
+  function openLightbox(el) {
+    try {
+      lbGallery = JSON.parse(el.getAttribute('data-gallery'));
+    } catch (e) {
+      lbGallery = [el.src];
+    }
+    lbIndex = parseInt(el.getAttribute('data-index'), 10) || 0;
+    showLightboxImage();
+    document.getElementById('lightbox').classList.add('open');
+  }
+
+  function showLightboxImage() {
+    document.getElementById('lightbox-img').src = lbGallery[lbIndex];
+    var counter = document.getElementById('lightbox-counter');
+    if (lbGallery.length > 1) {
+      counter.textContent = (lbIndex + 1) + ' / ' + lbGallery.length;
+    } else {
+      counter.textContent = '';
+    }
+  }
+
+  function closeLightbox() {
+    document.getElementById('lightbox').classList.remove('open');
+    document.getElementById('lightbox-img').src = '';
+    document.getElementById('lightbox-counter').textContent = '';
+  }
+
+  function lbNext() {
+    if (lbGallery.length < 2) return;
+    lbIndex = (lbIndex + 1) % lbGallery.length;
+    showLightboxImage();
+  }
+
+  function lbPrev() {
+    if (lbGallery.length < 2) return;
+    lbIndex = (lbIndex - 1 + lbGallery.length) % lbGallery.length;
+    showLightboxImage();
+  }
+
+  function bindLightboxImages(container) {
+    container.querySelectorAll('img[data-gallery]').forEach(img => {
+      img.addEventListener('click', () => openLightbox(img));
+    });
+  }
+
+  var lbTouchStartX = null;
+  var lbTouchStartY = null;
+  var lbTouchIsSwipe = false;
+
+  (function() {
+    var lb = document.getElementById('lightbox');
+    lb.addEventListener('click', function(e) {
+      if (e.target.id === 'lightbox' || e.target.id === 'lightbox-counter') {
+        closeLightbox();
+      }
+    });
+
+    lb.addEventListener('touchstart', function(e) {
+      lbTouchStartX = e.touches[0].clientX;
+      lbTouchStartY = e.touches[0].clientY;
+      lbTouchIsSwipe = false;
+    }, {passive: true});
+
+    lb.addEventListener('touchmove', function(e) {
+      if (lbTouchStartX === null) return;
+      var dx = e.touches[0].clientX - lbTouchStartX;
+      var dy = e.touches[0].clientY - lbTouchStartY;
+      if (Math.abs(dx) > Math.abs(dy) && Math.abs(dx) > 10) {
+        lbTouchIsSwipe = true;
+        e.preventDefault();
+      }
+    }, {passive: false});
+
+    lb.addEventListener('touchend', function(e) {
+      if (lbTouchStartX === null) return;
+      var dx = e.changedTouches[0].clientX - lbTouchStartX;
+      if (lbTouchIsSwipe && Math.abs(dx) > 40) {
+        if (dx < 0) { lbNext(); } else { lbPrev(); }
+      }
+      lbTouchStartX = null;
+      lbTouchStartY = null;
+      lbTouchIsSwipe = false;
+    }, {passive: true});
+  })();
 
   // ---- Journeys drum ----
   function renderDrum() {
