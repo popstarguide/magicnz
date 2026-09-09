@@ -239,7 +239,7 @@
     0%, 80%, 100% { opacity: 0.25; transform: scale(0.85); }
     40% { opacity: 1; transform: scale(1); }
   }
-  .inline-detail .pretty-pic {
+  .inline-detail .pretty-pic, .stop-attractions-panel .pretty-pic {
     width: 100%;
     border-radius: 10px;
     display: block;
@@ -247,44 +247,44 @@
     object-fit: cover;
     max-height: 220px;
   }
-  .inline-detail .thumb-row {
+  .inline-detail .thumb-row, .stop-attractions-panel .thumb-row {
     display: flex;
     gap: 8px;
     margin: -8px 0 16px;
     overflow-x: auto;
   }
-  .inline-detail .thumb-pic {
+  .inline-detail .thumb-pic, .stop-attractions-panel .thumb-pic {
     width: 64px;
     height: 64px;
     object-fit: cover;
     border-radius: 6px;
     flex-shrink: 0;
   }
-  .inline-detail .dark-card {
+  .inline-detail .dark-card, .stop-attractions-panel .dark-card {
     background: #010707;
     border-radius: 10px;
     padding: 16px 18px;
     margin: 0;
   }
-  .inline-detail .activity-card {
+  .inline-detail .activity-card, .stop-attractions-panel .activity-card {
     padding: 16px 0;
     border-bottom: 1px solid #e8e8e8;
   }
-  .inline-detail .activity-card:last-child { border-bottom: none; }
-  .inline-detail .activity-card-row {
+  .inline-detail .activity-card:last-child, .stop-attractions-panel .activity-card:last-child { border-bottom: none; }
+  .inline-detail .activity-card-row, .stop-attractions-panel .activity-card-row {
     display: flex;
     gap: 12px;
     margin: 0 0 10px;
   }
-  .inline-detail .activity-icon {
+  .inline-detail .activity-icon, .stop-attractions-panel .activity-icon {
     width: 40px;
     height: 40px;
     object-fit: cover;
     border-radius: 8px;
     flex-shrink: 0;
   }
-  .inline-detail .activity-card-body { flex: 1; min-width: 0; }
-  .inline-detail .activity-photo {
+  .inline-detail .activity-card-body, .stop-attractions-panel .activity-card-body { flex: 1; min-width: 0; }
+  .inline-detail .activity-photo, .stop-attractions-panel .activity-photo {
     width: 100%;
     max-height: 200px;
     object-fit: cover;
@@ -292,19 +292,19 @@
     display: block;
     margin: 0 0 6px;
   }
-  .inline-detail .activity-thumb-row {
+  .inline-detail .activity-thumb-row, .stop-attractions-panel .activity-thumb-row {
     display: flex;
     gap: 6px;
     overflow-x: auto;
   }
-  .inline-detail .activity-thumb {
+  .inline-detail .activity-thumb, .stop-attractions-panel .activity-thumb {
     width: 56px;
     height: 56px;
     object-fit: cover;
     border-radius: 6px;
     flex-shrink: 0;
   }
-  .inline-detail .activity-card-head {
+  .inline-detail .activity-card-head, .stop-attractions-panel .activity-card-head {
     display: flex;
     align-items: baseline;
     justify-content: space-between;
@@ -312,18 +312,18 @@
     flex-wrap: wrap;
     margin: 0 0 4px;
   }
-  .inline-detail .activity-card-name {
+  .inline-detail .activity-card-name, .stop-attractions-panel .activity-card-name {
     font-size: 15px;
     font-weight: 700;
     color: #010707;
     margin: 0;
   }
-  .inline-detail .activity-badges {
+  .inline-detail .activity-badges, .stop-attractions-panel .activity-badges {
     display: flex;
     gap: 6px;
     flex-wrap: wrap;
   }
-  .inline-detail .activity-badge {
+  .inline-detail .activity-badge, .stop-attractions-panel .activity-badge {
     font-size: 10px;
     font-weight: 600;
     letter-spacing: 0.06em;
@@ -332,11 +332,11 @@
     padding: 3px 8px;
     white-space: nowrap;
   }
-  .inline-detail .activity-badge.top5 {
+  .inline-detail .activity-badge, .stop-attractions-panel .activity-badge.top5 {
     background: #0A3939;
     color: #fff;
   }
-  .inline-detail .activity-badge.fee {
+  .inline-detail .activity-badge, .stop-attractions-panel .activity-badge.fee {
     background: #F7F3EF;
     color: #757575;
     border: 1px solid #e8e8e8;
@@ -372,7 +372,7 @@
     letter-spacing: 0.05em;
   }
 
-  .inline-detail .activity-card-desc {
+  .inline-detail .activity-card-desc, .stop-attractions-panel .activity-card-desc {
     font-size: 13px;
     color: #757575;
     line-height: 1.7;
