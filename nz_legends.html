@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 <title>Māori Legends</title>
 <style>
   * { box-sizing: border-box; }
@@ -94,19 +94,19 @@
     margin: 0 0 16px;
   }
   .drum-track {
-    height: 115px;
+    height: 150px;
     overflow-y: scroll;
     scroll-snap-type: y mandatory;
     -webkit-overflow-scrolling: touch;
-    padding: 40px 0;
+    padding: 58px 0;
     scrollbar-width: none;
   }
   .drum-track::-webkit-scrollbar { display: none; }
   .drum-item {
     scroll-snap-align: center;
-    padding: 8px 8px;
+    padding: 6px 8px;
     text-align: center;
-    opacity: 0.35;
+    opacity: 0.5;
     transform: scale(0.88);
     transition: opacity 0.15s ease, transform 0.15s ease;
     cursor: pointer;
@@ -116,6 +116,8 @@
     transform: scale(1);
   }
   .drum-item-name {
+    margin: 0;
+    line-height: 1.4;
     font-size: 16px;
     font-weight: 700;
     color: #010707;
@@ -127,12 +129,12 @@
     background: #e8e8e8;
     pointer-events: none;
   }
-  .drum-frame-line.top { top: 40px; }
-  .drum-frame-line.bottom { bottom: 40px; }
+  .drum-frame-line.top { top: 58px; }
+  .drum-frame-line.bottom { bottom: 58px; }
   .drum-fade {
     position: absolute;
     left: 0; right: 0;
-    height: 35px;
+    height: 24px;
     pointer-events: none;
     z-index: 2;
   }
@@ -250,6 +252,7 @@
     white-space: pre-line;
     margin: 0;
   }
+  input, select, textarea { font-size: 16px !important; }
 </style>
 </head>
 <body>
