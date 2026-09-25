@@ -466,6 +466,14 @@
     color: #20b8b8;
   }
 </style>
+<script>
+  // Inside the MagicNZ app the header back arrow does this job, so hide the page's own back buttons.
+  if (window.parent !== window) {
+    var st = document.createElement('style');
+    st.textContent = '#back-to-map, #panel-back-btn { display: none !important; }';
+    document.head.appendChild(st);
+  }
+</script>
 </head>
 <body style="background:#ffffff;color:#010707;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;font-weight:300;line-height:1.75;padding:16px 18px 60px;margin:0;">
 

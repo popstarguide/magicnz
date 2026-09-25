@@ -490,6 +490,14 @@
   .inline-detail .town-heading:first-child { margin-top: 0; }
 
 </style>
+<script>
+  // Inside the MagicNZ app the header back arrow does this job, so hide the page's own back buttons.
+  if (window.parent !== window) {
+    var st = document.createElement('style');
+    st.textContent = '#back-to-map { display: none !important; }';
+    document.head.appendChild(st);
+  }
+</script>
 </head>
 <body style="background:#ffffff;color:#010707;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;font-weight:300;line-height:1.75;padding:16px 18px 60px;margin:0;">
 
@@ -856,6 +864,7 @@
 <div class="region-panel" id="panel-wairarapa">
   <p class="eyebrow">North Island — South East</p>
   <h2 class="section-heading">Wairarapa</h2>
+  <p class="body-text">The Wairarapa is a stunning region, with a small but strong artisan wine-growing area around Martinborough that is well worth a day or two if you have the time. For most visitors, though, it will be a drive-through on the way to Hawke's Bay.</p>
   <img src="pretty_pics/martiniborough_grapes.jpg" alt="Martinborough Grapes, Wairarapa" class="pretty-pic">
   <img src="provincal_maps/wairapara.png" alt="Wairarapa region map" class="colours-map">
 
