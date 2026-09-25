@@ -264,6 +264,231 @@
     margin-bottom: 12px;
     display: block;
   }
+  .lightbox-overlay {
+    display: none;
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(26,20,16,0.92);
+    z-index: 9999;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+  }
+  .lightbox-overlay.open {
+    display: flex;
+  }
+  .lightbox-overlay img {
+    max-width: 100%;
+    max-height: 100%;
+    border-radius: 8px;
+    object-fit: contain;
+    touch-action: none;
+  }
+  .lightbox-overlay {
+    touch-action: none;
+  }
+
+
+  .thumb-row {
+    display: flex;
+    gap: 8px;
+    margin: -8px 0 16px;
+    overflow-x: auto;
+  }
+  .thumb-pic {
+    width: 64px;
+    height: 64px;
+    object-fit: cover;
+    border-radius: 6px;
+    cursor: pointer;
+    flex-shrink: 0;
+  }
+
+
+  .lightbox-counter {
+    position: absolute;
+    bottom: 24px;
+    left: 0; right: 0;
+    text-align: center;
+    color: #F7F3EF;
+    font-size: 13px;
+    letter-spacing: 0.05em;
+  }
+
+
+  .attraction-btn {
+    display: block;
+    width: 100%;
+    text-align: center;
+    background: #20b8b8;
+    color: #fff;
+    font-size: 14px;
+    font-weight: 600;
+    text-decoration: none;
+    border: none;
+    border-radius: 10px;
+    padding: 12px 16px;
+    margin: 0 0 16px;
+    cursor: pointer;
+    font-family: inherit;
+  }
+  .attraction-btn.loading {
+    opacity: 0.6;
+  }
+  .attraction-btn:disabled {
+    background: #cfd8d8;
+    color: #8a9797;
+    cursor: not-allowed;
+  }
+
+  /* ---- Pulled-in content (attractions listing) ---- */
+  .inline-detail {
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    transition: max-height 0.35s ease, opacity 0.3s ease;
+    margin: 0;
+  }
+  .inline-detail.open {
+    max-height: 4000px;
+    opacity: 1;
+    margin: 0 0 16px;
+  }
+  .inline-detail-inner {
+    border: 1px solid #e8e8e8;
+    border-radius: 10px;
+    padding: 16px;
+  }
+  .inline-loading {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 13px;
+    color: #999;
+    padding: 4px 2px;
+  }
+  .inline-loading-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #20b8b8;
+    animation: pulse-dot 1s ease-in-out infinite;
+  }
+  .inline-loading-dot:nth-child(2) { animation-delay: 0.15s; }
+  .inline-loading-dot:nth-child(3) { animation-delay: 0.3s; }
+  @keyframes pulse-dot {
+    0%, 80%, 100% { opacity: 0.25; transform: scale(0.85); }
+    40% { opacity: 1; transform: scale(1); }
+  }
+  .inline-detail .dark-card {
+    background: #010707;
+    border-radius: 10px;
+    padding: 16px 18px;
+    margin: 0;
+  }
+  .inline-detail .activity-card {
+    padding: 16px 0;
+    border-bottom: 1px solid #e8e8e8;
+  }
+  .inline-detail .activity-card:last-child { border-bottom: none; }
+  .inline-detail .activity-card-row {
+    display: flex;
+    gap: 12px;
+    margin: 0 0 10px;
+  }
+  .inline-detail .activity-icon {
+    width: 40px;
+    height: 40px;
+    object-fit: cover;
+    border-radius: 8px;
+    flex-shrink: 0;
+  }
+  .inline-detail .activity-card-body { flex: 1; min-width: 0; }
+  .inline-detail .activity-photo {
+    width: 100%;
+    max-height: 200px;
+    object-fit: cover;
+    border-radius: 10px;
+    display: block;
+    margin: 0 0 6px;
+  }
+  .inline-detail .activity-thumb-row {
+    display: flex;
+    gap: 6px;
+    overflow-x: auto;
+  }
+  .inline-detail .activity-thumb {
+    width: 56px;
+    height: 56px;
+    object-fit: cover;
+    border-radius: 6px;
+    flex-shrink: 0;
+  }
+  .inline-detail .activity-card-head {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin: 0 0 4px;
+  }
+  .inline-detail .activity-card-name {
+    font-size: 15px;
+    font-weight: 700;
+    color: #010707;
+    margin: 0;
+  }
+  .inline-detail .activity-badges {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+  }
+  .inline-detail .activity-badge {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    border-radius: 999px;
+    padding: 3px 8px;
+    white-space: nowrap;
+  }
+  .inline-detail .activity-badge.top5 {
+    background: #0A3939;
+    color: #fff;
+  }
+  .inline-detail .activity-badge.fee {
+    background: #F7F3EF;
+    color: #757575;
+    border: 1px solid #e8e8e8;
+  }
+  .inline-detail .activity-card-desc {
+    font-size: 13px;
+    color: #757575;
+    line-height: 1.7;
+    margin: 0;
+  }
+  .inline-detail .activity-card-desc.collapsed {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  .inline-detail .read-more-btn {
+    display: block;
+    background: none;
+    border: none;
+    padding: 6px 0 0;
+    margin: 0;
+    color: #20b8b8;
+    font-size: 12px;
+    font-weight: 700;
+    cursor: pointer;
+    font-family: inherit;
+  }
+
+  .inline-detail .town-heading { font-size: 13px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: #20b8b8; margin: 18px 0 2px; }
+  .inline-detail .town-heading:first-child { margin-top: 0; }
+
 </style>
 </head>
 <body style="background:#ffffff;color:#010707;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;font-weight:300;line-height:1.75;padding:16px 18px 60px;margin:0;">
@@ -275,7 +500,11 @@
 <div class="back-to-map" id="back-to-map" onclick="showRegion('')">‹ Back to all regions</div>
 
 <!-- Link through to attractions, filtered to the open region -->
-<a class="attractions-link" id="attractions-link" href="#">See Free &amp; Paid Attractions in this Region ›</a>
+<div class="lightbox-overlay" id="lightbox"><img id="lightbox-img" src="" alt=""><div class="lightbox-counter" id="lightbox-counter"></div></div>
+<div id="attractions-link" class="attractions-block" style="display:none">
+  <button type="button" class="attraction-btn" id="region-attr-btn">See Attractions</button>
+  <div class="inline-detail" id="region-attr"></div>
+</div>
 
 <!-- Default state: tappable interactive region map -->
 <div id="default-state">
@@ -834,8 +1063,8 @@ function showRegion(val) {
   // to the end of that region's blurb (rather than leaving it pinned above
   // every panel) so it reads as the natural next step after the content.
   var attractionsLink = document.getElementById('attractions-link');
-  attractionsLink.classList.toggle('active', !!val);
-  attractionsLink.href = val ? ('nz_attractions.html?region=' + val) : '#';
+  attractionsLink.style.display = val ? 'block' : 'none';
+  if (window.resetRegionAttractions) window.resetRegionAttractions(val);
 
   // Highlight the matching region shape on the map
   var mapRegions = document.querySelectorAll('.map-region');
@@ -861,5 +1090,102 @@ function showRegion(val) {
 }
 </script>
 
+
+
+<script>
+  // ---- Region attractions pull-in (same pattern as Locations): fetches nz_attractions.html,
+  // lifts the cards for every town in this region, grouped by town. Nothing navigates away.
+  var REGION_TOWNS = {"auckland": ["auckland"], "northland": ["matakohe", "waipoua_forest", "opononi", "kaitaia", "cape_reinga", "paihia_bay_of_islands", "waitangi", "kawakawa"], "waikato": ["ngaruawhaia", "taup", "turangi", "matamata"], "kingcountry": ["waitomo"], "taranaki": ["new_plymouth", "opunake", "hawera", "stratford"], "whanganui": ["whanganui", "bulls", "mt_bruce_wildlife_centre", "woodville", "norsewood", "mangatainoka", "pahiatua", "eketahuna"], "wellington": ["paraparaumu", "wellington"], "hawkesbay": ["hastings", "napier", "mahia_peninsula"], "bayofplenty": ["rotorua", "te_puke", "tauranga_mt_maunganui", "te_kaha", "opotiki", "whakatane", "waihi"], "eastcoast": ["gisborne", "tolaga_bay", "tokomaru_bay", "east_cape", "hicks_bay"], "thamesvalley": ["thames", "whangamata"], "marlborough": ["picton", "havelock", "blenheim", "marlborough", "marlborough_sounds"], "tasman": ["nelson", "motueka", "abel_tasman_national_park", "kaiteriteri", "marahau"], "westcoast": ["westport", "punakaiki", "greymouth", "hokitika", "ross", "harihari", "franz_josef_glacier", "fox_glacier", "haast", "denniston", "okarito", "haast_pass"], "otago": ["makarora", "wanaka", "cromwell", "queenstown", "glenorchy", "kingston", "dunedin", "moeraki", "oamaru", "arrowtown", "cardrona", "gibbston", "clyde", "taiaroa_head", "duntroon"], "southland": ["te_anau", "manapouri", "doubtful_sound", "invercargill", "milford_sound", "bluff"], "canterbury": ["lake_tekapo", "waitohi", "temuka", "geraldine", "rakaia", "christchurch", "kaikoura", "methven", "timaru"]};
+  var lbGallery = [], lbIndex = 0;
+  function openLightbox(el) {
+    try { lbGallery = JSON.parse(el.getAttribute('data-gallery')); } catch (e) { lbGallery = [el.src]; }
+    lbIndex = parseInt(el.getAttribute('data-index'), 10) || 0; showLightboxImage();
+    document.getElementById('lightbox').classList.add('open');
+  }
+  function showLightboxImage() {
+    document.getElementById('lightbox-img').src = lbGallery[lbIndex];
+    document.getElementById('lightbox-counter').textContent = lbGallery.length > 1 ? (lbIndex + 1) + ' / ' + lbGallery.length : '';
+  }
+  function closeLightbox() { document.getElementById('lightbox').classList.remove('open'); document.getElementById('lightbox-img').src = ''; }
+  (function() {
+    var lb = document.getElementById('lightbox'), sx = null;
+    lb.addEventListener('click', closeLightbox);
+    lb.addEventListener('touchstart', function(e) { sx = e.touches[0].clientX; }, { passive: true });
+    lb.addEventListener('touchend', function(e) {
+      if (sx === null || lbGallery.length < 2) return; var dx = e.changedTouches[0].clientX - sx; sx = null;
+      if (Math.abs(dx) > 40) { e.preventDefault(); lbIndex = (lbIndex + (dx < 0 ? 1 : -1) + lbGallery.length) % lbGallery.length; showLightboxImage(); }
+    });
+
+    var docP = null;
+    function getDoc() {
+      if (!docP) docP = fetch('nz_attractions.html').then(function(r) { return r.text(); })
+        .then(function(h) { return new DOMParser().parseFromString(h, 'text/html'); });
+      return docP;
+    }
+    var btn = document.getElementById('region-attr-btn'), box = document.getElementById('region-attr'), current = '';
+    function setupReadMore(scope) {
+      scope.querySelectorAll('.activity-card').forEach(function(card) {
+        var desc = card.querySelector('.activity-card-desc'); if (!desc) return;
+        desc.classList.add('collapsed');
+        requestAnimationFrame(function() {
+          if (desc.scrollHeight > desc.clientHeight + 2) {
+            var b = document.createElement('button'); b.type = 'button'; b.className = 'read-more-btn'; b.textContent = 'Read more';
+            b.addEventListener('click', function() { var x = desc.classList.toggle('expanded'); desc.classList.toggle('collapsed', !x); b.textContent = x ? 'Show less' : 'Read more'; });
+            desc.insertAdjacentElement('afterend', b);
+          } else desc.classList.remove('collapsed');
+        });
+      });
+    }
+    function close() { box.classList.remove('open'); box.style.maxHeight = ''; box.innerHTML = ''; btn.textContent = 'See Attractions'; btn.dataset.open = ''; }
+    window.resetRegionAttractions = function(region) {
+      current = region || ''; close(); btn.disabled = false;
+      if (!current) return;
+      getDoc().then(function(doc) {
+        var has = (REGION_TOWNS[current] || []).some(function(s) { var p = doc.getElementById('panel-' + s); return p && p.querySelector('.activity-card'); });
+        if (!has && current === region) { btn.disabled = true; btn.textContent = 'No attractions yet'; }
+      }).catch(function() {});
+    };
+    btn.addEventListener('click', function() {
+      if (btn.dataset.open === 'true') { close(); return; }
+      btn.dataset.open = 'true'; btn.textContent = 'Hide';
+      box.innerHTML = '<div class="inline-loading"><span class="inline-loading-dot"></span><span class="inline-loading-dot"></span><span class="inline-loading-dot"></span><span>Pulling attractions…</span></div>';
+      box.classList.add('open');
+      var region = current;
+      getDoc().then(function(doc) {
+        if (region !== current) return;
+        var wrap = document.createElement('div'); wrap.className = 'inline-detail-inner'; var seen = {}, any = false;
+        (REGION_TOWNS[region] || []).forEach(function(slug) {
+          var panel = doc.getElementById('panel-' + slug); if (!panel) return;
+          var cards = [];
+          panel.querySelectorAll('.activity-card').forEach(function(card) {
+            var n = card.querySelector('.activity-card-name'); var key = n ? n.textContent.trim().toLowerCase() : card.outerHTML;
+            if (seen[key]) return; seen[key] = true;
+            var c = card.cloneNode(true);
+            c.querySelectorAll('img[data-gallery]').forEach(function(img) { img.addEventListener('click', function() { openLightbox(img); }); });
+            c.querySelectorAll('[onclick]').forEach(function(x) { x.removeAttribute('onclick'); });
+            c.querySelectorAll('script').forEach(function(x) { x.remove(); });
+            cards.push(c);
+          });
+          if (!cards.length) return; any = true;
+          var opt = doc.querySelector('option[value="' + slug + '"]');
+          var h = document.createElement('p'); h.className = 'town-heading'; h.textContent = opt ? opt.textContent.trim() : slug.replace(/_/g, ' ');
+          wrap.appendChild(h); cards.forEach(function(c) { wrap.appendChild(c); });
+        });
+        if (!any) wrap.innerHTML = '<p style="margin:0;">Nothing found for this region yet.</p>';
+        box.innerHTML = ''; box.appendChild(wrap); box.style.maxHeight = 'none'; setupReadMore(wrap);
+      }).catch(function() { box.innerHTML = '<div class="inline-detail-inner"><p style="margin:0;">Could not load that right now.</p></div>'; });
+    });
+  })();
+</script>
+<script>
+  // ---- In-app back button (MagicNZ app header): region panel -> map, then leave.
+  window.addEventListener('message', function(e) {
+    if (!e.data || e.data.magicnz !== 'back') return;
+    var reply = function(r) { e.source && e.source.postMessage({ magicnz: r }, '*'); };
+    if (document.querySelector('#lightbox.open')) { closeLightbox(); return reply('handled'); }
+    if (document.querySelector('.region-panel.active')) { showRegion(''); return reply('handled'); }
+    reply('exit');
+  });
+</script>
 </body>
 </html>
