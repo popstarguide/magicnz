@@ -3410,5 +3410,21 @@ document.addEventListener('DOMContentLoaded', function() {
   })();
 </script>
 
+
+<script>
+  // ---- In-app back button (MagicNZ app header): step back one level at a time.
+  // The app sends {magicnz:'back'}; we reply 'handled' if we moved back a level,
+  // or 'exit' when already on the NZ map so the app leaves the Locations section.
+  window.addEventListener('message', function(e) {
+    if (!e.data || e.data.magicnz !== 'back') return;
+    var reply = function(r) { e.source && e.source.postMessage({ magicnz: r }, '*'); };
+    var lb = document.querySelector('.lightbox-overlay.open, #lightbox.open');
+    if (lb && typeof closeLightbox === 'function') { closeLightbox(); return reply('handled'); }
+    if (document.querySelector('.region-panel.active')) { backFromPanel(); return reply('handled'); }
+    var towns = document.getElementById('town-list-stage');
+    if (towns && towns.style.display === 'block') { backToMap(); return reply('handled'); }
+    reply('exit');
+  });
+</script>
 </body>
 </html>
