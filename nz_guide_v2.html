@@ -50,6 +50,11 @@
   #lookupPop.open { opacity: 1; transform: none; pointer-events: auto; }
   #lookupPop b { display: block; color: var(--teal); font-size: 17px; margin-bottom: 4px; }
   .key .desc { font-size: 14px; color: #555; line-height: 1.5; }
+  .start-btn { display: none; width: 100%; margin: 8px 0 0; padding: 16px; border: 0; border-radius: 12px;
+    background: #20b8b8; color: #010707; font: inherit; font-size: 16px; font-weight: 700; letter-spacing: .04em;
+    text-transform: uppercase; box-shadow: 0 2px 6px rgba(10,57,57,.15); cursor: pointer; }
+  .start-btn:active { background: #0A3939; color: #fff; }
+  .in-app .start-btn { display: block; }
 </style>
 </head>
 <body>
@@ -120,9 +125,12 @@
     </ul>
   </div>
 
+  <button class="start-btn" onclick="window.parent.postMessage({magicnz:'home'},'*')">Let's Get Started</button>
+
 </div>
 <div id="lookupPop" role="dialog" aria-live="polite"></div>
 <script>
+if (window.parent !== window) document.documentElement.classList.add('in-app');
 (function(){
   var pop=document.getElementById('lookupPop'), timer=null, target=null, HOLD=450;
   function esc(t){return t.replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});}
