@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow, noarchive">
+<title>How to get started</title>
+<style>
+  :root {
+    --teal: #20b8b8;
+    --teal-dark: #0A3939;
+    --teal-light: #e6f5f5;
+    --dark: #010707;
+    --bg: #ffffff;
+  }
+  * { box-sizing: border-box; }
+  html { background: var(--bg); height: 100%; }
+  body {
+    margin: 0; min-height: 100%;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    background: var(--bg); color: var(--dark); line-height: 1.6;
+    -webkit-overflow-scrolling: touch;
+  }
+  .hero { background: var(--dark); color: #fff; padding: 48px 24px 40px; text-align: center; }
+  .eyebrow { text-transform: uppercase; letter-spacing: 2px; font-size: 13px; font-weight: 700; color: var(--teal); margin-bottom: 10px; }
+  .hero h1 { margin: 0; font-size: 32px; font-weight: 800; line-height: 1.2; }
+  .hero p.lede { max-width: 560px; margin: 16px auto 0; color: #e8e0da; font-size: 16px; }
+  .content { max-width: 680px; margin: 0 auto; padding: 32px 20px 60px; }
+  .section { margin-bottom: 36px; }
+  .section h2 { font-size: 21px; font-weight: 800; color: var(--dark); border-left: 4px solid var(--teal); padding-left: 12px; margin: 0 0 14px; }
+  .section p { font-size: 16px; margin: 0 0 14px; }
+  .pull-quote { background: var(--dark); color: #fff; border-radius: 10px; padding: 22px 24px; margin: 22px 0; font-size: 17px; font-weight: 600; position: relative; }
+  .pull-quote::before { content: ""; position: absolute; top: 0; left: 0; width: 5px; height: 100%; background: var(--teal); border-radius: 10px 0 0 10px; }
+
+  /* key lists (app buttons + attraction icons) */
+  .key { list-style: none; margin: 0; padding: 0; }
+  .key li { display: flex; align-items: center; gap: 14px; padding: 12px 0; border-bottom: 1px solid #e8e8e8; }
+  .key li:last-child { border-bottom: none; }
+  .key .ico { width: 44px; height: 44px; flex-shrink: 0; border-radius: 10px; background: var(--teal-light);
+    display: flex; align-items: center; justify-content: center; color: var(--teal); overflow: hidden; }
+  .key .ico svg { width: 24px; height: 24px; }
+  .key .ico img { width: 100%; height: 100%; object-fit: contain; }
+  .key .name { font-weight: 700; font-size: 15px; }
+  .lookup { -webkit-touch-callout: none; -webkit-user-select: none; user-select: none; }
+  .lookup.held { background: var(--teal-light); border-radius: 4px; }
+  #lookupPop { position: fixed; left: 16px; right: 16px; bottom: 24px; max-width: 520px; margin: 0 auto;
+    background: var(--teal-dark); color: #fff; border-radius: 12px; padding: 16px 18px; font-size: 15px; line-height: 1.5;
+    box-shadow: 0 8px 24px rgba(0,0,0,.25); border-left: 5px solid var(--teal);
+    opacity: 0; transform: translateY(12px); pointer-events: none; transition: opacity .18s, transform .18s; z-index: 50; }
+  #lookupPop.open { opacity: 1; transform: none; pointer-events: auto; }
+  #lookupPop b { display: block; color: var(--teal); font-size: 17px; margin-bottom: 4px; }
+  .key .desc { font-size: 14px; color: #555; line-height: 1.5; }
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="eyebrow">Guide to the App</div>
+  <h1>How to get started</h1>
+  <p class="lede">This app is designed to be used before you travel and are in planning stages as well as while you travel.</p>
+</div>
+
+<div class="content">
+
+  <div class="section">
+    <p>I have built this app to be your own tour guide in your device, a guide that will give commentary for towns you visit. Also to be a resource you can use for research.</p>
+  </div>
+
+  <div class="section">
+    <h2>Start</h2>
+    <p>Before you do anything, work out how much time you have to see New Zealand.</p>
+    <p>Then use the “Routes” section to determine the best option for you, which route covers the parts you want to experience in the time you have. I have suggested four routes.</p>
+    <p>Make sure you explore the shortcuts if time is important, equally these can be left in your back pocket in case you need to get home quicker than planned.</p>
+    <p>I have also indicated how long in minimum nights it should take you to do each route.</p>
+    <p>Use the “Recommendations” and “Travelling Tips” sections to help you prepare your journey. These sections cover: accommodation advice, niche road rules of NZ, important dates that may impact your travels.</p>
+  </div>
+
+  <div class="section">
+    <h2>Getting close to travelling</h2>
+    <p>I recommend you read the “NZ in Summary” section, especially “Environment”. These will give you a background to New Zealand, its culture, and history.</p>
+  </div>
+
+  <div class="section">
+    <h2>Travelling around</h2>
+    <p>Once you have worked out which Route you are taking, select the route from the menu page (car icon) and follow its navigation and commentary.</p>
+    <p>The “Locations” section is a guide by town. I suggest you leave this section in the background for when you need to look up a specific location, for example if someone mentions a town, use it to look up that town.</p>
+    <div class="pull-quote">What you are about to discover is our lush rolling countryside, beaches, mountains, cities, history, and culture.</div>
+  </div>
+
+  <div class="section">
+    <h2>Kiwi lingo &amp; Te Reo</h2>
+    <p>As you travel you will hear plenty of Te Reo Māori, most of our place names are Māori, and us Kiwis have a fair bit of slang of our own. Don’t let that put you off, give it a go, the locals will appreciate you trying.</p>
+    <p>The “NZ Dictionary” (book icon) has Māori and Kiwi words and phrases, plus a guide on how to pronounce Māori words.</p>
+    <p>While you are reading, if you come across a word you don’t know, press and hold on it and its meaning will pop up. Give it a go on the word <span class="lookup" data-term="Kiwi" data-def="A native flightless bird and our national icon. It’s also what we call ourselves – New Zealanders are Kiwis. (The fruit is a kiwifruit.)">Kiwi</span>.</p>
+    <div class="pull-quote">Kia ora – hello, thank you and welcome, all in one.</div>
+  </div>
+
+  <div class="section">
+    <h2>Finding your way around</h2>
+    <ul class="key">
+      <li><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M3 11l9-7 9 7v9a1 1 0 0 1-1 1h-5v-6h-6v6H4a1 1 0 0 1-1-1z"/></svg></div>
+        <div><div class="name">Home</div><div class="desc">Back to the main menu from anywhere.</div></div></li>
+      <li><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M8 6h13M8 12h13M8 18h13M3 6h.01M3 12h.01M3 18h.01"/></svg></div>
+        <div><div class="name">Forum</div><div class="desc">Share your experiences with other travellers.</div></div></li>
+      <li><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M2 5h7a3 3 0 0 1 3 3v12a2 2 0 0 0-2-2H2zM22 5h-7a3 3 0 0 0-3 3v12a2 2 0 0 1 2-2h8z"/></svg></div>
+        <div><div class="name">NZ Dictionary</div><div class="desc">Māori and Kiwi words and phrases.</div></div></li>
+      <li><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 17h14M6 17l1.5-5h9L18 17"/><path d="M7.5 12l1.2-3.5h6.6L16.5 12"/><circle cx="8" cy="17.5" r="1.6"/><circle cx="16" cy="17.5" r="1.6"/></svg></div>
+        <div><div class="name">Live Navigation</div><div class="desc">Pick your route and follow its navigation and commentary.</div></div></li>
+    </ul>
+  </div>
+
+  <div class="section">
+    <h2>Key to attraction icons</h2>
+    <ul class="key">
+      <li><div class="ico"><img src="top_5_images/action.jpg" alt=""></div><div class="name">Activity</div></li>
+      <li><div class="ico"><img src="top_5_images/beach.jpg" alt=""></div><div class="name">Beach</div></li>
+      <li><div class="ico"><img src="top_5_images/cultural.jpg" alt=""></div><div class="name">Cultural</div></li>
+      <li><div class="ico"><img src="top_5_images/photo.jpg" alt=""></div><div class="name">Place of interest</div></li>
+      <li><div class="ico"><img src="top_5_images/scenic.jpg" alt=""></div><div class="name">Scenic</div></li>
+    </ul>
+  </div>
+
+</div>
+<div id="lookupPop" role="dialog" aria-live="polite"></div>
+<script>
+(function(){
+  var pop=document.getElementById('lookupPop'), timer=null, target=null, HOLD=450;
+  function esc(t){return t.replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});}
+  function show(el){ pop.innerHTML='<b>'+esc(el.dataset.term)+'</b>'+esc(el.dataset.def); pop.classList.add('open'); }
+  function hide(){ pop.classList.remove('open'); }
+  function start(e){ var el=e.target.closest('.lookup'); if(!el) return; target=el; el.classList.add('held');
+    timer=setTimeout(function(){ show(el); timer=null; }, HOLD); }
+  function cancel(){ if(timer){clearTimeout(timer); timer=null;} if(target){target.classList.remove('held'); target=null;} }
+  document.addEventListener('touchstart', function(e){ if(!e.target.closest('.lookup') && !e.target.closest('#lookupPop')) hide(); start(e); }, {passive:true});
+  document.addEventListener('mousedown', function(e){ if(!e.target.closest('.lookup') && !e.target.closest('#lookupPop')) hide(); start(e); });
+  ['touchend','touchmove','touchcancel','mouseup','mouseleave'].forEach(function(ev){ document.addEventListener(ev, cancel, {passive:true}); });
+  document.addEventListener('contextmenu', function(e){ if(e.target.closest('.lookup')) e.preventDefault(); });
+  pop.addEventListener('click', hide);
+})();
+</script>
+</body>
+</html>
