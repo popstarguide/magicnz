@@ -179,6 +179,17 @@
     margin: 0;
   }
   input, select, textarea { font-size: 16px !important; }
+
+  /* ---- Image lightbox ---- */
+  .timeline-detail-image { cursor: zoom-in; }
+  .tl-lightbox { display:none; position:fixed; inset:0; background:rgba(1,7,7,.98); z-index:9999; align-items:center; justify-content:center; flex-direction:column; touch-action:none; }
+  .tl-lightbox.open { display:flex; }
+  .tl-lightbox img { max-width:100%; max-height:82vh; object-fit:contain; transform-origin:center center; transition:transform .15s ease; user-select:none; -webkit-user-select:none; -webkit-touch-callout:none; }
+  .tl-lightbox img.dragging { transition:none; }
+  .tl-lightbox .tl-cap { color:#e6f5f5; font-size:14px; font-weight:600; text-align:center; padding:14px 20px 0; max-width:90%; }
+  .tl-lightbox .tl-cap span { display:block; color:#20b8b8; font-size:12px; letter-spacing:.08em; text-transform:uppercase; margin-bottom:2px; }
+  .tl-lightbox .tl-close { position:absolute; top:max(14px, env(safe-area-inset-top)); right:14px; width:40px; height:40px; border:0; border-radius:50%; background:rgba(255,255,255,.12); color:#fff; font-size:24px; line-height:40px; cursor:pointer; }
+  .tl-lightbox .tl-hint { color:rgba(255,255,255,.45); font-size:12px; padding-top:8px; }
 </style>
 </head>
 <body>
@@ -202,6 +213,12 @@
   <p class="timeline-detail-date" id="detail-date"></p>
   <p class="timeline-detail-name" id="detail-name"></p>
   <img class="timeline-detail-image" id="detail-image" src="" alt="" style="display:none;">
+  <div class="tl-lightbox" id="tl-lightbox" role="dialog" aria-label="Image viewer">
+    <button class="tl-close" id="tl-close" aria-label="Close">×</button>
+    <img id="tl-lb-img" src="" alt="">
+    <div class="tl-cap" id="tl-lb-cap"></div>
+    <div class="tl-hint">Pinch or double-tap to zoom · tap outside to close</div>
+  </div>
   <p class="timeline-detail-desc" id="detail-desc"></p>
 </div>
 
@@ -342,6 +359,53 @@
   requestAnimationFrame(() => setTimeout(updateCenteredEvent, 50));
 </script>
 
+
+<script>
+  // ---- Timeline image lightbox (tap the drawing to view full screen; pinch / double-tap to zoom) ----
+  (function () {
+    var thumb = document.getElementById('detail-image'), lb = document.getElementById('tl-lightbox'),
+        img = document.getElementById('tl-lb-img'), cap = document.getElementById('tl-lb-cap');
+    var scale = 1, tx = 0, ty = 0, startDist = 0, startScale = 1, panX = 0, panY = 0, lastTap = 0, moved = false;
+    function apply() { img.style.transform = 'translate(' + tx + 'px,' + ty + 'px) scale(' + scale + ')'; }
+    function reset() { scale = 1; tx = 0; ty = 0; apply(); }
+    function open() {
+      if (!thumb.getAttribute('src') || thumb.style.display === 'none') return;
+      img.src = thumb.src; img.alt = thumb.alt;
+      var date = document.getElementById('detail-date'), name = document.getElementById('detail-name');
+      cap.innerHTML = '<span>' + (date ? date.textContent : '') + '</span>' + (name ? name.textContent : thumb.alt);
+      reset(); lb.classList.add('open');
+    }
+    function close() { lb.classList.remove('open'); reset(); }
+    window.closeTimelineLightbox = function () { if (!lb.classList.contains('open')) return false; close(); return true; };
+    thumb.addEventListener('click', open);
+    document.getElementById('tl-close').addEventListener('click', function (e) { e.stopPropagation(); close(); });
+    lb.addEventListener('click', function (e) { if (e.target === lb && !moved) close(); });
+    function d(t) { var x = t[0].clientX - t[1].clientX, y = t[0].clientY - t[1].clientY; return Math.sqrt(x * x + y * y); }
+    img.addEventListener('touchstart', function (e) {
+      moved = false; img.classList.add('dragging');
+      if (e.touches.length === 2) { startDist = d(e.touches); startScale = scale; }
+      else if (e.touches.length === 1) {
+        panX = e.touches[0].clientX - tx; panY = e.touches[0].clientY - ty;
+        var now = Date.now(); if (now - lastTap < 300) { scale = scale > 1 ? 1 : 2.5; if (scale === 1) { tx = ty = 0; } apply(); } lastTap = now;
+      }
+    }, { passive: true });
+    img.addEventListener('touchmove', function (e) {
+      moved = true;
+      if (e.touches.length === 2) { scale = Math.min(4, Math.max(1, startScale * d(e.touches) / startDist)); apply(); }
+      else if (e.touches.length === 1 && scale > 1) { tx = e.touches[0].clientX - panX; ty = e.touches[0].clientY - panY; apply(); }
+      e.preventDefault();
+    }, { passive: false });
+    img.addEventListener('touchend', function () { img.classList.remove('dragging'); if (scale <= 1.02) reset(); });
+    img.addEventListener('dblclick', function () { scale = scale > 1 ? 1 : 2.5; if (scale === 1) { tx = ty = 0; } apply(); });
+    img.addEventListener('click', function (e) { e.stopPropagation(); });
+    // App header back arrow closes the viewer first
+    window.addEventListener('message', function (e) {
+      if (e.data && e.data.magicnz === 'back') {
+        e.source && e.source.postMessage({ magicnz: window.closeTimelineLightbox() ? 'handled' : 'exit' }, '*');
+      }
+    });
+  })();
+</script>
 <script src="nz_lookup.js" defer></script>
 </body>
 </html>
