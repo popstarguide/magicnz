@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<meta name="robots" content="noindex, nofollow, noarchive">
+<title>NZ Dictionary</title>
+<style>
+  :root { --teal:#20b8b8; --teal-dark:#0A3939; --teal-light:#e6f5f5; --dark:#010707; --bg:#ffffff; }
+  * { box-sizing: border-box; }
+  html { background: var(--bg); height: 100%; }
+  body { margin:0; min-height:100%; font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    background:var(--bg); color:var(--dark); line-height:1.6; -webkit-overflow-scrolling:touch; }
+  .hero { background:var(--dark); color:#fff; padding:40px 24px 32px; text-align:center; }
+  .eyebrow { text-transform:uppercase; letter-spacing:2px; font-size:13px; font-weight:700; color:var(--teal); margin-bottom:10px; }
+  .hero h1 { margin:0; font-size:32px; font-weight:800; line-height:1.2; }
+  .hero p.lede { max-width:560px; margin:14px auto 0; color:#e8e0da; font-size:16px; }
+  .content { max-width:680px; margin:0 auto; padding:24px 20px 60px; }
+  .search-wrap { position:sticky; top:0; background:#fff; padding:10px 0 12px; z-index:5; }
+  .search { width:100%; font-size:16px; padding:12px 14px; border:1px solid #d6e4e4; border-radius:10px; background:var(--teal-light); color:var(--dark); -webkit-appearance:none; }
+  .search:focus { outline:none; border-color:var(--teal); }
+  .count { font-size:12px; color:#7a8a8a; margin:6px 2px 0; }
+  ul.words { list-style:none; margin:0 0 36px; padding:0; }
+  li.letter { font-size:13px; font-weight:800; letter-spacing:.1em; color:var(--teal); padding:16px 2px 4px; border-bottom:2px solid var(--teal-light); }
+  li.word { border-bottom:1px solid #eee; }
+  .word-btn { width:100%; display:flex; align-items:center; justify-content:space-between; gap:12px; background:none; border:0; padding:13px 2px; font:inherit; color:inherit; text-align:left; cursor:pointer; -webkit-tap-highlight-color:transparent; }
+  .term { font-size:17px; font-weight:700; }
+  .chev { color:var(--teal); font-size:22px; line-height:1; transition:transform .2s ease; }
+  li.word.open .chev { transform:rotate(90deg); }
+  .def { display:none; font-size:15px; color:#333; padding:0 2px 14px; }
+  li.word.open .def { display:block; }
+  li.word.flash .word-btn { background:var(--teal-light); }
+  .empty { display:none; text-align:center; color:#999; padding:30px 0; font-size:14px; }
+  .section { margin-bottom:32px; }
+  .section h2 { font-size:21px; font-weight:800; border-left:4px solid var(--teal); padding-left:12px; margin:0 0 14px; }
+  .section p { font-size:16px; margin:0 0 14px; }
+  .key-list { list-style:none; margin:0 0 16px; padding:0; }
+  .key-list li { display:flex; gap:12px; padding:9px 12px; border-radius:8px; background:var(--teal-light); margin:0 0 6px; font-size:16px; }
+  .key-list b { color:var(--teal-dark); min-width:34px; }
+  .pull-quote { background:var(--dark); color:#fff; border-radius:10px; padding:20px 22px; margin:20px 0; font-size:17px; font-weight:600; position:relative; }
+  .pull-quote::before { content:""; position:absolute; top:0; left:0; width:5px; height:100%; background:var(--teal); border-radius:10px 0 0 10px; }
+</style>
+</head>
+<body>
+<div class="hero">
+  <div class="eyebrow">NZ Dictionary</div>
+  <h1>Te Reo &amp; Kiwi words</h1>
+  <p class="lede">A glossary of words, terms and phrases you may find helpful.</p>
+</div>
+<div class="content">
+  <div class="search-wrap">
+    <input class="search" id="search" type="search" placeholder="Search a word or meaning…" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+    <p class="count" id="count"></p>
+  </div>
+  <ul class="words" id="words">
+    <li class="letter" data-letter="A">A</li>
+    <li class="word" id="word-aotearoa" data-search="aotearoa land of the long white cloud. the generally accepted maori name for new zealand. traditionally the maori had no actual name for the country it&#x27;s only since a popular pakeha story took hold that the maori adopted the story and has since received popular use."><button type="button" class="word-btn" aria-expanded="false"><span class="term">Aotearoa</span><span class="chev">›</span></button><div class="def">Land of the long white cloud. The generally accepted Māori name for New Zealand. Traditionally the Māori had no actual name for the country it&#x27;s only since a popular Pākehā story took hold that the Māori adopted the story and has since received popular use.</div></li>
+    <li class="letter" data-letter="B">B</li>
+    <li class="word" id="word-bach" data-search="bach (pronounced batch) a small cabin, usually found at a beach or lake side settlement. the origins name goes back to a time when the workforce was predominately male and factories employed large numbers of staff. the name now is a shortened version of bachelor&#x27;s house that was common for single men to live in when working for the factories. over time some of these cabins were relocated to scenic places to be used as holiday homes. now these &#x27;baches&#x27; can be anything from small rustic buildings to new modern homes."><button type="button" class="word-btn" aria-expanded="false"><span class="term">Bach</span><span class="chev">›</span></button><div class="def">(Pronounced batch) A small cabin, usually found at a beach or lake side settlement. The origins name goes back to a time when the workforce was predominately male and factories employed large numbers of staff. The name now is a shortened version of bachelor&#x27;s house that was common for single men to live in when working for the factories. Over time some of these cabins were relocated to scenic places to be used as holiday homes. Now these &#x27;baches&#x27; can be anything from small rustic buildings to new modern homes.</div></li>
+    <li class="word" id="word-bloke" data-search="bloke friendly term of endearment for a man"><button type="button" class="word-btn" aria-expanded="false"><span class="term">Bloke</span><span class="chev">›</span></button><div class="def">Friendly term of endearment for a man</div></li>
+    <li class="letter" data-letter="D">D</li>
+    <li class="word" id="word-doc" data-search="doc department of conservation (doc) was formed as a government entity to look after the governments held conservation land and interests. in 1987 three entities were merged (department of lands and survey, the forest service and the wildlife service) to form doc. doc has continued and worked on programs started within its parents as well as picking up new programs as required. doc look after the national parks, they issue permits and accommodation (hut) fees as well as their conservation programs."><button type="button" class="word-btn" aria-expanded="false"><span class="term">DOC</span><span class="chev">›</span></button><div class="def">Department Of Conservation (DOC) was formed as a Government entity to look after the Governments held conservation land and interests. In 1987 three entities were merged (Department of Lands and Survey, the Forest Service and the Wildlife Service) to form DOC. DOC has continued and worked on programs started within its parents as well as picking up new programs as required. DOC look after the National Parks, they issue permits and accommodation (hut) fees as well as their conservation programs.</div></li>
+    <li class="letter" data-letter="G">G</li>
+    <li class="word" id="word-g-day" data-search="g&#x27;day short for good day - hello"><button type="button" class="word-btn" aria-expanded="false"><span class="term">G&#x27;day</span><span class="chev">›</span></button><div class="def">Short for Good day - hello</div></li>
+    <li class="word" id="word-gumboots" data-search="gumboots rubber work boots, wellington&#x27;s galoshes"><button type="button" class="word-btn" aria-expanded="false"><span class="term">Gumboots</span><span class="chev">›</span></button><div class="def">Rubber work boots, Wellington&#x27;s galoshes</div></li>
+    <li class="letter" data-letter="H">H</li>
+    <li class="word" id="word-haere-mai" data-search="haere mai welcome"><button type="button" class="word-btn" aria-expanded="false"><span class="term">Haere mai</span><span class="chev">›</span></button><div class="def">Welcome</div></li>
+    <li class="word" id="word-haere-ra" data-search="haere ra good bye"><button type="button" class="word-btn" aria-expanded="false"><span class="term">Haere rā</span><span class="chev">›</span></button><div class="def">Good bye</div></li>
+    <li class="word" id="word-haka" data-search="haka posture dance, commonly thought of as a war dance, but not specifically."><button type="button" class="word-btn" aria-expanded="false"><span class="term">Haka</span><span class="chev">›</span></button><div class="def">Posture dance, commonly thought of as a war dance, but not specifically.</div></li>
+    <li class="word" id="word-hangi" data-search="hangi meal cooked in an earth oven. although today to get the same effect cheaper quicker and easier an urn style cooker has been invented and often commercial companies uses these to feed large numbers more efficiently. a traditional hangi will take all day to prepare."><button type="button" class="word-btn" aria-expanded="false"><span class="term">Hāngī</span><span class="chev">›</span></button><div class="def">Meal cooked in an earth oven. Although today to get the same effect cheaper quicker and easier an urn style cooker has been invented and often commercial companies uses these to feed large numbers more efficiently. A traditional hangi will take all day to prepare.</div></li>
+    <li class="word" id="word-hapu" data-search="hapu family group/tribe/clan"><button type="button" class="word-btn" aria-expanded="false"><span class="term">Hapū</span><span class="chev">›</span></button><div class="def">Family group/tribe/clan</div></li>
+    <li class="word" id="word-hawaiiki" data-search="hawaiiki the ancestral homelands of the maori people. believed to be rarotonga (cook islands)."><button type="button" class="word-btn" aria-expanded="false"><span class="term">Hawaiiki</span><span class="chev">›</span></button><div class="def">The ancestral homelands of the Māori people. Believed to be Rarotonga (Cook Islands).</div></li>
+    <li class="word" id="word-hawaiiki-a-nui" data-search="hawaiiki-a-nui the spiritual land of which the spirits of the deceased travel to in the afterlife."><button type="button" class="word-btn" aria-expanded="false"><span class="term">Hawaiiki-a-nui</span><span class="chev">›</span></button><div class="def">The spiritual land of which the spirits of the deceased travel to in the afterlife.</div></li>
+    <li class="word" id="word-hongi" data-search="hongi pressing of noses, part of a traditional hand shake."><button type="button" class="word-btn" aria-expanded="false"><span class="term">Hongi</span><span class="chev">›</span></button><div class="def">Pressing of noses, part of a traditional hand shake.</div></li>
+    <li class="letter" data-letter="I">I</li>
+    <li class="word" id="word-iwi" data-search="iwi big family group  like the scottish clan"><button type="button" class="word-btn" aria-expanded="false"><span class="term">Iwi</span><span class="chev">›</span></button><div class="def">Big family group – like the Scottish clan</div></li>
+    <li class="letter" data-letter="J">J</li>
+    <li class="word" id="word-jandals" data-search="jandals rubber slip in sandals. the rest of the world call these flip-flops or australia calls them thongs. if we go back to the 1940s and new zealand businessman anthony yock, was importing a plastic version of the japanese sandal - zori. that he called the japanese sandal. production changed to rubber and they were trademarked by morris yock as jandals (ja (panese sa) ndals). morris yock another new zealand businessman."><button type="button" class="word-btn" aria-expanded="false"><span class="term">Jandals</span><span class="chev">›</span></button><div class="def">Rubber slip in sandals. The rest of the world call these flip-flops or Australia calls them thongs. If we go back to the 1940s and New Zealand businessman Anthony Yock, was importing a plastic version of the Japanese sandal - zori. That he called the Japanese Sandal. Production changed to rubber and they were TradeMarked by Morris Yock as Jandals (Ja (panese Sa) ndals). Morris Yock another New Zealand businessman.</div></li>
+    <li class="letter" data-letter="K">K</li>
+    <li class="word" id="word-ka-kite-ano" data-search="ka kite (ano) see you (next time)"><button type="button" class="word-btn" aria-expanded="false"><span class="term">Ka kite (anō)</span><span class="chev">›</span></button><div class="def">See you (next time)</div></li>
+    <li class="word" id="word-kai" data-search="kai food"><button type="button" class="word-btn" aria-expanded="false"><span class="term">Kai</span><span class="chev">›</span></button><div class="def">Food</div></li>
+    <li class="word" id="word-kaimoana" data-search="kaimoana seafood"><button type="button" class="word-btn" aria-expanded="false"><span class="term">Kaimoana</span><span class="chev">›</span></button><div class="def">Seafood</div></li>
+    <li class="word" id="word-kainga" data-search="kainga village, not specifically fortified"><button type="button" class="word-btn" aria-expanded="false"><span class="term">Kainga</span><span class="chev">›</span></button><div class="def">Village, not specifically fortified</div></li>
+    <li class="word" id="word-karakia" data-search="karakia prayer/spell"><button type="button" class="word-btn" aria-expanded="false"><span class="term">Karakia</span><span class="chev">›</span></button><div class="def">Prayer/spell</div></li>
+    <li class="word" id="word-kia-ora" data-search="kia ora breath of life. has reference to the creation of wahine by tane. is a blessing but is used as a informal greeting and affirmation example-thank you."><button type="button" class="word-btn" aria-expanded="false"><span class="term">Kia ora</span><span class="chev">›</span></button><div class="def">Breath of life. Has reference to the creation of wahine by Tāne. Is a blessing but is used as a informal greeting and affirmation example-thank you.</div></li>
+    <li class="word" id="word-kiwi" data-search="kiwi a native flightless bird and our national icon. its also what we call ourselves  new zealanders are kiwis. (the fruit is a kiwifruit.)"><button type="button" class="word-btn" aria-expanded="false"><span class="term">Kiwi</span><span class="chev">›</span></button><div class="def">A native flightless bird and our national icon. It’s also what we call ourselves – New Zealanders are Kiwis. (The fruit is a kiwifruit.)</div></li>
+    <li class="letter" data-letter="M">M</li>
+    <li class="word" id="word-marae" data-search="marae the grass area in front of the wharetupuna/wharenui. the literal meaning alone is rarely the used. when a marae is referred to it has become to mean, including the wharetupuna or wharenui and associated buildings."><button type="button" class="word-btn" aria-expanded="false"><span class="term">Marae</span><span class="chev">›</span></button><div class="def">The grass area in front of the wharetupuna/wharenui. The literal meaning alone is rarely the used. When a marae is referred to it has become to mean, including the wharetupuna or wharenui and associated buildings.</div></li>
+    <li class="word" id="word-mate" data-search="mate friend"><button type="button" class="word-btn" aria-expanded="false"><span class="term">Mate</span><span class="chev">›</span></button><div class="def">Friend</div></li>
+    <li class="word" id="word-mere" data-search="mere hand held club, sharp on at least one edge"><button type="button" class="word-btn" aria-expanded="false"><span class="term">Mere</span><span class="chev">›</span></button><div class="def">Hand held club, sharp on at least one edge</div></li>
+    <li class="letter" data-letter="N">N</li>
+    <li class="word" id="word-nui" data-search="nui big"><button type="button" class="word-btn" aria-expanded="false"><span class="term">Nui</span><span class="chev">›</span></button><div class="def">Big</div></li>
+    <li class="letter" data-letter="O">O</li>
+    <li class="word" id="word-o" data-search="o place of"><button type="button" class="word-btn" aria-expanded="false"><span class="term">O</span><span class="chev">›</span></button><div class="def">Place of</div></li>
+    <li class="letter" data-letter="P">P</li>
+    <li class="word" id="word-pa" data-search="pa maori village, specifically the fortified part of the village. the traditional maori village was laid out like a medieval village as there was the greater village that most of the time people lived in and traded in, the middle a fortified wall surrounding the centre of the village. if the village is attacked the residents retreated behind the fortifications and tried to hold out the attackers."><button type="button" class="word-btn" aria-expanded="false"><span class="term">Pā</span><span class="chev">›</span></button><div class="def">Māori village, specifically the fortified part of the village. The traditional Māori village was laid out like a medieval village as there was the greater village that most of the time people lived in and traded in, the middle a fortified wall surrounding the centre of the village. If the village is attacked the residents retreated behind the fortifications and tried to hold out the attackers.</div></li>
+    <li class="word" id="word-pakeha" data-search="pakeha people non-maori usually of european descent. considered to derive from a pre-european word pakepakeha meaning mythical light beings."><button type="button" class="word-btn" aria-expanded="false"><span class="term">Pākehā</span><span class="chev">›</span></button><div class="def">People non-Māori usually of European descent. Considered to derive from a pre-European word pakepakeha meaning mythical light beings.</div></li>
+    <li class="word" id="word-patu" data-search="patu hand held club, round or blunted edges"><button type="button" class="word-btn" aria-expanded="false"><span class="term">Patu</span><span class="chev">›</span></button><div class="def">Hand held club, round or blunted edges</div></li>
+    <li class="word" id="word-powhiri" data-search="powhiri welcome"><button type="button" class="word-btn" aria-expanded="false"><span class="term">Pōwhiri</span><span class="chev">›</span></button><div class="def">Welcome</div></li>
+    <li class="letter" data-letter="R">R</li>
+    <li class="word" id="word-reo" data-search="reo language"><button type="button" class="word-btn" aria-expanded="false"><span class="term">Reo</span><span class="chev">›</span></button><div class="def">Language</div></li>
+    <li class="letter" data-letter="S">S</li>
+    <li class="word" id="word-sweet-or-sweet-as" data-search="sweet or sweet as short for &quot;sweet as a nut&quot;. is an old english phrase meaning - everything is good. due to the new zealand accent is often misheard, note the second word is &quot;as&quot;."><button type="button" class="word-btn" aria-expanded="false"><span class="term">Sweet or Sweet as</span><span class="chev">›</span></button><div class="def">Short for &quot;Sweet as a nut&quot;. Is an old English phrase meaning - everything is good. Due to the New Zealand accent is often misheard, note the second word is &quot;as&quot;.</div></li>
+    <li class="letter" data-letter="T">T</li>
+    <li class="word" id="word-taiaha" data-search="taiaha staff like weapon"><button type="button" class="word-btn" aria-expanded="false"><span class="term">Taiaha</span><span class="chev">›</span></button><div class="def">Staff like weapon</div></li>
+    <li class="word" id="word-tane" data-search="tane man"><button type="button" class="word-btn" aria-expanded="false"><span class="term">Tāne</span><span class="chev">›</span></button><div class="def">Man</div></li>
+    <li class="word" id="word-tangi" data-search="tangi funeral"><button type="button" class="word-btn" aria-expanded="false"><span class="term">Tangi</span><span class="chev">›</span></button><div class="def">Funeral</div></li>
+    <li class="word" id="word-taniwha" data-search="taniwha magical serpent, usually water based but not always."><button type="button" class="word-btn" aria-expanded="false"><span class="term">Taniwha</span><span class="chev">›</span></button><div class="def">Magical serpent, usually water based but not always.</div></li>
+    <li class="word" id="word-taonga" data-search="taonga treasure, usually referred to in sense of a gift. can be a physical thing (i.e. hei tiki) as well as non physical (i.e. language, idea passed on)"><button type="button" class="word-btn" aria-expanded="false"><span class="term">Taonga</span><span class="chev">›</span></button><div class="def">Treasure, usually referred to in sense of a gift. Can be a physical thing (i.e. hei tiki) as well as non physical (i.e. language, idea passed on)</div></li>
+    <li class="word" id="word-tapu" data-search="tapu sacred - usually breaking tapu has fatal consequences"><button type="button" class="word-btn" aria-expanded="false"><span class="term">Tapu</span><span class="chev">›</span></button><div class="def">Sacred - usually breaking tapu has fatal consequences</div></li>
+    <li class="word" id="word-te" data-search="te the"><button type="button" class="word-btn" aria-expanded="false"><span class="term">Te</span><span class="chev">›</span></button><div class="def">The</div></li>
+    <li class="word" id="word-tena-koe-koutou-katoa" data-search="tena (koe, koutou, katoa) formal greeting to 1,2 many"><button type="button" class="word-btn" aria-expanded="false"><span class="term">Tēnā (koe, koutou, katoa)</span><span class="chev">›</span></button><div class="def">Formal greeting to 1,2 many</div></li>
+    <li class="word" id="word-the-crown" data-search="the crown the nations government. this is a loose explanation as it has many legal meanings depending on time in history or reference."><button type="button" class="word-btn" aria-expanded="false"><span class="term">The crown</span><span class="chev">›</span></button><div class="def">The nations Government. This is a loose explanation as it has many legal meanings depending on time in history or reference.</div></li>
+    <li class="word" id="word-tohunga" data-search="tohunga witch doctor  experts in sacred law"><button type="button" class="word-btn" aria-expanded="false"><span class="term">Tohunga</span><span class="chev">›</span></button><div class="def">Witch doctor – experts in sacred law</div></li>
+    <li class="word" id="word-tupuna" data-search="tupuna ancestors"><button type="button" class="word-btn" aria-expanded="false"><span class="term">Tūpuna</span><span class="chev">›</span></button><div class="def">Ancestors</div></li>
+    <li class="letter" data-letter="U">U</li>
+    <li class="word" id="word-umu" data-search="umu earth pits used for cooking"><button type="button" class="word-btn" aria-expanded="false"><span class="term">Umu</span><span class="chev">›</span></button><div class="def">Earth pits used for cooking</div></li>
+    <li class="word" id="word-urupa" data-search="urupa cemetery"><button type="button" class="word-btn" aria-expanded="false"><span class="term">Urupā</span><span class="chev">›</span></button><div class="def">Cemetery</div></li>
+    <li class="letter" data-letter="W">W</li>
+    <li class="word" id="word-wahine" data-search="wahine woman"><button type="button" class="word-btn" aria-expanded="false"><span class="term">Wahine</span><span class="chev">›</span></button><div class="def">Woman</div></li>
+    <li class="word" id="word-wai" data-search="wai water"><button type="button" class="word-btn" aria-expanded="false"><span class="term">Wai</span><span class="chev">›</span></button><div class="def">Water</div></li>
+    <li class="word" id="word-waka" data-search="waka vehicle of transport, usually a canoe"><button type="button" class="word-btn" aria-expanded="false"><span class="term">Waka</span><span class="chev">›</span></button><div class="def">Vehicle of transport, usually a canoe</div></li>
+    <li class="word" id="word-wakanui" data-search="wakanui big canoe/war canoe"><button type="button" class="word-btn" aria-expanded="false"><span class="term">Wakanui</span><span class="chev">›</span></button><div class="def">Big canoe/war canoe</div></li>
+    <li class="word" id="word-wero" data-search="wero challenge"><button type="button" class="word-btn" aria-expanded="false"><span class="term">Wero</span><span class="chev">›</span></button><div class="def">Challenge</div></li>
+    <li class="word" id="word-whakapapa" data-search="whakapapa genealogy"><button type="button" class="word-btn" aria-expanded="false"><span class="term">Whakapapa</span><span class="chev">›</span></button><div class="def">Genealogy</div></li>
+    <li class="word" id="word-whare" data-search="whare building"><button type="button" class="word-btn" aria-expanded="false"><span class="term">Whare</span><span class="chev">›</span></button><div class="def">Building</div></li>
+    <li class="word" id="word-whare-tupuna" data-search="whare tupuna ancestral house, sometimes called meeting house"><button type="button" class="word-btn" aria-expanded="false"><span class="term">Whare tūpuna</span><span class="chev">›</span></button><div class="def">Ancestral house, Sometimes called meeting house</div></li>
+    <li class="word" id="word-wharenui" data-search="wharenui big building, sometimes called meeting house"><button type="button" class="word-btn" aria-expanded="false"><span class="term">Wharenui</span><span class="chev">›</span></button><div class="def">Big building, Sometimes called meeting house</div></li>
+  </ul>
+  <p class="empty" id="empty">No match. Try a shorter word.</p>
+
+  <div class="section">
+    <h2>How to pronounce Māori</h2>
+    <p>The Māori language or te reo (the language) is an easy language to quickly get a basic pronunciation, especially for most people who have English as a second (third or fourth…) language.</p>
+    <p>The Māori alphabet has a reduced alphabet of 15 characters:</p>
+    <ul class="key-list">
+      <li><b>8</b> consonants: h, k, m, n, p, r, t, w</li>
+      <li><b>5</b> vowels: a, e, i, o, u</li>
+      <li><b>2</b> digraphs: wh and ng</li>
+    </ul>
+    <p>Pronunciation again is simple; it’s only difficult if you try to speak it as English. Here are a few tricks.</p>
+    <p>The first and most basic is to stop, read the word and say it as it is written. Except for the wh and ng, everything is said as it is seen. Every letter is pronounced… no silent letters.</p>
+    <ul class="key-list">
+      <li><b>A</b> is pronounced ah</li>
+      <li><b>E</b> is pronounced eh</li>
+      <li><b>I</b> is pronounced eee</li>
+      <li><b>O</b> is pronounced or</li>
+      <li><b>U</b> is pronounced ooo</li>
+    </ul>
+    <p>The vowels are pronounced as long vowels, like in German, Spanish, French and Dutch to name a few. NO SHORT vowel sounds, English speakers!</p>
+    <p>If the vowel is to be pronounced longer it will be written as a double letter (aa, ee, ii, oo, uu) or with a macron above it: ā, ē, ī, ō, ū.</p>
+    <p>But there is more to think about: some combinations of letters have their own pronunciation.</p>
+    <ul class="key-list">
+      <li><b>Wh</b> is said like an f</li>
+      <li><b>Ng</b> is like the ng in singer</li>
+      <li><b>R</b> roll your r like a good Scotsman</li>
+    </ul>
+    <p>Break each word just after the vowels and you should be able to pronounce Māori correctly.</p>
+    <p>A good example is the name of the people, “Māori” (it actually means normal person, and if you look at it, they’re right: until 1800 AD there were only Māori here, so Europeans were the odd ones). But back to the point.</p>
+    <div class="pull-quote">Māori is not said “marry” like is the misconception (that’s what you do when you find a loved one). Just follow the rules above: ma/o/ri = ma o r(roll it)ee, simple!</div>
+    <p>Remember that a lot of New Zealanders don’t pronounce a lot of the words correctly themselves, especially some place names. You might actually be getting it more right than the locals, so don’t be put off, keep doing it right. With te reo programmes in schools being introduced in the 1980s and 90s, it’s taking time for mainstream Kiwis to adapt from years of getting it wrong.</p>
+    <p>Some local areas have their own take or dialect on the pronunciation of the wh and ng. If you use them as explained above, the locals will understand and will not rubbish you for making the right effort.</p>
+  </div>
+</div>
+<script>
+  // Word list (generated from magic_nz_te_reo_clean.csv) — also used for press-and-hold lookups on other pages.
+  window.NZ_DICTIONARY = [{"t": "Aotearoa", "s": "aotearoa", "d": "Land of the long white cloud. The generally accepted Māori name for New Zealand. Traditionally the Māori had no actual name for the country it's only since a popular Pākehā story took hold that the Māori adopted the story and has since received popular use."}, {"t": "Bach", "s": "bach", "d": "(Pronounced batch) A small cabin, usually found at a beach or lake side settlement. The origins name goes back to a time when the workforce was predominately male and factories employed large numbers of staff. The name now is a shortened version of bachelor's house that was common for single men to live in when working for the factories. Over time some of these cabins were relocated to scenic places to be used as holiday homes. Now these 'baches' can be anything from small rustic buildings to new modern homes."}, {"t": "Bloke", "s": "bloke", "d": "Friendly term of endearment for a man"}, {"t": "DOC", "s": "doc", "d": "Department Of Conservation (DOC) was formed as a Government entity to look after the Governments held conservation land and interests. In 1987 three entities were merged (Department of Lands and Survey, the Forest Service and the Wildlife Service) to form DOC. DOC has continued and worked on programs started within its parents as well as picking up new programs as required. DOC look after the National Parks, they issue permits and accommodation (hut) fees as well as their conservation programs."}, {"t": "G'day", "s": "g-day", "d": "Short for Good day - hello"}, {"t": "Gumboots", "s": "gumboots", "d": "Rubber work boots, Wellington's galoshes"}, {"t": "Haere mai", "s": "haere-mai", "d": "Welcome"}, {"t": "Haere rā", "s": "haere-ra", "d": "Good bye"}, {"t": "Haka", "s": "haka", "d": "Posture dance, commonly thought of as a war dance, but not specifically."}, {"t": "Hāngī", "s": "hangi", "d": "Meal cooked in an earth oven. Although today to get the same effect cheaper quicker and easier an urn style cooker has been invented and often commercial companies uses these to feed large numbers more efficiently. A traditional hangi will take all day to prepare."}, {"t": "Hapū", "s": "hapu", "d": "Family group/tribe/clan"}, {"t": "Hawaiiki", "s": "hawaiiki", "d": "The ancestral homelands of the Māori people. Believed to be Rarotonga (Cook Islands)."}, {"t": "Hawaiiki-a-nui", "s": "hawaiiki-a-nui", "d": "The spiritual land of which the spirits of the deceased travel to in the afterlife."}, {"t": "Hongi", "s": "hongi", "d": "Pressing of noses, part of a traditional hand shake."}, {"t": "Iwi", "s": "iwi", "d": "Big family group – like the Scottish clan"}, {"t": "Jandals", "s": "jandals", "d": "Rubber slip in sandals. The rest of the world call these flip-flops or Australia calls them thongs. If we go back to the 1940s and New Zealand businessman Anthony Yock, was importing a plastic version of the Japanese sandal - zori. That he called the Japanese Sandal. Production changed to rubber and they were TradeMarked by Morris Yock as Jandals (Ja (panese Sa) ndals). Morris Yock another New Zealand businessman."}, {"t": "Ka kite (anō)", "s": "ka-kite-ano", "d": "See you (next time)"}, {"t": "Kai", "s": "kai", "d": "Food"}, {"t": "Kaimoana", "s": "kaimoana", "d": "Seafood"}, {"t": "Kainga", "s": "kainga", "d": "Village, not specifically fortified"}, {"t": "Karakia", "s": "karakia", "d": "Prayer/spell"}, {"t": "Kia ora", "s": "kia-ora", "d": "Breath of life. Has reference to the creation of wahine by Tāne. Is a blessing but is used as a informal greeting and affirmation example-thank you."}, {"t": "Kiwi", "s": "kiwi", "d": "A native flightless bird and our national icon. It’s also what we call ourselves – New Zealanders are Kiwis. (The fruit is a kiwifruit.)"}, {"t": "Marae", "s": "marae", "d": "The grass area in front of the wharetupuna/wharenui. The literal meaning alone is rarely the used. When a marae is referred to it has become to mean, including the wharetupuna or wharenui and associated buildings."}, {"t": "Mate", "s": "mate", "d": "Friend"}, {"t": "Mere", "s": "mere", "d": "Hand held club, sharp on at least one edge"}, {"t": "Nui", "s": "nui", "d": "Big"}, {"t": "O", "s": "o", "d": "Place of"}, {"t": "Pā", "s": "pa", "d": "Māori village, specifically the fortified part of the village. The traditional Māori village was laid out like a medieval village as there was the greater village that most of the time people lived in and traded in, the middle a fortified wall surrounding the centre of the village. If the village is attacked the residents retreated behind the fortifications and tried to hold out the attackers."}, {"t": "Pākehā", "s": "pakeha", "d": "People non-Māori usually of European descent. Considered to derive from a pre-European word pakepakeha meaning mythical light beings."}, {"t": "Patu", "s": "patu", "d": "Hand held club, round or blunted edges"}, {"t": "Pōwhiri", "s": "powhiri", "d": "Welcome"}, {"t": "Reo", "s": "reo", "d": "Language"}, {"t": "Sweet or Sweet as", "s": "sweet-or-sweet-as", "d": "Short for \"Sweet as a nut\". Is an old English phrase meaning - everything is good. Due to the New Zealand accent is often misheard, note the second word is \"as\"."}, {"t": "Taiaha", "s": "taiaha", "d": "Staff like weapon"}, {"t": "Tāne", "s": "tane", "d": "Man"}, {"t": "Tangi", "s": "tangi", "d": "Funeral"}, {"t": "Taniwha", "s": "taniwha", "d": "Magical serpent, usually water based but not always."}, {"t": "Taonga", "s": "taonga", "d": "Treasure, usually referred to in sense of a gift. Can be a physical thing (i.e. hei tiki) as well as non physical (i.e. language, idea passed on)"}, {"t": "Tapu", "s": "tapu", "d": "Sacred - usually breaking tapu has fatal consequences"}, {"t": "Te", "s": "te", "d": "The"}, {"t": "Tēnā (koe, koutou, katoa)", "s": "tena-koe-koutou-katoa", "d": "Formal greeting to 1,2 many"}, {"t": "The crown", "s": "the-crown", "d": "The nations Government. This is a loose explanation as it has many legal meanings depending on time in history or reference."}, {"t": "Tohunga", "s": "tohunga", "d": "Witch doctor – experts in sacred law"}, {"t": "Tūpuna", "s": "tupuna", "d": "Ancestors"}, {"t": "Umu", "s": "umu", "d": "Earth pits used for cooking"}, {"t": "Urupā", "s": "urupa", "d": "Cemetery"}, {"t": "Wahine", "s": "wahine", "d": "Woman"}, {"t": "Wai", "s": "wai", "d": "Water"}, {"t": "Waka", "s": "waka", "d": "Vehicle of transport, usually a canoe"}, {"t": "Wakanui", "s": "wakanui", "d": "Big canoe/war canoe"}, {"t": "Wero", "s": "wero", "d": "Challenge"}, {"t": "Whakapapa", "s": "whakapapa", "d": "Genealogy"}, {"t": "Whare", "s": "whare", "d": "Building"}, {"t": "Whare tūpuna", "s": "whare-tupuna", "d": "Ancestral house, Sometimes called meeting house"}, {"t": "Wharenui", "s": "wharenui", "d": "Big building, Sometimes called meeting house"}];
+  (function() {
+    var list = document.getElementById('words'), search = document.getElementById('search'),
+        count = document.getElementById('count'), empty = document.getElementById('empty');
+    var words = [].slice.call(list.querySelectorAll('li.word')), letters = [].slice.call(list.querySelectorAll('li.letter'));
+    list.addEventListener('click', function(e) {
+      var b = e.target.closest('.word-btn'); if (!b) return;
+      var li = b.parentNode, open = li.classList.toggle('open'); b.setAttribute('aria-expanded', open);
+    });
+    function norm(s) { return s.normalize('NFKD').replace(/[̀-ͯ]/g, '').toLowerCase(); }
+    function filter() {
+      var q = norm(search.value.trim()), shown = 0;
+      words.forEach(function(li) { var hit = !q || li.dataset.search.indexOf(q) > -1; li.style.display = hit ? '' : 'none'; if (hit) shown++; if (q && hit && norm(li.querySelector('.term').textContent).indexOf(q) === 0) li.classList.add('open'); });
+      letters.forEach(function(l) { var n = l.nextElementSibling, any = false;
+        while (n && n.classList.contains('word')) { if (n.style.display !== 'none') { any = true; break; } n = n.nextElementSibling; }
+        l.style.display = any ? '' : 'none'; });
+      count.textContent = q ? shown + (shown === 1 ? ' match' : ' matches') : words.length + ' words and phrases';
+      empty.style.display = shown ? 'none' : 'block';
+    }
+    search.addEventListener('input', filter); filter();
+    // Deep link: nz_dictionary.html?word=kia-ora opens and highlights that word
+    var w = new URLSearchParams(location.search).get('word'), el = w && document.getElementById('word-' + w);
+    if (el) { el.classList.add('open', 'flash'); setTimeout(function() { el.scrollIntoView({ block: 'center' }); }, 50); setTimeout(function() { el.classList.remove('flash'); }, 1800); }
+  })();
+</script>
+</body>
+</html>
