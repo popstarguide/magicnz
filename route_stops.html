@@ -797,6 +797,9 @@
   }
 </style>
 
+<script>
+  if (window.parent !== window) { var st = document.createElement('style'); st.textContent = '.back-link { display: none !important; }'; document.head.appendChild(st); }
+</script>
 </head>
 <body style="background:#ffffff;color:#010707;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;font-weight:300;line-height:1.75;padding:16px 18px 60px;margin:0;">
 
@@ -1213,5 +1216,17 @@
   renderStops();
 </script>
 
+<script>
+  // In-app back button (MagicNZ header): step back to the Routes page, on the same route.
+  function mnzRoutesUrl(){ var r = new URLSearchParams(location.search).get('route'); return 'nz_routes.html' + (r ? '?route=' + encodeURIComponent(r) : ''); }
+  (function(){ var a = document.querySelector('a.back-link'); if (a) a.href = mnzRoutesUrl(); })();
+  window.addEventListener('message', function(e) {
+    if (!e.data || e.data.magicnz !== 'back') return;
+    var lb = document.querySelector('.lightbox-overlay.open');
+    if (lb && typeof closeLightbox === 'function') { closeLightbox(); }
+    else { location.replace(mnzRoutesUrl()); }
+    e.source && e.source.postMessage({ magicnz: 'handled' }, '*');
+  });
+</script>
 </body>
 </html>
