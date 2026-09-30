@@ -5,6 +5,21 @@
 "d": "Land of the long white cloud. The generally accepted Māori name for New Zealand. Traditionally the Māori had no actual name for the country it's only since a popular Pākehā story took hold that the Māori adopted the story and has since received popular use."
 },
 {
+"t": "Ariki",
+"s": "ariki",
+"d": "High chief."
+},
+{
+"t": "Aroha",
+"s": "aroha",
+"d": "Love, compassion."
+},
+{
+"t": "Atua",
+"s": "atua",
+"d": "God or spirit."
+},
+{
 "t": "Bach",
 "s": "bach",
 "d": "(Pronounced batch) A small cabin, usually found at a beach or lake side settlement. The origins name goes back to a time when the workforce was predominately male and factories employed large numbers of staff. The name now is a shortened version of bachelor's house that was common for single men to live in when working for the factories. Over time some of these cabins were relocated to scenic places to be used as holiday homes. Now these 'baches' can be anything from small rustic buildings to new modern homes."
@@ -55,14 +70,19 @@
 "d": "Family group/tribe/clan"
 },
 {
-"t": "Hawaiiki",
-"s": "hawaiiki",
+"t": "Hawaiki",
+"s": "hawaiki",
 "d": "The ancestral homelands of the Māori people. Believed to be Rarotonga (Cook Islands)."
 },
 {
-"t": "Hawaiiki-a-nui",
-"s": "hawaiiki-a-nui",
+"t": "Hawaiki-a-nui",
+"s": "hawaiki-a-nui",
 "d": "The spiritual land of which the spirits of the deceased travel to in the afterlife."
+},
+{
+"t": "Hei tiki",
+"s": "hei-tiki",
+"d": "Carved neck pendant in human form, usually made of pounamu or bone."
 },
 {
 "t": "Hongi",
@@ -100,9 +120,54 @@
 "d": "Village, not specifically fortified"
 },
 {
+"t": "Kaitiaki",
+"s": "kaitiaki",
+"d": "Guardian, caretaker."
+},
+{
+"t": "Kākā",
+"s": "kaka",
+"d": "Native forest parrot."
+},
+{
+"t": "Kākāpō",
+"s": "kakapo",
+"d": "Flightless night parrot – the world's heaviest parrot, and critically endangered."
+},
+{
+"t": "Kākāriki",
+"s": "kakariki",
+"d": "Native parakeet. Also the word for green."
+},
+{
 "t": "Karakia",
 "s": "karakia",
 "d": "Prayer/spell"
+},
+{
+"t": "Kārearea",
+"s": "karearea",
+"d": "New Zealand falcon."
+},
+{
+"t": "Kauri",
+"s": "kauri",
+"d": "Giant native conifer, among the largest trees in the world by volume. Tāne Mahuta is the best-known."
+},
+{
+"t": "Kea",
+"s": "kea",
+"d": "Native alpine parrot, found only in the mountains of the South Island – clever, cheeky and famous for pulling cars apart."
+},
+{
+"t": "Kekeno",
+"s": "kekeno",
+"d": "New Zealand fur seal."
+},
+{
+"t": "Kererū",
+"s": "kereru",
+"d": "Native wood pigeon."
 },
 {
 "t": "Kia ora",
@@ -110,14 +175,44 @@
 "d": "Breath of life. Has reference to the creation of wahine by Tāne. Is a blessing but is used as a informal greeting and affirmation example-thank you."
 },
 {
+"t": "Kiekie",
+"s": "kiekie",
+"d": "Native climbing plant; its leaves are used for weaving."
+},
+{
 "t": "Kiwi",
 "s": "kiwi",
 "d": "A native flightless bird and our national icon. It’s also what we call ourselves – New Zealanders are Kiwis. (The fruit is a kiwifruit.)"
 },
 {
+"t": "Kōtuku",
+"s": "kotuku",
+"d": "White heron."
+},
+{
+"t": "Kōwhai",
+"s": "kowhai",
+"d": "Native tree with bright yellow flowers in spring – often called our national flower. Kōwhai also means yellow."
+},
+{
+"t": "Kūmara",
+"s": "kumara",
+"d": "Sweet potato, brought to New Zealand by the early Polynesian voyagers. It has its origins in South America, which in itself raises questions as to how it got to the Pacific Islands."
+},
+{
+"t": "Mana",
+"s": "mana",
+"d": "Prestige, authority and respect – earned, and passed down through whakapapa."
+},
+{
+"t": "Māori",
+"s": "maori",
+"d": "The tangata whenua – the indigenous people – of New Zealand. The word also means normal or ordinary."
+},
+{
 "t": "Marae",
 "s": "marae",
-"d": "The grass area in front of the wharetupuna/wharenui. The literal meaning alone is rarely the used. When a marae is referred to it has become to mean, including the wharetupuna or wharenui and associated buildings."
+"d": "The grass area in front of the whare tūpuna/wharenui. The literal meaning alone is rarely the used. When a marae is referred to it has become to mean, including the whare tūpuna or wharenui and associated buildings."
 },
 {
 "t": "Mate",
@@ -128,6 +223,11 @@
 "t": "Mere",
 "s": "mere",
 "d": "Hand held club, sharp on at least one edge"
+},
+{
+"t": "Moa",
+"s": "moa",
+"d": "Giant flightless bird, hunted to extinction around 600 years ago."
 },
 {
 "t": "Nui",
@@ -150,9 +250,34 @@
 "d": "People non-Māori usually of European descent. Considered to derive from a pre-European word pakepakeha meaning mythical light beings."
 },
 {
+"t": "Pātaka",
+"s": "pataka",
+"d": "Raised storehouse for food, often carved."
+},
+{
 "t": "Patu",
 "s": "patu",
 "d": "Hand held club, round or blunted edges"
+},
+{
+"t": "Pōhutukawa",
+"s": "pohutukawa",
+"d": "Coastal tree that flowers red around Christmas – the New Zealand Christmas tree."
+},
+{
+"t": "Poi",
+"s": "poi",
+"d": "Ball on a cord, swung in rhythm during performances."
+},
+{
+"t": "Pou",
+"s": "pou",
+"d": "Carved post, often honouring ancestors or marking a boundary."
+},
+{
+"t": "Pounamu",
+"s": "pounamu",
+"d": "Greenstone (New Zealand jade). A highly prized taonga, found on the West Coast; Ngāi Tahu are its guardians."
 },
 {
 "t": "Pōwhiri",
@@ -160,9 +285,29 @@
 "d": "Welcome"
 },
 {
+"t": "Pūkeko",
+"s": "pukeko",
+"d": "Swamp hen – blue, with a red beak and legs."
+},
+{
+"t": "Rātā",
+"s": "rata",
+"d": "Native tree with red flowers, a close relative of the pōhutukawa."
+},
+{
 "t": "Reo",
 "s": "reo",
 "d": "Language"
+},
+{
+"t": "Rohe",
+"s": "rohe",
+"d": "Territory – the area an iwi belongs to."
+},
+{
+"t": "Rowi",
+"s": "rowi",
+"d": "The rarest kiwi, found only near Ōkārito."
 },
 {
 "t": "Sweet or Sweet as",
@@ -175,6 +320,16 @@
 "d": "Staff like weapon"
 },
 {
+"t": "Takahē",
+"s": "takahe",
+"d": "Flightless bird with blue-green feathers and a red beak, thought extinct until it was rediscovered in 1948."
+},
+{
+"t": "Tamariki",
+"s": "tamariki",
+"d": "Children."
+},
+{
 "t": "Tāne",
 "s": "tane",
 "d": "Man"
@@ -183,6 +338,11 @@
 "t": "Tangi",
 "s": "tangi",
 "d": "Funeral"
+},
+{
+"t": "Tangihanga",
+"s": "tangihanga",
+"d": "Funeral rites, often held over several days on a marae. Usually shortened to tangi."
 },
 {
 "t": "Taniwha",
@@ -205,6 +365,11 @@
 "d": "The"
 },
 {
+"t": "Te reo Māori",
+"s": "te-reo-maori",
+"d": "The Māori language, one of New Zealand's official languages. Often shortened to te reo – \"the language\"."
+},
+{
 "t": "Tēnā (koe, koutou, katoa)",
 "s": "tena-koe-koutou-katoa",
 "d": "Formal greeting to 1,2 many"
@@ -215,9 +380,29 @@
 "d": "The nations Government. This is a loose explanation as it has many legal meanings depending on time in history or reference."
 },
 {
+"t": "Tikanga",
+"s": "tikanga",
+"d": "Custom – the correct way of doing things."
+},
+{
 "t": "Tohunga",
 "s": "tohunga",
 "d": "Witch doctor – experts in sacred law"
+},
+{
+"t": "Tōtara",
+"s": "totara",
+"d": "Native conifer, prized by Māori for carving waka."
+},
+{
+"t": "Tuatara",
+"s": "tuatara",
+"d": "Reptile found only in New Zealand – the last of a line dating back to the dinosaurs."
+},
+{
+"t": "Tūī",
+"s": "tui",
+"d": "Native bird with a white tuft at its throat, known for its song."
 },
 {
 "t": "Tūpuna",
@@ -235,6 +420,11 @@
 "d": "Cemetery"
 },
 {
+"t": "Utu",
+"s": "utu",
+"d": "Balance or payback – returning a gift, or an insult, in kind. Often translated as revenge, but not only."
+},
+{
 "t": "Wahine",
 "s": "wahine",
 "d": "Woman"
@@ -245,6 +435,16 @@
 "d": "Water"
 },
 {
+"t": "Waiata",
+"s": "waiata",
+"d": "Song."
+},
+{
+"t": "Wairua",
+"s": "wairua",
+"d": "Spirit, soul."
+},
+{
 "t": "Waka",
 "s": "waka",
 "d": "Vehicle of transport, usually a canoe"
@@ -253,6 +453,11 @@
 "t": "Wakanui",
 "s": "wakanui",
 "d": "Big canoe/war canoe"
+},
+{
+"t": "Weka",
+"s": "weka",
+"d": "Curious brown flightless bird – keep an eye on your lunch."
 },
 {
 "t": "Wero",
@@ -272,11 +477,21 @@
 {
 "t": "Whare tūpuna",
 "s": "whare-tupuna",
-"d": "Ancestral house, Sometimes called meeting house"
+"d": "Ancestral house, sometimes called meeting house"
+},
+{
+"t": "Wharekai",
+"s": "wharekai",
+"d": "Dining hall on a marae."
 },
 {
 "t": "Wharenui",
 "s": "wharenui",
-"d": "Big building, Sometimes called meeting house"
+"d": "Big building, sometimes called meeting house"
+},
+{
+"t": "Whenua",
+"s": "whenua",
+"d": "Land. Tangata whenua – people of the land – is how iwi describe themselves in their own area."
 }
 ]
