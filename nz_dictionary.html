@@ -38,6 +38,14 @@
   .key-list li { display:flex; gap:12px; padding:9px 12px; border-radius:8px; background:var(--teal-light); margin:0 0 6px; font-size:16px; }
   .key-list b { color:var(--teal-dark); min-width:34px; }
   .pull-quote { background:var(--dark); color:#fff; border-radius:10px; padding:20px 22px; margin:20px 0; font-size:17px; font-weight:600; position:relative; }
+  .guide { margin:0 0 4px; }
+  .guide-btn { width:100%; display:flex; align-items:center; justify-content:space-between; gap:12px; background:var(--teal); color:var(--dark); border:0; border-radius:10px; padding:13px 16px; font:inherit; font-size:16px; font-weight:700; text-align:left; cursor:pointer; -webkit-tap-highlight-color:transparent; }
+  .guide-btn .chev { color:var(--dark); }
+  .guide.open .guide-btn .chev { transform:rotate(90deg); }
+  .guide-body { padding:20px 0 0; }
+  .guide-body[hidden] { display:none; }
+  .guide-body .section { margin-bottom:18px; }
+  .guide-close { display:block; margin:0 auto 22px; background:none; border:1px solid #c5d9d9; border-radius:10px; padding:10px 20px; font:inherit; font-size:14px; font-weight:700; color:var(--teal-dark); cursor:pointer; -webkit-tap-highlight-color:transparent; }
   .pull-quote::before { content:""; position:absolute; top:0; left:0; width:5px; height:100%; background:var(--teal); border-radius:10px 0 0 10px; }
 </style>
 </head>
@@ -48,6 +56,43 @@
   <p class="lede">A glossary of words, terms and phrases you may find helpful.</p>
 </div>
 <div class="content">
+  <div class="guide" id="guide">
+    <button type="button" class="guide-btn" id="guide-btn" aria-expanded="false" aria-controls="guide-body"><span>How to pronounce Māori</span><span class="chev">›</span></button>
+    <div class="guide-body" id="guide-body" hidden>
+      <div class="section">
+        <p>The Māori language or te reo (the language) is an easy language to quickly get a basic pronunciation, especially for most people who have English as a second (third or fourth…) language.</p>
+        <p>The Māori alphabet has a reduced alphabet of 15 characters:</p>
+        <ul class="key-list">
+          <li><b>8</b> consonants: h, k, m, n, p, r, t, w</li>
+          <li><b>5</b> vowels: a, e, i, o, u</li>
+          <li><b>2</b> digraphs: wh and ng</li>
+        </ul>
+        <p>Pronunciation again is simple; it’s only difficult if you try to speak it as English. Here are a few tricks.</p>
+        <p>The first and most basic is to stop, read the word and say it as it is written. Except for the wh and ng, everything is said as it is seen. Every letter is pronounced… no silent letters.</p>
+        <ul class="key-list">
+          <li><b>A</b> is pronounced ah</li>
+          <li><b>E</b> is pronounced eh</li>
+          <li><b>I</b> is pronounced eee</li>
+          <li><b>O</b> is pronounced or</li>
+          <li><b>U</b> is pronounced ooo</li>
+        </ul>
+        <p>The vowels are pronounced as long vowels, like in German, Spanish, French and Dutch to name a few. NO SHORT vowel sounds, English speakers!</p>
+        <p>If the vowel is to be pronounced longer it will be written as a double letter (aa, ee, ii, oo, uu) or with a macron above it: ā, ē, ī, ō, ū.</p>
+        <p>But there is more to think about: some combinations of letters have their own pronunciation.</p>
+        <ul class="key-list">
+          <li><b>Wh</b> is said like an f</li>
+          <li><b>Ng</b> is like the ng in singer</li>
+          <li><b>R</b> roll your r like a good Scotsman</li>
+        </ul>
+        <p>Break each word just after the vowels and you should be able to pronounce Māori correctly.</p>
+        <p>A good example is the name of the people, “Māori” (it actually means normal person, and if you look at it, they’re right: until 1800 AD there were only Māori here, so Europeans were the odd ones). But back to the point.</p>
+        <div class="pull-quote">Māori is not said “marry” like is the misconception (that’s what you do when you find a loved one). Just follow the rules above: ma/o/ri = ma o r(roll it)ee, simple!</div>
+        <p>Remember that a lot of New Zealanders don’t pronounce a lot of the words correctly themselves, especially some place names. You might actually be getting it more right than the locals, so don’t be put off, keep doing it right. With te reo programmes in schools being introduced in the 1980s and 90s, it’s taking time for mainstream Kiwis to adapt from years of getting it wrong.</p>
+        <p>Some local areas have their own take or dialect on the pronunciation of the wh and ng. If you use them as explained above, the locals will understand and will not rubbish you for making the right effort.</p>
+      </div>
+      <button type="button" class="guide-close" id="guide-close">Close guide</button>
+    </div>
+  </div>
   <div class="search-wrap">
     <input class="search" id="search" type="search" placeholder="Search a word or meaning…" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
     <p class="count" id="count"></p>
@@ -171,39 +216,6 @@
     <li class="word" id="word-whenua" data-search="whenua land. tangata whenua  people of the land  is how iwi describe themselves in their own area."><button type="button" class="word-btn" aria-expanded="false"><span class="term">Whenua</span><span class="chev">›</span></button><div class="def">Land. Tangata whenua – people of the land – is how iwi describe themselves in their own area.</div></li>
   </ul>
   <p class="empty" id="empty">No match. Try a shorter word.</p>
-
-  <div class="section">
-    <h2>How to pronounce Māori</h2>
-    <p>The Māori language or te reo (the language) is an easy language to quickly get a basic pronunciation, especially for most people who have English as a second (third or fourth…) language.</p>
-    <p>The Māori alphabet has a reduced alphabet of 15 characters:</p>
-    <ul class="key-list">
-      <li><b>8</b> consonants: h, k, m, n, p, r, t, w</li>
-      <li><b>5</b> vowels: a, e, i, o, u</li>
-      <li><b>2</b> digraphs: wh and ng</li>
-    </ul>
-    <p>Pronunciation again is simple; it’s only difficult if you try to speak it as English. Here are a few tricks.</p>
-    <p>The first and most basic is to stop, read the word and say it as it is written. Except for the wh and ng, everything is said as it is seen. Every letter is pronounced… no silent letters.</p>
-    <ul class="key-list">
-      <li><b>A</b> is pronounced ah</li>
-      <li><b>E</b> is pronounced eh</li>
-      <li><b>I</b> is pronounced eee</li>
-      <li><b>O</b> is pronounced or</li>
-      <li><b>U</b> is pronounced ooo</li>
-    </ul>
-    <p>The vowels are pronounced as long vowels, like in German, Spanish, French and Dutch to name a few. NO SHORT vowel sounds, English speakers!</p>
-    <p>If the vowel is to be pronounced longer it will be written as a double letter (aa, ee, ii, oo, uu) or with a macron above it: ā, ē, ī, ō, ū.</p>
-    <p>But there is more to think about: some combinations of letters have their own pronunciation.</p>
-    <ul class="key-list">
-      <li><b>Wh</b> is said like an f</li>
-      <li><b>Ng</b> is like the ng in singer</li>
-      <li><b>R</b> roll your r like a good Scotsman</li>
-    </ul>
-    <p>Break each word just after the vowels and you should be able to pronounce Māori correctly.</p>
-    <p>A good example is the name of the people, “Māori” (it actually means normal person, and if you look at it, they’re right: until 1800 AD there were only Māori here, so Europeans were the odd ones). But back to the point.</p>
-    <div class="pull-quote">Māori is not said “marry” like is the misconception (that’s what you do when you find a loved one). Just follow the rules above: ma/o/ri = ma o r(roll it)ee, simple!</div>
-    <p>Remember that a lot of New Zealanders don’t pronounce a lot of the words correctly themselves, especially some place names. You might actually be getting it more right than the locals, so don’t be put off, keep doing it right. With te reo programmes in schools being introduced in the 1980s and 90s, it’s taking time for mainstream Kiwis to adapt from years of getting it wrong.</p>
-    <p>Some local areas have their own take or dialect on the pronunciation of the wh and ng. If you use them as explained above, the locals will understand and will not rubbish you for making the right effort.</p>
-  </div>
 </div>
 <script>
   // Word list (generated from magic_nz_te_reo_clean.csv) — also used for press-and-hold lookups on other pages.
@@ -227,6 +239,14 @@
       empty.style.display = shown ? 'none' : 'block';
     }
     search.addEventListener('input', filter); filter();
+    // Pronunciation guide: a button at the top that opens and closes it. The app's back arrow closes it first.
+    var guide = document.getElementById('guide'), guideBtn = document.getElementById('guide-btn'), guideBody = document.getElementById('guide-body');
+    function setGuide(open) { guide.classList.toggle('open', open); guideBody.hidden = !open; guideBtn.setAttribute('aria-expanded', open); }
+    guideBtn.addEventListener('click', function() { setGuide(guideBody.hidden); });
+    document.getElementById('guide-close').addEventListener('click', function() { setGuide(false); guide.scrollIntoView({ block: 'start' }); });
+    window.addEventListener('message', function(e) {
+      if (e.data && e.data.magicnz === 'back' && !guideBody.hidden) { setGuide(false); guide.scrollIntoView({ block: 'start' }); if (e.source) e.source.postMessage({ magicnz: 'handled' }, '*'); }
+    });
     // Deep link: nz_dictionary.html?word=kia-ora opens and highlights that word
     var w = new URLSearchParams(location.search).get('word'), el = w && document.getElementById('word-' + w);
     if (el) { el.classList.add('open', 'flash'); setTimeout(function() { el.scrollIntoView({ block: 'center' }); }, 50); setTimeout(function() { el.classList.remove('flash'); }, 1800); }
