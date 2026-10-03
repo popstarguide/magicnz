@@ -263,9 +263,6 @@
 <p class="intro-quote" id="legends-intro">This collection it has to be noted are a few I have chosen because of their significance to the locations they are centred about or set the scene for further understanding of culture. A high number of legends have different versions depending on the iwi or person telling them. These have been sourced from &ldquo;Reed book of Māori mythology&rdquo;. In the writing of this book I have tried to find the accepted version of these legends. I also have tried to honour these stories and their places through sharing them with you.<br><br>The Māori made sense of their surrounding and retold their history through legend for hundreds of years. What&rsquo;s more the legends are usually more engaging than the scientific stories.</p>
 <button class="expand-btn" id="intro-toggle" style="display:none;">Read more</button>
 
-<input type="text" class="search-input" id="legends-search" placeholder="Search for a legend" autocomplete="off">
-<p class="search-status" id="search-status">&nbsp;</p>
-
 <div class="drum-wrap">
   <div class="drum-fade top"></div>
   <div class="drum-frame-line top"></div>
@@ -320,12 +317,9 @@
       toggleBtn.style.display = 'block';
     }
     drumEl.removeEventListener('scroll', collapseOnFirstInteraction);
-    searchEl.removeEventListener('focus', collapseOnFirstInteraction);
   }
   var drumEl = document.getElementById('drum-track');
-  var searchEl = document.getElementById('legends-search');
   if (drumEl) drumEl.addEventListener('scroll', collapseOnFirstInteraction, {passive: true});
-  if (searchEl) searchEl.addEventListener('focus', collapseOnFirstInteraction);
 })();
 
 // All legends. Images are optional -- if a file named below isn't yet in
@@ -335,8 +329,6 @@ const ALL_LEGENDS = [{"name": "Creation", "blurb": "In the beginning there was a
 ;
 
 const drumTrack = document.getElementById('drum-track');
-const searchInput = document.getElementById('legends-search');
-const searchStatus = document.getElementById('search-status');
 const detailEl = document.getElementById('legend-detail');
 const nameEl = document.getElementById('detail-name');
 const imageEl = document.getElementById('detail-image');
@@ -437,34 +429,6 @@ function renderDetail() {
     imageEl.style.display = 'none';
     imageEl.removeAttribute('src');
   }
-}
-
-// ---- Search ----
-let searchTimeout = null;
-searchInput.addEventListener('input', () => {
-  if (searchTimeout) clearTimeout(searchTimeout);
-  searchTimeout = setTimeout(runSearch, 150);
-});
-
-function runSearch() {
-  const q = searchInput.value.trim().toLowerCase();
-  const previouslyCentered = visibleLegends[currentIndex];
-
-  if (!q) {
-    visibleLegends = ALL_LEGENDS.slice();
-    searchStatus.innerHTML = '&nbsp;';
-  } else {
-    visibleLegends = ALL_LEGENDS.filter(lg =>
-      lg.name.toLowerCase().includes(q) ||
-      lg.blurb.toLowerCase().includes(q)
-    );
-    searchStatus.textContent = visibleLegends.length
-      ? visibleLegends.length + ' legend' + (visibleLegends.length === 1 ? '' : 's') + ' found'
-      : 'No legends match "' + searchInput.value.trim() + '"';
-  }
-
-  currentIndex = 0;
-  renderDrum(q ? null : previouslyCentered);
 }
 
 // Initial render
